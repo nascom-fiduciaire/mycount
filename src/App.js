@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './index.css';
+import LandingPage from './components/LandingPage';
 import Sidebar from './components/Sidebar';
 import TheoryView from './components/TheoryView';
 import ExerciseView from './components/ExerciseView';
@@ -35,6 +36,7 @@ export default function App() {
     try { return localStorage.getItem(MODULE_KEY) || 'generale'; } catch { return 'generale'; }
   });
   const [scores, setScores] = useState(loadScores);
+  const [showLanding, setShowLanding] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const scrollRef = useRef(null);
 
@@ -56,6 +58,15 @@ export default function App() {
       localStorage.removeItem(STORAGE_KEY);
     }
   };
+
+  if (showLanding) {
+    return (
+      <LandingPage
+        onStart={() => setShowLanding(false)}
+        onSelectModule={(id) => { handleSetModule(id); setShowLanding(false); }}
+      />
+    );
+  }
 
   return (
     <div className="app">
