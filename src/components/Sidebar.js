@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
   LayoutDashboard, BookOpen, PenSquare, Percent, Banknote,
   CalendarClock, ChevronRight, FileText, Table2,
-  ClipboardList, GraduationCap, Scale, Package, TrendingUp,
+  ClipboardList, Scale, Package, TrendingUp,
   Building2, BarChart3, Calculator, PieChart, Target
 } from 'lucide-react';
 import { MODULES } from '../data/modules';
@@ -108,9 +108,7 @@ export default function Sidebar({ view, setView, activeTheory, setActiveTheory, 
       {/* Logo */}
       <div className="sidebar-logo">
         <div style={{ display: 'flex', alignItems: 'center', gap: 11 }}>
-          <div style={{ width: 32, height: 32, borderRadius: 9, background: 'linear-gradient(135deg, rgba(59,130,246,0.4), rgba(37,99,235,0.6))', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 2px 8px rgba(37,99,235,0.2)' }}>
-            <GraduationCap size={17} color="#fff" strokeWidth={2} />
-          </div>
+          <img src="/logo.svg" alt="MyCount" style={{ width: 32, height: 32, borderRadius: 9, flexShrink: 0, boxShadow: '0 2px 8px rgba(37,99,235,0.2)' }} />
           <div>
             <h1>MyCount</h1>
             <p>Comptabilité fiduciaire · CH</p>
