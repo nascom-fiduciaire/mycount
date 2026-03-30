@@ -89,7 +89,7 @@ function ModuleSwitcher({ activeModule, setActiveModule, setView }) {
 }
 
 // ─── Composant principal ──────────────────────────────────────────────────────
-export default function Sidebar({ view, setView, activeTheory, setActiveTheory, activeGroup, setActiveGroup, scores, activeModule, setActiveModule }) {
+export default function Sidebar({ view, setView, activeTheory, setActiveTheory, activeGroup, setActiveGroup, scores, activeModule, setActiveModule, className }) {
 
   // Récupérer le module actif
   const mod = MODULES.find(m => m.id === activeModule) || MODULES[0];
@@ -104,7 +104,7 @@ export default function Sidebar({ view, setView, activeTheory, setActiveTheory, 
   const toggle = (key) => setOpen(p => ({ ...p, [key]: !p[key] }));
 
   return (
-    <div className="sidebar">
+    <div className={`sidebar ${className || ''}`}>
 
       {/* Logo */}
       <div className="sidebar-logo">

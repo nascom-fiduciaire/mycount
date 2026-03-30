@@ -35,6 +35,7 @@ export default function App() {
     try { return localStorage.getItem(MODULE_KEY) || 'generale'; } catch { return 'generale'; }
   });
   const [scores, setScores] = useState(loadScores);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const scrollRef = useRef(null);
 
   useEffect(() => { saveScores(scores); }, [scores]);
@@ -43,10 +44,11 @@ export default function App() {
   }, [activeModule]);
 
   const scrollTop        = () => { if (scrollRef.current) scrollRef.current.scrollTop = 0; };
-  const handleSetView    = (v)  => { setView(v);          setTimeout(scrollTop, 10); };
-  const handleSetTheory  = (id) => { setActiveTheory(id); setTimeout(scrollTop, 10); };
-  const handleSetGroup   = (id) => { setActiveGroup(id);  setTimeout(scrollTop, 10); };
-  const handleSetModule  = (id) => { setActiveModule(id); setView('dashboard'); setTimeout(scrollTop, 10); };
+  const closeSidebar     = () => setSidebarOpen(false);
+  const handleSetView    = (v)  => { setView(v);          closeSidebar(); setTimeout(scrollTop, 10); };
+  const handleSetTheory  = (id) => { setActiveTheory(id); closeSidebar(); setTimeout(scrollTop, 10); };
+  const handleSetGroup   = (id) => { setActiveGroup(id);  closeSidebar(); setTimeout(scrollTop, 10); };
+  const handleSetModule  = (id) => { setActiveModule(id); setView('dashboard'); closeSidebar(); setTimeout(scrollTop, 10); };
 
   const handleResetScores = () => {
     if (window.confirm('Remettre tous les scores à zéro ?')) {
@@ -57,12 +59,19 @@ export default function App() {
 
   return (
     <div className="app">
+      {/* Bouton hamburger mobile */}
+      <button className="hamburger" onClick={() => setSidebarOpen(o => !o)} aria-label="Menu">
+        <span /><span /><span />
+      </button>
+      {/* Overlay mobile */}
+      {sidebarOpen && <div className="sidebar-overlay" onClick={closeSidebar} />}
       <Sidebar
         view={view}                 setView={handleSetView}
         activeTheory={activeTheory} setActiveTheory={handleSetTheory}
         activeGroup={activeGroup}   setActiveGroup={handleSetGroup}
         activeModule={activeModule} setActiveModule={handleSetModule}
         scores={scores}
+        className={sidebarOpen ? 'open' : ''}
       />
       <div className="main" ref={scrollRef}>
         {view === 'dashboard'         && <Dashboard scores={scores} setView={handleSetView} setActiveGroup={handleSetGroup} setActiveTheory={handleSetTheory} onReset={handleResetScores} activeModule={activeModule} />}
