@@ -447,7 +447,40 @@ function TabAugmentation() {
       <Ecriture debit="1020 Banque" credit="2400 Emprunt obligataire" montant="490'000" />
       <Ecriture debit="1801 Disagio sur emprunt" credit="2400 Emprunt obligataire" montant="10'000" />
 
-      <H2>4. Points cles a retenir</H2>
+      <H2>4. Capital autorise et capital conditionnel</H2>
+
+      <H3>Capital autorise (art. 651-652 CO)</H3>
+      <P>Le capital autorise permet au conseil d{'\''}administration d{'\''}augmenter le capital-actions sans convoquer l{'\''}assemblee generale, dans une limite et un delai fixes par les statuts.</P>
+      <P>Conditions : l{'\''}AG autorise le CA a augmenter le capital de maximum 50% du capital existant, pendant une duree maximale de 2 ans.</P>
+      <Loi art="Art. 651 CO">
+        Les statuts peuvent autoriser le conseil d{'\''}administration a augmenter le capital-actions dans un delai de deux ans au plus. Le montant nominal de l{'\''}augmentation autorisee ne peut depasser la moitie du capital-actions existant.
+      </Loi>
+      <P>Avantage : rapidite — le CA peut reagir aux opportunites de marche sans attendre une AG extraordinaire.</P>
+
+      <H3>Capital conditionnel (art. 653-653i CO)</H3>
+      <P>Le capital conditionnel est une augmentation de capital qui ne se realise que si les detenteurs de droits de conversion ou d{'\''}option exercent ces droits. Il est typiquement lie a des obligations convertibles ou des plans de participation des employes.</P>
+      <P>Le capital conditionnel ne peut pas depasser 50% du capital existant (20% s{'\''}il supprime le DPS des actionnaires existants).</P>
+      <Loi art="Art. 653 CO">
+        L{'\''}assemblee generale peut prevoir dans les statuts que le capital-actions est augmente conditionnellement par l{'\''}emission d{'\''}actions nouvelles en faveur de titulaires de droits de conversion ou d{'\''}option.
+      </Loi>
+      <Note color="blue">Le capital conditionnel est un {'\''}capital potentiel{'\''}  : il figure dans les statuts mais pas au bilan tant que les droits ne sont pas exerces.</Note>
+
+      <H3>Bons de participation (art. 656a-656g CO)</H3>
+      <P>Les bons de participation sont des titres de capitaux propres SANS droit de vote. Ils conferent uniquement des droits patrimoniaux (dividendes, part de liquidation) au meme titre que les actions.</P>
+      <P>Le capital-participation ne peut pas depasser le double du capital-actions. Les bons de participation sont souvent utilises pour lever des fonds sans diluer le controle des actionnaires existants.</P>
+      <Tableau
+        headers={['Caracteristique', 'Actions', 'Bons de participation']}
+        rows={[
+          { cells: ['Droit de vote', 'Oui', 'Non'] },
+          { cells: ['Droit au dividende', 'Oui', 'Oui (meme proportion)'] },
+          { cells: ['Droit a la liquidation', 'Oui', 'Oui'] },
+          { cells: ['Limite', '—', 'Max 2x le capital-actions'] },
+          { cells: ['Comptes', '2800 Capital-actions', '2810 Capital-participation'] },
+        ]}
+      />
+      <P>Comptablement, l{'\''}emission de bons de participation se traite comme une augmentation de capital classique, mais au compte 2810 Capital-participation au lieu de 2800.</P>
+
+      <H2>5. Points cles a retenir</H2>
       {[
         'L\'agio (prime d\'emission) compense la valeur accumulee par la societe.',
         'Le DPS protege les actionnaires existants contre la dilution.',
@@ -684,7 +717,42 @@ function TabFusion() {
       <Ecriture debit="2800 Capital-actions" credit="Actifs nets transferes" montant="800'000" />
       <P>Chaque nouvelle societe reprend les actifs et dettes selon la cle de repartition et constitue son propre capital-actions.</P>
 
-      <H2>5. Points cles a retenir</H2>
+      <H2>5. Traitement du goodwill et des differences d{'\''}acquisition</H2>
+
+      <H3>Goodwill positif (survaleur)</H3>
+      <P>Lorsque le prix paye pour une societe absorbee depasse la valeur de ses actifs nets retraites, la difference constitue un goodwill (ecart d{'\''}acquisition). En droit suisse (CO), le goodwill peut etre :</P>
+      <P>1. Active au bilan (compte 1880 Goodwill) et amorti sur sa duree d{'\''}utilite estimee (generalement 5 a 20 ans).</P>
+      <P>2. Impute directement sur les reserves au moment de l{'\''}acquisition (methode de la compensation).</P>
+      <Note color="yellow">La methode d{'\''}imputation directe sur les reserves est plus conservatrice et evite de gonfler les actifs. Elle est courante dans les PME suisses.</Note>
+      <Ecriture debit="1880 Goodwill" credit="2900 Reserves" montant="xxx" libelle="Activation du goodwill d'acquisition (si active)" />
+
+      <H3>Goodwill negatif (badwill)</H3>
+      <P>Si la valeur des actifs nets acquis depasse le prix paye, il y a un goodwill negatif (badwill ou {'\''}bonne affaire{'\''}). Cela peut indiquer que certains actifs sont surevalues ou que des passifs caches existent.</P>
+      <P>Le badwill est generalement comptabilise en produit exceptionnel ou affecte aux reserves.</P>
+
+      <H2>6. Aspects fiscaux de la fusion</H2>
+
+      <P>En Suisse, les fusions peuvent beneficier de la neutralite fiscale si certaines conditions sont remplies (art. 61 LIFD / art. 24 LHID) :</P>
+      <P>1. Les reserves latentes reprises par la societe absorbante doivent etre maintenues (pas de reevaluation libre).</P>
+      <P>2. L{'\''}assujettissement a l{'\''}impot en Suisse doit etre maintenu.</P>
+      <P>3. La forme juridique doit rester une societe de capitaux ou une cooperative.</P>
+      <Note color="blue">Si ces conditions sont respectees, la fusion ne declenche PAS d{'\''}imposition immediate des plus-values latentes. C{'\''}est le principe de la {'\''}restructuration fiscalement neutre{'\''}.</Note>
+      <Loi art="Art. 61 LIFD">
+        Les restructurations (fusions, scissions, transformations) sont fiscalement neutres si les valeurs determinantes pour l{'\''}impot sur le benefice sont reprises et si l{'\''}assujettissement en Suisse est maintenu.
+      </Loi>
+
+      <P>Pour les actionnaires, la fusion par echange d{'\''}actions est egalement neutre si le nouvel investissement a la meme valeur fiscale que l{'\''}ancien.</P>
+
+      <Tableau
+        headers={['Condition', 'Consequence si respectee', 'Consequence si non respectee']}
+        rows={[
+          { cells: ['Maintien des reserves latentes', 'Pas d\'imposition', 'Imposition des plus-values realisees'] },
+          { cells: ['Assujettissement en CH maintenu', 'Neutralite fiscale', 'Imposition immediate (liquidation partielle indirecte)'] },
+          { cells: ['Meme type de societe', 'Neutralite', 'Possibilite d\'imposition'] },
+        ]}
+      />
+
+      <H2>7. Points cles a retenir</H2>
       {[
         'Fusion par absorption : la societe absorbee disparait, l\'absorbante subsiste.',
         'Valeur intrinseque = fonds propres comptables + reserves latentes nettes.',
