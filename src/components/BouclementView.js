@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { P, H2, H3, Note, Tableau, Ecriture, TheoryLayout } from './TheoryUI';
+import { P, H2, H3, Note, Loi, Tableau, Ecriture, TheoryLayout } from './TheoryUI';
 
 // ─── ONGLET 1 : VUE D'ENSEMBLE ────────────────────────────────────────────────
 function TabOverview() {
@@ -389,6 +389,80 @@ function TabImpots() {
   );
 }
 
+// ─── ONGLET 6 : PROVISIONS & ÉVÉNEMENTS ─────────────────────────────────────
+function TabProvisions() {
+  return (
+    <div>
+      <H2>1. Provisions pour risques et charges (art. 960e CO)</H2>
+      <P>Les provisions sont des dettes estimées, incertaines dans leur montant ou leur échéance, mais probables. Le CO impose de comptabiliser toute perte prévisible, même si son montant exact n&apos;est pas connu.</P>
+      <P>Types de provisions courantes en PME :</P>
+      <Tableau
+        headers={['Type', 'Compte', 'Exemple']}
+        rows={[
+          { cells: ['Provision pour impôts', '2300', 'Impôts estimés sur le bénéfice de l\'exercice'] },
+          { cells: ['Provision pour garanties', '2330', 'Réclamations SAV sur produits vendus'] },
+          { cells: ['Provision pour litiges', '2350', 'Procès en cours, risque de condamnation'] },
+          { cells: ['Provision pour restructuration', '2360', 'Plan social annoncé, indemnités de départ'] },
+          { cells: ['Provision pour gros entretien', '2340', 'Rénovation programmée d\'un immeuble'] },
+        ]}
+      />
+      <Loi art="Art. 960e CO">
+        Des provisions peuvent être constituées pour les obligations futures si elles sont fondées sur un événement passé, si le montant peut être estimé de manière fiable, et si une sortie de ressources est probable.
+      </Loi>
+      <Ecriture debit="6800 Charges d'exploitation" credit="2350 Provision litiges" montant="50'000" libelle="Provision pour procès — risque estimé probable" />
+
+      <H2>2. Reprise de provisions</H2>
+      <P>Lorsqu&apos;une provision n&apos;est plus justifiée (le risque a disparu), elle doit être dissoute. La dissolution crée un produit extraordinaire.</P>
+      <Ecriture debit="2350 Provision litiges" credit="3900 Produits exceptionnels" montant="50'000" libelle="Dissolution provision — procès gagné" />
+      <Note color="green">
+        Attention : si le risque se réalise pour un montant différent de la provision, il faut ajuster. Exemple : provision de CHF 50&apos;000, condamnation de CHF 35&apos;000 → on utilise 35&apos;000 de la provision et on dissout les 15&apos;000 restants.
+      </Note>
+
+      <H2>3. Continuité de l&apos;exploitation (going concern)</H2>
+      <P>L&apos;art. 958a CO impose que les comptes soient établis dans l&apos;hypothèse de la continuité de l&apos;exploitation, sauf si des indices contraires existent.</P>
+      <P>Si la continuité est menacée (perte de capital art. 725 CO, surendettement art. 725b CO), les actifs doivent être évalués à leur valeur de liquidation, généralement bien inférieure à la valeur comptable.</P>
+      <Loi art="Art. 725 CO">
+        Perte de capital : si la moitié du capital-actions et des réserves légales n&apos;est plus couverte, le conseil d&apos;administration convoque immédiatement une assemblée générale et propose des mesures d&apos;assainissement.
+      </Loi>
+      <Note color="red">
+        En cas de surendettement (art. 725b CO), le conseil d&apos;administration doit aviser le juge, sauf si des créanciers acceptent une postposition de leurs créances.
+      </Note>
+
+      <H2>4. Événements postérieurs à la clôture</H2>
+      <P>Des événements significatifs peuvent survenir entre la date de clôture (31.12) et la date d&apos;approbation des comptes par l&apos;assemblée générale. Le CO impose de les prendre en compte.</P>
+      <H3>Événements à ajuster (type 1)</H3>
+      <P>Si l&apos;événement existait déjà au 31.12 mais n&apos;a été confirmé qu&apos;après, il faut ajuster les comptes. Exemple : un client important fait faillite en janvier, confirmant que la créance au 31.12 était déjà douteuse.</P>
+      <H3>Événements à mentionner (type 2)</H3>
+      <P>Si l&apos;événement est nouveau et n&apos;existait pas au 31.12, il ne faut pas modifier les comptes mais le mentionner dans l&apos;annexe. Exemple : incendie en février détruisant un entrepôt.</P>
+      <Tableau
+        headers={['Type', 'Exemple', 'Traitement']}
+        rows={[
+          { cells: ['Type 1 — Ajuster', 'Faillite client confirmée en janvier', 'Modifier la provision ducroire au 31.12'] },
+          { cells: ['Type 1 — Ajuster', 'Jugement tribunal rendu en février', 'Ajuster la provision pour litiges'] },
+          { cells: ['Type 2 — Mentionner', 'Incendie en février', 'Note dans l\'annexe, pas d\'ajustement'] },
+          { cells: ['Type 2 — Mentionner', 'Acquisition d\'une société en mars', 'Note dans l\'annexe'] },
+        ]}
+      />
+
+      <H2>5. Usage privé détaillé</H2>
+      <P>Lorsque l&apos;entrepreneur ou ses proches utilisent des biens de l&apos;entreprise à titre privé, il faut comptabiliser la part privée.</P>
+      <H3>Véhicule</H3>
+      <P>La part privée véhicule est calculée forfaitairement : 0.9% du prix d&apos;achat par mois (soit 10.8% par an). Alternative : 4% de la valeur résiduelle si le véhicule est ancien.</P>
+      <Tableau
+        headers={['Méthode', 'Base', 'Taux', 'Exemple (véhicule CHF 40\'000)']}
+        rows={[
+          { cells: ['Forfait mensuel', 'Prix d\'achat', '0.9%/mois (10.8%/an)', 'CHF 4\'320/an'] },
+          { cells: ['Valeur résiduelle', 'VCN', '4%/an', 'Dépend de l\'âge'] },
+        ]}
+      />
+      <Ecriture debit="2800 Privé" credit="6700 Charges véhicule" montant="4'320" libelle="Part privée véhicule annuelle (10.8%)" />
+      <H3>Prélèvements en nature</H3>
+      <P>Les prélèvements en nature (marchandises, nourriture) sont évalués selon les forfaits AFC. Pour un couple : CHF 14&apos;400/an (2024). Ces montants sont soumis à la TVA.</P>
+      <Ecriture debit="2800 Privé" credit="3200 Ventes marchandises" montant="14'400" libelle="Prélèvements en nature — forfait AFC" />
+    </div>
+  );
+}
+
 // ─── VUE PRINCIPALE ───────────────────────────────────────────────────────────
 const TABS = [
   { id: 'overview',      label: 'Vue d\'ensemble' },
@@ -396,6 +470,7 @@ const TABS = [
   { id: 'transitoires',  label: 'Transitoires & stocks' },
   { id: 'amortissements',label: 'Amortissements & parts privées' },
   { id: 'salaires',      label: 'Salaires & TVA' },
+  { id: 'provisions',    label: 'Provisions & événements' },
   { id: 'impots',        label: 'Impôts & clôture' },
 ];
 
@@ -416,6 +491,7 @@ export default function BouclementView() {
       {tab === 'transitoires'   && <TabTransitoires />}
       {tab === 'amortissements' && <TabAmortissements />}
       {tab === 'salaires'       && <TabSalairesTVA />}
+      {tab === 'provisions'     && <TabProvisions />}
       {tab === 'impots'         && <TabImpots />}
     </TheoryLayout>
   );

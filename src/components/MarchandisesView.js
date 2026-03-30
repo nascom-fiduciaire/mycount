@@ -498,10 +498,54 @@ function TabPermanent() {
   );
 }
 
+// ─── ONGLET 3 : ÉVALUATION & PROVISIONS ─────────────────────────────────────
+function TabEvaluation() {
+  return (
+    <div>
+      <H2>1. Principe du plus bas (Lower of Cost or Market)</H2>
+      <P>L&apos;article 960a CO impose d&apos;évaluer les actifs circulants au plus bas entre le coût d&apos;acquisition et la valeur de marché (ou valeur de réalisation). Ce principe s&apos;applique directement aux stocks de marchandises.</P>
+      <P>Concrètement, si le stock a coûté CHF 50&apos;000 à l&apos;achat mais ne vaut plus que CHF 42&apos;000 sur le marché au 31.12, il faut le déprécier à CHF 42&apos;000.</P>
+      <Loi art="Art. 960a al. 3 CO">
+        Les actifs circulants avec un cours boursier ou un prix de marché observable sont évalués à ce cours ou prix. Sinon au coût d&apos;acquisition ou de revient, si celui-ci est inférieur.
+      </Loi>
+      <Ecriture debit="4080 Dépréciation stock" credit="1200 Stock marchandises" montant="8'000" libelle="Dépréciation stock au 31.12 — valeur de marché inférieure au coût" />
+
+      <H2>2. Provision pour stock obsolète</H2>
+      <P>En plus de la dépréciation au prix du marché, l&apos;entreprise doit constituer une provision si elle détient des marchandises invendables, endommagées, ou dont la rotation est très lente.</P>
+      <P>En pratique, beaucoup de fiduciaires appliquent un abattement forfaitaire de 1/3 sur le stock (méthode dite des 2/3). Le stock est ainsi comptabilisé à 2/3 de sa valeur réelle, ce qui constitue une réserve latente autorisée par le CO.</P>
+      <Note color="yellow">
+        La règle des 2/3 est tolérée fiscalement en Suisse. Elle est très courante dans les PME et constitue une réserve latente légale.
+      </Note>
+      <Tableau
+        headers={['Méthode', 'Stock réel', 'Valeur comptable', 'Réserve latente']}
+        rows={[
+          { cells: ['Valeur intégrale', "CHF 60'000", "CHF 60'000", 'CHF 0'] },
+          { cells: ['Règle des 2/3', "CHF 60'000", "CHF 40'000", "CHF 20'000"] },
+          { cells: ['Dépréciation spécifique', "CHF 60'000", "CHF 48'000", "CHF 12'000"] },
+        ]}
+      />
+
+      <H2>3. Travaux en cours et produits semi-finis</H2>
+      <P>Pour les entreprises de production ou de services (bureau d&apos;ingénierie, architectes, etc.), il faut également évaluer les travaux en cours au 31.12.</P>
+      <P>Les travaux en cours sont évalués au coût de production (matières + main-d&apos;œuvre directe + part des frais généraux). Ils sont comptabilisés à l&apos;actif au compte 1270 (Travaux en cours).</P>
+      <Ecriture debit="1270 Travaux en cours" credit="4900 Variation travaux en cours" montant="xxx" libelle="Activation des travaux en cours au 31.12" />
+      <Note color="blue">
+        La variation des travaux en cours est un produit (crédit 4900) qui compense les charges engagées durant l&apos;exercice pour des projets non encore facturés.
+      </Note>
+
+      <H2>4. Démarque connue et inconnue</H2>
+      <P>La démarque connue comprend les marchandises identifiées comme perdues, volées ou endommagées. La démarque inconnue est la différence entre le stock théorique et le stock réel constaté lors de l&apos;inventaire physique.</P>
+      <P>Les deux types de démarque augmentent le coût des marchandises vendues et réduisent le résultat.</P>
+      <Ecriture debit="4000 Charges marchandises" credit="1200 Stock" montant="xxx" libelle="Constatation de la démarque (écart d'inventaire)" />
+    </div>
+  );
+}
+
 // ─── VUE PRINCIPALE ───────────────────────────────────────────────────────────
 const TABS = [
   { id: 'intermittent', label: 'Inventaire intermittent' },
   { id: 'permanent', label: 'Inventaire permanent & méthodes FIFO/LIFO' },
+  { id: 'evaluation', label: 'Évaluation & provisions' },
 ];
 
 export default function MarchandisesView() {
@@ -518,6 +562,7 @@ export default function MarchandisesView() {
     >
       {tab === 'intermittent' && <TabIntermittent />}
       {tab === 'permanent' && <TabPermanent />}
+      {tab === 'evaluation' && <TabEvaluation />}
     </TheoryLayout>
   );
 }

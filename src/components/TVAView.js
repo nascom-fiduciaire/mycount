@@ -441,6 +441,67 @@ function TabPointsCles() {
   );
 }
 
+// ─── ONGLET 6 : EXEMPTIONS & CAS SPÉCIAUX ───────────────────────────────────
+function TabExemptions() {
+  return (
+    <div>
+      <H2>1. Prestations exonérées (art. 21 LTVA)</H2>
+      <P>Certaines prestations sont exclues du champ de la TVA par la loi. Les fournisseurs de ces prestations ne facturent pas de TVA à leurs clients, mais ne peuvent pas non plus récupérer l'impôt préalable sur leurs propres achats. Les principales catégories sont :</P>
+      <P><strong>Soins médicaux</strong> — prestations fournies par les médecins, dentistes, physiothérapeutes, psychologues et autres professionnels de la santé reconnus. Seules les prestations à visée thérapeutique sont exclues ; les prestations esthétiques restent imposables.</P>
+      <P><strong>Formation et enseignement</strong> — enseignement scolaire, universitaire, formation professionnelle continue, cours de langues et de musique dispensés par des institutions reconnues ou des enseignants indépendants.</P>
+      <P><strong>Location immobilière</strong> — la mise à disposition d'immeubles ou de parties d'immeubles pour l'usage de tiers (habitation, bureaux) est exclue. Le propriétaire peut toutefois opter pour l'imposition volontaire s'il loue à des assujettis (art. 22 LTVA).</P>
+      <P><strong>Opérations d'assurance</strong> — primes d'assurance, prestations de réassurance et activités d'intermédiaires d'assurance.</P>
+      <P><strong>Opérations bancaires</strong> — intérêts sur prêts et dépôts, opérations sur devises et moyens de paiement, négoce de titres pour le compte propre de l'établissement.</P>
+      <P><strong>Culture et sport</strong> — sous certaines conditions, les prestations culturelles et sportives fournies par des organismes sans but lucratif peuvent être exclues du champ de la TVA.</P>
+      <Loi art="Art. 21 al. 2 LTVA — Liste des prestations exclues du champ de l'impôt">
+        L'art. 21 al. 2 LTVA énumère de manière exhaustive les prestations exclues du champ de la TVA. Cette liste comprend notamment les soins médicaux, l'enseignement, la location immobilière, les opérations d'assurance, les opérations bancaires et certaines prestations culturelles et sportives.
+      </Loi>
+      <Note>Attention : exonéré = pas de TVA mais aussi pas de récupération de l'impôt préalable. L'assujetti peut opter pour l'imposition volontaire (art. 22 LTVA) s'il fournit ces prestations à d'autres assujettis.</Note>
+
+      <H2>2. Prestations exonérées avec droit à déduction (art. 23 LTVA)</H2>
+      <P>Les exportations de biens, les prestations de services fournies à des destinataires ayant leur siège à l'étranger et les transports internationaux de biens et de personnes constituent des prestations exonérées au sens de l'art. 23 LTVA. Le taux applicable est de 0%.</P>
+      <P>Contrairement aux exclusions de l'art. 21, ces prestations ouvrent droit à la déduction de l'impôt préalable (taux 0%).</P>
+      <Note color="green">C'est la situation la plus avantageuse : pas de TVA facturée, mais récupération intégrale de l'impôt préalable sur les achats.</Note>
+
+      <H2>3. Moment de l'imposition et méthodes de décompte</H2>
+      <P>La TVA peut être déclarée selon deux méthodes distinctes, qui diffèrent par le moment où la créance fiscale naît :</P>
+      <P><strong>Contre-prestations convenues (accrual)</strong> — la TVA est due dès l'émission de la facture, indépendamment de l'encaissement effectif. C'est la méthode par défaut.</P>
+      <P><strong>Contre-prestations reçues (cash)</strong> — la TVA n'est due qu'au moment de l'encaissement effectif du prix. Cette méthode nécessite une autorisation de l'AFC.</P>
+      <Tableau
+        caption="Comparaison : contre-prestations convenues vs reçues"
+        headers={['Critère', 'Convenues (accrual)', 'Reçues (cash)']}
+        rows={[
+          { cells: ['Quand déclarer la TVA', 'À l\'émission de la facture', 'À l\'encaissement du paiement'] },
+          { cells: ['Avantage', 'Correspondance exacte avec le chiffre d\'affaires comptable', 'Pas de TVA à avancer sur les factures impayées'] },
+          { cells: ['Inconvénient', 'TVA due même si le client n\'a pas encore payé', 'Suivi plus complexe des encaissements'] },
+        ]}
+      />
+      <P>La plupart des entreprises utilisent la méthode des contre-prestations convenues (factures émises). La méthode reçue est plus simple mais ne s'applique qu'à certaines conditions.</P>
+      <Loi art="Art. 39-40 LTVA — Méthodes de décompte">
+        L'art. 39 LTVA prévoit le décompte selon les contre-prestations convenues (par défaut). L'art. 40 LTVA autorise, sur demande, le décompte selon les contre-prestations reçues lorsque les conditions sont remplies.
+      </Loi>
+
+      <H2>4. Cas spéciaux</H2>
+
+      <H3>Importation de biens</H3>
+      <P>Lors de l'importation de biens en Suisse, la TVA est perçue par l'Office fédéral de la douane et de la sécurité des frontières (OFDF) au passage de la frontière. Si l'entreprise importatrice est assujettie à la TVA, elle peut récupérer cette TVA d'importation en tant qu'impôt préalable dans son décompte périodique.</P>
+      <Ecriture debit="1170 Impôt préalable" credit="2000 Créanciers (douane)" montant="xxx" libelle="TVA importation — récupérable" />
+
+      <H3>Exportation de biens</H3>
+      <P>Les exportations sont soumises au taux 0% — l'entreprise ne facture pas de TVA à son client étranger mais récupère intégralement l'impôt préalable sur ses achats en Suisse.</P>
+      <P>Preuve d'exportation obligatoire (document douanier, CMR, etc.).</P>
+
+      <H3>Prestations entre la Suisse et l'étranger</H3>
+      <P>Pour les prestations de services, le principe du lieu du destinataire s'applique (art. 8 LTVA). Le lieu de la prestation est réputé se situer au domicile ou au siège du destinataire, et non du prestataire.</P>
+      <P>Si un consultant suisse facture un client en Allemagne, la prestation n'est pas soumise à la TVA suisse mais peut être soumise à la TVA allemande (reverse charge).</P>
+
+      <H3>Double affectation et correction pro rata</H3>
+      <P>Lorsqu'un assujetti réalise à la fois des prestations imposables et exonérées (sans droit à déduction), il doit répartir l'impôt préalable proportionnellement.</P>
+      <P>Exemple : un cabinet médical exerce une activité de soins thérapeutiques (prestation exclue selon l'art. 21 LTVA) et une activité de médecine esthétique (prestation imposable au taux normal). L'impôt préalable sur les charges communes (loyer, administration, informatique) n'est récupérable qu'à hauteur de la part du chiffre d'affaires imposable par rapport au chiffre d'affaires total. Seule la TVA sur les achats directement liés à l'activité imposable (esthétique) est intégralement déductible.</P>
+    </div>
+  );
+}
+
 // ─── VUE PRINCIPALE ───────────────────────────────────────────────────────────
 export default function TVAView() {
   const [tab, setTab] = useState('assujettissement');
@@ -450,6 +511,7 @@ export default function TVAView() {
     { id: 'effective', label: 'Méthode effective (au net)' },
     { id: 'dfn', label: 'Dette fiscale nette (au brut)' },
     { id: 'cas', label: 'Cas pratiques' },
+    { id: 'exemptions', label: 'Exemptions & cas spéciaux' },
     { id: 'cles', label: 'Points clés & erreurs' },
   ];
 
@@ -467,6 +529,7 @@ export default function TVAView() {
         {tab === 'effective' && <TabMethodeEffective />}
         {tab === 'dfn' && <TabDetteFiscaleNette />}
         {tab === 'cas' && <TabCasPratiques />}
+        {tab === 'exemptions' && <TabExemptions />}
         {tab === 'cles' && <TabPointsCles />}
     </TheoryLayout>
   );
