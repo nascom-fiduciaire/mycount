@@ -88,4 +88,44 @@ export const arretsExercises = [
     ],
     explanation: 'Les cotisations sont calculées sur la **part à charge réelle de l\'employeur** = brut − indemnité IJM = 6\'000 − 2\'500 = **CHF 3\'500**.\n\nL\'indemnité IJM (CHF 2\'500) n\'est pas soumise aux cotisations sociales ordinaires car elle provient de l\'assureur, pas de l\'employeur.',
   },
+
+  {
+    id: 'arret-calc-06', group: 'salaires-calcul', type: 'calcul', tag: 'salaires', difficulty: 3,
+    title: 'Accident professionnel LAA — Indemnité SUVA',
+    description: 'M. Favre gagne CHF 6\'000 brut/mois et est victime d\'un accident professionnel. Il est en arrêt 45 jours.',
+    note: 'Les 3 premiers jours : l\'employeur paie 80% du salaire. Dès le 4e jour : la SUVA verse 80%.',
+    data: [
+      { label: 'Salaire brut mensuel', value: 'CHF 6\'000' },
+      { label: 'Durée arrêt', value: '45 jours' },
+      { label: 'Délai de carence LAA', value: '3 jours (employeur paie 80%)' },
+      { label: 'Indemnité SUVA', value: '80% du salaire dès le 4e jour' },
+    ],
+    champs: [
+      { id: 'salaire_jour', label: 'Salaire journalier (÷ 30)', placeholder: '200', correct: 200, tol: 1, hint: '6000 / 30' },
+      { id: 'carence', label: 'Carence employeur (3j × 80%)', placeholder: '480', correct: 480, tol: 1, hint: '200 × 80% × 3' },
+      { id: 'jours_suva', label: 'Jours couverts SUVA', placeholder: '42', correct: 42, tol: 0, hint: '45 − 3' },
+      { id: 'indemnite_suva', label: 'Indemnité SUVA totale', placeholder: '6720', correct: 6720, tol: 1, hint: '200 × 80% × 42' },
+    ],
+    correction: 'Salaire journalier : 6000/30 = 200\nCarence (3j) : 200 × 80% × 3 = 480 (à charge employeur)\nSUVA (42j) : 200 × 80% × 42 = 6720\nTotal perçu par l\'employé : 480 + 6720 = CHF 7200',
+  },
+
+  {
+    id: 'arret-calc-07', group: 'salaires-calcul', type: 'calcul', tag: 'salaires', difficulty: 3,
+    title: 'Maladie longue durée — IJM sur 3 mois',
+    description: 'Mme Blanc (brut CHF 5\'400/mois) est en arrêt maladie 90 jours. L\'entreprise a une assurance IJM (indemnités journalières maladie).',
+    data: [
+      { label: 'Salaire brut', value: 'CHF 5\'400/mois' },
+      { label: 'Durée arrêt', value: '90 jours' },
+      { label: 'Délai d\'attente IJM', value: '30 jours' },
+      { label: 'Prestation IJM', value: '80% du salaire dès le 31e jour' },
+      { label: 'Obligation employeur (CO)', value: 'Salaire intégral pendant le délai d\'attente' },
+    ],
+    champs: [
+      { id: 'salaire_jour', label: 'Salaire journalier', placeholder: '180', correct: 180, tol: 1, hint: '5400 / 30' },
+      { id: 'employeur_30j', label: 'Coût employeur (30 premiers jours)', placeholder: '5400', correct: 5400, tol: 1, hint: '180 × 30 = salaire complet' },
+      { id: 'jours_ijm', label: 'Jours couverts par IJM', placeholder: '60', correct: 60, tol: 0, hint: '90 − 30' },
+      { id: 'indemnite_ijm', label: 'Indemnité IJM totale (80%)', placeholder: '8640', correct: 8640, tol: 1, hint: '180 × 80% × 60' },
+    ],
+    correction: 'Salaire journalier : 5400/30 = 180\n30 premiers jours : employeur paie 100% = 5400\nJours IJM : 90 − 30 = 60 jours\nIJM : 180 × 80% × 60 = 8640',
+  },
 ];

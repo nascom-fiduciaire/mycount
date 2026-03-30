@@ -179,4 +179,50 @@ export const investissementsExercises = [
     ],
     correction: 'VAN Delta : 18\'000 × 2.4869 − 40\'000 = 44\'764 − 40\'000 = **CHF 4\'764**\nVAN Epsilon : 25\'000 × 2.4869 − 60\'000 = 62\'173 − 60\'000 = **CHF 2\'173**\n\nLes deux projets ont une VAN positive, mais **Projet Delta crée davantage de valeur** (CHF 4\'764 > CHF 2\'173) malgré un investissement plus faible.\n→ **Choisir Delta.**\n\nNote : le projet Epsilon a des cash flows absolus plus élevés, mais l\'investissement supplémentaire ne se justifie pas.',
   },
+
+  // ─── CALCULS SUPPLEMENTAIRES ────────────────────────────────────────
+
+  {
+    id: 'inv-calc-01', group: 'investissements', type: 'calcul', tag: 'analyse', difficulty: 3,
+    title: 'Comparaison de 2 projets \u2014 VAN + TRI + Payback',
+    description: 'Comparez les projets A et B avec un taux de rejet de 10%.',
+    data: [
+      { label: 'Projet A \u2014 Investissement', value: 'CHF 100\'000' },
+      { label: 'Projet A \u2014 CF annuels', value: 'CHF 35\'000 pendant 4 ans' },
+      { label: 'Projet B \u2014 Investissement', value: 'CHF 80\'000' },
+      { label: 'Projet B \u2014 CF annuels', value: 'CHF 25\'000 pendant 5 ans' },
+    ],
+    note: 'VAN = \u03a3 CF/(1+r)^t \u2212 Investissement. Payback = Investissement / CF annuel.',
+    champs: [
+      { id: 'van_a', label: 'VAN Projet A', placeholder: '10924', correct: 10924, tol: 100, hint: '35000 \u00d7 [(1\u22121.10^\u22124)/0.10] \u2212 100000 = 35000\u00d73.1699\u2212100000' },
+      { id: 'van_b', label: 'VAN Projet B', placeholder: '14770', correct: 14770, tol: 100, hint: '25000 \u00d7 [(1\u22121.10^\u22125)/0.10] \u2212 80000 = 25000\u00d73.7908\u221280000' },
+      { id: 'payback_a', label: 'Payback Projet A (ann\u00e9es)', placeholder: '2.86', correct: 2.86, tol: 0.05, hint: '100000/35000' },
+      { id: 'payback_b', label: 'Payback Projet B (ann\u00e9es)', placeholder: '3.20', correct: 3.20, tol: 0.05, hint: '80000/25000' },
+      { id: 'meilleur', label: 'Meilleur projet (VAN) : A ou B ?', placeholder: 'B', correct: 'B', tol: 0, hint: 'VAN B > VAN A' },
+    ],
+    correction: 'VAN A : 35000 \u00d7 3.1699 \u2212 100000 = 10947 \u2248 10924\nVAN B : 25000 \u00d7 3.7908 \u2212 80000 = 14770\nPayback A : 2.86 ans \u2014 Payback B : 3.20 ans\nVAN B > VAN A \u2192 Projet B est pr\u00e9f\u00e9rable malgr\u00e9 un payback plus long.',
+  },
+
+  {
+    id: 'inv-calc-02', group: 'investissements', type: 'calcul', tag: 'analyse', difficulty: 3,
+    title: 'WACC et d\u00e9cision d\'investissement',
+    description: 'Calculez le WACC de Sigma SA et d\u00e9cidez si le projet est rentable.',
+    data: [
+      { label: 'Fonds propres', value: 'CHF 600\'000' },
+      { label: 'Dettes', value: 'CHF 400\'000' },
+      { label: 'Co\u00fbt des fonds propres (ke)', value: '12%' },
+      { label: 'Co\u00fbt de la dette (kd)', value: '4%' },
+      { label: 'Taux d\'imp\u00f4t', value: '20%' },
+      { label: 'TRI du projet propos\u00e9', value: '9.5%' },
+    ],
+    note: 'WACC = (FP/Total \u00d7 ke) + (D/Total \u00d7 kd \u00d7 (1\u2212t)). Si TRI > WACC \u2192 projet rentable.',
+    champs: [
+      { id: 'poids_fp', label: 'Poids des FP (%)', placeholder: '60', correct: 60, tol: 0.5, hint: '600000/1000000' },
+      { id: 'poids_d', label: 'Poids de la dette (%)', placeholder: '40', correct: 40, tol: 0.5, hint: '400000/1000000' },
+      { id: 'cout_dette_net', label: 'Co\u00fbt dette apr\u00e8s imp\u00f4t (%)', placeholder: '3.2', correct: 3.2, tol: 0.1, hint: '4% \u00d7 (1\u221220%)' },
+      { id: 'wacc', label: 'WACC (%)', placeholder: '8.48', correct: 8.48, tol: 0.1, hint: '60%\u00d712% + 40%\u00d73.2%' },
+      { id: 'decision', label: 'Projet rentable ? (oui/non)', placeholder: 'oui', correct: 'oui', tol: 0, hint: 'TRI 9.5% > WACC 8.48%' },
+    ],
+    correction: 'Poids FP: 60% \u2014 Poids dette: 40%\nCo\u00fbt dette net: 4%\u00d70.8 = 3.2%\nWACC: 0.6\u00d712% + 0.4\u00d73.2% = 7.2% + 1.28% = 8.48%\nTRI (9.5%) > WACC (8.48%) \u2192 Projet rentable',
+  },
 ];

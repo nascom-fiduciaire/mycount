@@ -146,4 +146,85 @@ export const marchandisesExercises = [
       { id: 'e3', libelle: 'Sortie de stock au coût d\'achat (30 × CHF 80)', debit: { num: '4000', label: 'PRAMV' }, credit: { num: '1200', label: 'Stock marchandises' }, amount: 2400 },
     ],
   },
+
+  // ─── QCM SUPPLÉMENTAIRES ──────────────────────────────────────────────
+  {
+    id: 'march-qcm-05', group: 'marchandises', type: 'qcm', tag: 'base', difficulty: 1,
+    title: 'Prix de revient des marchandises vendues (PRAMV)',
+    description: 'Comment calcule-t-on le PRAMV en inventaire intermittent ?',
+    options: [
+      { id: 'a', text: 'Stock initial + Achats \u2212 Stock final', correct: true },
+      { id: 'b', text: 'Achats \u2212 Stock initial + Stock final', correct: false },
+      { id: 'c', text: 'Ventes \u2212 Marge brute', correct: false },
+      { id: 'd', text: 'Stock initial \u2212 Achats + Stock final', correct: false },
+    ],
+    explanation: 'PRAMV = Stock initial + Achats \u2212 Stock final. C\'est la formule de base de l\'inventaire intermittent : on part de ce qu\'on avait, on ajoute ce qu\'on a achet\u00e9, et on retranche ce qui reste.',
+  },
+
+  {
+    id: 'march-qcm-06', group: 'marchandises', type: 'qcm', tag: 'base', difficulty: 2,
+    title: 'Impact d\'une diminution de stock sur le r\u00e9sultat',
+    description: 'Le stock initial est de CHF 50\'000 et le stock final de CHF 40\'000. Quel est l\'impact sur le r\u00e9sultat ?',
+    options: [
+      { id: 'a', text: 'Augmentation du r\u00e9sultat de CHF 10\'000', correct: false },
+      { id: 'b', text: 'Diminution du r\u00e9sultat de CHF 10\'000', correct: true },
+      { id: 'c', text: 'Aucun impact', correct: false },
+      { id: 'd', text: 'Cela d\u00e9pend des ventes', correct: false },
+    ],
+    explanation: 'Une diminution de stock signifie qu\'on a consomm\u00e9 plus de marchandises qu\'on en a achet\u00e9. La variation de stock (\u221210\'000) augmente les charges et diminue le r\u00e9sultat d\'autant.',
+  },
+
+  // ─── CALCULS SUPPLÉMENTAIRES ──────────────────────────────────────────
+  {
+    id: 'march-calc-03', group: 'marchandises', type: 'calcul', tag: 'base', difficulty: 2,
+    title: 'Co\u00fbt moyen pond\u00e9r\u00e9 (CMP) avec 3 achats',
+    description: 'Calculez le CMP et la valeur du stock final.',
+    data: [
+      { label: 'Stock initial', value: '100 unit\u00e9s \u00e0 CHF 10.00' },
+      { label: 'Achat 1', value: '200 unit\u00e9s \u00e0 CHF 12.00' },
+      { label: 'Achat 2', value: '150 unit\u00e9s \u00e0 CHF 11.00' },
+      { label: 'Vente', value: '300 unit\u00e9s' },
+      { label: 'Achat 3', value: '100 unit\u00e9s \u00e0 CHF 13.00' },
+    ],
+    note: 'CMP = Valeur totale du stock / Quantit\u00e9 totale. Recalculer apr\u00e8s chaque achat.',
+    champs: [
+      { id: 'valeur_avant_vente', label: 'Valeur stock avant vente (450 unit\u00e9s)', placeholder: '5050', correct: 5050, tol: 1, hint: '100\u00d710 + 200\u00d712 + 150\u00d711 = 1000+2400+1650' },
+      { id: 'cmp', label: 'CMP unitaire avant vente', placeholder: '11.22', correct: 11.22, tol: 0.01, hint: '5050 / 450' },
+      { id: 'stock_apres_vente', label: 'Stock apr\u00e8s vente (150 unit\u00e9s)', placeholder: '1683.33', correct: 1683.33, tol: 1, hint: '150 \u00d7 11.22' },
+      { id: 'stock_final', label: 'Stock final (250 unit\u00e9s, apr\u00e8s achat 3)', placeholder: '2983.33', correct: 2983.33, tol: 1, hint: '1683.33 + (100 \u00d7 13)' },
+    ],
+    correction: 'Valeur avant vente : (100\u00d710)+(200\u00d712)+(150\u00d711) = 5\'050 \u2014 CMP = 5\'050/450 = 11.22\nApr\u00e8s vente de 300 : 150 \u00d7 11.22 = 1\'683.33\nApr\u00e8s achat 3 : 1\'683.33 + (100\u00d713) = 2\'983.33 \u2014 Nouveau CMP = 2\'983.33/250 = 11.93',
+  },
+
+  {
+    id: 'march-calc-04', group: 'marchandises', type: 'calcul', tag: 'base', difficulty: 3,
+    title: 'M\u00e9thode FIFO \u2014 Valorisation du stock',
+    description: 'Valorisez le stock final en m\u00e9thode FIFO.',
+    data: [
+      { label: 'Stock initial (janvier)', value: '80 unit\u00e9s \u00e0 CHF 15.00' },
+      { label: 'Achat f\u00e9vrier', value: '120 unit\u00e9s \u00e0 CHF 16.00' },
+      { label: 'Vente mars', value: '150 unit\u00e9s' },
+      { label: 'Achat mars', value: '60 unit\u00e9s \u00e0 CHF 17.00' },
+    ],
+    note: 'FIFO = First In, First Out. On vend d\'abord les plus anciens lots.',
+    champs: [
+      { id: 'vente_lot1', label: 'Unit\u00e9s vendues du lot initial (80 \u00e0 CHF 15)', placeholder: '80', correct: 80, tol: 0, hint: 'On \u00e9puise d\'abord le lot le plus ancien' },
+      { id: 'vente_lot2', label: 'Unit\u00e9s vendues du lot f\u00e9vrier (\u00e0 CHF 16)', placeholder: '70', correct: 70, tol: 0, hint: '150 \u2212 80 = 70' },
+      { id: 'stock_lot2_reste', label: 'Reste lot f\u00e9vrier (unit\u00e9s)', placeholder: '50', correct: 50, tol: 0, hint: '120 \u2212 70' },
+      { id: 'valeur_finale', label: 'Valeur stock final (110 unit\u00e9s)', placeholder: '1820', correct: 1820, tol: 1, hint: '50\u00d716 + 60\u00d717 = 800+1020' },
+    ],
+    correction: 'Vente 150 : 80 du lot initial (\u00e0 15) + 70 du lot f\u00e9vrier (\u00e0 16).\nReste : 50 unit\u00e9s f\u00e9vrier \u00e0 16 + 60 mars \u00e0 17 = 110 unit\u00e9s.\nValeur FIFO : (50\u00d716)+(60\u00d717) = 800+1020 = CHF 1\'820',
+  },
+
+  // ─── JOURNAL SUPPLÉMENTAIRE ───────────────────────────────────────────
+  {
+    id: 'march-j-04', group: 'marchandises', type: 'journal', tag: 'base', difficulty: 3,
+    title: '\u00c9critures d\'inventaire permanent',
+    description: 'Passez les \u00e9critures selon la m\u00e9thode de l\'inventaire permanent :\n1. Achat de 100 unit\u00e9s \u00e0 CHF 20 = CHF 2\'000\n2. Vente de 60 unit\u00e9s au prix de vente de CHF 35/unit\u00e9\n3. Le co\u00fbt des unit\u00e9s vendues est de CHF 1\'200 (60 \u00d7 20)',
+    ecritures: [
+      { id: 'e1', libelle: 'Achat marchandises (100 \u00d7 CHF 20)', debit: { num: '1200', label: 'Stock marchandises' }, credit: { num: '2000', label: 'Cr\u00e9anciers' }, amount: 2000 },
+      { id: 'e2', libelle: 'Vente marchandises (60 \u00d7 CHF 35)', debit: { num: '1100', label: 'D\u00e9biteurs' }, credit: { num: '3200', label: 'Ventes marchandises' }, amount: 2100 },
+      { id: 'e3', libelle: 'Sortie de stock au co\u00fbt (60 \u00d7 CHF 20)', debit: { num: '4000', label: 'Charges marchandises' }, credit: { num: '1200', label: 'Stock marchandises' }, amount: 1200 },
+    ],
+  },
 ];

@@ -307,4 +307,122 @@ Les actionnaires de B detiennent desormais 250 actions de la societe A.`,
     explanation: 'La prime a l\'emission (difference entre le prix d\'emission et la valeur nominale) est d\'abord comptabilisee au compte 2910 Prime a l\'emission. Apres deduction des eventuels frais d\'augmentation, le solde est vire au compte 2900 Reserve legale issue du capital. Elle ne passe jamais par le compte 2800 Capital-actions (qui ne contient que la valeur nominale).',
   },
 
+  // ─── QCM SUPPLEMENTAIRES ────────────────────────────────────────────
+
+  {
+    id: 'soc-qcm-01', group: 'societes-qcm', type: 'qcm', tag: 'societes', difficulty: 1,
+    title: 'Capital minimum des soci\u00e9t\u00e9s suisses',
+    description: 'Quel est le capital minimum pour fonder une SA en Suisse ?',
+    options: [
+      { id: 'a', text: 'CHF 50\'000', correct: false },
+      { id: 'b', text: 'CHF 100\'000', correct: true },
+      { id: 'c', text: 'CHF 20\'000', correct: false },
+      { id: 'd', text: 'Pas de minimum', correct: false },
+    ],
+    explanation: 'SA : capital-actions minimum CHF 100\'000, dont au moins CHF 50\'000 lib\u00e9r\u00e9s. S\u00e0rl : capital minimum CHF 20\'000 enti\u00e8rement lib\u00e9r\u00e9.',
+  },
+
+  {
+    id: 'soc-qcm-02', group: 'societes-qcm', type: 'qcm', tag: 'societes', difficulty: 2,
+    title: 'R\u00e9serve l\u00e9gale issue du b\u00e9n\u00e9fice',
+    description: 'Quelle part du b\u00e9n\u00e9fice net annuel doit \u00eatre affect\u00e9e \u00e0 la r\u00e9serve l\u00e9gale (SA) ?',
+    options: [
+      { id: 'a', text: '10% jusqu\'\u00e0 50% du capital', correct: false },
+      { id: 'b', text: '5% jusqu\'\u00e0 50% du capital', correct: true },
+      { id: 'c', text: '20% jusqu\'\u00e0 100% du capital', correct: false },
+      { id: 'd', text: 'Pas d\'obligation', correct: false },
+    ],
+    explanation: 'Art. 672 CO : 5% du b\u00e9n\u00e9fice net doit \u00eatre affect\u00e9 \u00e0 la r\u00e9serve l\u00e9gale g\u00e9n\u00e9rale, jusqu\'\u00e0 ce qu\'elle atteigne 50% du capital-actions.',
+  },
+
+  {
+    id: 'soc-qcm-03', group: 'societes-qcm', type: 'qcm', tag: 'societes', difficulty: 2,
+    title: 'Imp\u00f4t anticip\u00e9 sur les dividendes',
+    description: 'Quel est le taux de l\'imp\u00f4t anticip\u00e9 (IA) sur les dividendes en Suisse ?',
+    options: [
+      { id: 'a', text: '15%', correct: false },
+      { id: 'b', text: '25%', correct: false },
+      { id: 'c', text: '35%', correct: true },
+      { id: 'd', text: '8.1%', correct: false },
+    ],
+    explanation: 'L\'imp\u00f4t anticip\u00e9 sur les dividendes est de 35% (LIA art. 13). Il est retenu par la soci\u00e9t\u00e9 et vers\u00e9 \u00e0 l\'AFC. Le b\u00e9n\u00e9ficiaire peut le r\u00e9cup\u00e9rer via sa d\u00e9claration fiscale s\'il d\u00e9clare le revenu.',
+  },
+
+  // ─── ECRITURES SUPPLEMENTAIRES ──────────────────────────────────────
+
+  {
+    id: 'soc-ecr-03', group: 'societes-ecritures', type: 'journal', tag: 'societes', difficulty: 3,
+    title: 'Augmentation de capital avec prime d\'émission',
+    description: 'Alpha SA augmente son capital de CHF 200\'000 (2\'000 actions × CHF 100 nominal). Prix d\'émission : CHF 120/action. Libération intégrale par virement.',
+    data: [
+      { label: 'Nouvelles actions', value: '2\'000 actions' },
+      { label: 'Valeur nominale', value: 'CHF 100' },
+      { label: 'Prix d\'émission', value: 'CHF 120' },
+      { label: 'Libération', value: '100% espèces' },
+    ],
+    ecritures: [
+      { id: 'e1', libelle: 'Souscription — libération espèces', debit: { num: '1020', label: 'Banque' }, credit: { num: '2030', label: 'Apports promis' }, amount: 240000 },
+      { id: 'e2', libelle: 'Capital-actions (valeur nominale)', debit: { num: '2030', label: 'Apports promis' }, credit: { num: '2800', label: 'Capital-actions' }, amount: 200000 },
+      { id: 'e3', libelle: 'Prime d\'émission (agio)', debit: { num: '2030', label: 'Apports promis' }, credit: { num: '2900', label: 'Réserve légale issue du capital' }, amount: 40000 },
+    ],
+  },
+
+  {
+    id: 'soc-ecr-04', group: 'societes-ecritures', type: 'journal', tag: 'societes', difficulty: 3,
+    title: 'Assainissement — Abandon de créances',
+    description: 'Beta SA est en perte de capital (art. 725a CO). Le principal créancier abandonne une créance de CHF 150\'000 pour assainir la société.',
+    data: [
+      { label: 'Créance abandonnée', value: 'CHF 150\'000' },
+      { label: 'Type', value: 'Abandon de créances (art. 725a CO)' },
+    ],
+    ecritures: [
+      { id: 'e1', libelle: 'Abandon de créances — suppression de la dette', debit: { num: '2000', label: 'Créanciers' }, credit: { num: '3900', label: 'Produits exceptionnels' }, amount: 150000 },
+    ],
+  },
+
+  {
+    id: 'soc-ecr-05', group: 'societes-ecritures', type: 'journal', tag: 'societes', difficulty: 3,
+    title: 'Distribution de dividende complet',
+    description: 'L\'AG de Gamma SA décide de distribuer CHF 80\'000 de dividendes :\n1. Décision de l\'AG (affectation du bénéfice)\n2. Retenue de l\'impôt anticipé (35%)\n3. Versement du dividende net aux actionnaires\n4. Versement de l\'IA à l\'AFC',
+    data: [
+      { label: 'Dividende brut', value: 'CHF 80\'000' },
+      { label: 'Impôt anticipé (35%)', value: 'CHF 28\'000' },
+      { label: 'Dividende net', value: 'CHF 52\'000' },
+    ],
+    ecritures: [
+      { id: 'e1', libelle: 'Décision AG — affectation bénéfice', debit: { num: '2970', label: 'Bénéfice reporté' }, credit: { num: '2850', label: 'Dividendes à payer' }, amount: 80000 },
+      { id: 'e2', libelle: 'Retenue impôt anticipé 35%', debit: { num: '2850', label: 'Dividendes à payer' }, credit: { num: '2215', label: 'Impôt anticipé dû' }, amount: 28000 },
+      { id: 'e3', libelle: 'Versement dividende net aux actionnaires', debit: { num: '2850', label: 'Dividendes à payer' }, credit: { num: '1020', label: 'Banque' }, amount: 52000 },
+      { id: 'e4', libelle: 'Versement impôt anticipé à l\'AFC', debit: { num: '2215', label: 'Impôt anticipé dû' }, credit: { num: '1020', label: 'Banque' }, amount: 28000 },
+    ],
+  },
+
+  {
+    id: 'soc-ecr-06', group: 'societes-ecritures', type: 'journal', tag: 'societes', difficulty: 2,
+    title: 'Rachat et revente d\'actions propres',
+    description: 'Delta SA rachète 100 de ses propres actions à CHF 150/action, puis les revend 3 mois plus tard à CHF 170/action.',
+    data: [
+      { label: 'Rachat', value: '100 actions × CHF 150 = CHF 15\'000' },
+      { label: 'Revente', value: '100 actions × CHF 170 = CHF 17\'000' },
+    ],
+    ecritures: [
+      { id: 'e1', libelle: 'Rachat actions propres', debit: { num: '2860', label: 'Actions propres (−)' }, credit: { num: '1020', label: 'Banque' }, amount: 15000 },
+      { id: 'e2', libelle: 'Revente actions propres', debit: { num: '1020', label: 'Banque' }, credit: { num: '2860', label: 'Actions propres (−)' }, amount: 15000 },
+      { id: 'e3', libelle: 'Plus-value sur revente', debit: { num: '1020', label: 'Banque' }, credit: { num: '2900', label: 'Réserve issue du capital' }, amount: 2000 },
+    ],
+  },
+
+  {
+    id: 'soc-ecr-07', group: 'societes-ecritures', type: 'journal', tag: 'societes', difficulty: 3,
+    title: 'Révision — De la fondation au premier dividende',
+    description: 'Epsilon SA — exercice complet :\n1. Fondation : capital CHF 100\'000 (1\'000 actions × CHF 100), libéré à 50%\n2. Libération du solde 3 mois plus tard\n3. Bénéfice de l\'exercice : CHF 40\'000\n4. Affectation réserve légale (5%)\n5. Distribution dividende CHF 30\'000',
+    ecritures: [
+      { id: 'e1', libelle: 'Fondation — souscription capital', debit: { num: '1020', label: 'Banque' }, credit: { num: '2800', label: 'Capital-actions' }, amount: 50000 },
+      { id: 'e2', libelle: 'Capital non libéré', debit: { num: '1050', label: 'Capital non libéré' }, credit: { num: '2800', label: 'Capital-actions' }, amount: 50000 },
+      { id: 'e3', libelle: 'Libération du solde', debit: { num: '1020', label: 'Banque' }, credit: { num: '1050', label: 'Capital non libéré' }, amount: 50000 },
+      { id: 'e4', libelle: 'Affectation réserve légale (5%)', debit: { num: '2970', label: 'Bénéfice de l\'exercice' }, credit: { num: '2900', label: 'Réserve légale' }, amount: 2000 },
+      { id: 'e5', libelle: 'Distribution dividende brut', debit: { num: '2970', label: 'Bénéfice de l\'exercice' }, credit: { num: '2850', label: 'Dividendes à payer' }, amount: 30000 },
+    ],
+  },
+
 ];

@@ -23,6 +23,8 @@ const EXERCISE_ICONS = {
   'societes-qcm':       <Building2 size={18} strokeWidth={1.6} color="#2563eb" />,
   'analyse-calculs':    <BarChart3 size={18} strokeWidth={1.6} color="#2563eb" />,
   'analyse-qcm':        <BarChart3 size={18} strokeWidth={1.6} color="#2563eb" />,
+  'investissements':     <TrendingUp size={18} strokeWidth={1.6} color="#2563eb" />,
+  'revision':            <RotateCcw size={18} strokeWidth={1.6} color="#7c3aed" />,
 };
 
 const THEORY_ICONS = {

@@ -514,4 +514,116 @@ export const analyseExercises = [
       "c) Faux : omet le levier financier (actifs/CP) en simplifiant en deux facteurs.\n" +
       "d) Faux : le taux d'endettement n'est pas le levier financier (actifs/CP).",
   },
+
+  // ─── QCM SUPPLEMENTAIRES ────────────────────────────────────────────
+
+  {
+    id: 'anal-qcm-01',
+    group: 'analyse-qcm',
+    type: 'qcm',
+    tag: 'analyse',
+    difficulty: 1,
+    title: 'Interpr\u00e9tation des ratios de liquidit\u00e9',
+    description: 'Une entreprise a un ratio de liquidit\u00e9 g\u00e9n\u00e9rale (L3) de 0.85. Que signifie cela ?',
+    options: [
+      { id: 'a', text: 'L\'entreprise est tr\u00e8s liquide', correct: false },
+      { id: 'b', text: 'Les actifs circulants ne couvrent pas les dettes \u00e0 court terme', correct: true },
+      { id: 'c', text: 'L\'entreprise a trop de stocks', correct: false },
+      { id: 'd', text: 'Le ratio est optimal', correct: false },
+    ],
+    explanation: 'Un L3 < 1 signifie que les actifs circulants sont insuffisants pour couvrir les dettes \u00e0 court terme. L\'entreprise pr\u00e9sente un risque de liquidit\u00e9. La norme est L3 > 1.5.',
+  },
+
+  {
+    id: 'anal-qcm-02',
+    group: 'analyse-qcm',
+    type: 'qcm',
+    tag: 'analyse',
+    difficulty: 2,
+    title: 'Signal d\'alerte financier',
+    description: 'Quel signal parmi les suivants est le plus pr\u00e9occupant pour un analyste financier ?',
+    options: [
+      { id: 'a', text: 'ROE en hausse de 2 points', correct: false },
+      { id: 'b', text: 'L1 passant de 0.3 \u00e0 0.15', correct: true },
+      { id: 'c', text: 'Marge brute stable \u00e0 40%', correct: false },
+      { id: 'd', text: 'FRN positif et croissant', correct: false },
+    ],
+    explanation: 'Un L1 (cash ratio) qui chute de moiti\u00e9 indique une d\u00e9t\u00e9rioration rapide de la tr\u00e9sorerie imm\u00e9diate. L\'entreprise pourrait ne plus \u00eatre en mesure de r\u00e9gler ses factures urgentes. Les autres indicateurs sont positifs ou neutres.',
+  },
+
+  {
+    id: 'anal-qcm-03',
+    group: 'analyse-qcm',
+    type: 'qcm',
+    tag: 'analyse',
+    difficulty: 2,
+    title: 'D\u00e9composition DuPont du ROE',
+    description: 'Le ROE peut \u00eatre d\u00e9compos\u00e9 en trois facteurs selon DuPont. Lesquels ?',
+    options: [
+      { id: 'a', text: 'Marge nette \u00d7 Rotation des actifs \u00d7 Levier financier', correct: true },
+      { id: 'b', text: 'Marge brute \u00d7 L3 \u00d7 Taux d\'endettement', correct: false },
+      { id: 'c', text: 'EBITDA \u00d7 BFR \u00d7 FRN', correct: false },
+      { id: 'd', text: 'ROA \u00d7 Marge nette \u00d7 Rotation des stocks', correct: false },
+    ],
+    explanation: 'DuPont : ROE = Marge nette (R\u00e9sultat/CA) \u00d7 Rotation des actifs (CA/Actifs) \u00d7 Levier financier (Actifs/FP). Cette d\u00e9composition permet d\'identifier d\'o\u00f9 vient la rentabilit\u00e9.',
+  },
+
+  // ─── CALCULS SUPPLEMENTAIRES ────────────────────────────────────────
+
+  {
+    id: 'anal-calc-03',
+    group: 'analyse-calculs',
+    type: 'calcul',
+    tag: 'analyse',
+    difficulty: 3,
+    title: 'Analyse compl\u00e8te d\'un bilan — Tous les ratios',
+    description: 'Calculez les principaux ratios financiers de Tech-Plus SA.',
+    data: [
+      { label: 'Liquidit\u00e9s', value: 'CHF 80\'000' },
+      { label: 'Cr\u00e9ances', value: 'CHF 120\'000' },
+      { label: 'Stocks', value: 'CHF 200\'000' },
+      { label: 'Actifs immobilis\u00e9s', value: 'CHF 600\'000' },
+      { label: 'Dettes \u00e0 court terme', value: 'CHF 250\'000' },
+      { label: 'Dettes \u00e0 long terme', value: 'CHF 350\'000' },
+      { label: 'Fonds propres', value: 'CHF 400\'000' },
+      { label: 'R\u00e9sultat net', value: 'CHF 60\'000' },
+      { label: 'Chiffre d\'affaires', value: 'CHF 800\'000' },
+    ],
+    champs: [
+      { id: 'l1', label: 'Liquidit\u00e9 imm\u00e9diate (L1)', placeholder: '0.32', correct: 0.32, tol: 0.01, hint: 'Liquidit\u00e9s / DCT = 80000/250000' },
+      { id: 'l2', label: 'Liquidit\u00e9 r\u00e9duite (L2)', placeholder: '0.80', correct: 0.80, tol: 0.01, hint: '(Liquidit\u00e9s+Cr\u00e9ances) / DCT' },
+      { id: 'l3', label: 'Liquidit\u00e9 g\u00e9n\u00e9rale (L3)', placeholder: '1.60', correct: 1.60, tol: 0.01, hint: 'AC / DCT = 400000/250000' },
+      { id: 'frn', label: 'Fonds de roulement net', placeholder: '150000', correct: 150000, tol: 1, hint: 'AC \u2212 DCT = 400000\u2212250000' },
+      { id: 'roe', label: 'ROE (%)', placeholder: '15', correct: 15, tol: 0.5, hint: 'R\u00e9sultat / FP = 60000/400000' },
+      { id: 'marge_nette', label: 'Marge nette (%)', placeholder: '7.5', correct: 7.5, tol: 0.1, hint: 'R\u00e9sultat / CA = 60000/800000' },
+      { id: 'endettement', label: 'Taux d\'endettement (%)', placeholder: '60', correct: 60, tol: 0.5, hint: '(DCT+DLT) / Total actif = 600000/1000000' },
+    ],
+    correction: 'L1: 80/250 = 0.32 \u2014 L2: 200/250 = 0.80 \u2014 L3: 400/250 = 1.60\nFRN: 400\u2212250 = 150\'000\nROE: 60/400 = 15% \u2014 Marge nette: 60/800 = 7.5%\nEndettement: 600/1000 = 60%',
+  },
+
+  {
+    id: 'anal-calc-04',
+    group: 'analyse-calculs',
+    type: 'calcul',
+    tag: 'analyse',
+    difficulty: 3,
+    title: 'Tableau de flux de tr\u00e9sorerie — M\u00e9thode indirecte',
+    description: 'Calculez le flux de tr\u00e9sorerie d\'exploitation par la m\u00e9thode indirecte.',
+    data: [
+      { label: 'R\u00e9sultat net', value: 'CHF 45\'000' },
+      { label: 'Amortissements', value: 'CHF 30\'000' },
+      { label: 'Augmentation cr\u00e9ances', value: 'CHF 15\'000' },
+      { label: 'Diminution stocks', value: 'CHF 8\'000' },
+      { label: 'Augmentation fournisseurs', value: 'CHF 12\'000' },
+    ],
+    note: 'M\u00e9thode indirecte : partir du r\u00e9sultat net, ajouter les charges non d\u00e9caiss\u00e9es, ajuster les variations du BFR.',
+    champs: [
+      { id: 'resultat_amort', label: 'R\u00e9sultat + Amortissements', placeholder: '75000', correct: 75000, tol: 1, hint: '45000 + 30000' },
+      { id: 'var_creances', label: 'Variation cr\u00e9ances (\u2212)', placeholder: '-15000', correct: -15000, tol: 1, hint: 'Augmentation = sortie de cash' },
+      { id: 'var_stocks', label: 'Variation stocks (+)', placeholder: '8000', correct: 8000, tol: 1, hint: 'Diminution = lib\u00e9ration de cash' },
+      { id: 'var_fournisseurs', label: 'Variation fournisseurs (+)', placeholder: '12000', correct: 12000, tol: 1, hint: 'Augmentation = financement gratuit' },
+      { id: 'flux_exploitation', label: 'Flux de tr\u00e9sorerie d\'exploitation', placeholder: '80000', correct: 80000, tol: 1, hint: '75000 \u2212 15000 + 8000 + 12000' },
+    ],
+    correction: 'R\u00e9sultat + Amortissements = 75000\n\u2212 Augmentation cr\u00e9ances = \u221215000\n+ Diminution stocks = +8000\n+ Augmentation fournisseurs = +12000\nFlux exploitation = CHF 80000',
+  },
 ];

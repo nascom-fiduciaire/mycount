@@ -61,6 +61,65 @@ export const tvaCalcExercises = [
     ],
     explanation: "En méthode effective : **charges toujours comptabilisées HT**.\nCHF 2'400 → compte de charges (4xxx/6xxx)\nCHF 194.40 → compte 1170 Impôt préalable\nCHF 2'594.40 → compte 2000 Créanciers (TTC)",
   },
+
+  {
+    id: 'tva-qcm-06', group: 'tva-calculs', type: 'qcm', tag: 'tva', difficulty: 2,
+    title: 'Méthode effective vs taux de la dette fiscale nette',
+    description: 'Quelle affirmation est correcte concernant les deux méthodes de décompte TVA ?',
+    options: [
+      { id: 'a', text: 'La TDFN permet de récupérer l\'impôt préalable', correct: false },
+      { id: 'b', text: 'La méthode effective est obligatoire au-delà de CHF 5,005 millions de CA', correct: true },
+      { id: 'c', text: 'La TDFN utilise toujours le taux normal de 8.1%', correct: false },
+      { id: 'd', text: 'Les deux méthodes donnent toujours le même résultat', correct: false },
+    ],
+    explanation: 'La TDFN est un taux forfaitaire simplifié — on ne récupère pas l\'impôt préalable séparément. Elle est réservée aux CA < CHF 5,005 millions et impôt dû < CHF 109\'000.',
+  },
+
+  {
+    id: 'tva-qcm-07', group: 'tva-calculs', type: 'qcm', tag: 'tva', difficulty: 2,
+    title: 'Prestations exonérées de TVA',
+    description: 'Laquelle de ces prestations est exonérée de TVA en Suisse (art. 21 LTVA) ?',
+    options: [
+      { id: 'a', text: 'Vente de marchandises en magasin', correct: false },
+      { id: 'b', text: 'Location d\'un appartement', correct: true },
+      { id: 'c', text: 'Réparation automobile', correct: false },
+      { id: 'd', text: 'Conseil juridique', correct: false },
+    ],
+    explanation: 'La location immobilière est exonérée de TVA (art. 21 al. 2 ch. 21 LTVA). L\'assujetti peut opter pour l\'imposition volontaire s\'il loue à des assujettis TVA.',
+  },
+
+  {
+    id: 'tva-qcm-08', group: 'tva-calculs', type: 'qcm', tag: 'tva', difficulty: 1,
+    title: 'Retrouver le montant HT à partir du TTC',
+    description: 'Un montant TTC est de CHF 5\'405. Le taux de TVA est de 8.1%. Quel est le montant HT ?',
+    options: [
+      { id: 'a', text: 'CHF 5\'000.00', correct: true },
+      { id: 'b', text: 'CHF 4\'967.25', correct: false },
+      { id: 'c', text: 'CHF 4\'985.00', correct: false },
+      { id: 'd', text: 'CHF 5\'405.00', correct: false },
+    ],
+    explanation: 'HT = TTC / (1 + taux) = 5\'405 / 1.081 = CHF 5\'000.00. On divise par 1.081, on ne soustrait pas 8.1% du TTC (erreur fréquente).',
+  },
+
+  {
+    id: 'tva-calc-01', group: 'tva-calculs', type: 'calcul', tag: 'tva', difficulty: 2,
+    title: 'Calcul décompte TVA trimestriel',
+    description: 'Calculez le décompte TVA du T2 2024 pour Fidulex Sàrl.',
+    note: 'Pour trouver le HT à partir du TTC : HT = TTC / 1.081',
+    data: [
+      { label: 'Ventes TTC T2', value: "CHF 108'100" },
+      { label: 'Achats TTC T2', value: "CHF 43'240" },
+      { label: 'Taux TVA', value: '8.1%' },
+    ],
+    champs: [
+      { id: 'ventes_ht', label: 'Ventes HT', placeholder: '100\'000', correct: 100000, tol: 1, hint: '108\'100 / 1.081' },
+      { id: 'tva_due', label: 'TVA due (8.1%)', placeholder: '8\'100', correct: 8100, tol: 1, hint: '100\'000 × 8.1%' },
+      { id: 'achats_ht', label: 'Achats HT', placeholder: '40\'000', correct: 40000, tol: 1, hint: '43\'240 / 1.081' },
+      { id: 'ip', label: 'Impôt préalable', placeholder: '3\'240', correct: 3240, tol: 1, hint: '40\'000 × 8.1%' },
+      { id: 'solde', label: 'Solde TVA dû', placeholder: '4\'860', correct: 4860, tol: 1, hint: '8\'100 − 3\'240' },
+    ],
+    correction: 'Ventes HT : 108\'100 / 1.081 = 100\'000 — TVA due : 100\'000 × 8.1% = 8\'100\nAchats HT : 43\'240 / 1.081 = 40\'000 — IP : 40\'000 × 8.1% = 3\'240\nSolde dû à l\'AFC : 8\'100 − 3\'240 = CHF 4\'860',
+  },
 ];
 
 export const tvaEcrituresExercises = [
@@ -118,6 +177,48 @@ export const tvaEcrituresExercises = [
       { id: 'e1', libelle: 'Virement TVA due → décompte AFC', debit: { num: '2200', label: 'TVA due' }, credit: { num: '2201', label: 'Décompte TVA AFC' }, amount: 8640 },
       { id: 'e2', libelle: 'Virement impôt préalable → décompte AFC', debit: { num: '2201', label: 'Décompte TVA AFC' }, credit: { num: '1170', label: 'Impôt préalable' }, amount: 3456 },
       { id: 'e3', libelle: 'Paiement solde TVA à l\'AFC — virement', debit: { num: '2201', label: 'Décompte TVA AFC' }, credit: { num: '1020', label: 'Banque' }, amount: 5184 },
+    ],
+  },
+
+  {
+    id: 'tva-e-04', group: 'tva-ecritures', type: 'journal', tag: 'tva', difficulty: 3,
+    title: 'Cycle TVA trimestriel complet',
+    description: `Fidulex Sàrl clôture le T1 2024 :
+1. Total ventes HT du trimestre : CHF 80'000 → TVA due 8.1%
+2. Total achats HT du trimestre : CHF 30'000 → Impôt préalable 8.1%
+3. Virement du solde TVA dû à l'AFC`,
+    note: 'TVA due = 80\'000 × 8.1% = 6\'480. Impôt préalable = 30\'000 × 8.1% = 2\'430. Solde dû = 6\'480 − 2\'430 = CHF 4\'050.',
+    data: [
+      { label: 'Ventes T1 HT', value: "CHF 80'000" },
+      { label: 'Achats T1 HT', value: "CHF 30'000" },
+      { label: 'Taux TVA', value: '8.1%' },
+    ],
+    ecritures: [
+      { id: 'e1', libelle: 'Décompte TVA — virement TVA due au compte AFC', debit: { num: '2200', label: 'TVA due' }, credit: { num: '2201', label: 'Décompte TVA' }, amount: 6480 },
+      { id: 'e2', libelle: 'Décompte TVA — impôt préalable récupéré', debit: { num: '2201', label: 'Décompte TVA' }, credit: { num: '1170', label: 'Impôt préalable' }, amount: 2430 },
+      { id: 'e3', libelle: 'Virement du solde TVA à l\'AFC', debit: { num: '2201', label: 'Décompte TVA' }, credit: { num: '1020', label: 'Banque' }, amount: 4050 },
+    ],
+  },
+
+  {
+    id: 'tva-e-05', group: 'tva-ecritures', type: 'journal', tag: 'tva', difficulty: 3,
+    title: 'Facturation multi-taux TVA',
+    description: `Fidulex Sàrl émet une facture combinée :
+1. Prestations de conseil : CHF 5'000 HT (taux normal 8.1%)
+2. Hébergement hôtelier : CHF 2'000 HT (taux spécial 3.8%)
+Le client paie la totalité par virement.`,
+    data: [
+      { label: 'Conseil HT', value: "CHF 5'000 (TVA 8.1%)" },
+      { label: 'Hébergement HT', value: "CHF 2'000 (TVA 3.8%)" },
+      { label: 'TVA conseil', value: 'CHF 405.00' },
+      { label: 'TVA hébergement', value: 'CHF 76.00' },
+    ],
+    ecritures: [
+      { id: 'e1', libelle: 'Facture — prestations conseil HT', debit: { num: '1100', label: 'Débiteurs' }, credit: { num: '3400', label: 'Produits prestations' }, amount: 5000 },
+      { id: 'e2', libelle: 'Facture — TVA 8.1% sur conseil', debit: { num: '1100', label: 'Débiteurs' }, credit: { num: '2200', label: 'TVA due' }, amount: 405 },
+      { id: 'e3', libelle: 'Facture — hébergement HT', debit: { num: '1100', label: 'Débiteurs' }, credit: { num: '3400', label: 'Produits prestations' }, amount: 2000 },
+      { id: 'e4', libelle: 'Facture — TVA 3.8% sur hébergement', debit: { num: '1100', label: 'Débiteurs' }, credit: { num: '2200', label: 'TVA due' }, amount: 76 },
+      { id: 'e5', libelle: 'Encaissement total client', debit: { num: '1020', label: 'Banque' }, credit: { num: '1100', label: 'Débiteurs' }, amount: 7481 },
     ],
   },
 ];

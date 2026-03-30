@@ -21,8 +21,8 @@ function close(a, b, tol = 0.05) {
   return a !== null && b !== null && Math.abs(a - b) <= tol;
 }
 
-const tagClass  = { base: 'tag-base', tva: 'tag-tva', salaires: 'tag-salaires', bouclement: 'tag-bouclement' };
-const tagLabel  = { base: 'Base', tva: 'TVA', salaires: 'Salaires', bouclement: 'Clôture' };
+const tagClass  = { base: 'tag-base', tva: 'tag-tva', salaires: 'tag-salaires', bouclement: 'tag-bouclement', societes: 'tag-base', analyse: 'tag-base' };
+const tagLabel  = { base: 'Base', tva: 'TVA', salaires: 'Salaires', bouclement: 'Clôture', societes: 'Sociétés', analyse: 'Analyse' };
 const diffLabel = { 1: 'Facile', 2: 'Intermédiaire', 3: 'Avancé' };
 const diffColor = { 1: '#1a7a4a', 2: '#d4600a', 3: '#c0392b' };
 const diffBg    = { 1: '#e6f4ed', 2: '#fef3e8', 3: '#fdf0ee' };
@@ -218,6 +218,312 @@ function JournalExercise({ ex, onComplete }) {
   );
 }
 
+// ─── CALCUL ──────────────────────────────────────────────────────────────────
+function CalculExercise({ ex, onComplete }) {
+  const [inputs, setInputs] = useState({});
+  const [submitted, setSubmitted] = useState(false);
+  const [results, setResults] = useState({});
+
+  const set = (id, val) => setInputs(p => ({ ...p, [id]: val }));
+  const get = (id) => inputs[id] || '';
+
+  const handleSubmit = () => {
+    const res = {};
+    let correct = 0;
+    ex.champs.forEach(c => {
+      const val = parseAmt(get(c.id));
+      const ok = close(val, c.correct, c.tol || 0.10);
+      res[c.id] = ok;
+      if (ok) correct++;
+    });
+    setResults(res);
+    setSubmitted(true);
+    setTimeout(() => onComplete(ex.champs.length > 0 ? correct / ex.champs.length : 1), 600);
+  };
+
+  const handleReset = () => {
+    setInputs({});
+    setSubmitted(false);
+    setResults({});
+  };
+
+  const cls = (id) => !submitted ? '' : results[id] ? 'correct' : 'wrong';
+  const allOk = submitted && Object.values(results).every(Boolean);
+  const someOk = submitted && Object.values(results).some(Boolean);
+
+  return (
+    <div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10, margin: '16px 0' }}>
+        {ex.champs.map(c => (
+          <div key={c.id} style={{
+            display: 'flex', alignItems: 'center', gap: 12, padding: '10px 14px',
+            background: 'var(--bg2)', borderRadius: 8, border: '1px solid var(--border1)',
+          }}>
+            <label style={{ flex: '0 0 55%', fontSize: '0.82rem', fontWeight: 500, color: 'var(--text2)' }}>
+              {c.label}
+            </label>
+            <input
+              className={`journal-input ${cls(c.id)}`}
+              value={get(c.id)}
+              onChange={ev => set(c.id, ev.target.value)}
+              placeholder="Votre réponse"
+              disabled={submitted}
+              style={{ flex: 1, textAlign: 'right' }}
+            />
+            {submitted && c.hint && (
+              <span style={{ fontSize: '0.7rem', color: 'var(--text4)', whiteSpace: 'nowrap' }}>
+                <Lightbulb size={11} strokeWidth={1.8} color="#7a5c00" style={{ marginRight: 3, verticalAlign: '-1px' }} />
+                {c.hint}
+              </span>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {submitted && (
+        <>
+          <div className={`feedback ${allOk ? 'success' : someOk ? 'partial' : 'error'}`}>
+            <div style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
+              {allOk
+                ? <CheckCircle2 size={16} strokeWidth={2} color="#1a7a4a" style={{ flexShrink: 0, marginTop: 1 }} />
+                : <XCircle size={16} strokeWidth={2} color={someOk ? '#d4600a' : '#c0392b'} style={{ flexShrink: 0, marginTop: 1 }} />}
+              <span>
+                {allOk
+                  ? 'Tous les calculs sont corrects !'
+                  : `${Object.values(results).filter(Boolean).length} / ${Object.values(results).length} valeurs correctes. Vérifiez les champs en rouge.`}
+              </span>
+            </div>
+          </div>
+          {ex.correction && (
+            <div className="correction-wrap" style={{ padding: '14px 16px', fontSize: '0.82rem', lineHeight: 1.65, whiteSpace: 'pre-line', color: 'var(--text2)' }}>
+              <strong style={{ display: 'block', marginBottom: 6 }}>Correction :</strong>
+              {ex.correction}
+            </div>
+          )}
+        </>
+      )}
+
+      <div className="btn-row">
+        {!submitted
+          ? <button className="btn btn-primary" onClick={handleSubmit}><Send size={14} strokeWidth={2} /> Valider</button>
+          : <button className="btn btn-secondary" onClick={handleReset}><RotateCcw size={14} strokeWidth={2} /> Recommencer</button>}
+      </div>
+    </div>
+  );
+}
+
+// ─── PAYSLIP INTERACTIVE ─────────────────────────────────────────────────────
+function PayslipInteractiveExercise({ ex, onComplete }) {
+  const [inputs, setInputs] = useState({});
+  const [submitted, setSubmitted] = useState(false);
+  const [results, setResults] = useState({});
+  const [showCharges, setShowCharges] = useState(true);
+
+  const set = (key, val) => setInputs(p => ({ ...p, [key]: val }));
+  const get = (key) => inputs[key] || '';
+
+  const allFields = () => {
+    const fields = [];
+    ex.reponses.deductions.forEach((d, i) => {
+      fields.push({ key: `ded_${i}`, correct: d.montant });
+    });
+    fields.push({ key: 'net', correct: ex.reponses.net });
+    if (ex.reponses.chargesPatronales) {
+      ex.reponses.chargesPatronales.forEach((c, i) => {
+        fields.push({ key: `cp_${i}`, correct: c.montant });
+      });
+      fields.push({ key: 'totalCP', correct: ex.reponses.totalChargesPatronales });
+      fields.push({ key: 'coutTotal', correct: ex.reponses.coutTotal });
+    }
+    return fields;
+  };
+
+  const handleSubmit = () => {
+    const fields = allFields();
+    const res = {};
+    let correct = 0;
+    fields.forEach(f => {
+      const val = parseAmt(get(f.key));
+      const ok = close(val, f.correct, 0.10);
+      res[f.key] = ok;
+      if (ok) correct++;
+    });
+    setResults(res);
+    setSubmitted(true);
+    setTimeout(() => onComplete(fields.length > 0 ? correct / fields.length : 1), 600);
+  };
+
+  const handleReset = () => {
+    setInputs({});
+    setSubmitted(false);
+    setResults({});
+  };
+
+  const cls = (key) => !submitted ? '' : results[key] ? 'correct' : 'wrong';
+  const allOk = submitted && Object.values(results).every(Boolean);
+  const someOk = submitted && Object.values(results).some(Boolean);
+
+  const slipRowStyle = {
+    display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+    padding: '7px 12px', borderBottom: '1px solid var(--border1)', fontSize: '0.82rem',
+  };
+  const sectionTitle = {
+    fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em',
+    color: 'var(--text3)', padding: '10px 12px 4px', borderBottom: '2px solid var(--border2)',
+  };
+  const totalRowStyle = {
+    ...slipRowStyle, fontWeight: 700, background: 'var(--bg2)', borderBottom: '2px solid var(--border2)',
+  };
+
+  return (
+    <div style={{ display: 'flex', gap: 20, alignItems: 'flex-start', margin: '16px 0' }}>
+      {/* LEFT: Salary slip */}
+      <div style={{ flex: '0 0 60%', border: '1px solid var(--border2)', borderRadius: 10, background: 'var(--bg1)', overflow: 'hidden' }}>
+        {/* Header */}
+        <div style={{ padding: '14px 16px', background: 'var(--bg2)', borderBottom: '2px solid var(--border2)' }}>
+          <div style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--text1)' }}>Fiche de salaire — {ex.salaire.mois}</div>
+          <div style={{ display: 'flex', gap: 20, marginTop: 6, fontSize: '0.78rem', color: 'var(--text3)' }}>
+            <span>Taux d'activité : <strong>{ex.salaire.tauxActivite}%</strong></span>
+            <span>Salaire brut : <strong>CHF {fmt(ex.salaire.brut)}</strong></span>
+          </div>
+        </div>
+
+        {/* Déductions employé */}
+        <div style={sectionTitle}>Déductions employé</div>
+        {ex.reponses.deductions.map((d, i) => (
+          <div key={`ded_${i}`} style={slipRowStyle}>
+            <span style={{ color: 'var(--text2)' }}>{d.label}</span>
+            <input
+              className={`journal-input ${cls(`ded_${i}`)}`}
+              value={get(`ded_${i}`)}
+              onChange={ev => set(`ded_${i}`, ev.target.value)}
+              placeholder="0.00"
+              disabled={submitted}
+              style={{ width: 110, textAlign: 'right' }}
+            />
+          </div>
+        ))}
+
+        {/* Salaire net */}
+        <div style={totalRowStyle}>
+          <span style={{ color: 'var(--text1)' }}>Salaire net</span>
+          <input
+            className={`journal-input ${cls('net')}`}
+            value={get('net')}
+            onChange={ev => set('net', ev.target.value)}
+            placeholder="0.00"
+            disabled={submitted}
+            style={{ width: 110, textAlign: 'right', fontWeight: 700 }}
+          />
+        </div>
+
+        {/* Charges patronales */}
+        {ex.reponses.chargesPatronales && (
+          <>
+            <div style={{ ...sectionTitle, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }} onClick={() => setShowCharges(p => !p)}>
+              Charges patronales
+              <ChevronRight size={13} strokeWidth={2} style={{ transform: showCharges ? 'rotate(90deg)' : 'none', transition: 'transform 0.2s' }} />
+            </div>
+            {showCharges && (
+              <>
+                {ex.reponses.chargesPatronales.map((c, i) => (
+                  <div key={`cp_${i}`} style={slipRowStyle}>
+                    <span style={{ color: 'var(--text2)' }}>{c.label}</span>
+                    <input
+                      className={`journal-input ${cls(`cp_${i}`)}`}
+                      value={get(`cp_${i}`)}
+                      onChange={ev => set(`cp_${i}`, ev.target.value)}
+                      placeholder="0.00"
+                      disabled={submitted}
+                      style={{ width: 110, textAlign: 'right' }}
+                    />
+                  </div>
+                ))}
+                <div style={totalRowStyle}>
+                  <span style={{ color: 'var(--text1)' }}>Total charges patronales</span>
+                  <input
+                    className={`journal-input ${cls('totalCP')}`}
+                    value={get('totalCP')}
+                    onChange={ev => set('totalCP', ev.target.value)}
+                    placeholder="0.00"
+                    disabled={submitted}
+                    style={{ width: 110, textAlign: 'right', fontWeight: 700 }}
+                  />
+                </div>
+                <div style={{ ...totalRowStyle, background: 'var(--bg3, var(--bg2))' }}>
+                  <span style={{ color: 'var(--text1)' }}>Coût total employeur</span>
+                  <input
+                    className={`journal-input ${cls('coutTotal')}`}
+                    value={get('coutTotal')}
+                    onChange={ev => set('coutTotal', ev.target.value)}
+                    placeholder="0.00"
+                    disabled={submitted}
+                    style={{ width: 110, textAlign: 'right', fontWeight: 700 }}
+                  />
+                </div>
+              </>
+            )}
+          </>
+        )}
+
+        {/* Feedback */}
+        {submitted && (
+          <div style={{ padding: '0 12px 12px' }}>
+            <div className={`feedback ${allOk ? 'success' : someOk ? 'partial' : 'error'}`}>
+              <div style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
+                {allOk
+                  ? <CheckCircle2 size={16} strokeWidth={2} color="#1a7a4a" style={{ flexShrink: 0, marginTop: 1 }} />
+                  : <XCircle size={16} strokeWidth={2} color={someOk ? '#d4600a' : '#c0392b'} style={{ flexShrink: 0, marginTop: 1 }} />}
+                <span>
+                  {allOk
+                    ? 'Fiche de salaire correcte !'
+                    : `${Object.values(results).filter(Boolean).length} / ${Object.values(results).length} montants corrects. Vérifiez les champs en rouge.`}
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Buttons */}
+        <div className="btn-row" style={{ padding: '8px 12px 14px' }}>
+          {!submitted
+            ? <button className="btn btn-primary" onClick={handleSubmit}><Send size={14} strokeWidth={2} /> Valider la fiche</button>
+            : <button className="btn btn-secondary" onClick={handleReset}><RotateCcw size={14} strokeWidth={2} /> Recommencer</button>}
+        </div>
+      </div>
+
+      {/* RIGHT: Reference panel */}
+      <div style={{
+        flex: '0 0 38%', position: 'sticky', top: 20,
+        background: '#eef4fb', border: '1px solid #c4d9f0', borderRadius: 10, padding: '14px 16px',
+      }}>
+        <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#2c5f8a', marginBottom: 10, display: 'flex', alignItems: 'center', gap: 6 }}>
+          <BookOpen size={14} strokeWidth={1.8} color="#2c5f8a" />
+          Taux de référence 2024
+        </div>
+        <table style={{ width: '100%', fontSize: '0.75rem', borderCollapse: 'collapse' }}>
+          <thead>
+            <tr style={{ borderBottom: '2px solid #c4d9f0' }}>
+              <th style={{ textAlign: 'left', padding: '4px 6px', color: '#2c5f8a', fontWeight: 600 }}>Rubrique</th>
+              <th style={{ textAlign: 'right', padding: '4px 6px', color: '#2c5f8a', fontWeight: 600 }}>Taux</th>
+              <th style={{ textAlign: 'left', padding: '4px 6px', color: '#2c5f8a', fontWeight: 600 }}>Base</th>
+            </tr>
+          </thead>
+          <tbody>
+            {ex.references && ex.references.map((r, i) => (
+              <tr key={i} style={{ borderBottom: '1px solid #d6e4f0' }}>
+                <td style={{ padding: '4px 6px', color: 'var(--text2)' }}>{r.label}</td>
+                <td style={{ padding: '4px 6px', textAlign: 'right', fontWeight: 600, color: 'var(--text1)' }}>{r.taux}</td>
+                <td style={{ padding: '4px 6px', color: 'var(--text3)', fontStyle: 'italic' }}>{r.base}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
 // ─── MAIN ────────────────────────────────────────────────────────────────────
 export default function ExerciseView({ activeGroup, setActiveGroup, scores, setScores }) {
   const group = exerciseGroups.find(g => g.id === activeGroup) || exerciseGroups[0];
@@ -326,6 +632,8 @@ export default function ExerciseView({ activeGroup, setActiveGroup, scores, setS
           {current.type === 'qcm'     && <QCMExercise     key={`${current.id}-${idx}`} ex={current} onComplete={handleComplete} />}
           {current.type === 'journal' && <JournalExercise key={`${current.id}-${idx}`} ex={current} onComplete={handleComplete} />}
           {current.type === 'payslip' && <PayslipExercise key={`${current.id}-${idx}`} ex={current} />}
+          {current.type === 'calcul'  && <CalculExercise  key={`${current.id}-${idx}`} ex={current} onComplete={handleComplete} />}
+          {current.type === 'payslip-interactive' && <PayslipInteractiveExercise key={`${current.id}-${idx}`} ex={current} onComplete={handleComplete} />}
         </div>
 
         {/* Navigation */}
