@@ -163,6 +163,10 @@ function TabInvestissements() {
         ceux qui créent réellement de la richesse pour les actionnaires.
       </P>
 
+      <Note color="blue">
+        <strong>Posons la question simplement :</strong> Investiriez-vous CHF 70'000 aujourd'hui si on vous promettait CHF 10'000 dans un an, CHF 20'000 dans deux ans et CHF 70'000 dans trois ans ? Le total des retours est de CHF 100'000, soit CHF 30'000 de plus que votre mise. Mais est-ce réellement une bonne affaire ? Pour répondre, il faut comprendre que CHF 1 aujourd'hui ne vaut pas CHF 1 demain.
+      </Note>
+
       <P>
         Un investissement, au sens financier, se définit comme l'engagement de ressources monétaires
         aujourd'hui en échange de flux de trésorerie futurs incertains. Il peut s'agir de l'achat
@@ -256,6 +260,17 @@ function TabInvestissements() {
         Ce principe est le fondement de toute la finance moderne.
       </P>
 
+      <H3>Un exemple pour comprendre</H3>
+      <P>
+        Votre ami assureur vous propose d'investir CHF 4'000 aujourd'hui. Il vous promet de vous rendre CHF 5'000 dans 5 ans. Le taux d'intérêt du marché est de 10%. Est-ce une bonne affaire ?
+      </P>
+      <P>
+        Pour le savoir, calculons combien valent aujourd'hui ces CHF 5'000 futurs : V₀ = 5'000 / (1.10)⁵ = 5'000 / 1.6105 = CHF 3'105. Autrement dit, recevoir CHF 5'000 dans 5 ans équivaut à recevoir CHF 3'105 aujourd'hui. Vous paieriez CHF 4'000 pour quelque chose qui vaut CHF 3'105 : c'est un mauvais investissement !
+      </P>
+      <P>
+        On pourrait aussi raisonner en capitalisant : si vous placiez CHF 4'000 à 10% pendant 5 ans, vous obtiendriez 4'000 × (1.10)⁵ = 4'000 × 1.6105 = CHF 6'442. L'assureur ne vous offre que CHF 5'000 : c'est moins que ce que vous pourriez obtenir ailleurs.
+      </P>
+
       <H3>La capitalisation</H3>
 
       <P>
@@ -346,6 +361,20 @@ function TabInvestissements() {
           { annee: 5, montant: 1000 },
         ]}
       />
+
+      <H3>L'annuité différée — un piège classique</H3>
+      <P>
+        Attention aux annuités qui ne commencent pas immédiatement. Exemple : vous recevez CHF 1'000 par an pendant 4 ans, mais le premier versement n'arrive qu'à la fin de l'année 7 (années 7, 8, 9 et 10). Le taux est de 10%.
+      </P>
+      <P>
+        Étape 1 : calculer la valeur de l'annuité au début de la période de versement (début année 7 = fin année 6). VA₆ = 1'000 × [(1 − 1.10⁻⁴) / 0.10] = 1'000 × 3.1699 = CHF 3'170.
+      </P>
+      <P>
+        Étape 2 : actualiser ce montant de l'année 6 à aujourd'hui. V₀ = 3'170 / (1.10)⁶ = 3'170 / 1.7716 = CHF 1'789.
+      </P>
+      <P>
+        Recevoir CHF 4'000 au total (4 × 1'000) entre les années 7 et 10 ne vaut que CHF 1'789 aujourd'hui. L'éloignement dans le temps réduit considérablement la valeur.
+      </P>
 
 
       {/* ══════════════════════════════════════════════════════════════════
@@ -644,9 +673,59 @@ function TabInvestissements() {
 
 
       {/* ══════════════════════════════════════════════════════════════════
-          6. IMPACT DE LA FISCALITE
+          6. L'INVESTISSEMENT INITIAL
           ══════════════════════════════════════════════════════════════════ */}
-      <H2>6. L'impact de la fiscalité</H2>
+      <H2>6. L'investissement initial — Au-delà du simple prix d'achat</H2>
+
+      <P>
+        L'investissement initial ne se limite pas au prix d'achat de l'actif. En réalité, il intègre plusieurs composantes, particulièrement dans le cas d'un remplacement de machine.
+      </P>
+
+      <FormulaBox
+        formula="I₀ = Prix d'achat + Installation − Revente ancien ± Impact fiscal"
+        description="Formule de l'investissement initial en cas de remplacement"
+      />
+
+      <H3>Composantes de l'investissement initial</H3>
+
+      <Tableau
+        headers={['Composante', 'Traitement', 'Exemple']}
+        rows={[
+          ['Prix d\'achat', 'Flux sortant', 'CHF 500\'000'],
+          ['Frais d\'installation et mise en service', 'Flux sortant (à ajouter)', 'CHF 50\'000'],
+          ['Revente de l\'ancien actif', 'Flux rentrant (à déduire)', '− CHF 40\'000'],
+          ['Gain/perte sur vente ancien', 'Impact fiscal à calculer', '± impôt'],
+          ['= Investissement initial net', 'Base pour le calcul de la VAN', 'CHF 516\'000*'],
+        ]}
+      />
+
+      <Note color="yellow">
+        <strong>Attention à l'impact fiscal sur la vente de l'ancien :</strong> Si vous vendez l'ancienne machine CHF 40'000 alors que sa valeur comptable est de CHF 10'000, vous réalisez un gain de CHF 30'000. Ce gain est imposable ! Avec un taux d'impôt de 20%, l'impôt supplémentaire est de 30'000 × 20% = CHF 6'000. L'investissement initial net augmente de ce montant.
+      </Note>
+
+      <H3>La variation du besoin en fonds de roulement (BFR)</H3>
+
+      <P>
+        Un investissement productif entraîne souvent une augmentation du BFR : plus de stocks de matières premières, plus de créances clients, partiellement compensées par plus de dettes fournisseurs. Cette augmentation du BFR est un flux sortant à intégrer dans l'investissement initial.
+      </P>
+
+      <P>
+        En fin de projet, le BFR est récupéré (les stocks sont liquidés, les créances encaissées). C'est un flux rentrant à ajouter au dernier cash flow.
+      </P>
+
+      <Tableau
+        headers={['Moment', 'BFR', 'Impact sur les flux']}
+        rows={[
+          ['Début du projet (année 0)', 'Augmentation du BFR', 'Flux sortant (augmente I₀)'],
+          ['Fin du projet (année n)', 'Récupération du BFR', 'Flux rentrant (s\'ajoute au dernier CF)'],
+        ]}
+      />
+
+
+      {/* ══════════════════════════════════════════════════════════════════
+          7. IMPACT DE LA FISCALITE
+          ══════════════════════════════════════════════════════════════════ */}
+      <H2>7. L'impact de la fiscalité</H2>
 
       <P>
         Dans la réalité, l'analyste ne peut pas ignorer la fiscalité. L'impôt sur le bénéfice est un
@@ -735,11 +814,55 @@ function TabInvestissements() {
         initial net.
       </Note>
 
+      <H3>Cas de remplacement — GANUL SA</H3>
+
+      <P>
+        GANUL SA remplace une machine acquise il y a 6 ans pour CHF 1'600'000 (valeur comptable actuelle : CHF 100'000). La nouvelle machine coûte CHF 1'800'000 avec CHF 200'000 de frais d'installation. L'ancienne est reprise pour CHF 300'000. Taux d'impôt : 30%. WACC : 10%. Cash flows budgétés : CHF 600'000/an pendant 5 ans.
+      </P>
+
+      <H3>Étape 1 — Investissement initial</H3>
+
+      <Tableau
+        headers={['Élément', 'Montant']}
+        rows={[
+          ['Prix nouvelle machine', "CHF 1'800'000"],
+          ['+ Frais d\'installation', "CHF 200'000"],
+          ['− Revente ancienne machine', "− CHF 300'000"],
+          ['+ Impôt sur gain comptable', "CHF 60'000"],
+          ['= Investissement initial net', "CHF 1'760'000"],
+        ]}
+      />
+
+      <Note color="yellow">
+        <strong>Gain comptable :</strong> Revente CHF 300'000 − Valeur comptable CHF 100'000 = Gain de CHF 200'000. Impôt : 200'000 × 30% = CHF 60'000.
+      </Note>
+
+      <H3>Étape 2 — Cash flows après impôt</H3>
+
+      <P>
+        CF après impôt = CF avant impôt × (1 − t) + Amortissement × t
+      </P>
+      <P>
+        Amortissement annuel = 1'800'000 + 200'000 = 2'000'000 / 5 = CHF 400'000.
+      </P>
+      <P>
+        CF après impôt = 600'000 × (1 − 0.30) + 400'000 × 0.30 = 420'000 + 120'000 = CHF 540'000/an.
+      </P>
+
+      <H3>Étape 3 — VAN</H3>
+
+      <P>
+        VAN = 540'000 × [(1 − 1.10⁻⁵) / 0.10] − 1'760'000 = 540'000 × 3.7908 − 1'760'000 = 2'047'032 − 1'760'000 = CHF 287'032.
+      </P>
+      <P>
+        VAN positive → le projet de remplacement est rentable.
+      </P>
+
 
       {/* ══════════════════════════════════════════════════════════════════
-          7. LE COUT DU CAPITAL (WACC / CMPC)
+          8. LE COUT DU CAPITAL (WACC / CMPC)
           ══════════════════════════════════════════════════════════════════ */}
-      <H2>7. Le coût du capital (WACC / CMPC)</H2>
+      <H2>8. Le coût du capital (WACC / CMPC)</H2>
 
       <P>
         Le taux d'actualisation utilisé dans la VAN n'est pas choisi arbitrairement : c'est le coût
@@ -806,6 +929,43 @@ function TabInvestissements() {
         compenser le risque qu'ils supportent.
       </P>
 
+      <H3>Le bêta en détail — 5 facteurs explicatifs</H3>
+
+      <P>
+        Le bêta (β) mesure la sensibilité d'un titre aux fluctuations du marché. Un β de 1 signifie que le titre suit exactement le marché. Un β de 1.5 signifie qu'il amplifie les mouvements de 50%.
+      </P>
+
+      <Tableau
+        headers={['Facteur', 'Impact sur le β', 'Exemple']}
+        rows={[
+          ['Sensibilité à la conjoncture', 'Secteur cyclique → β élevé', 'Automobile (β ≈ 1.3) vs Alimentation (β ≈ 0.7)'],
+          ['Structure des coûts fixes', 'Coûts fixes élevés → β élevé', 'Compagnie aérienne (β ≈ 1.5)'],
+          ['Visibilité des résultats', 'Faible visibilité → β élevé', 'Start-up tech (β ≈ 2.0)'],
+          ['Taux de croissance', 'Forte croissance → β élevé', 'Entreprise en expansion rapide'],
+          ['Endettement', 'Fort endettement → β élevé', 'Plus de levier = plus de risque'],
+        ]}
+      />
+
+      <Note color="blue">
+        <strong>En pratique suisse :</strong> Nestlé a un β d'environ 0.7 (défensif, alimentaire), tandis qu'UBS a un β d'environ 1.3 (sensible aux marchés financiers). La Confédération suisse a un taux sans risque (rf) d'environ 1%, et la prime de risque du marché suisse est estimée entre 5% et 6%.
+      </Note>
+
+      <P>
+        Exemple concret : calculons le coût des fonds propres pour une PME industrielle suisse avec un β de 1.2, un taux sans risque de 1% et une prime de marché de 5.5%.
+      </P>
+      <P>
+        kCP = 1% + 1.2 × 5.5% = 1% + 6.6% = 7.6%.
+      </P>
+      <P>
+        Si cette PME est financée à 60% par fonds propres (kCP = 7.6%) et 40% par dette (kD = 3% avant impôt, t = 20%), alors :
+      </P>
+      <P>
+        WACC = 60% × 7.6% + 40% × 3% × (1 − 20%) = 4.56% + 0.96% = 5.52%.
+      </P>
+      <P>
+        Tout projet d'investissement de cette PME doit dégager un rendement supérieur à 5.52% pour créer de la valeur.
+      </P>
+
       <H3>Exemple complet de calcul du WACC</H3>
 
       <P>
@@ -847,9 +1007,9 @@ function TabInvestissements() {
 
 
       {/* ══════════════════════════════════════════════════════════════════
-          8. EXEMPLE INTEGRATEUR — CAS NDX SA
+          9. EXEMPLE INTEGRATEUR — CAS NDX SA
           ══════════════════════════════════════════════════════════════════ */}
-      <H2>8. Exemple intégrateur -- Cas NDX SA</H2>
+      <H2>9. Exemple intégrateur -- Cas NDX SA</H2>
 
       <P>
         L'entreprise NDX SA, basée à Sion, envisage le remplacement d'une ligne de production.
