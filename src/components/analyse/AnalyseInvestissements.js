@@ -1,5 +1,5 @@
 import React from 'react';
-import { P, H2, H3, Note, Tableau, TheoryLayout } from '../TheoryUI';
+import { Section, P, H3, Note, Tableau, TheoryLayout } from '../TheoryUI';
 
 /* ═══════════════════════════════════════════════════════════════════════════
    COMPOSANTS VISUELS INTERNES
@@ -152,8 +152,7 @@ function TabInvestissements() {
       {/* ══════════════════════════════════════════════════════════════════
           1. INTRODUCTION
           ══════════════════════════════════════════════════════════════════ */}
-      <H2>1. Introduction -- La question fondamentale</H2>
-
+      <Section title="1. Introduction -- La question fondamentale" defaultOpen={true}>
       <P>
         Dans quel projet l'entreprise doit-elle investir pour créer de la valeur ? Cette question
         est sans doute la plus stratégique de toute la finance d'entreprise. Chaque investissement
@@ -248,8 +247,8 @@ function TabInvestissements() {
       {/* ══════════════════════════════════════════════════════════════════
           2. VALEUR TEMPORELLE DE L'ARGENT
           ══════════════════════════════════════════════════════════════════ */}
-      <H2>2. La valeur temporelle de l'argent</H2>
-
+      </Section>
+      <Section title="2. La valeur temporelle de l'argent" defaultOpen={false}>
       <P>
         Avant d'aborder les critères de choix d'investissement, il est essentiel de comprendre un
         concept fondamental : CHF 1'000 aujourd'hui ne valent PAS la même chose que CHF 1'000 dans
@@ -380,8 +379,8 @@ function TabInvestissements() {
       {/* ══════════════════════════════════════════════════════════════════
           3. LA VAN
           ══════════════════════════════════════════════════════════════════ */}
-      <H2>3. La VAN -- Valeur Actuelle Nette</H2>
-
+      </Section>
+      <Section title="3. La VAN -- Valeur Actuelle Nette" defaultOpen={false}>
       <P>
         La Valeur Actuelle Nette est le critère fondamental et théoriquement le plus solide pour
         évaluer un projet d'investissement. Son principe est simple mais puissant : elle compare,
@@ -522,8 +521,8 @@ function TabInvestissements() {
       {/* ══════════════════════════════════════════════════════════════════
           4. LE TRI
           ══════════════════════════════════════════════════════════════════ */}
-      <H2>4. Le TRI -- Taux de Rendement Interne</H2>
-
+      </Section>
+      <Section title="4. Le TRI -- Taux de Rendement Interne" defaultOpen={false}>
       <P>
         Le Taux de Rendement Interne est le second critère le plus utilisé en pratique. Il répond à
         une question intuitive : quel est le taux de rentabilité réel du projet ? Plus formellement,
@@ -599,8 +598,8 @@ function TabInvestissements() {
       {/* ══════════════════════════════════════════════════════════════════
           5. LE PAYBACK
           ══════════════════════════════════════════════════════════════════ */}
-      <H2>5. Le Payback -- Délai de récupération</H2>
-
+      </Section>
+      <Section title="5. Le Payback -- Délai de récupération" defaultOpen={false}>
       <P>
         Le délai de récupération (payback) répond à une question simple : en combien de temps le
         projet rembourse-t-il l'investissement initial ? C'est un critère très utilisé dans la
@@ -675,8 +674,8 @@ function TabInvestissements() {
       {/* ══════════════════════════════════════════════════════════════════
           6. L'INVESTISSEMENT INITIAL
           ══════════════════════════════════════════════════════════════════ */}
-      <H2>6. L'investissement initial — Au-delà du simple prix d'achat</H2>
-
+      </Section>
+      <Section title="6. L'investissement initial — Au-delà du simple prix d'achat" defaultOpen={false}>
       <P>
         L'investissement initial ne se limite pas au prix d'achat de l'actif. En réalité, il intègre plusieurs composantes, particulièrement dans le cas d'un remplacement de machine.
       </P>
@@ -725,8 +724,8 @@ function TabInvestissements() {
       {/* ══════════════════════════════════════════════════════════════════
           7. IMPACT DE LA FISCALITE
           ══════════════════════════════════════════════════════════════════ */}
-      <H2>7. L'impact de la fiscalité</H2>
-
+      </Section>
+      <Section title="7. L'impact de la fiscalité" defaultOpen={false}>
       <P>
         Dans la réalité, l'analyste ne peut pas ignorer la fiscalité. L'impôt sur le bénéfice est un
         flux de trésorerie bien réel qui réduit les cash flows disponibles. En Suisse, le taux
@@ -862,8 +861,8 @@ function TabInvestissements() {
       {/* ══════════════════════════════════════════════════════════════════
           8. LE COUT DU CAPITAL (WACC / CMPC)
           ══════════════════════════════════════════════════════════════════ */}
-      <H2>8. Le coût du capital (WACC / CMPC)</H2>
-
+      </Section>
+      <Section title="8. Le coût du capital (WACC / CMPC)" defaultOpen={false}>
       <P>
         Le taux d'actualisation utilisé dans la VAN n'est pas choisi arbitrairement : c'est le coût
         moyen pondéré du capital, connu sous les acronymes WACC (Weighted Average Cost of Capital)
@@ -1009,8 +1008,8 @@ function TabInvestissements() {
       {/* ══════════════════════════════════════════════════════════════════
           9. EXEMPLE INTEGRATEUR — CAS SwiSSwatch SA
           ══════════════════════════════════════════════════════════════════ */}
-      <H2>9. Exemple intégrateur -- Cas SwiSSwatch SA</H2>
-
+      </Section>
+      <Section title="9. Exemple intégrateur -- Cas SwiSSwatch SA" defaultOpen={false}>
       <P>
         L'entreprise SwiSSwatch SA, basée à Sion, envisage le remplacement d'une ligne de production.
         Ce cas intègre l'ensemble des concepts abordés dans ce chapitre : investissement initial net,
@@ -1193,6 +1192,7 @@ function TabInvestissements() {
         MEDAF pour les fonds propres, sert de taux de rejet dans l'ensemble des calculs. La maîtrise
         de ces outils est indispensable pour tout professionnel de la finance d'entreprise.
       </P>
+      </Section>
     </>
   );
 }

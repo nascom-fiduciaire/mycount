@@ -1,19 +1,20 @@
 import React from 'react';
-import { P, H2, H3, Note, Loi, Tableau, Ecriture, TheoryLayout } from './TheoryUI';
+import { P, H3, Note, Loi, Tableau, Ecriture, TheoryLayout, Section } from './TheoryUI';
 
 // ─── ONGLET 1 : FORMES JURIDIQUES ──────────────────────────────────────────────
 function TabFormesJuridiques() {
   return (
     <div>
-      <H2>1. Droit comptable et droit des societes</H2>
+      <Section title="1. Droit comptable et droit des societes" defaultOpen={true}>
       <P>En Suisse, deux branches du droit encadrent les societes commerciales. Le <strong>droit comptable</strong> (art. 957ss CO) fixe les obligations en matiere de tenue des comptes, de presentation des etats financiers et de principes d'evaluation. Le <strong>droit des societes commerciales</strong> (art. 552ss CO) regle la creation, le fonctionnement, la gouvernance et la dissolution des differentes formes juridiques.</P>
       <P>Ces deux corps de regles se completent : le droit des societes impose des exigences specifiques (capital minimum, reserves legales, organes obligatoires) tandis que le droit comptable fournit le cadre technique pour rendre compte de la situation financiere.</P>
 
       <Loi art="Art. 957 al. 1 CO">
         Les entreprises individuelles et les societes qui ont realise un chiffre d'affaires de CHF 500'000 au moins au cours du dernier exercice sont tenues de tenir une comptabilite et de presenter des comptes.
       </Loi>
+      </Section>
 
-      <H2>2. Societes de personnes</H2>
+      <Section title="2. Societes de personnes" defaultOpen={false}>
       <P>Les societes de personnes n'ont <strong>pas de personnalite juridique propre</strong>. Les associes sont personnellement engages par les dettes de la societe. Il n'y a pas de capital minimum legal, et la comptabilite suit les regles generales de l'art. 957 CO.</P>
 
       <H3>Societe en nom collectif (SNC) — art. 552ss CO</H3>
@@ -44,8 +45,9 @@ function TabFormesJuridiques() {
           { cells: ['Commanditaire(s)', 'Limitee au montant de l\'apport inscrit au RC', 'Aucune gestion (sauf procuration)'] },
         ]}
       />
+      </Section>
 
-      <H2>3. Personnes morales — societes de capitaux</H2>
+      <Section title="3. Personnes morales — societes de capitaux" defaultOpen={false}>
       <P>Les personnes morales ont une <strong>personnalite juridique distincte</strong> de celle de leurs membres. La responsabilite des actionnaires ou associes est limitee a leur apport. Ces societes sont soumises a des exigences specifiques en matiere de capital, de gouvernance et de presentation des comptes.</P>
 
       <H3>Societe anonyme (SA) — art. 620ss CO</H3>
@@ -81,8 +83,9 @@ function TabFormesJuridiques() {
           <span>{pt}</span>
         </div>
       ))}
+      </Section>
 
-      <H2>4. Tableau comparatif des formes juridiques</H2>
+      <Section title="4. Tableau comparatif des formes juridiques" defaultOpen={false}>
       <Tableau
         caption="Comparaison des principales formes juridiques suisses"
         headers={['Forme juridique', 'Responsabilite', 'Capital minimum', 'Dispositions legales']}
@@ -93,8 +96,9 @@ function TabFormesJuridiques() {
           { cells: ['Sarl', 'Limitee au capital social', 'CHF 20\'000', 'Art. 772ss CO'] },
         ]}
       />
+      </Section>
 
-      <H2>5. Points cles a retenir</H2>
+      <Section title="5. Points cles a retenir" defaultOpen={false}>
       {[
         'Societes de personnes : pas de personnalite juridique propre, responsabilite personnelle des associes.',
         'Societes de capitaux (SA, Sarl) : personnalite juridique distincte, responsabilite limitee a l\'apport.',
@@ -107,6 +111,7 @@ function TabFormesJuridiques() {
           <span>{pt}</span>
         </div>
       ))}
+      </Section>
     </div>
   );
 }
@@ -115,7 +120,7 @@ function TabFormesJuridiques() {
 function TabFondation() {
   return (
     <div>
-      <H2>1. L'acte constitutif</H2>
+      <Section title="1. L'acte constitutif" defaultOpen={true}>
       <P>La fondation d'une SA requiert un <strong>acte constitutif en la forme authentique</strong> (acte notarie). Cet acte contient la declaration de fondation, l'adoption des statuts, la nomination des organes et la declaration des fondateurs.</P>
 
       <Loi art="Art. 629 al. 1 CO">
@@ -136,8 +141,9 @@ function TabFondation() {
           <span>{pt}</span>
         </div>
       ))}
+      </Section>
 
-      <H2>2. Capital minimum et liberation</H2>
+      <Section title="2. Capital minimum et liberation" defaultOpen={false}>
       <Loi art="Art. 621 CO">
         Le capital-actions ne peut etre inferieur a 100 000 francs.
       </Loi>
@@ -148,8 +154,9 @@ function TabFondation() {
       <Note color="blue">
         <strong>Regle cle :</strong> Liberation minimale = max(20% de chaque action, CHF 50'000 au total). Si le capital est de CHF 100'000, il faut liberer au minimum CHF 50'000 (soit 50%). Si le capital est de CHF 500'000, la liberation de 20% = CHF 100'000 suffit.
       </Note>
+      </Section>
 
-      <H2>3. Fondation avec apports en especes</H2>
+      <Section title="3. Fondation avec apports en especes" defaultOpen={false}>
       <P>Exemple : <strong>SwiSSwatch SA</strong> est fondee avec un capital-actions de CHF 1'000'000, divise en 1'000 actions de CHF 1'000 chacune. Les fondateurs liberent 50% du capital.</P>
 
       <H3>Phase 1 : Souscription des actions</H3>
@@ -180,8 +187,9 @@ function TabFondation() {
           { cells: ['Total actif', '991\'500', 'Total passif', '991\'500'], _bold: true },
         ]}
       />
+      </Section>
 
-      <H2>4. Fondation avec apports en nature</H2>
+      <Section title="4. Fondation avec apports en nature" defaultOpen={false}>
       <P>Il est possible de liberer le capital par des apports en nature (immeubles, machines, stocks, vehicules, etc.) plutot que par des versements en especes. Ces apports doivent etre evalues et le rapport de fondation doit en attester la valeur.</P>
 
       <Loi art="Art. 634 CO">
@@ -197,13 +205,15 @@ function TabFondation() {
       <Note color="blue">
         Apres ces ecritures, le compte 1850 est solde (CHF 0) : le capital est entierement libere. L'actif de la societe se compose de machines, d'un immeuble et de liquidites.
       </Note>
+      </Section>
 
-      <H2>5. Liberation ulterieure du capital non libere</H2>
+      <Section title="5. Liberation ulterieure du capital non libere" defaultOpen={false}>
       <P>Si le capital n'a ete libere qu'a 50% lors de la fondation, le conseil d'administration peut decider d'appeler le solde a tout moment. Les actionnaires sont alors tenus de verser le montant restant.</P>
       <Ecriture debit="1020 Banque" credit="1850 Actionnaires" montant="500'000" />
       <Note color="green">Cette ecriture solde le compte 1850 et porte le solde bancaire au montant total du capital (moins les frais).</Note>
+      </Section>
 
-      <H2>6. Points cles a retenir</H2>
+      <Section title="6. Points cles a retenir" defaultOpen={false}>
       {[
         'L\'acte constitutif doit etre passe en la forme authentique (notaire).',
         'Capital-actions minimum CHF 100\'000, liberation min 20% par action et min CHF 50\'000.',
@@ -216,6 +226,7 @@ function TabFondation() {
           <span>{pt}</span>
         </div>
       ))}
+      </Section>
     </div>
   );
 }
@@ -224,7 +235,7 @@ function TabFondation() {
 function TabDistribution() {
   return (
     <div>
-      <H2>1. Presentation des comptes d'une SA</H2>
+      <Section title="1. Presentation des comptes d'une SA" defaultOpen={true}>
       <P>Les comptes annuels d'une SA comprennent le bilan, le compte de resultat et l'annexe. Le bilan doit presenter au minimum les postes prevus par la loi, et le compte de resultat peut etre presente par nature ou par fonction.</P>
 
       <Loi art="Art. 959a CO">
@@ -248,8 +259,9 @@ function TabDistribution() {
           { cells: ['2980', 'Propres actions (./. negatif)', 'Actions rachetees, en diminution des fonds propres'] },
         ]}
       />
+      </Section>
 
-      <H2>2. Affectation du resultat</H2>
+      <Section title="2. Affectation du resultat" defaultOpen={false}>
       <P>L'assemblee generale decide chaque annee de l'affectation du benefice resultant du bilan. L'ordre de priorite est fixe par la loi et les statuts.</P>
 
       <H3>Reserve legale issue du benefice (art. 672 CO)</H3>
@@ -273,8 +285,9 @@ function TabDistribution() {
 
       <H3>Tantiemes</H3>
       <P>Les tantiemes sont une remuneration du conseil d'administration, prelevee sur le benefice resultant du bilan. Ils ne peuvent etre preleves que si la reserve legale issue du benefice a recu son attribution et qu'un dividende de 5% a ete distribue aux actionnaires.</P>
+      </Section>
 
-      <H2>3. Ecritures d'affectation du benefice</H2>
+      <Section title="3. Ecritures d'affectation du benefice" defaultOpen={false}>
       <P>Exemple : SwiSSwatch SA realise un benefice net de CHF 200'000. L'AG decide : 5% reserve legale, CHF 80'000 de dividende brut, CHF 10'000 de tantiemes, solde en reserve facultative. Capital-actions CHF 1'000'000, reserve legale existante CHF 350'000 (plafond 50% = CHF 500'000).</P>
 
       <H3>Attribution a la reserve legale (5%)</H3>
@@ -291,8 +304,9 @@ function TabDistribution() {
       <H3>Solde en reserve facultative</H3>
       <P>Solde = CHF 200'000 - 10'000 - 80'000 - 10'000 = CHF 100'000.</P>
       <Ecriture debit="2979 Benefice de l'exercice" credit="2960 Reserve facultative" montant="100'000" />
+      </Section>
 
-      <H2>4. Traitement des pertes</H2>
+      <Section title="4. Traitement des pertes" defaultOpen={false}>
       <P>Lorsque l'exercice se solde par une perte, celle-ci est compensee dans l'ordre suivant :</P>
       {[
         '1. Compensation avec le report de benefice anterieur (2970).',
@@ -307,8 +321,9 @@ function TabDistribution() {
       ))}
       <Ecriture debit="2960 Reserve facultative" credit="2979 Perte de l'exercice" montant="50'000" />
       <Ecriture debit="2950 Reserve legale issue du benefice" credit="2979 Perte de l'exercice" montant="30'000" />
+      </Section>
 
-      <H2>5. Rachat d'actions propres</H2>
+      <Section title="5. Rachat d'actions propres" defaultOpen={false}>
       <Loi art="Art. 659 al. 1 CO">
         La societe ne peut acquerir ses propres actions que si elle dispose librement d'une part de ses fonds propres equivalant au montant de la valeur d'acquisition et si la valeur nominale de l'ensemble de ces actions ne depasse pas 10% du capital-actions.
       </Loi>
@@ -321,8 +336,9 @@ function TabDistribution() {
       <Ecriture debit="1020 Banque" credit="2980 Actions propres" montant="45'000" />
       <Ecriture debit="1020 Banque" credit="2900 Reserve legale issue du capital" montant="3'000" />
       <Note color="yellow">La plus-value de CHF 100 par action (1'600 - 1'500) est creditee a la reserve legale issue du capital. En cas de destruction d'actions, la plus-value (difference entre prix de rachat et valeur nominale) est soumise a l'impot anticipe de 35%.</Note>
+      </Section>
 
-      <H2>6. Points cles a retenir</H2>
+      <Section title="6. Points cles a retenir" defaultOpen={false}>
       {[
         'Reserve legale issue du benefice : 5% du benefice net jusqu\'a 50% du capital-actions.',
         'Dividendes soumis a l\'impot anticipe de 35% (LIA).',
@@ -335,6 +351,7 @@ function TabDistribution() {
           <span>{pt}</span>
         </div>
       ))}
+      </Section>
     </div>
   );
 }
@@ -343,7 +360,7 @@ function TabDistribution() {
 function TabAugmentation() {
   return (
     <div>
-      <H2>1. Les moyens d'augmenter les disponibilites</H2>
+      <Section title="1. Les moyens d'augmenter les disponibilites" defaultOpen={true}>
       <P>Une societe peut augmenter ses ressources financieres de cinq facons principales :</P>
       {[
         'Liberation du capital non libere (appel du solde du compte 1850).',
@@ -357,8 +374,9 @@ function TabAugmentation() {
           <span>{pt}</span>
         </div>
       ))}
+      </Section>
 
-      <H2>2. Augmentation ordinaire du capital-actions</H2>
+      <Section title="2. Augmentation ordinaire du capital-actions" defaultOpen={false}>
       <P>L'augmentation ordinaire du capital-actions consiste a emettre de nouvelles actions. Elle est decidee par l'AG et executee par le CA dans un delai de 6 mois. Les actions sont generalement emises a un prix superieur a la valeur nominale : la difference constitue la <strong>prime d'emission (agio)</strong>.</P>
 
       <H3>Prime d'emission (agio)</H3>
@@ -413,8 +431,9 @@ function TabAugmentation() {
       <P>Transfert de la prime d'emission (compensation des frais puis virement en reserve legale) :</P>
       <Ecriture debit="2910 Prime d'emission" credit="8600 Charges exceptionnelles" montant="5'000" />
       <Ecriture debit="2910 Prime d'emission" credit="2900 Reserve legale issue du capital" montant="95'000" />
+      </Section>
 
-      <H2>3. Emprunt obligataire</H2>
+      <Section title="3. Emprunt obligataire" defaultOpen={false}>
       <P>L'emprunt obligataire est un moyen de financement par l'emission de titres de creance (obligations). Les investisseurs pretent de l'argent a la societe en echange d'un interet periodique et du remboursement du nominal a l'echeance.</P>
 
       <H3>Types d'obligations</H3>
@@ -446,8 +465,9 @@ function TabAugmentation() {
       <P>Emission de CHF 500'000 a 98% :</P>
       <Ecriture debit="1020 Banque" credit="2400 Emprunt obligataire" montant="490'000" />
       <Ecriture debit="1801 Disagio sur emprunt" credit="2400 Emprunt obligataire" montant="10'000" />
+      </Section>
 
-      <H2>4. Capital autorise et capital conditionnel</H2>
+      <Section title="4. Capital autorise et capital conditionnel" defaultOpen={false}>
 
       <H3>Capital autorise (art. 651-652 CO)</H3>
       <P>Le capital autorise permet au conseil d{'\''}administration d{'\''}augmenter le capital-actions sans convoquer l{'\''}assemblee generale, dans une limite et un delai fixes par les statuts.</P>
@@ -479,8 +499,9 @@ function TabAugmentation() {
         ]}
       />
       <P>Comptablement, l{'\''}emission de bons de participation se traite comme une augmentation de capital classique, mais au compte 2810 Capital-participation au lieu de 2800.</P>
+      </Section>
 
-      <H2>5. Points cles a retenir</H2>
+      <Section title="5. Points cles a retenir" defaultOpen={false}>
       {[
         'L\'agio (prime d\'emission) compense la valeur accumulee par la societe.',
         'Le DPS protege les actionnaires existants contre la dilution.',
@@ -493,6 +514,7 @@ function TabAugmentation() {
           <span>{pt}</span>
         </div>
       ))}
+      </Section>
     </div>
   );
 }
@@ -501,14 +523,15 @@ function TabAugmentation() {
 function TabAssainissement() {
   return (
     <div>
-      <H2>1. Surveillance de la solvabilite</H2>
+      <Section title="1. Surveillance de la solvabilite" defaultOpen={true}>
       <P>Le conseil d'administration a le devoir legal de surveiller en permanence la solvabilite de la societe. La revision du droit de la SA (2023) a renforce ces obligations avec les nouveaux articles 725 a 725c CO.</P>
 
       <Loi art="Art. 725 CO">
         Le conseil d'administration surveille la solvabilite de la societe. Il prend des mesures pour assurer la solvabilite de la societe. Il prend les mesures supplementaires qui s'imposent pour assainir la societe ou pour en proposer l'assainissement a l'assemblee generale, si cela est necessaire.
       </Loi>
+      </Section>
 
-      <H2>2. Situations de crise</H2>
+      <Section title="2. Situations de crise" defaultOpen={false}>
       <H3>Perte de capital (art. 725a CO)</H3>
       <Loi art="Art. 725a al. 1 CO">
         S'il ressort des derniers comptes annuels que les actifs, apres deduction des dettes, ne couvrent plus la moitie de la somme du capital-actions et de la reserve legale issue du capital et de la reserve legale issue du benefice qui ne sont pas remboursables, le conseil d'administration prend des mesures propres a remedier a la perte de capital.
@@ -536,8 +559,9 @@ function TabAssainissement() {
           <span>{pt}</span>
         </div>
       ))}
+      </Section>
 
-      <H2>3. Mesures d'assainissement</H2>
+      <Section title="3. Mesures d'assainissement" defaultOpen={false}>
 
       <H3>a) Reevaluation d'actifs (art. 725c CO)</H3>
       <P>Si des immeubles ou des participations ont une valeur reelle superieure a la valeur comptable, ils peuvent etre reevalues. La plus-value est creditee a une reserve de reevaluation.</P>
@@ -576,8 +600,9 @@ function TabAssainissement() {
       <Ecriture debit="2800 Capital-actions" credit="2979 Perte reportee" montant="300'000" />
       <Ecriture debit="1850 Actionnaires" credit="2800 Capital-actions" montant="200'000" />
       <Ecriture debit="1020 Banque" credit="1850 Actionnaires" montant="200'000" />
+      </Section>
 
-      <H2>4. Exemple complet d'assainissement</H2>
+      <Section title="4. Exemple complet d'assainissement" defaultOpen={false}>
       <P>Situation de SwiSSwatch SA avant assainissement :</P>
       <Tableau
         caption="Bilan avant assainissement"
@@ -597,8 +622,9 @@ function TabAssainissement() {
       <Ecriture debit="1600 Immeubles" credit="2940 Reserve de reevaluation" montant="150'000" />
       <Ecriture debit="2400 Emprunt bancaire" credit="8100 Produits exceptionnels" montant="100'000" />
       <Ecriture debit="2800 Capital-actions" credit="2979 Perte reportee" montant="300'000" />
+      </Section>
 
-      <H2>5. Points cles a retenir</H2>
+      <Section title="5. Points cles a retenir" defaultOpen={false}>
       {[
         'Art. 725 CO : le CA doit surveiller la solvabilite en permanence.',
         'Perte de capital (art. 725a) : fonds propres < 50% du capital + reserves legales.',
@@ -611,6 +637,7 @@ function TabAssainissement() {
           <span>{pt}</span>
         </div>
       ))}
+      </Section>
     </div>
   );
 }
@@ -619,7 +646,7 @@ function TabAssainissement() {
 function TabFusion() {
   return (
     <div>
-      <H2>1. La fusion — concepts generaux</H2>
+      <Section title="1. La fusion — concepts generaux" defaultOpen={true}>
       <P>La fusion est l'operation par laquelle deux ou plusieurs societes se regroupent en une seule. Elle est regie par la <strong>Loi federale sur la fusion (LFus)</strong>. Il existe deux types de fusion :</P>
 
       <Tableau
@@ -633,8 +660,9 @@ function TabFusion() {
       <Note color="blue">
         En pratique, la <strong>fusion par absorption</strong> est de loin la plus courante. Les actionnaires de la societe absorbee recoivent des actions de la societe absorbante en echange.
       </Note>
+      </Section>
 
-      <H2>2. Etapes d'une fusion par absorption</H2>
+      <Section title="2. Etapes d'une fusion par absorption" defaultOpen={false}>
       {[
         'Evaluation des deux societes (valeur intrinseque = fonds propres comptables + reserves latentes).',
         'Calcul de la parite d\'echange (combien d\'actions de l\'absorbante pour une action de l\'absorbee).',
@@ -648,8 +676,9 @@ function TabFusion() {
           <span>{pt}</span>
         </div>
       ))}
+      </Section>
 
-      <H2>3. Calculs de fusion — exemple complet</H2>
+      <Section title="3. Calculs de fusion — exemple complet" defaultOpen={false}>
       <P><strong>Societe SwiSSwatch SA</strong> (absorbante) : capital-actions CHF 1'000'000 (1'000 actions de CHF 1'000). Fonds propres comptables CHF 1'500'000. Reserves latentes nettes CHF 300'000.</P>
       <P><strong>Societe SwiSSwatch SA</strong> (absorbee) : capital-actions CHF 500'000 (500 actions de CHF 1'000). Fonds propres comptables CHF 700'000. Reserves latentes nettes CHF 200'000.</P>
 
@@ -688,8 +717,9 @@ function TabFusion() {
       <Ecriture debit="" credit="2900 Reserve legale issue du capital (prime de fusion)" montant="400'000" />
 
       <Note color="green">Si la valeur intrinseque de l'absorbee est inferieure au capital emis, la difference constitue une <strong>perte de fusion</strong> (goodwill), comptabilisee a l'actif (1880) et amortie.</Note>
+      </Section>
 
-      <H2>4. La scission</H2>
+      <Section title="4. La scission" defaultOpen={false}>
       <P>La scission est l'operation inverse de la fusion : une societe transfere tout ou partie de son patrimoine a une ou plusieurs societes. La LFus prevoit deux formes :</P>
 
       <Tableau
@@ -716,8 +746,9 @@ function TabFusion() {
       <P>Ecritures chez SwiSSwatch SA (dissolution) :</P>
       <Ecriture debit="2800 Capital-actions" credit="Actifs nets transferes" montant="800'000" />
       <P>Chaque nouvelle societe reprend les actifs et dettes selon la cle de repartition et constitue son propre capital-actions.</P>
+      </Section>
 
-      <H2>5. Traitement du goodwill et des differences d{'\''}acquisition</H2>
+      <Section title="5. Traitement du goodwill et des differences d'acquisition" defaultOpen={false}>
 
       <H3>Goodwill positif (survaleur)</H3>
       <P>Lorsque le prix paye pour une societe absorbee depasse la valeur de ses actifs nets retraites, la difference constitue un goodwill (ecart d{'\''}acquisition). En droit suisse (CO), le goodwill peut etre :</P>
@@ -729,8 +760,9 @@ function TabFusion() {
       <H3>Goodwill negatif (badwill)</H3>
       <P>Si la valeur des actifs nets acquis depasse le prix paye, il y a un goodwill negatif (badwill ou {'\''}bonne affaire{'\''}). Cela peut indiquer que certains actifs sont surevalues ou que des passifs caches existent.</P>
       <P>Le badwill est generalement comptabilise en produit exceptionnel ou affecte aux reserves.</P>
+      </Section>
 
-      <H2>6. Aspects fiscaux de la fusion</H2>
+      <Section title="6. Aspects fiscaux de la fusion" defaultOpen={false}>
 
       <P>En Suisse, les fusions peuvent beneficier de la neutralite fiscale si certaines conditions sont remplies (art. 61 LIFD / art. 24 LHID) :</P>
       <P>1. Les reserves latentes reprises par la societe absorbante doivent etre maintenues (pas de reevaluation libre).</P>
@@ -751,8 +783,9 @@ function TabFusion() {
           { cells: ['Meme type de societe', 'Neutralite', 'Possibilite d\'imposition'] },
         ]}
       />
+      </Section>
 
-      <H2>7. Points cles a retenir</H2>
+      <Section title="7. Points cles a retenir" defaultOpen={false}>
       {[
         'Fusion par absorption : la societe absorbee disparait, l\'absorbante subsiste.',
         'Valeur intrinseque = fonds propres comptables + reserves latentes nettes.',
@@ -765,6 +798,7 @@ function TabFusion() {
           <span>{pt}</span>
         </div>
       ))}
+      </Section>
     </div>
   );
 }
@@ -773,7 +807,7 @@ function TabFusion() {
 function TabLiquidation() {
   return (
     <div>
-      <H2>1. Decision de dissolution</H2>
+      <Section title="1. Decision de dissolution" defaultOpen={true}>
       <P>La liquidation d'une SA est le processus par lequel la societe cesse ses activites, realise ses actifs, paie ses dettes et distribue le solde a ses actionnaires avant sa radiation du registre du commerce.</P>
 
       <Loi art="Art. 704 al. 1 ch. 8 CO">
@@ -796,16 +830,18 @@ function TabLiquidation() {
           <span>{pt}</span>
         </div>
       ))}
+      </Section>
 
-      <H2>2. Appel aux creanciers</H2>
+      <Section title="2. Appel aux creanciers" defaultOpen={false}>
       <Loi art="Art. 742 al. 2 CO">
         Les liquidateurs font un appel aux creanciers par trois publications dans la FOSC; ils avisent en outre les creanciers connus par lettre.
       </Loi>
       <Note color="yellow">
         L'appel aux creanciers est une formalite obligatoire. Un delai d'attente d'au moins un an s'ecoule entre le 3e appel et la distribution du solde, sauf si un reviseur agree confirme que toutes les dettes sont eteintes.
       </Note>
+      </Section>
 
-      <H2>3. Operations de liquidation</H2>
+      <Section title="3. Operations de liquidation" defaultOpen={false}>
       <P>Pendant la liquidation, le liquidateur doit transformer tous les actifs en liquidites et eteindre toutes les dettes. Les gains et pertes resultant de ces operations sont comptabilises dans des comptes specifiques.</P>
 
       <H3>Vente des actifs</H3>
@@ -842,12 +878,14 @@ function TabLiquidation() {
       <P>Immeuble comptabilise a CHF 400'000, vendu a CHF 520'000 (gain de CHF 120'000).</P>
       <Ecriture debit="1020 Banque" credit="1600 Immeubles" montant="400'000" />
       <Ecriture debit="1020 Banque" credit="8000 Gains de liquidation" montant="120'000" />
+      </Section>
 
-      <H2>4. Paiement des dettes</H2>
+      <Section title="4. Paiement des dettes" defaultOpen={false}>
       <Ecriture debit="2000 Fournisseurs" credit="1020 Banque" montant="120'000" />
       <Ecriture debit="2400 Emprunt bancaire" credit="1020 Banque" montant="200'000" />
+      </Section>
 
-      <H2>5. Resultat de liquidation et distribution</H2>
+      <Section title="5. Resultat de liquidation et distribution" defaultOpen={false}>
       <P>Calcul du solde disponible :</P>
       <Tableau
         caption="Calcul du solde de liquidation"
@@ -878,11 +916,13 @@ function TabLiquidation() {
 
       <P>Versement de l'impot anticipe a l'AFC :</P>
       <Ecriture debit="2206 Impot anticipe du" credit="1020 Banque" montant="42'000" />
+      </Section>
 
-      <H2>6. Radiation</H2>
+      <Section title="6. Radiation" defaultOpen={false}>
       <P>Une fois toutes les dettes payees, le solde distribue et l'impot anticipe verse, le liquidateur demande la <strong>radiation de la societe au registre du commerce</strong>. La societe cesse alors d'exister juridiquement.</P>
+      </Section>
 
-      <H2>7. Points cles a retenir</H2>
+      <Section title="7. Points cles a retenir" defaultOpen={false}>
       {[
         'Dissolution decidee a la majorite de 2/3 de l\'AG (art. 704 CO).',
         'Appel aux creanciers : 3 publications dans la FOSC obligatoires.',
@@ -895,6 +935,7 @@ function TabLiquidation() {
           <span>{pt}</span>
         </div>
       ))}
+      </Section>
     </div>
   );
 }

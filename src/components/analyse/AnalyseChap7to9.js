@@ -1,5 +1,5 @@
 import React from 'react';
-import { P, H2, H3, Note, Loi, Tableau } from '../TheoryUI';
+import { Section, P, H3, Note, Loi, Tableau } from '../TheoryUI';
 
 // ─── Visual Components ──────────────────────────────────────────────────────
 
@@ -133,7 +133,7 @@ export function TabFlux() {
   return (
     <>
       {/* ─── 7.1 Introduction ─── */}
-      <H2>1. Introduction — Pourquoi le tableau de flux ?</H2>
+      <Section title="1. Introduction — Pourquoi le tableau de flux ?" defaultOpen={true}>
       <P>
         Le bilan est une photographie de la situation patrimoniale de l'entreprise à un instant T. Il montre ce que l'entreprise possède
         (actifs) et ce qu'elle doit (passifs) à la date de clôture. Cependant, cette photographie ne nous dit rien sur les mouvements
@@ -173,7 +173,8 @@ export function TabFlux() {
       </P>
 
       {/* ─── 7.2 Les 3 catégories de flux ─── */}
-      <H2>2. Les trois catégories de flux</H2>
+      </Section>
+      <Section title="2. Les trois catégories de flux" defaultOpen={false}>
       <P>
         Le tableau de flux de trésorerie décompose l'ensemble des mouvements de cash en trois catégories distinctes, chacune
         correspondant à un type d'activité économique. Cette décomposition est essentielle car elle permet de comprendre
@@ -234,7 +235,8 @@ export function TabFlux() {
       </Note>
 
       {/* ─── 7.3 Méthode indirecte ─── */}
-      <H2>3. Méthode indirecte (la plus courante en Suisse)</H2>
+      </Section>
+      <Section title="3. Méthode indirecte (la plus courante en Suisse)" defaultOpen={false}>
       <P>
         La méthode indirecte est ainsi nommée parce qu'elle ne part pas directement des encaissements et décaissements réels.
         Au lieu de cela, elle prend comme point de départ le résultat net (un chiffre comptable, pas un chiffre de trésorerie)
@@ -303,7 +305,8 @@ export function TabFlux() {
       </P>
 
       {/* ─── 7.4 Méthode directe ─── */}
-      <H2>4. Méthode directe</H2>
+      </Section>
+      <Section title="4. Méthode directe" defaultOpen={false}>
       <P>
         Contrairement à la méthode indirecte, la méthode directe part directement des encaissements et décaissements réels.
         Elle est plus intuitive car elle correspond à ce que l'on voit sur le relevé bancaire : combien d'argent est entré
@@ -344,7 +347,8 @@ export function TabFlux() {
       </P>
 
       {/* ─── 7.5 Flux d'investissement et de financement ─── */}
-      <H2>5. Flux d'investissement et de financement</H2>
+      </Section>
+      <Section title="5. Flux d'investissement et de financement" defaultOpen={false}>
       <P>
         Les flux d'investissement retracent toutes les opérations liées à l'acquisition et à la cession d'actifs à long terme.
         Lorsqu'une entreprise achète une machine de production pour CHF 250'000, cette sortie de cash figure dans les flux
@@ -387,7 +391,8 @@ export function TabFlux() {
       />
 
       {/* ─── 7.6 Contrôle et interprétation ─── */}
-      <H2>6. Contrôle et interprétation</H2>
+      </Section>
+      <Section title="6. Contrôle et interprétation" defaultOpen={false}>
       <P>
         Le contrôle arithmétique du tableau de flux est simple mais fondamental : la trésorerie de début d'exercice,
         augmentée (ou diminuée) de la somme des trois flux, doit donner exactement la trésorerie de fin d'exercice.
@@ -454,7 +459,8 @@ export function TabFlux() {
       </P>
 
       {/* ─── 7.7 Exemple complet SwiSSwatch SA ─── */}
-      <H2>7. Exemple complet — SwiSSwatch SA</H2>
+      </Section>
+      <Section title="7. Exemple complet — SwiSSwatch SA" defaultOpen={false}>
       <P>
         SwiSSwatch SA est une entreprise zurichoise de composants électroniques. Voici les informations disponibles
         pour l'exercice 2025 : résultat net de CHF 220'000, amortissements de CHF 130'000, augmentation des stocks
@@ -531,6 +537,7 @@ export function TabFlux() {
         stratégiques : investir pour croitre, emprunter pour se développer, distribuer pour rémunérer les actionnaires.
         C'est la combinaison des trois flux et leur evolution dans le temps qui permet un diagnostic complet.
       </Note>
+      </Section>
     </>
   );
 }
@@ -543,7 +550,7 @@ export function TabSeuil() {
   return (
     <>
       {/* ─── 8.1 Introduction ─── */}
-      <H2>1. Introduction — Le point mort</H2>
+      <Section title="1. Introduction — Le point mort" defaultOpen={true}>
       <P>
         Toute entreprise, qu'elle soit une boulangerie artisanale à Fribourg ou une multinationale à Genève, doit
         atteindre un niveau minimum de chiffre d'affaires avant de commencer à réaliser un bénéfice. En dessous de
@@ -571,7 +578,8 @@ export function TabSeuil() {
       </P>
 
       {/* ─── 8.2 Charges fixes vs charges variables ─── */}
-      <H2>2. Charges fixes vs charges variables — la distinction fondamentale</H2>
+      </Section>
+      <Section title="2. Charges fixes vs charges variables — la distinction fondamentale" defaultOpen={false}>
       <P>
         La distinction entre charges fixes et charges variables est la pierre angulaire de l'analyse du seuil de
         rentabilité. Cette classification repose sur le comportement de la charge par rapport au volume d'activité.
@@ -632,7 +640,8 @@ export function TabSeuil() {
       />
 
       {/* ─── 8.3 Marge de contribution ─── */}
-      <H2>3. La marge de contribution (marge sur coûts variables)</H2>
+      </Section>
+      <Section title="3. La marge de contribution (marge sur coûts variables)" defaultOpen={false}>
       <P>
         La marge de contribution, également appelée marge sur coûts variables, est le concept central de l'analyse du
         seuil de rentabilité. Elle représente la différence entre le prix de vente d'un produit et son coût variable
@@ -679,8 +688,8 @@ export function TabSeuil() {
       </Note>
 
       {/* ─── 8.4 Le seuil de rentabilité ─── */}
-      <H2>4. Le seuil de rentabilité (break-even point)</H2>
-
+      </Section>
+      <Section title="4. Le seuil de rentabilité (break-even point)" defaultOpen={false}>
       <FormulaBox
         formula="Seuil en quantite = Charges fixes / MC unitaire"
         description="Nombre d'unités à vendre pour couvrir l'ensemble des charges (fixes + variables)"
@@ -734,8 +743,8 @@ export function TabSeuil() {
       </P>
 
       {/* ─── 8.5 La marge de sécurité ─── */}
-      <H2>5. La marge de sécurité</H2>
-
+      </Section>
+      <Section title="5. La marge de sécurité" defaultOpen={false}>
       <FormulaBox
         formula="Marge de sécurité (MS) = CA réel - Seuil de rentabilité"
         description="Montant en CHF dont le CA peut baisser avant d'atteindre le point mort"
@@ -770,8 +779,8 @@ export function TabSeuil() {
       </P>
 
       {/* ─── 8.6 Le levier opérationnel ─── */}
-      <H2>6. Le levier opérationnel</H2>
-
+      </Section>
+      <Section title="6. Le levier opérationnel" defaultOpen={false}>
       <FormulaBox
         formula="Levier opérationnel (LO) = MC totale / Résultat d'exploitation"
         description="Facteur multiplicateur de l'impact d'une variation du CA sur le résultat"
@@ -813,7 +822,8 @@ export function TabSeuil() {
       </Note>
 
       {/* ─── 8.7 Applications pratiques ─── */}
-      <H2>7. Applications pratiques et décisions</H2>
+      </Section>
+      <Section title="7. Applications pratiques et décisions" defaultOpen={false}>
       <P>
         Le seuil de rentabilité est un outil de décision polyvalent qui intervient dans de nombreuses situations
         de gestion courante. Examinons quatre applications concretes qui illustrent sa puissance analytique et
@@ -859,7 +869,8 @@ export function TabSeuil() {
       </P>
 
       {/* ─── 8.8 Exemple multi-produits ─── */}
-      <H2>8. Exemple complet — Analyse multi-produits</H2>
+      </Section>
+      <Section title="8. Exemple complet — Analyse multi-produits" defaultOpen={false}>
       <P>
         La plupart des entreprises ne vendent pas un seul produit mais une gamme de produits ayant chacun un prix,
         un coût variable et donc une marge de contribution différents. Le calcul du seuil de rentabilité multi-produits
@@ -923,6 +934,7 @@ export function TabSeuil() {
         rentabilité n'est pas un chiffre statique — il évolue avec les prix, les coûts et la structure de charges.
         Le dirigeant doit le recalculer régulièrement pour adapter sa stratégie aux conditions changeantes du marché.
       </Note>
+      </Section>
     </>
   );
 }
@@ -935,7 +947,7 @@ export function TabEvaluation() {
   return (
     <>
       {/* ─── 9.1 Introduction ─── */}
-      <H2>1. Introduction — Combien vaut une entreprise ?</H2>
+      <Section title="1. Introduction — Combien vaut une entreprise ?" defaultOpen={true}>
       <P>
         La question de la valeur d'une entreprise se pose dans de nombreuses situations de la vie économique et
         juridique. Lors d'une vente ou d'une acquisition, l'acheteur et le vendeur doivent s'accorder sur un prix,
@@ -967,8 +979,8 @@ export function TabEvaluation() {
       </P>
 
       {/* ─── 9.2 Valeur substantielle ─── */}
-      <H2>2. Valeur substantielle (valeur intrinsèque / Substanzwert)</H2>
-
+      </Section>
+      <Section title="2. Valeur substantielle (valeur intrinsèque / Substanzwert)" defaultOpen={false}>
       <FormulaBox
         formula="Valeur substantielle = Fonds propres comptables + Réserves latentes nettes"
         description="Valeur réelle du patrimoine net de l'entreprise, corrigée des sous-évaluations comptables"
@@ -1036,8 +1048,8 @@ export function TabEvaluation() {
       </P>
 
       {/* ─── 9.3 Valeur de rendement ─── */}
-      <H2>3. Valeur de rendement (Ertragswert)</H2>
-
+      </Section>
+      <Section title="3. Valeur de rendement (Ertragswert)" defaultOpen={false}>
       <FormulaBox
         formula="Valeur de rendement = Bénéfice net moyen / Taux de capitalisation"
         description="Valeur de l'entreprise basee sur sa capacité à générer des profits futurs"
@@ -1110,8 +1122,8 @@ export function TabEvaluation() {
       </P>
 
       {/* ─── 9.4 Méthode des praticiens ─── */}
-      <H2>4. Méthode des praticiens (Praktikermethode)</H2>
-
+      </Section>
+      <Section title="4. Méthode des praticiens (Praktikermethode)" defaultOpen={false}>
       <FormulaBox
         formula="Valeur = (1 x Valeur substantielle + 2 x Valeur de rendement) / 3"
         description="Méthode standard utilisée par les autorités fiscales suisses — pondération 1:2"
@@ -1163,8 +1175,8 @@ export function TabEvaluation() {
       </P>
 
       {/* ─── 9.5 DCF ─── */}
-      <H2>5. Discounted Cash Flow (DCF) — Introduction</H2>
-
+      </Section>
+      <Section title="5. Discounted Cash Flow (DCF) — Introduction" defaultOpen={false}>
       <FormulaBox
         formula="Valeur = Somme (CF libre année t / (1+WACC)^t) + Valeur terminale / (1+WACC)^n"
         description="Somme des flux de trésorerie libres futurs actualisés au coût moyen pondéré du capital"
@@ -1244,7 +1256,8 @@ export function TabEvaluation() {
       </Note>
 
       {/* ─── 9.6 Multiples de marché ─── */}
-      <H2>6. Multiples de marché (introduction)</H2>
+      </Section>
+      <Section title="6. Multiples de marché (introduction)" defaultOpen={false}>
       <P>
         L'approche par les multiples de marché repose sur un raisonnement par analogie : si des entreprises comparables
         se vendent à un certain multiple de leur bénéfice ou de leur EBITDA, alors notre entreprise devrait se vendre
@@ -1270,8 +1283,8 @@ export function TabEvaluation() {
       </P>
 
       {/* ─── 9.7 Synthèse et recommandations ─── */}
-      <H2>7. Synthèse et recommandations</H2>
-
+      </Section>
+      <Section title="7. Synthèse et recommandations" defaultOpen={false}>
       <Tableau
         titre="Tableau récapitulatif des méthodes d'évaluation"
         colonnes={['Méthode', 'Avantages', 'Limites', 'Utilisation typique']}
@@ -1322,6 +1335,7 @@ export function TabEvaluation() {
         force entre les parties. Un bon évaluateur sait non seulement calculer des valeurs, mais aussi les interpréter,
         les justifier et les contextualiser dans le cadre spécifique de chaque transaction.
       </Note>
+      </Section>
     </>
   );
 }

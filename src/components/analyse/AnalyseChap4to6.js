@@ -1,5 +1,5 @@
 import React from 'react';
-import { P, H2, H3, Note, Tableau } from '../TheoryUI';
+import { Section, P, H3, Note, Tableau } from '../TheoryUI';
 
 /* ============================================================
    VISUAL COMPONENTS
@@ -231,8 +231,7 @@ export function TabLiquidite() {
   return (
     <>
       {/* -------- INTRODUCTION -------- */}
-      <H2>1. Introduction — La liquidité, c’est la survie</H2>
-
+      <Section title="1. Introduction — La liquidité, c’est la survie" defaultOpen={true}>
       <P>
         La liquidité constitue la pierre angulaire de la santé financière à court terme de toute entreprise. Une société peut afficher un bénéfice net impressionnant dans son compte de résultat et pourtant se retrouver en situation de cessation de paiement si elle ne dispose pas des fonds nécessaires pour régler ses factures à échéance. Ce paradoxe fondamental de la finance d’entreprise a provoqué la faillite de nombreuses sociétés pourtant rentables, en particulier celles en forte croissance dont le besoin en fonds de roulement augmente plus vite que leur capacité à générer du cash.
       </P>
@@ -254,8 +253,8 @@ export function TabLiquidite() {
       </P>
 
       {/* -------- L3 -------- */}
-      <H2>2. Liquidité générale (L3) — Current Ratio</H2>
-
+      </Section>
+      <Section title="2. Liquidité générale (L3) — Current Ratio" defaultOpen={false}>
       <P>
         La liquidité générale, appelée également current ratio dans la terminologie anglo-saxonne, est le ratio de liquidité le plus couramment utilisé. Il met en rapport l’ensemble des actifs circulants (trésorerie, créances, stocks, actifs de régularisation) avec l’ensemble des capitaux étrangers à court terme (dettes fournisseurs, dettes bancaires CT, passifs de régularisation). Ce ratio répond à la question suivante : si l’entreprise devait liquider tous ses actifs à court terme, pourrait-elle couvrir toutes ses dettes à court terme ?
       </P>
@@ -299,8 +298,8 @@ export function TabLiquidite() {
       <RatioGauge label="L3 — Current Ratio" value={1.85} zones={zonesL3} />
 
       {/* -------- L2 -------- */}
-      <H2>3. Liquidité réduite (L2) — Quick Ratio / Acid Test</H2>
-
+      </Section>
+      <Section title="3. Liquidité réduite (L2) — Quick Ratio / Acid Test" defaultOpen={false}>
       <P>
         La liquidité réduite, également connue sous le nom de quick ratio ou acid test en anglais, affine l’analyse en excluant les stocks du numérateur. Pourquoi exclure les stocks ? Parce qu’ils représentent la composante la moins liquide des actifs circulants. Vendre un stock nécessite du temps (trouver un acheteur, négocier un prix), peut impliquer des décotes significatives en cas de vente forcée, et comporte un risque d’obsolescence non négligeable (par exemple, des collections de mode invendues, des composants technologiques dépassés, ou des denrées périssables).
       </P>
@@ -325,8 +324,8 @@ export function TabLiquidite() {
       <RatioGauge label="L2 — Quick Ratio" value={0.99} zones={zonesL2} />
 
       {/* -------- L1 -------- */}
-      <H2>4. Liquidité immédiate (L1) — Cash Ratio</H2>
-
+      </Section>
+      <Section title="4. Liquidité immédiate (L1) — Cash Ratio" defaultOpen={false}>
       <P>
         La liquidité immédiate représente le test le plus strict de la capacité de paiement. Seuls les actifs immédiatement disponibles sont pris en compte au numérateur : la caisse, les comptes bancaires courants et les placements à très court terme (marché monétaire). Les créances clients, même à 30 jours, sont exclues car elles ne sont pas encore encaissées et comportent un risque de retard ou de défaut de paiement (ducroire).
       </P>
@@ -347,8 +346,8 @@ export function TabLiquidite() {
       <RatioGauge label="L1 — Cash Ratio" value={0.24} zones={zonesL1} />
 
       {/* -------- RATIOS DE ROTATION -------- */}
-      <H2>5. Ratios de rotation (Activity Ratios)</H2>
-
+      </Section>
+      <Section title="5. Ratios de rotation (Activity Ratios)" defaultOpen={false}>
       <P>
         L’analyse statique des ratios L1, L2 et L3 ne suffit pas pour comprendre pleinement la situation de liquidité d’une entreprise. En effet, la liquidité est aussi une question de vitesse : à quelle rapidité les actifs circulants se transforment-ils en espèces ? Un stock qui se vend en 15 jours est beaucoup plus « liquide » qu’un stock identique qui met 180 jours à trouver preneur. De même, des créances clients réglées en 20 jours contribuent bien davantage à la liquidité que des créances qui traînent pendant 90 jours. C’est l’objet des ratios de rotation, qui mesurent la dynamique de conversion des actifs et passifs circulants.
       </P>
@@ -443,8 +442,8 @@ export function TabLiquidite() {
       />
 
       {/* -------- EXEMPLE COMPLET SwiSSwatch -------- */}
-      <H2>6. Exemple complet — SwiSSwatch SA</H2>
-
+      </Section>
+      <Section title="6. Exemple complet — SwiSSwatch SA" defaultOpen={false}>
       <P>
         SwiSSwatch SA est une PME suisse basée à Lausanne, spécialisée dans la fabrication et la vente d’instruments de mesure pour le secteur environnemental. L’entreprise emploie 45 personnes et réalise un chiffre d’affaires de CHF 4’800’000. Analysons sa situation de liquidité en détail à partir de ses états financiers au 31 décembre N.
       </P>
@@ -539,6 +538,7 @@ export function TabLiquidite() {
       </Note>
 
       {/* -------- FIN CHAPITRE 4 -------- */}
+      </Section>
     </>
   );
 }
@@ -551,8 +551,7 @@ export function TabRentabilite() {
   return (
     <>
       {/* -------- INTRODUCTION -------- */}
-      <H2>1. Introduction — Rentabilité vs Liquidité</H2>
-
+      <Section title="1. Introduction — Rentabilité vs Liquidité" defaultOpen={true}>
       <P>
         Si la liquidité répond à la question « L’entreprise peut-elle payer ses factures ? », la rentabilité répond à une question tout aussi fondamentale : « L’entreprise gagne-t-elle suffisamment d’argent ? ». Une entreprise peut être parfaitement liquide tout en étant non rentable : elle brûle progressivement ses réserves de trésorerie et ses fonds propres pour couvrir ses pertes, comme un navire qui flotte encore mais prend l’eau. À terme, la non-rentabilité détruit inévitablement la liquidité.
       </P>
@@ -566,8 +565,8 @@ export function TabRentabilite() {
       </P>
 
       {/* -------- MARGES -------- */}
-      <H2>2. Les marges du compte de résultat — La cascade de la rentabilité</H2>
-
+      </Section>
+      <Section title="2. Les marges du compte de résultat — La cascade de la rentabilité" defaultOpen={false}>
       <P>
         Le plan comptable suisse PME organise le compte de résultat sous forme de cascade, partant du chiffre d’affaires brut pour aboutir au résultat net, en soustrayant progressivement les différentes catégories de charges. Chaque niveau intermédiaire constitue un indicateur de performance spécifique, et le calcul de la marge correspondante (en pourcentage du CA) permet de comparer des entreprises de tailles différentes et de suivre l’évolution dans le temps.
       </P>
@@ -670,8 +669,8 @@ export function TabRentabilite() {
       </P>
 
       {/* -------- ROE -------- */}
-      <H2>3. ROE — Rentabilité des fonds propres</H2>
-
+      </Section>
+      <Section title="3. ROE — Rentabilité des fonds propres" defaultOpen={false}>
       <FormulaBox
         formula="ROE = Résultat net / Capitaux propres × 100"
         description="Return on Equity — rendement pour les actionnaires"
@@ -703,8 +702,8 @@ export function TabRentabilite() {
       />
 
       {/* -------- ROA -------- */}
-      <H2>4. ROA — Rentabilité économique</H2>
-
+      </Section>
+      <Section title="4. ROA — Rentabilité économique" defaultOpen={false}>
       <FormulaBox
         formula="ROA = (Résultat net + Charges d’intérêts) / Total des actifs × 100"
         description="Return on Assets — performance économique indépendante du financement"
@@ -736,8 +735,8 @@ export function TabRentabilite() {
       />
 
       {/* -------- DUPONT -------- */}
-      <H2>5. Décomposition DuPont — L’équation fondamentale de la rentabilité</H2>
-
+      </Section>
+      <Section title="5. Décomposition DuPont — L’équation fondamentale de la rentabilité" defaultOpen={false}>
       <P>
         La décomposition DuPont est l’un des outils les plus puissants de l’analyse financière. Elle permet de comprendre d’où vient la rentabilité d’une entreprise en décomposant le ROE en trois facteurs multiplicatifs, chacun représentant une dimension stratégique distincte. Deux entreprises affichant le même ROE de 15% peuvent y parvenir par des stratégies fondamentalement différentes, et la décomposition DuPont révèle ces différences.
       </P>
@@ -792,8 +791,8 @@ export function TabRentabilite() {
       </P>
 
       {/* -------- EXEMPLE COMPLET -------- */}
-      <H2>6. Exemple complet — SwiSSwatch SA, comparaison N et N-1</H2>
-
+      </Section>
+      <Section title="6. Exemple complet — SwiSSwatch SA, comparaison N et N-1" defaultOpen={false}>
       <P>
         Pour illustrer l’utilité de l’analyse de la rentabilité dans le temps, comparons les performances d’SwiSSwatch SA sur deux exercices. L’année N-1 a été marquée par un chiffre d’affaires inférieur (CHF 4’200’000) mais des charges d’exploitation proportionnellement plus faibles. Voici les données complètes des deux exercices.
       </P>
@@ -825,6 +824,7 @@ export function TabRentabilite() {
       <Note>
         Recommandations pour SwiSSwatch SA : la croissance du CA est encourageante mais la dégradation des marges est préoccupante. L’entreprise devrait (1) analyser la structure de coûts pour identifier les postes en dérapage, (2) évaluer si les baisses de prix consenties se justifient par la conquete de parts de marché durables, (3) améliorer l’efficacité opérationnelle pour restaurer les marges EBITDA et EBIT, et (4) s’assurer que les investissements en actifs supplémentaires généreront un rendement suffisant dans les années à venir.
       </Note>
+      </Section>
 
     </>
   );
@@ -838,8 +838,7 @@ export function TabEndettement() {
   return (
     <>
       {/* -------- INTRODUCTION -------- */}
-      <H2>1. Introduction — Le financement est un choix stratégique</H2>
-
+      <Section title="1. Introduction — Le financement est un choix stratégique" defaultOpen={true}>
       <P>
         Toute entreprise doit financer ses actifs. Ces actifs — machines, stocks, créances, trésorerie — sont nécessaires à l’exploitation mais doivent être acquis avec des ressources financières qui proviennent de deux sources fondamentales : les fonds propres (capital-actions, réserves, bénéfices reportés) apportés par les actionnaires, et les capitaux étrangers (dettes bancaires, obligations, dettes fournisseurs) fournis par les créanciers. Le choix entre ces deux sources constitue une décision stratégique majeure, connue sous le nom de « structure du capital ».
       </P>
@@ -857,8 +856,8 @@ export function TabEndettement() {
       </P>
 
       {/* -------- RATIOS DE STRUCTURE -------- */}
-      <H2>2. Ratios de structure du capital</H2>
-
+      </Section>
+      <Section title="2. Ratios de structure du capital" defaultOpen={false}>
       <H3>2.1 Taux d’endettement</H3>
 
       <FormulaBox
@@ -930,8 +929,8 @@ export function TabEndettement() {
       />
 
       {/* -------- RATIOS DE COUVERTURE -------- */}
-      <H2>3. Ratios de couverture</H2>
-
+      </Section>
+      <Section title="3. Ratios de couverture" defaultOpen={false}>
       <H3>3.1 Couverture des intérêts (Interest Coverage Ratio)</H3>
 
       <FormulaBox
@@ -983,8 +982,8 @@ export function TabEndettement() {
       />
 
       {/* -------- EFFET DE LEVIER -------- */}
-      <H2>4. L’effet de levier financier — Le concept clé</H2>
-
+      </Section>
+      <Section title="4. L’effet de levier financier — Le concept clé" defaultOpen={false}>
       <P>
         L’effet de levier financier est le concept le plus important de toute l’analyse de la structure du capital, et possiblement l’un des concepts les plus importants de la finance d’entreprise dans son ensemble. Il explique comment et pourquoi l’endettement peut amplifier la rentabilité des fonds propres, mais aussi la détruire lorsque les conditions se retournent. Maîtriser ce concept est indispensable pour tout candidat au brevet fédéral.
       </P>
@@ -1079,8 +1078,8 @@ export function TabEndettement() {
       </Note>
 
       {/* -------- NORMES ET TABLEAU -------- */}
-      <H2>5. Synthèse des normes et interprétation</H2>
-
+      </Section>
+      <Section title="5. Synthèse des normes et interprétation" defaultOpen={false}>
       <P>
         Le tableau ci-dessous rassemble l’ensemble des ratios d’endettement et de structure avec leurs formules, les normes généralement acceptées en Suisse, et les zones de danger. Il est important de rappeler que ces normes sont des repères indicatifs et non des règles absolues. Chaque secteur, chaque modèle économique et chaque situation spécifique peut justifier des écarts par rapport à ces normes. Un analyste compétent compare toujours les ratios avec ceux du secteur d’activité et avec l’évolution historique de l’entreprise.
       </P>
@@ -1114,8 +1113,8 @@ export function TabEndettement() {
       />
 
       {/* -------- EXEMPLE COMPLET -------- */}
-      <H2>6. Exemple complet — SwiSSwatch SA</H2>
-
+      </Section>
+      <Section title="6. Exemple complet — SwiSSwatch SA" defaultOpen={false}>
       <P>
         Reprenons les données d’SwiSSwatch SA pour une analyse complète de la structure du capital et de l’endettement. Nous disposons de toutes les informations nécessaires grâce au bilan et au compte de résultat détaillés dans les chapitres précédents. Calculons systématiquement chaque ratio puis interprétons l’ensemble.
       </P>
@@ -1175,6 +1174,7 @@ export function TabEndettement() {
       <Note>
         Synthèse globale de la structure financière d’SwiSSwatch SA : l’entreprise présente une structure de capital saine et équilibrée. L’endettement est modéré (à 53.3%), l’effet de levier est positif (ROA de 8.5% contre un coût de dette de 6.2%), et la capacité de remboursement est excellente (1.49 années). L’entreprise dispose d’une marge d’endettement supplémentaire significative pour financer sa croissance. Le principal risque serait une dégradation de la rentabilité opérationnelle (baisse du ROA en dessous du coût de la dette), qui inverserait l’effet de levier. La direction doit donc veiller à maintenir un ROA supérieur à 6-7% pour continuer à bénéficier de l’endettement.
       </Note>
+      </Section>
 
     </>
   );

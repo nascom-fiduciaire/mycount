@@ -1,5 +1,5 @@
 import React from 'react';
-import { P, H2, H3, Note, Loi, Tableau, Ecriture, TheoryLayout } from '../TheoryUI';
+import { Section, P, H3, Note, Loi, Tableau, Ecriture, TheoryLayout } from '../TheoryUI';
 
 /* ═══════════════════════════════════════════════════════════════════════════
    COMPOSANTS VISUELS INTERNES
@@ -137,8 +137,7 @@ function TabRetraitements() {
   return (
     <>
       {/* ── 1. Pourquoi retraiter le bilan ─────────────────────────────── */}
-      <H2>1. Pourquoi retraiter le bilan ?</H2>
-
+      <Section title="1. Pourquoi retraiter le bilan ?" defaultOpen={true}>
       <P>
         Lorsqu'une entreprise suisse publie ses comptes annuels, elle respecte les dispositions du Code des obligations (CO),
         en particulier les articles 957 et suivants. Or, le droit suisse est fondamentalement marqué par le principe de prudence :
@@ -177,8 +176,8 @@ function TabRetraitements() {
       </Note>
 
       {/* ── 2. Les réserves latentes ───────────────────────────────────── */}
-      <H2>2. Les réserves latentes</H2>
-
+      </Section>
+      <Section title="2. Les réserves latentes" defaultOpen={false}>
       <P>
         Une réserve latente existe chaque fois que la valeur comptable d'un actif est inférieure à sa valeur réelle,
         ou chaque fois qu'un passif est surestimé par rapport au risque qu'il couvre réellement.
@@ -227,8 +226,8 @@ function TabRetraitements() {
       </P>
 
       {/* ── 3. Types de retraitements ─────────────────────────────────── */}
-      <H2>3. Types de retraitements</H2>
-
+      </Section>
+      <Section title="3. Types de retraitements" defaultOpen={false}>
       <H3>a) Amortissements excessifs</H3>
 
       <P>
@@ -308,8 +307,8 @@ function TabRetraitements() {
       </P>
 
       {/* ── 4. Impact fiscal des retraitements ────────────────────────── */}
-      <H2>4. Impact fiscal des retraitements</H2>
-
+      </Section>
+      <Section title="4. Impact fiscal des retraitements" defaultOpen={false}>
       <P>
         Un point crucial souvent négligé par les étudiants est l'impact fiscal des réserves latentes.
         Si une réserve latente est "dissoute" (c'est-à-dire si l'actif est vendu à sa valeur réelle ou
@@ -359,8 +358,8 @@ function TabRetraitements() {
       </P>
 
       {/* ── 5. Exemple complet SwiSSwatch SA ─────────────────────────── */}
-      <H2>5. Exemple complet de retraitement : SwiSSwatch SA</H2>
-
+      </Section>
+      <Section title="5. Exemple complet de retraitement : SwiSSwatch SA" defaultOpen={false}>
       <P>
         SwiSSwatch SA est une PME industrielle basée à Sion, spécialisée dans la fabrication de composants
         mécaniques de précision. Voici son bilan publié au 31 décembre N, établi selon les normes du CO.
@@ -473,6 +472,7 @@ function TabRetraitements() {
         à ce que laissait supposer le bilan publié. C'est l'objectif fondamental du retraitement :
         révéler la vraie capacité financière de l'entreprise.
       </Note>
+      </Section>
     </>
   );
 }
@@ -486,8 +486,7 @@ function TabStructure() {
   return (
     <>
       {/* ── 1. Introduction ───────────────────────────────────────────── */}
-      <H2>1. Lire un bilan, c'est comprendre une structure</H2>
-
+      <Section title="1. Lire un bilan, c'est comprendre une structure" defaultOpen={true}>
       <P>
         Lorsqu'on ouvre un bilan pour la première fois, on est confronté à une série de chiffres absolus :
         CHF 500'000 de stocks, CHF 1'200'000 de fonds propres, CHF 800'000 de dettes bancaires.
@@ -510,8 +509,8 @@ function TabStructure() {
       </P>
 
       {/* ── 2. Analyse verticale du bilan ─────────────────────────────── */}
-      <H2>2. Analyse verticale du bilan</H2>
-
+      </Section>
+      <Section title="2. Analyse verticale du bilan" defaultOpen={false}>
       <P>
         Le principe de l'analyse verticale est simple : on exprime chaque poste du bilan en pourcentage
         du total du bilan. Côté actif, on distingue la part circulante (liquidités, créances, stocks)
@@ -584,8 +583,8 @@ function TabStructure() {
       </Note>
 
       {/* ── 3. Analyse verticale du CR ────────────────────────────────── */}
-      <H2>3. Analyse verticale du compte de résultat</H2>
-
+      </Section>
+      <Section title="3. Analyse verticale du compte de résultat" defaultOpen={false}>
       <P>
         L'analyse verticale du compte de résultat suit le même principe, mais la base de référence
         n'est plus le total du bilan : c'est le chiffre d'affaires (CA). Chaque poste de charge
@@ -639,8 +638,8 @@ function TabStructure() {
       </P>
 
       {/* ── 4. Analyse horizontale ────────────────────────────────────── */}
-      <H2>4. Analyse horizontale (évolution N-1 / N)</H2>
-
+      </Section>
+      <Section title="4. Analyse horizontale (évolution N-1 / N)" defaultOpen={false}>
       <P>
         L'analyse horizontale complète l'analyse verticale en ajoutant la dimension temporelle.
         Au lieu de regarder les proportions à un instant donné, on compare les valeurs entre deux
@@ -692,8 +691,8 @@ function TabStructure() {
       </Note>
 
       {/* ── 5. Règles d'or du financement ─────────────────────────────── */}
-      <H2>5. Règles d'or du financement</H2>
-
+      </Section>
+      <Section title="5. Règles d'or du financement" defaultOpen={false}>
       <P>
         Au-delà des proportions, l'analyse structurelle vérifie le respect de principes fondamentaux
         de financement appelés "règles d'or". Le principe central est simple à comprendre : la durée
@@ -759,8 +758,8 @@ function TabStructure() {
       </Note>
 
       {/* ── 6. Exemple complet d'analyse structurelle ─────────────────── */}
-      <H2>6. Synthèse : analyse structurelle complète d'SwiSSwatch SA</H2>
-
+      </Section>
+      <Section title="6. Synthèse : analyse structurelle complète d'SwiSSwatch SA" defaultOpen={false}>
       <P>
         Rassemblons maintenant tous les éléments de notre analyse structurelle pour formuler des
         conclusions opérationnelles. La structure de l'actif montre une entreprise fortement immobilisée
@@ -783,6 +782,7 @@ function TabStructure() {
         et rembourser les dettes. Ces constats nous amènent naturellement à l'analyse de la trésorerie
         et du besoin en fonds de roulement, que nous aborderons dans le chapitre suivant.
       </P>
+      </Section>
     </>
   );
 }
@@ -796,8 +796,7 @@ function TabFDR() {
   return (
     <>
       {/* ── 1. Le cycle d'exploitation ────────────────────────────────── */}
-      <H2>1. Le cycle d'exploitation : comprendre le besoin permanent de trésorerie</H2>
-
+      <Section title="1. Le cycle d'exploitation : comprendre le besoin permanent de trésorerie" defaultOpen={true}>
       <P>
         Pour comprendre le fonds de roulement et le besoin en fonds de roulement, il faut d'abord
         comprendre le cycle d'exploitation. Toute entreprise qui vend des biens ou des services suit
@@ -835,8 +834,8 @@ function TabFDR() {
       </Note>
 
       {/* ── 2. Le fonds de roulement net (FRN) ───────────────────────── */}
-      <H2>2. Le fonds de roulement net (FRN)</H2>
-
+      </Section>
+      <Section title="2. Le fonds de roulement net (FRN)" defaultOpen={false}>
       <P>
         Le fonds de roulement net est l'un des indicateurs les plus importants de l'analyse financière.
         Il mesure la marge de manoeuvre dont dispose l'entreprise pour financer son cycle d'exploitation.
@@ -919,8 +918,8 @@ function TabFDR() {
       </Note>
 
       {/* ── 3. Le besoin en fonds de roulement (BFR) ──────────────────── */}
-      <H2>3. Le besoin en fonds de roulement (BFR)</H2>
-
+      </Section>
+      <Section title="3. Le besoin en fonds de roulement (BFR)" defaultOpen={false}>
       <P>
         Maintenant que nous comprenons le FRN, voyons comment le cycle d'exploitation crée un besoin
         permanent de financement. Le besoin en fonds de roulement (BFR) quantifie précisément ce besoin.
@@ -996,8 +995,8 @@ function TabFDR() {
       </P>
 
       {/* ── 4. La trésorerie nette ────────────────────────────────────── */}
-      <H2>4. La trésorerie nette : l'équilibre financier global</H2>
-
+      </Section>
+      <Section title="4. La trésorerie nette : l'équilibre financier global" defaultOpen={false}>
       <P>
         La trésorerie nette est le résultat final de l'équation d'équilibre financier.
         Elle représente ce qui reste (ou ce qui manque) après que le fonds de roulement net
@@ -1057,8 +1056,8 @@ function TabFDR() {
       </P>
 
       {/* ── 5. Leviers pour améliorer le BFR ──────────────────────────── */}
-      <H2>5. Leviers d'action pour améliorer le BFR</H2>
-
+      </Section>
+      <Section title="5. Leviers d'action pour améliorer le BFR" defaultOpen={false}>
       <P>
         L'un des grands avantages de l'analyse du BFR est qu'elle identifie directement les leviers
         d'action à disposition du management pour améliorer la trésorerie. Chaque composante du BFR
@@ -1140,8 +1139,8 @@ function TabFDR() {
       </Note>
 
       {/* ── 6. Exemple complet et stress test ─────────────────────────── */}
-      <H2>6. Exemple complet et simulation de crise : SwiSSwatch SA</H2>
-
+      </Section>
+      <Section title="6. Exemple complet et simulation de crise : SwiSSwatch SA" defaultOpen={false}>
       <P>
         Pour conclure ce chapitre, réalisons une synthèse complète de l'analyse du fonds de roulement
         et du BFR d'SwiSSwatch SA, puis simulons un scénario de crise pour mesurer la résilience
@@ -1257,6 +1256,7 @@ function TabFDR() {
         niveaux de stocks) et, si nécessaire, sur la structure financière (augmentation de capital,
         emprunt à long terme, cession d'actifs non stratégiques).
       </P>
+      </Section>
     </>
   );
 }
