@@ -81,7 +81,7 @@ function TabIntro() {
         'L\'exercice comptable dure généralement 12 mois.',
       ].map((pt, i) => (
         <div key={i} style={{ display: 'flex', gap: 10, padding: '5px 0', fontSize: '0.85rem', color: '#475569' }}>
-          <span style={{ color: '#2563eb', fontWeight: 700, flexShrink: 0 }}>{'\u25B6'}</span>
+          <span style={{ color: '#2563eb', fontWeight: 700, flexShrink: 0 }}>▶</span>
           <span>{pt}</span>
         </div>
       ))}
@@ -92,136 +92,283 @@ function TabIntro() {
 
 // ─── ONGLET 2 : LE BILAN ──────────────────────────────────────────────────────
 function TabBilan() {
+  /* --- helper : mini-card colored --- */
+  const MiniCard = ({ icon, label, color }) => (
+    <div style={{ flex: '1 1 120px', background: color + '15', border: `1.5px solid ${color}`, borderRadius: 8, padding: '10px 12px', textAlign: 'center' }}>
+      <div style={{ fontSize: '1.4rem' }}>{icon}</div>
+      <div style={{ fontSize: '0.78rem', fontWeight: 600, color, marginTop: 2 }}>{label}</div>
+    </div>
+  );
+
+  /* --- helper : formula box --- */
+  const Formula = ({ parts, color = '#2563eb' }) => (
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexWrap: 'wrap', gap: 8, background: color + '0d', border: `1.5px solid ${color}40`, borderRadius: 10, padding: '12px 18px', margin: '10px 0', fontSize: '0.88rem', fontWeight: 600 }}>
+      {parts.map((p, i) => (
+        <span key={i} style={p.startsWith('=') || p.startsWith('+') || p.startsWith('−') ? { color: '#64748b', fontWeight: 400 } : { color }}>{p}</span>
+      ))}
+    </div>
+  );
+
+  /* --- helper : operation impact card --- */
+  const OpCard = ({ title, desc, actif, passif, result, color }) => (
+    <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 10, padding: '14px 16px', marginBottom: 10 }}>
+      <div style={{ fontWeight: 700, fontSize: '0.84rem', color: '#1e293b', marginBottom: 4 }}>{title}</div>
+      <div style={{ fontSize: '0.8rem', color: '#475569', marginBottom: 8 }}>{desc}</div>
+      <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+        <span style={{ background: '#dbeafe', borderRadius: 6, padding: '4px 10px', fontSize: '0.78rem', fontWeight: 600, color: '#1e40af' }}>Actif {actif}</span>
+        <span style={{ fontSize: '0.82rem', color: '#94a3b8' }}>=</span>
+        <span style={{ background: '#fce7f3', borderRadius: 6, padding: '4px 10px', fontSize: '0.78rem', fontWeight: 600, color: '#9d174d' }}>Passif {passif}</span>
+        <span style={{ fontSize: '0.78rem', color, fontWeight: 600, marginLeft: 'auto' }}>{result}</span>
+      </div>
+    </div>
+  );
+
+  /* --- bilan row helper --- */
+  const bRow = (label, montant, opts = {}) => {
+    const { bold, section, total, side } = opts;
+    const bg = total ? '#d1dce8' : section ? '#e8f0f8' : undefined;
+    const fw = (bold || section || total) ? 700 : 400;
+    const clr = side === 'passif' ? '#1e4a6e' : '#2c5f8a';
+    return (
+      <tr style={{ background: bg, borderBottom: '1px solid #dde2ea' }}>
+        <td style={{ padding: section ? '8px 12px' : '5px 12px 5px 20px', fontWeight: fw, fontSize: section ? '0.82rem' : '0.8rem', color: section ? clr : '#1a2332', ...(section && { borderTop: '1.5px solid #c5d3e3' }) }}>{label}</td>
+        <td style={{ padding: '5px 12px', textAlign: 'right', fontFamily: 'JetBrains Mono, monospace', fontWeight: fw, fontSize: '0.8rem', color: clr }}>{montant}</td>
+      </tr>
+    );
+  };
+
   return (
     <div>
+      {/* ═══════════ SECTION 1 : QU'EST-CE QUE LE BILAN ? ═══════════ */}
       <Section title="1. Qu'est-ce que le bilan ?" defaultOpen={true}>
-      <P>Le bilan est une <strong>photographie du patrimoine</strong> de l'entreprise à un instant précis — généralement le 31 décembre. Il répond à la question : <em>"À cette date, que possède l'entreprise et qui a financé ces biens ?"</em></P>
-      <Note color="blue">
-        <strong>Règle d'or : Total actif = Total passif</strong><br />
-        Tout ce que l'entreprise possède a forcément été financé par quelqu'un — soit par les propriétaires (fonds propres), soit par des tiers (dettes). Cette égalité est mathématiquement inévitable.
+      <P>Imaginez que vous faites l'inventaire de tout ce que vous possédez (votre appartement, votre voiture, votre compte en banque) et de toutes vos dettes (hypothèque, crédit auto, carte de crédit). La différence entre les deux, c'est votre <strong>fortune nette</strong>. Le bilan d'une entreprise, c'est exactement la même chose.</P>
+      <P>Le bilan répond à deux questions simples :</P>
+      <ul style={{ margin: '4px 0 12px 20px', fontSize: '0.85rem', color: '#334155', lineHeight: 1.7 }}>
+        <li><strong>Que possède l'entreprise ?</strong> → c'est l'<strong>actif</strong> (côté gauche)</li>
+        <li><strong>Qui a financé tout cela ?</strong> → c'est le <strong>passif</strong> (côté droit)</li>
+      </ul>
+
+      <P><strong>L'équation fondamentale du bilan :</strong></P>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, background: 'linear-gradient(135deg, #eff6ff, #f0fdf4)', border: '2px solid #3b82f6', borderRadius: 12, padding: '18px 24px', margin: '12px 0', flexWrap: 'wrap' }}>
+        <span style={{ background: '#3b82f6', color: '#fff', borderRadius: 8, padding: '8px 16px', fontWeight: 700, fontSize: '0.9rem' }}>ACTIF</span>
+        <span style={{ fontSize: '1.3rem', fontWeight: 700, color: '#64748b' }}>=</span>
+        <span style={{ background: '#ef4444', color: '#fff', borderRadius: 8, padding: '8px 16px', fontWeight: 700, fontSize: '0.9rem' }}>Fonds étrangers</span>
+        <span style={{ fontSize: '1.3rem', fontWeight: 700, color: '#64748b' }}>+</span>
+        <span style={{ background: '#22c55e', color: '#fff', borderRadius: 8, padding: '8px 16px', fontWeight: 700, fontSize: '0.9rem' }}>Fonds propres</span>
+      </div>
+
+      <Note color="yellow">Le bilan est toujours daté — c'est une <strong>photographie à un instant T</strong>, pas un film. On écrit par exemple "Bilan au 31.12.2023". Le lendemain, le bilan peut déjà être différent.</Note>
+      </Section>
+
+      {/* ═══════════ SECTION 2 : L'ACTIF ═══════════ */}
+      <Section title="2. L'actif — ce que possède l'entreprise" defaultOpen={false}>
+      <P>L'actif regroupe tout ce que l'entreprise possède et qui a une valeur : son argent, ses machines, ses stocks, les factures que ses clients n'ont pas encore payées… Pensez à un inventaire complet.</P>
+
+      <H3>Actifs circulants (en haut du bilan)</H3>
+      <P>Ce qui "tourne vite" — ce qui se transforme en cash en <strong>moins de 12 mois</strong>. En Suisse, on les place <strong>en haut</strong> du bilan, du plus liquide au moins liquide.</P>
+      <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', margin: '10px 0' }}>
+        <MiniCard icon="💵" label="Liquidités" color="#16a34a" />
+        <MiniCard icon="📋" label="Créances" color="#2563eb" />
+        <MiniCard icon="📦" label="Stocks" color="#d97706" />
+        <MiniCard icon="⏳" label="Transitoires" color="#7c3aed" />
+      </div>
+      <Tableau
+        caption="Actifs circulants de SwiSSwatch SA"
+        headers={['Catégorie', 'Comptes', 'Exemples chez SwiSSwatch SA']}
+        rows={[
+          { cells: ['Liquidités', '1000–1020', "Compte BCN CHF 85'000"] },
+          { cells: ['Créances clients', '1100', "Facture Bucherer AG pas encore payée CHF 120'000"] },
+          { cells: ['Stocks', '1200', "Composants horlogers en stock CHF 95'000"] },
+          { cells: ['Actifs transitoires', '1300–1301', "Loyer janvier payé d'avance CHF 5'000"] },
+        ]}
+      />
+
+      <H3>Actifs immobilisés (en bas du bilan)</H3>
+      <P>Ce qui reste <strong>longtemps</strong> dans l'entreprise (plus de 12 mois). Ce n'est pas destiné à être vendu — c'est l'outil de travail.</P>
+      <Tableau
+        caption="Actifs immobilisés de SwiSSwatch SA"
+        headers={['Catégorie', 'Comptes', 'Exemples chez SwiSSwatch SA']}
+        rows={[
+          { cells: ['Immobilisations corporelles', '1500–1600', "Centre CNC CHF 280'000, Véhicules CHF 103'000, Mobilier CHF 45'000, Informatique CHF 62'000"] },
+          { cells: ['Immobilisations incorporelles', '1700', "Brevet mouvement CHF 30'000"] },
+          { cells: ['./. Amortissements cumulés', '1509/1609', "Usure comptabilisée −CHF 145'000"] },
+        ]}
+      />
+
+      <Note color="yellow">En Suisse (CO art. 959a), les actifs circulants sont présentés <strong>EN HAUT</strong> du bilan (les plus liquides d'abord) et les actifs immobilisés <strong>EN BAS</strong>. C'est l'ordre de <strong>liquidité décroissante</strong>.</Note>
+      </Section>
+
+      {/* ═══════════ SECTION 3 : LE PASSIF ═══════════ */}
+      <Section title="3. Le passif — d'où vient l'argent" defaultOpen={false}>
+      <P>Si l'actif montre <strong>CE QUE</strong> l'entreprise a, le passif montre <strong>QUI</strong> a financé tout ça. Il n'y a que deux sources possibles : l'argent emprunté (fonds étrangers = dettes) et l'argent des propriétaires (fonds propres).</P>
+
+      <H3>Fonds étrangers à court terme (en haut du passif)</H3>
+      <P>Les dettes à rembourser dans les <strong>12 prochains mois</strong>. Ce sont les plus urgentes, donc elles apparaissent en haut.</P>
+      <Tableau
+        caption="Dettes CT de SwiSSwatch SA"
+        headers={['Catégorie', 'Comptes', 'Exemples chez SwiSSwatch SA']}
+        rows={[
+          { cells: ['Dettes fournisseurs', '2000', "Factures reçues non payées CHF 75'000"] },
+          { cells: ['TVA due', '2200', "TVA à reverser à l'AFC CHF 12'000"] },
+          { cells: ['Salaires à payer', '2160', "Salaires de décembre CHF 8'000"] },
+          { cells: ['Charges sociales', '2270', "AVS/AI/APG dues CHF 20'000"] },
+        ]}
+      />
+
+      <H3>Fonds étrangers à long terme (au milieu)</H3>
+      <P>Les dettes à rembourser dans <strong>plus de 12 mois</strong>.</P>
+      <Tableau
+        caption="Dettes LT de SwiSSwatch SA"
+        headers={['Catégorie', 'Comptes', 'Exemples chez SwiSSwatch SA']}
+        rows={[
+          { cells: ['Emprunts bancaires', '2400', "Prêt UBS à 5 ans CHF 200'000"] },
+          { cells: ['Hypothèques', '2450', "Hypothèque atelier CHF 130'000"] },
+        ]}
+      />
+
+      <H3>Fonds propres (en bas du passif)</H3>
+      <P>L'argent qui appartient aux propriétaires — c'est le "filet de sécurité" de l'entreprise. Si on vendait tout et qu'on remboursait toutes les dettes, il resterait les fonds propres.</P>
+      <Note color="green">
+        <strong>Fonds propres = Actif total − Fonds étrangers.</strong><br />
+        Si SwiSSwatch a CHF 680'000 d'actifs et CHF 445'000 de dettes, les fonds propres sont de CHF 680'000 − CHF 445'000 = <strong>CHF 235'000</strong>.
       </Note>
-
-      </Section>
-      <Section title="2. L'actif — ce que l'entreprise possède" defaultOpen={false}>
-      <P>L'actif recense tout ce que l'entreprise possède ou contrôle et qui a une valeur économique. Il est divisé en deux grandes catégories.</P>
-
-      <H3>Les actifs immobilisés — ce qui reste longtemps (&gt; 1 an)</H3>
-      <P>Ce sont les biens que l'entreprise garde plus d'un an pour exercer son activité. Ils ne sont pas destinés à être vendus dans le cadre normal.</P>
       <Tableau
-        headers={['Catégorie', 'Compte', 'Exemples concrets']}
+        caption="Fonds propres de SwiSSwatch SA"
+        headers={['Catégorie', 'Comptes', 'Exemples chez SwiSSwatch SA']}
         rows={[
-          { cells: ['Immobilisations corporelles', '1500–1600', 'Machines, véhicules, mobilier, immeubles'] },
-          { cells: ['Immobilisations incorporelles', '1700–1770', 'Brevets, licences, logiciels, goodwill'] },
-          { cells: ['Immobilisations financières', '1400–1480', 'Participations dans d\'autres sociétés, prêts LT'] },
-        ]}
-      />
-      <Note color="yellow">Exemple : une manufacture horlogère achète une machine CNC CHF 45'000. Cette machine sera utilisée 10 ans → actif immobilisé. Son coût sera réparti sur 10 ans via les amortissements (CHF 4'500/an).</Note>
-
-      <H3>Les actifs circulants — ce qui tourne vite (&lt; 12 mois)</H3>
-      <P>Ce sont les biens et droits qui se transforment en liquidités dans les 12 mois. Ils sont directement liés au cycle d'exploitation quotidien.</P>
-      <Tableau
-        headers={['Catégorie', 'Compte', 'Exemples concrets']}
-        rows={[
-          { cells: ['Liquidités', '1000–1060', 'Caisse, compte bancaire, compte postal'] },
-          { cells: ['Créances clients', '1100–1109', 'Factures émises non encore encaissées'] },
-          { cells: ['Stocks', '1200–1280', 'Marchandises, farine, produits finis'] },
-          { cells: ['Actifs transitoires', '1300', 'Charges payées d\'avance, produits à recevoir'] },
+          { cells: ['Capital-actions', '2800', "Capital libéré par les actionnaires CHF 200'000"] },
+          { cells: ['Bénéfice / perte', '2960–2970', "Résultat de l'exercice CHF 35'000"] },
         ]}
       />
 
+      <Note color="blue">En Suisse, le passif est ordonné par <strong>exigibilité décroissante</strong> : les dettes les plus urgentes (fournisseurs, court terme) en haut, les fonds propres tout en bas.</Note>
       </Section>
-      <Section title="3. Le passif — comment c'est financé" defaultOpen={false}>
-      <H3>Les capitaux propres — l'argent des propriétaires</H3>
-      <P>Ce qui appartient aux propriétaires après remboursement de toutes les dettes. Ils comprennent le capital, les réserves et le résultat de l'exercice.</P>
-      <Note color="green">Si l'entreprise vendait tout son actif et remboursait toutes ses dettes, il resterait aux propriétaires exactement le montant des fonds propres. C'est leur "fortune nette" dans l'entreprise.</Note>
 
-      <H3>Les capitaux étrangers — les dettes</H3>
-      <Tableau
-        headers={['Catégorie', 'Compte', 'Exemples', 'Échéance']}
-        rows={[
-          { cells: ['Dettes fournisseurs', '2000', 'Factures reçues non encore payées', '< 12 mois'] },
-          { cells: ['Autres dettes CT', '2100–2270', 'TVA due, salaires à payer, charges sociales', '< 12 mois'] },
-          { cells: ['Passifs transitoires', '2300', 'Produits reçus d\'avance, charges à payer', '< 12 mois'] },
-          { cells: ['Dettes LT', '2400–2451', 'Emprunts bancaires, hypothèques', '> 12 mois'] },
-          { cells: ['Provisions', '2330', 'Provisions pour pertes probables', 'Variable'] },
-        ]}
-      />
+      {/* ═══════════ SECTION 4 : BILAN COMPLET SWISSWATCH ═══════════ */}
+      <Section title="4. Le bilan de SwiSSwatch SA — 31.12.2023" defaultOpen={false}>
+      <P>Voici le bilan complet de SwiSSwatch SA, présenté dans l'ordre suisse (liquidité décroissante à l'actif, exigibilité décroissante au passif).</P>
 
-      </Section>
-      <Section title="4. Exemple de bilan — SwiSSwatch SA au 31.12.N" defaultOpen={false}>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0, border: '2px solid #2c5f8a', borderRadius: 8, overflow: 'hidden', margin: '16px 0' }}>
-        {[
-          { title: 'ACTIF', bg: '#2c5f8a' },
-          { title: 'PASSIF', bg: '#1e4a6e' },
-        ].map((h, i) => (
-          <div key={i} style={{ background: h.bg, padding: '8px 14px', color: '#fff', fontWeight: 700, fontSize: '0.82rem', borderRight: i === 0 ? '1px solid rgba(255,255,255,0.2)' : 'none' }}>{h.title}</div>
-        ))}
-        <table style={{ borderCollapse: 'collapse', fontSize: '0.82rem', borderRight: '1px solid #dde2ea' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0, border: '2px solid #2c5f8a', borderRadius: 10, overflow: 'hidden', margin: '16px 0', boxShadow: '0 2px 8px rgba(44,95,138,0.10)' }}>
+        {/* --- Headers --- */}
+        <div style={{ background: '#2c5f8a', padding: '10px 14px', color: '#fff', fontWeight: 700, fontSize: '0.85rem', textAlign: 'center', borderRight: '1px solid rgba(255,255,255,0.2)' }}>ACTIF</div>
+        <div style={{ background: '#1e4a6e', padding: '10px 14px', color: '#fff', fontWeight: 700, fontSize: '0.85rem', textAlign: 'center' }}>PASSIF</div>
+
+        {/* --- ACTIF column --- */}
+        <table style={{ borderCollapse: 'collapse', fontSize: '0.8rem', borderRight: '1px solid #c5d3e3', width: '100%' }}>
           <tbody>
-            {[
-              ['Actifs immobilisés', '', true],
-              ['Machines de production', "36'000", false],
-              ['Véhicule utilitaire', "8'000", false],
-              ['Actifs circulants', '', true],
-              ['Banque', "8'000", false],
-              ['Créances clients', "1'500", false],
-              ['Stock de composants', "3'200", false],
-              ['TOTAL ACTIF', "56'700", true],
-            ].map(([label, montant, bold], i) => (
-              <tr key={i} style={{ background: bold ? '#e8f0f8' : i % 2 === 0 ? '#fff' : '#f8f9fb', borderBottom: '1px solid #dde2ea' }}>
-                <td style={{ padding: '6px 12px', fontWeight: bold ? 700 : 400, color: '#1a2332' }}>{label}</td>
-                <td style={{ padding: '6px 12px', textAlign: 'right', fontFamily: 'JetBrains Mono, monospace', fontWeight: bold ? 700 : 500, color: '#2c5f8a' }}>{montant}</td>
-              </tr>
-            ))}
+            {bRow('Actifs circulants (AC)', '', { section: true })}
+            {bRow('Banque', "85'000")}
+            {bRow('Créances clients', "120'000")}
+            {bRow('Stock composants', "95'000")}
+            {bRow('Actifs transitoires', "5'000")}
+            {bRow('Total AC', "305'000", { bold: true, section: true })}
+            {bRow('Actifs immobilisés (AI)', '', { section: true })}
+            {bRow('Machines CNC', "280'000")}
+            {bRow('Mobilier', "45'000")}
+            {bRow('Informatique', "62'000")}
+            {bRow('Véhicules', "103'000")}
+            {bRow('Brevets', "30'000")}
+            {bRow('./. Amortissements', "−145'000")}
+            {bRow('Total AI', "375'000", { bold: true, section: true })}
+            {bRow('TOTAL ACTIF', "680'000", { total: true })}
           </tbody>
         </table>
-        <table style={{ borderCollapse: 'collapse', fontSize: '0.82rem' }}>
+
+        {/* --- PASSIF column --- */}
+        <table style={{ borderCollapse: 'collapse', fontSize: '0.8rem', width: '100%' }}>
           <tbody>
-            {[
-              ['Capitaux propres', '', true],
-              ['Capital fondation', "20'000", false],
-              ['Bénéfice reporté', "5'000", false],
-              ['Résultat exercice', "12'000", false],
-              ['Capitaux étrangers', '', true],
-              ['Dettes fournisseurs', "3'200", false],
-              ['TVA due', '900', false],
-              ['Emprunt bancaire', "15'600", false],
-              ['TOTAL PASSIF', "56'700", true],
-            ].map(([label, montant, bold], i) => (
-              <tr key={i} style={{ background: bold ? '#e8f0f8' : i % 2 === 0 ? '#fff' : '#f8f9fb', borderBottom: '1px solid #dde2ea' }}>
-                <td style={{ padding: '6px 12px', fontWeight: bold ? 700 : 400, color: '#1a2332' }}>{label}</td>
-                <td style={{ padding: '6px 12px', textAlign: 'right', fontFamily: 'JetBrains Mono, monospace', fontWeight: bold ? 700 : 500, color: '#1e4a6e' }}>{montant}</td>
-              </tr>
-            ))}
+            {bRow('Fonds étrangers CT', '', { section: true, side: 'passif' })}
+            {bRow('Fournisseurs', "75'000", { side: 'passif' })}
+            {bRow('TVA due', "12'000", { side: 'passif' })}
+            {bRow('Salaires à payer', "8'000", { side: 'passif' })}
+            {bRow('Charges sociales', "20'000", { side: 'passif' })}
+            {bRow('Total FE CT', "115'000", { bold: true, section: true, side: 'passif' })}
+            {bRow('Fonds étrangers LT', '', { section: true, side: 'passif' })}
+            {bRow('Emprunt bancaire', "200'000", { side: 'passif' })}
+            {bRow('Hypothèque atelier', "130'000", { side: 'passif' })}
+            {bRow('Total FE LT', "330'000", { bold: true, section: true, side: 'passif' })}
+            {bRow('Fonds propres (FP)', '', { section: true, side: 'passif' })}
+            {bRow('Capital-actions', "200'000", { side: 'passif' })}
+            {bRow('Bénéfice', "35'000", { side: 'passif' })}
+            {bRow('Total FP', "235'000", { bold: true, section: true, side: 'passif' })}
+            {bRow('TOTAL PASSIF', "680'000", { total: true, side: 'passif' })}
           </tbody>
         </table>
       </div>
-      <Note color="green">Lecture : SwiSSwatch SA possède CHF 56'700 d'actifs, financés par CHF 37'000 de fonds propres (capital + réserves + bénéfice) et CHF 19'700 de dettes. L'équilibre est parfait.</Note>
 
+      <Note color="green">
+        <strong>Lecture :</strong> SwiSSwatch SA possède CHF 680'000 d'actifs. Ceux-ci sont financés par CHF 445'000 de fonds étrangers (115k CT + 330k LT) et CHF 235'000 de fonds propres. L'équilibre est parfait : 680'000 = 680'000.
+      </Note>
       </Section>
-      <Section title="5. Comment le bilan évolue" defaultOpen={false}>
-      <Tableau
-        caption="Impact d'opérations courantes sur le bilan"
-        headers={['Opération', 'Effet sur l\'actif', 'Effet sur le passif', 'Total bilan']}
-        rows={[
-          { cells: ['Achat machine CHF 10\'000 payée par banque', 'Machine +10\'000 / Banque −10\'000', 'Inchangé', 'Inchangé'] },
-          { cells: ['Vente à crédit CHF 5\'000', 'Créances +5\'000', 'Fonds propres +5\'000 (via résultat)', 'Augmente de 5\'000'] },
-          { cells: ['Emprunt bancaire CHF 20\'000', 'Banque +20\'000', 'Dette LT +20\'000', 'Augmente de 20\'000'] },
-          { cells: ['Paiement fournisseur CHF 3\'200', 'Banque −3\'200', 'Dettes −3\'200', 'Diminue de 3\'200'] },
-        ]}
+
+      {/* ═══════════ SECTION 5 : L'EQUATION FONDAMENTALE ═══════════ */}
+      <Section title="5. L'équation fondamentale — 3 façons de la lire" defaultOpen={false}>
+      <P>L'égalité du bilan peut s'écrire de trois manières équivalentes. Chacune apporte un éclairage différent.</P>
+
+      <Formula parts={['ACTIF', '=', 'PASSIF']} color="#2563eb" />
+      <P style={{ fontSize: '0.82rem', color: '#475569', textAlign: 'center', margin: '-4px 0 14px' }}>Tout ce qu'on possède a forcément été financé par quelqu'un.</P>
+
+      <Formula parts={['ACTIF', '=', 'Fonds étrangers', '+', 'Fonds propres']} color="#7c3aed" />
+      <P style={{ fontSize: '0.82rem', color: '#475569', textAlign: 'center', margin: '-4px 0 14px' }}>L'argent vient soit des créanciers (dettes), soit des propriétaires.</P>
+
+      <Formula parts={['Fonds propres', '=', 'ACTIF', '−', 'Fonds étrangers']} color="#16a34a" />
+      <P style={{ fontSize: '0.82rem', color: '#475569', textAlign: 'center', margin: '-4px 0 14px' }}>La fortune nette des propriétaires = ce qui reste après remboursement de toutes les dettes.</P>
+      </Section>
+
+      {/* ═══════════ SECTION 6 : COMMENT LE BILAN EVOLUE ═══════════ */}
+      <Section title="6. Comment le bilan évolue — chaque opération le modifie" defaultOpen={false}>
+      <P>Chaque opération comptable modifie le bilan, mais l'égalité Actif = Passif est <strong>toujours</strong> maintenue. Voici quatre cas typiques chez SwiSSwatch SA :</P>
+
+      <OpCard
+        title="1. Achat machine CHF 280'000 à crédit"
+        desc="SwiSSwatch achète un centre CNC et paiera plus tard."
+        actif="+280k (machine)"
+        passif="+280k (dette fournisseur)"
+        result="Bilan augmente"
+        color="#16a34a"
+      />
+      <OpCard
+        title="2. Paiement fournisseur CHF 75'000"
+        desc="SwiSSwatch règle une facture fournisseur par banque."
+        actif="−75k (banque)"
+        passif="−75k (dette fournisseur)"
+        result="Bilan diminue"
+        color="#dc2626"
+      />
+      <OpCard
+        title="3. Vente à crédit CHF 25'000"
+        desc="SwiSSwatch livre des montres à Bucherer AG, paiement sous 30 jours."
+        actif="+25k (créances)"
+        passif="+25k (FP via résultat)"
+        result="Bilan augmente"
+        color="#16a34a"
+      />
+      <OpCard
+        title="4. Achat stock CHF 15'000 cash"
+        desc="SwiSSwatch achète des composants horlogers en payant directement."
+        actif="+15k stock / −15k banque"
+        passif="inchangé"
+        result="Bilan inchangé (permutation d'actifs)"
+        color="#64748b"
       />
 
+      <Note color="blue">Dans le cas 4, seul l'actif change de composition (banque → stock). Ni le total de l'actif, ni le passif ne bougent. C'est une <strong>permutation d'actifs</strong>.</Note>
       </Section>
-      <Section title="6. Points clés à retenir" defaultOpen={false}>
+
+      {/* ═══════════ SECTION 7 : POINTS CLES ═══════════ */}
+      <Section title="7. Points clés" defaultOpen={false}>
       {[
-        'Bilan = patrimoine à une date précise (≠ performance sur une période).',
-        'Actif = Passif — toujours, mathématiquement impossible autrement.',
-        'Actif immobilisé = biens gardés > 1 an | Actif circulant = transformés en cash < 1 an.',
-        'Fonds propres = appartient aux propriétaires | Dettes = dû aux tiers.',
-        'Les actifs suisses sont évalués de manière prudente — jamais au-dessus du coût d\'acquisition.',
+        'Le bilan est une photographie du patrimoine à une date précise (≠ performance sur une période).',
+        'Actif = Passif — toujours, par construction. C\'est mathématiquement inévitable.',
+        'L\'actif montre CE QUE l\'entreprise possède. Le passif montre QUI a financé ces biens.',
+        'Fonds propres = Actif − Fonds étrangers (la fortune nette des propriétaires).',
+        'En Suisse (CO art. 959a) : actifs classés par liquidité décroissante, passif par exigibilité décroissante.',
+        'Actifs circulants EN HAUT (liquidités, créances, stocks) → Actifs immobilisés EN BAS.',
+        'Dettes CT EN HAUT → Dettes LT AU MILIEU → Fonds propres EN BAS.',
+        'Chaque opération maintient l\'équilibre Actif = Passif, mais peut augmenter, diminuer ou simplement redistribuer le bilan.',
       ].map((pt, i) => (
         <div key={i} style={{ display: 'flex', gap: 10, padding: '5px 0', fontSize: '0.85rem', color: '#475569' }}>
-          <span style={{ color: '#2563eb', fontWeight: 700, flexShrink: 0 }}>{'\u25B6'}</span><span>{pt}</span>
+          <span style={{ color: '#2563eb', fontWeight: 700, flexShrink: 0 }}>▶</span><span>{pt}</span>
         </div>
       ))}
       </Section>
@@ -330,7 +477,7 @@ function TabResultat() {
         'L\'amortissement est une charge sans mouvement de trésorerie.',
       ].map((pt, i) => (
         <div key={i} style={{ display: 'flex', gap: 10, padding: '5px 0', fontSize: '0.85rem', color: '#475569' }}>
-          <span style={{ color: '#2563eb', fontWeight: 700, flexShrink: 0 }}>{'\u25B6'}</span><span>{pt}</span>
+          <span style={{ color: '#2563eb', fontWeight: 700, flexShrink: 0 }}>▶</span><span>{pt}</span>
         </div>
       ))}
       </Section>
@@ -431,7 +578,7 @@ function TabComptes() {
         'Le plan comptable PME suisse numérotation 1000–8999 à connaître.',
       ].map((pt, i) => (
         <div key={i} style={{ display: 'flex', gap: 10, padding: '5px 0', fontSize: '0.85rem', color: '#475569' }}>
-          <span style={{ color: '#2563eb', fontWeight: 700, flexShrink: 0 }}>{'\u25B6'}</span><span>{pt}</span>
+          <span style={{ color: '#2563eb', fontWeight: 700, flexShrink: 0 }}>▶</span><span>{pt}</span>
         </div>
       ))}
       </Section>
@@ -538,7 +685,7 @@ function TabJournal() {
         'Toute écriture doit avoir une pièce justificative (conservation 10 ans).',
       ].map((pt, i) => (
         <div key={i} style={{ display: 'flex', gap: 10, padding: '5px 0', fontSize: '0.85rem', color: '#475569' }}>
-          <span style={{ color: '#2563eb', fontWeight: 700, flexShrink: 0 }}>{'\u25B6'}</span><span>{pt}</span>
+          <span style={{ color: '#2563eb', fontWeight: 700, flexShrink: 0 }}>▶</span><span>{pt}</span>
         </div>
       ))}
       </Section>
