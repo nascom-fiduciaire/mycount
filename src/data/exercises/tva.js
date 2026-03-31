@@ -104,7 +104,7 @@ export const tvaCalcExercises = [
   {
     id: 'tva-calc-01', group: 'tva-calculs', type: 'calcul', tag: 'tva', difficulty: 2,
     title: 'Calcul décompte TVA trimestriel',
-    description: 'Calculez le décompte TVA du T2 2024 pour Fidulex Sàrl.',
+    description: 'Calculez le décompte TVA du T2 2024 pour SwiSSwatch SA.',
     note: 'Pour trouver le HT à partir du TTC : HT = TTC / 1.081',
     data: [
       { label: 'Ventes TTC T2', value: "CHF 108'100" },
@@ -126,7 +126,7 @@ export const tvaEcrituresExercises = [
   {
     id: 'tva-e-01', group: 'tva-ecritures', type: 'journal', tag: 'tva', difficulty: 2,
     title: 'Facture client avec TVA — émission et encaissement',
-    description: `Fidulex Sàrl émet une facture pour Rossi SA (prestation) :
+    description: `SwiSSwatch SA émet une facture pour Nivarox SA (prestation) :
 1. 08.05 : Émission facture (en 2 lignes : produits HT + TVA due)
 2. 05.06 : Encaissement par virement`,
     note: 'Débiteur au TTC. Produits au HT. TVA due = passif séparé (2200) — jamais un produit.',
@@ -136,9 +136,9 @@ export const tvaEcrituresExercises = [
       { label: 'Total TTC', value: "CHF 10'810.00" },
     ],
     ecritures: [
-      { id: 'e1', libelle: '08.05 — Facture Rossi SA prestations HT', debit: { num: '1100', label: 'Débiteurs' }, credit: { num: '3400', label: 'Produits prestations' }, amount: 10810, amountCredit: 10000, multiLine: true },
+      { id: 'e1', libelle: '08.05 — Facture Nivarox SA prestations HT', debit: { num: '1100', label: 'Débiteurs' }, credit: { num: '3400', label: 'Produits prestations' }, amount: 10810, amountCredit: 10000, multiLine: true },
       { id: 'e1b', libelle: 'TVA due 8.1%', debit: null, credit: { num: '2200', label: 'TVA due' }, amount: null, amountCredit: 810, isSubLine: true },
-      { id: 'e2', libelle: '05.06 — Encaissement Rossi SA — virement', debit: { num: '1020', label: 'Banque' }, credit: { num: '1100', label: 'Débiteurs' }, amount: 10810 },
+      { id: 'e2', libelle: '05.06 — Encaissement Nivarox SA — virement', debit: { num: '1020', label: 'Banque' }, credit: { num: '1100', label: 'Débiteurs' }, amount: 10810 },
     ],
   },
 
@@ -183,7 +183,7 @@ export const tvaEcrituresExercises = [
   {
     id: 'tva-e-04', group: 'tva-ecritures', type: 'journal', tag: 'tva', difficulty: 3,
     title: 'Cycle TVA trimestriel complet',
-    description: `Fidulex Sàrl clôture le T1 2024 :
+    description: `SwiSSwatch SA clôture le T1 2024 :
 1. Total ventes HT du trimestre : CHF 80'000 → TVA due 8.1%
 2. Total achats HT du trimestre : CHF 30'000 → Impôt préalable 8.1%
 3. Virement du solde TVA dû à l'AFC`,
@@ -203,7 +203,7 @@ export const tvaEcrituresExercises = [
   {
     id: 'tva-e-05', group: 'tva-ecritures', type: 'journal', tag: 'tva', difficulty: 3,
     title: 'Facturation multi-taux TVA',
-    description: `Fidulex Sàrl émet une facture combinée :
+    description: `SwiSSwatch SA émet une facture combinée :
 1. Prestations de conseil : CHF 5'000 HT (taux normal 8.1%)
 2. Hébergement hôtelier : CHF 2'000 HT (taux spécial 3.8%)
 Le client paie la totalité par virement.`,

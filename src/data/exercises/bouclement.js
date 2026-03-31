@@ -47,7 +47,7 @@ export const bouclementExercises = [
   {
     id: 'boucl-03', group: 'bouclement', type: 'journal', tag: 'bouclement', difficulty: 3,
     title: 'Bouclement complet — 5 opérations simultanées',
-    description: `Bouclement 31.12 de Fidulex Sàrl — 5 opérations :
+    description: `Bouclement 31.12 de SwiSSwatch SA — 5 opérations :
 1. Amortissement mobilier CHF 6'000 (20% de CHF 30'000)
 2. Provision impôts estimés CHF 12'500
 3. Honoraires décembre non facturés CHF 7'200 HT

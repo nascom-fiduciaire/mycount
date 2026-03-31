@@ -5,30 +5,30 @@ export const baseJournalExercises = [
 
   {
     id: 'bj-01', group: 'base-journal', type: 'journal', tag: 'base', difficulty: 2,
-    title: 'Cycle d\'achat complet — Fournisseur Dupont SA',
-    description: `L'entreprise commande des marchandises à Dupont SA. Voici le déroulement complet :
-1. Le 02.03 : réception de la facture de Dupont SA
-2. Le 10.03 : Dupont SA accorde un avoir partiel (retour d'une partie)
+    title: 'Cycle d\'achat complet — Fournisseur Nivarox SA',
+    description: `L'entreprise commande des marchandises à Nivarox SA. Voici le déroulement complet :
+1. Le 02.03 : réception de la facture de Nivarox SA
+2. Le 10.03 : Nivarox SA accorde un avoir partiel (retour d'une partie)
 3. Le 25.03 : paiement du solde restant par virement bancaire`,
     note: 'Méthode postes ouverts : toutes les factures et avoirs passent par le compte Créanciers (2000), même si le paiement est rapide.',
     data: [
-      { label: 'Facture Dupont SA du 02.03', value: "CHF 6'800.00 HT" },
+      { label: 'Facture Nivarox SA du 02.03', value: "CHF 6'800.00 HT" },
       { label: 'Avoir du 10.03 (retour)', value: "CHF 800.00 HT" },
       { label: 'Solde payé le 25.03', value: "CHF 6'000.00" },
     ],
     ecritures: [
-      { id: 'e1', libelle: '02.03 — Facture Dupont SA marchandises HT', debit: { num: '4200', label: 'Achats marchandises' }, credit: { num: '2000', label: 'Créanciers' }, amount: 6800 },
-      { id: 'e2', libelle: '10.03 — Avoir Dupont SA retour marchandises', debit: { num: '2000', label: 'Créanciers' }, credit: { num: '4200', label: 'Achats marchandises' }, amount: 800 },
-      { id: 'e3', libelle: '25.03 — Paiement solde Dupont SA — virement', debit: { num: '2000', label: 'Créanciers' }, credit: { num: '1020', label: 'Banque' }, amount: 6000 },
+      { id: 'e1', libelle: '02.03 — Facture Nivarox SA marchandises HT', debit: { num: '4200', label: 'Achats marchandises' }, credit: { num: '2000', label: 'Créanciers' }, amount: 6800 },
+      { id: 'e2', libelle: '10.03 — Avoir Nivarox SA retour marchandises', debit: { num: '2000', label: 'Créanciers' }, credit: { num: '4200', label: 'Achats marchandises' }, amount: 800 },
+      { id: 'e3', libelle: '25.03 — Paiement solde Nivarox SA — virement', debit: { num: '2000', label: 'Créanciers' }, credit: { num: '1020', label: 'Banque' }, amount: 6000 },
     ],
   },
 
   {
     id: 'bj-02', group: 'base-journal', type: 'journal', tag: 'base', difficulty: 2,
-    title: 'Cycle de vente complet — Client Martin AG',
-    description: `Fidulex Sàrl réalise une prestation pour Martin AG :
+    title: 'Cycle de vente complet — Client Bucherer AG',
+    description: `SwiSSwatch SA réalise une prestation pour Bucherer AG :
 1. Le 05.04 : émission de la facture
-2. Le 15.04 : Martin AG conteste une partie — avoir accordé
+2. Le 15.04 : Bucherer AG conteste une partie — avoir accordé
 3. Le 30.04 : encaissement du solde par virement`,
     note: 'Les produits sont comptabilisés HT. La créance (Débiteurs) suit chaque mouvement.',
     data: [
@@ -37,34 +37,34 @@ export const baseJournalExercises = [
       { label: 'Encaissement du 30.04', value: "CHF 9'000.00" },
     ],
     ecritures: [
-      { id: 'e1', libelle: '05.04 — Facture Martin AG prestations HT', debit: { num: '1100', label: 'Débiteurs' }, credit: { num: '3400', label: 'Produits prestations' }, amount: 9500 },
-      { id: 'e2', libelle: '15.04 — Avoir Martin AG — contestation partielle', debit: { num: '3400', label: 'Produits prestations' }, credit: { num: '1100', label: 'Débiteurs' }, amount: 500 },
-      { id: 'e3', libelle: '30.04 — Encaissement solde Martin AG', debit: { num: '1020', label: 'Banque' }, credit: { num: '1100', label: 'Débiteurs' }, amount: 9000 },
+      { id: 'e1', libelle: '05.04 — Facture Bucherer AG prestations HT', debit: { num: '1100', label: 'Débiteurs' }, credit: { num: '3400', label: 'Produits prestations' }, amount: 9500 },
+      { id: 'e2', libelle: '15.04 — Avoir Bucherer AG — contestation partielle', debit: { num: '3400', label: 'Produits prestations' }, credit: { num: '1100', label: 'Débiteurs' }, amount: 500 },
+      { id: 'e3', libelle: '30.04 — Encaissement solde Bucherer AG', debit: { num: '1020', label: 'Banque' }, credit: { num: '1100', label: 'Débiteurs' }, amount: 9000 },
     ],
   },
 
   {
     id: 'bj-03', group: 'base-journal', type: 'journal', tag: 'base', difficulty: 3,
     title: 'Mois de juin complet — 6 opérations',
-    description: `Passez toutes les écritures du mois de juin pour Fidulex Sàrl :
+    description: `Passez toutes les écritures du mois de juin pour SwiSSwatch SA :
 1. 01.06 : Paiement loyer bureau
 2. 03.06 : Réception facture téléphonie
-3. 08.06 : Émission facture client Rossi SA
+3. 08.06 : Émission facture client Nivarox SA
 4. 15.06 : Paiement facture téléphonie
-5. 22.06 : Encaissement Rossi SA
+5. 22.06 : Encaissement Nivarox SA
 6. 28.06 : Paiement prime assurance RC`,
     data: [
       { label: '01.06 — Loyer bureau', value: "CHF 2'800.00" },
       { label: '03.06 — Téléphonie HT', value: "CHF 340.00" },
-      { label: '08.06 — Facture Rossi SA HT', value: "CHF 4'200.00" },
+      { label: '08.06 — Facture Nivarox SA HT', value: "CHF 4'200.00" },
       { label: '28.06 — Assurance RC', value: "CHF 620.00" },
     ],
     ecritures: [
       { id: 'e1', libelle: '01.06 — Loyer bureau juin', debit: { num: '6000', label: 'Charges de locaux' }, credit: { num: '1020', label: 'Banque' }, amount: 2800 },
       { id: 'e2', libelle: '03.06 — Facture téléphonie HT', debit: { num: '6500', label: 'Charges d\'administration' }, credit: { num: '2000', label: 'Créanciers' }, amount: 340 },
-      { id: 'e3', libelle: '08.06 — Facture Rossi SA prestations HT', debit: { num: '1100', label: 'Débiteurs' }, credit: { num: '3400', label: 'Produits prestations' }, amount: 4200 },
+      { id: 'e3', libelle: '08.06 — Facture Nivarox SA prestations HT', debit: { num: '1100', label: 'Débiteurs' }, credit: { num: '3400', label: 'Produits prestations' }, amount: 4200 },
       { id: 'e4', libelle: '15.06 — Paiement facture téléphonie', debit: { num: '2000', label: 'Créanciers' }, credit: { num: '1020', label: 'Banque' }, amount: 340 },
-      { id: 'e5', libelle: '22.06 — Encaissement Rossi SA', debit: { num: '1020', label: 'Banque' }, credit: { num: '1100', label: 'Débiteurs' }, amount: 4200 },
+      { id: 'e5', libelle: '22.06 — Encaissement Nivarox SA', debit: { num: '1020', label: 'Banque' }, credit: { num: '1100', label: 'Débiteurs' }, amount: 4200 },
       { id: 'e6', libelle: '28.06 — Prime assurance RC', debit: { num: '6300', label: 'Assurances et taxes' }, credit: { num: '1020', label: 'Banque' }, amount: 620 },
     ],
   },
@@ -167,7 +167,7 @@ export const baseJournalExercises = [
   {
     id: 'bj-08', group: 'base-journal', type: 'journal', tag: 'base', difficulty: 2,
     title: 'Paiement avec escompte fournisseur',
-    description: 'Fidulex Sàrl reçoit une facture fournisseur de CHF 5\'000 HT et paie dans le délai d\'escompte (2%).',
+    description: 'SwiSSwatch SA reçoit une facture fournisseur de CHF 5\'000 HT et paie dans le délai d\'escompte (2%).',
     note: 'L\'escompte obtenu est un produit financier (compte 6950).',
     data: [
       { label: 'Facture fournisseur', value: "CHF 5'000.00 HT" },
@@ -184,14 +184,14 @@ export const baseJournalExercises = [
   {
     id: 'bj-09', group: 'base-journal', type: 'journal', tag: 'base', difficulty: 2,
     title: 'Perte définitive sur débiteur',
-    description: 'Le client Müller AG est en faillite. Sa créance de CHF 3\'200 est définitivement perdue.',
+    description: 'Le client PackDesign AG est en faillite. Sa créance de CHF 3\'200 est définitivement perdue.',
     note: 'La perte sur débiteurs est comptabilisée au compte 3805 (Pertes sur clients, variation du ducroire).',
     data: [
-      { label: 'Créance Müller AG', value: "CHF 3'200.00" },
+      { label: 'Créance PackDesign AG', value: "CHF 3'200.00" },
       { label: 'Statut', value: 'Acte de défaut de biens reçu' },
     ],
     ecritures: [
-      { id: 'e1', libelle: 'Constatation perte sur débiteur Müller AG', debit: { num: '3805', label: 'Pertes sur clients, variation du ducroire' }, credit: { num: '1100', label: 'Débiteurs' }, amount: 3200 },
+      { id: 'e1', libelle: 'Constatation perte sur débiteur PackDesign AG', debit: { num: '3805', label: 'Pertes sur clients, variation du ducroire' }, credit: { num: '1100', label: 'Débiteurs' }, amount: 3200 },
     ],
   },
 
@@ -213,7 +213,7 @@ export const baseJournalExercises = [
   {
     id: 'bj-11', group: 'base-journal', type: 'journal', tag: 'base', difficulty: 2,
     title: 'Acquisition d\'une machine',
-    description: 'Fidulex Sàrl achète une machine de production pour CHF 45\'000 payée par virement bancaire.',
+    description: 'SwiSSwatch SA achète une machine de production pour CHF 45\'000 payée par virement bancaire.',
     data: [
       { label: 'Machine de production', value: "CHF 45'000.00" },
       { label: 'Paiement', value: 'Virement bancaire' },
@@ -226,7 +226,7 @@ export const baseJournalExercises = [
   {
     id: 'bj-12', group: 'base-journal', type: 'journal', tag: 'base', difficulty: 3,
     title: 'Mois complet — Septembre d\'une PME',
-    description: `Passez les 10 écritures du mois de septembre pour Fidulex Sàrl :
+    description: `Passez les 10 écritures du mois de septembre pour SwiSSwatch SA :
 1. 01.09 : Paiement loyer CHF 2'500
 2. 03.09 : Facture fournisseur marchandises CHF 8'000
 3. 05.09 : Facture client prestations CHF 12'000

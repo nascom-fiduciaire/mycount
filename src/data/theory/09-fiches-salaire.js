@@ -5,8 +5,8 @@ export const fichesSalaire = [
 
   {
     id: 'sal-fiche-01',
-    title: 'Employé standard 100% — M. Dupont',
-    contexte: `M. Dupont travaille à 100% chez Fidulex Sàrl depuis 3 ans.
+    title: 'Employé standard 100% — Théo Keller',
+    contexte: `Théo Keller travaille à 100% chez SwiSSwatch SA depuis 3 ans.
 Salaire brut mensuel : CHF 7'200.
 Pas d'enfants, pas d'impôt à la source (permis C / suisse).
 LPP employé : CHF 360 / patronale : CHF 432.`,
@@ -32,10 +32,10 @@ LPP employé : CHF 360 / patronale : CHF 432.`,
     etapesComptables: [
       {
         num: 1, titre: 'Comptabilisation du salaire brut et des déductions employé',
-        explication: 'On enregistre la charge totale (salaire brut) en débitant le compte 5000. Les déductions employé vont en 2270. Le solde à verser à M. Dupont va en 2160.',
+        explication: 'On enregistre la charge totale (salaire brut) en débitant le compte 5000. Les déductions employé vont en 2270. Le solde à verser à Théo Keller va en 2160.',
         ecritures: [
-          { libelle: 'Salaire brut M. Dupont — janvier 2024', debit: '5000', debitLabel: 'Salaires', credit: '2270', creditLabel: 'Charges sociales à payer', montantDebit: 7200, montantCredit: 892.80, isMulti: true },
-          { libelle: 'Salaire net à payer M. Dupont', debit: null, debitLabel: null, credit: '2160', creditLabel: 'Salaires à payer', montantDebit: null, montantCredit: 6307.20, isSubLine: true },
+          { libelle: 'Salaire brut Théo Keller — janvier 2024', debit: '5000', debitLabel: 'Salaires', credit: '2270', creditLabel: 'Charges sociales à payer', montantDebit: 7200, montantCredit: 892.80, isMulti: true },
+          { libelle: 'Salaire net à payer Théo Keller', debit: null, debitLabel: null, credit: '2160', creditLabel: 'Salaires à payer', montantDebit: null, montantCredit: 6307.20, isSubLine: true },
         ],
       },
       {
@@ -49,10 +49,10 @@ LPP employé : CHF 360 / patronale : CHF 432.`,
         ],
       },
       {
-        num: 3, titre: 'Versement du salaire net à M. Dupont',
+        num: 3, titre: 'Versement du salaire net à Théo Keller',
         explication: 'On solde le compte 2160 par virement bancaire. Aucun impact sur le résultat.',
         ecritures: [
-          { libelle: 'Virement salaire net M. Dupont', debit: '2160', debitLabel: 'Salaires à payer', credit: '1020', creditLabel: 'Banque', montantDebit: 6307.20, montantCredit: 6307.20 },
+          { libelle: 'Virement salaire net Théo Keller', debit: '2160', debitLabel: 'Salaires à payer', credit: '1020', creditLabel: 'Banque', montantDebit: 6307.20, montantCredit: 6307.20 },
         ],
       },
       {
@@ -67,8 +67,8 @@ LPP employé : CHF 360 / patronale : CHF 432.`,
 
   {
     id: 'sal-fiche-02',
-    title: 'Temps partiel 60% — Mme Chen',
-    contexte: `Mme Chen travaille à 60% chez Fidulex Sàrl.
+    title: 'Temps partiel 60% — Léa Meyer',
+    contexte: `Léa Meyer travaille à 60% chez SwiSSwatch SA.
 Salaire brut à 100% : CHF 6'500 → brut effectif 60% : CHF 3'900.
 Pas d'impôt à la source. Pas d'enfants.
 LPP employé : CHF 156 / patronale : CHF 195.`,
@@ -96,28 +96,28 @@ LPP employé : CHF 156 / patronale : CHF 195.`,
         num: 1, titre: 'Salaire brut + déductions employé',
         explication: 'Même logique qu\'à 100% — toutes les cotisations sont calculées sur le brut effectif CHF 3\'900.',
         ecritures: [
-          { libelle: 'Salaire brut Mme Chen 60% — janvier', debit: '5000', debitLabel: 'Salaires', credit: '2270', creditLabel: 'Charges sociales à payer', montantDebit: 3900, montantCredit: 444.60, isMulti: true },
-          { libelle: 'Salaire net à payer Mme Chen', debit: null, debitLabel: null, credit: '2160', creditLabel: 'Salaires à payer', montantDebit: null, montantCredit: 3455.40, isSubLine: true },
+          { libelle: 'Salaire brut Léa Meyer 60% — janvier', debit: '5000', debitLabel: 'Salaires', credit: '2270', creditLabel: 'Charges sociales à payer', montantDebit: 3900, montantCredit: 444.60, isMulti: true },
+          { libelle: 'Salaire net à payer Léa Meyer', debit: null, debitLabel: null, credit: '2160', creditLabel: 'Salaires à payer', montantDebit: null, montantCredit: 3455.40, isSubLine: true },
         ],
       },
       {
         num: 2, titre: 'Charges patronales',
         explication: 'Calculées sur CHF 3\'900. Coût total = 3\'900 + 464.10 = CHF 4\'364.10.',
         ecritures: [
-          { libelle: 'Charges patronales Mme Chen (AVS+AC+LPP+LAA)', debit: '5700', debitLabel: 'Charges sociales patronales', credit: '2270', creditLabel: 'Charges sociales à payer', montantDebit: 464.10, montantCredit: 464.10 },
+          { libelle: 'Charges patronales Léa Meyer (AVS+AC+LPP+LAA)', debit: '5700', debitLabel: 'Charges sociales patronales', credit: '2270', creditLabel: 'Charges sociales à payer', montantDebit: 464.10, montantCredit: 464.10 },
         ],
       },
       {
         num: 3, titre: 'Versement salaire net',
         ecritures: [
-          { libelle: 'Virement salaire net Mme Chen', debit: '2160', debitLabel: 'Salaires à payer', credit: '1020', creditLabel: 'Banque', montantDebit: 3455.40, montantCredit: 3455.40 },
+          { libelle: 'Virement salaire net Léa Meyer', debit: '2160', debitLabel: 'Salaires à payer', credit: '1020', creditLabel: 'Banque', montantDebit: 3455.40, montantCredit: 3455.40 },
         ],
       },
       {
         num: 4, titre: 'Versement caisses sociales',
         explication: 'Total = 444.60 + 464.10 = CHF 908.70.',
         ecritures: [
-          { libelle: 'Versement caisses sociales Mme Chen', debit: '2270', debitLabel: 'Charges sociales à payer', credit: '1020', creditLabel: 'Banque', montantDebit: 908.70, montantCredit: 908.70 },
+          { libelle: 'Versement caisses sociales Léa Meyer', debit: '2270', debitLabel: 'Charges sociales à payer', credit: '1020', creditLabel: 'Banque', montantDebit: 908.70, montantCredit: 908.70 },
         ],
       },
     ],
@@ -125,8 +125,8 @@ LPP employé : CHF 156 / patronale : CHF 195.`,
 
   {
     id: 'sal-fiche-03',
-    title: 'Impôt à la source — M. Silva (permis B)',
-    contexte: `M. Silva, ressortissant portugais, permis B, célibataire.
+    title: 'Impôt à la source — Lucas Morel (permis B)',
+    contexte: `Lucas Morel, ressortissant portugais, permis B, célibataire.
 Salaire brut : CHF 5'800/mois.
 Taux IS barème A GE : 12.5% sur le salaire brut.
 LPP employé : CHF 290 / patronale : CHF 348.`,
@@ -155,22 +155,22 @@ LPP employé : CHF 290 / patronale : CHF 348.`,
         num: 1, titre: 'Salaire brut + déductions sociales + impôt à la source',
         explication: 'L\'IS va au compte 2271 (séparé de 2270) car il est versé à l\'administration cantonale, pas aux caisses sociales.',
         ecritures: [
-          { libelle: 'Salaire brut M. Silva — janvier', debit: '5000', debitLabel: 'Salaires', credit: '2270', creditLabel: 'Charges sociales à payer', montantDebit: 5800, montantCredit: 719.20, isMulti: true },
+          { libelle: 'Salaire brut Lucas Morel — janvier', debit: '5000', debitLabel: 'Salaires', credit: '2270', creditLabel: 'Charges sociales à payer', montantDebit: 5800, montantCredit: 719.20, isMulti: true },
           { libelle: 'Impôt à la source retenu (IS)', debit: null, debitLabel: null, credit: '2271', creditLabel: 'IS à payer', montantDebit: null, montantCredit: 725.00, isSubLine: true },
-          { libelle: 'Salaire net à payer M. Silva', debit: null, debitLabel: null, credit: '2160', creditLabel: 'Salaires à payer', montantDebit: null, montantCredit: 4355.80, isSubLine: true },
+          { libelle: 'Salaire net à payer Lucas Morel', debit: null, debitLabel: null, credit: '2160', creditLabel: 'Salaires à payer', montantDebit: null, montantCredit: 4355.80, isSubLine: true },
         ],
       },
       {
         num: 2, titre: 'Charges patronales',
         explication: 'Non impactées par l\'IS — calculées sur le brut comme pour tout employé.',
         ecritures: [
-          { libelle: 'Charges patronales M. Silva', debit: '5700', debitLabel: 'Charges sociales patronales', credit: '2270', creditLabel: 'Charges sociales à payer', montantDebit: 748.20, montantCredit: 748.20 },
+          { libelle: 'Charges patronales Lucas Morel', debit: '5700', debitLabel: 'Charges sociales patronales', credit: '2270', creditLabel: 'Charges sociales à payer', montantDebit: 748.20, montantCredit: 748.20 },
         ],
       },
       {
-        num: 3, titre: 'Versement salaire net à M. Silva',
+        num: 3, titre: 'Versement salaire net à Lucas Morel',
         ecritures: [
-          { libelle: 'Virement salaire net M. Silva', debit: '2160', debitLabel: 'Salaires à payer', credit: '1020', creditLabel: 'Banque', montantDebit: 4355.80, montantCredit: 4355.80 },
+          { libelle: 'Virement salaire net Lucas Morel', debit: '2160', debitLabel: 'Salaires à payer', credit: '1020', creditLabel: 'Banque', montantDebit: 4355.80, montantCredit: 4355.80 },
         ],
       },
       {
@@ -184,7 +184,7 @@ LPP employé : CHF 290 / patronale : CHF 348.`,
         num: 5, titre: 'Versement caisses sociales',
         explication: 'Total 2270 = 719.20 + 748.20 = CHF 1\'467.40.',
         ecritures: [
-          { libelle: 'Versement caisses sociales M. Silva', debit: '2270', debitLabel: 'Charges sociales à payer', credit: '1020', creditLabel: 'Banque', montantDebit: 1467.40, montantCredit: 1467.40 },
+          { libelle: 'Versement caisses sociales Lucas Morel', debit: '2270', debitLabel: 'Charges sociales à payer', credit: '1020', creditLabel: 'Banque', montantDebit: 1467.40, montantCredit: 1467.40 },
         ],
       },
     ],
@@ -192,8 +192,8 @@ LPP employé : CHF 290 / patronale : CHF 348.`,
 
   {
     id: 'sal-fiche-04',
-    title: 'Allocations familiales + indemnités — Mme Rossi',
-    contexte: `Mme Rossi, 2 enfants (8 et 12 ans), permis C.
+    title: 'Allocations familiales + indemnités — Léa Meyer',
+    contexte: `Léa Meyer, 2 enfants (8 et 12 ans), permis C.
 Salaire brut : CHF 6'200/mois.
 AF Genève : CHF 311 × 2 = CHF 622.
 Indemnité repas : 20j × CHF 16 = CHF 320.
@@ -227,7 +227,7 @@ Indemnité km : CHF 120. LPP employé : CHF 310 / patronale : CHF 372.`,
         num: 1, titre: 'Salaire brut + déductions',
         explication: 'Déductions calculées uniquement sur le brut CHF 6\'200. AF et indemnités non soumises aux cotisations.',
         ecritures: [
-          { libelle: 'Salaire brut Mme Rossi — janvier', debit: '5000', debitLabel: 'Salaires', credit: '2270', creditLabel: 'Charges sociales à payer', montantDebit: 6200, montantCredit: 768.80, isMulti: true },
+          { libelle: 'Salaire brut Léa Meyer — janvier', debit: '5000', debitLabel: 'Salaires', credit: '2270', creditLabel: 'Charges sociales à payer', montantDebit: 6200, montantCredit: 768.80, isMulti: true },
           { libelle: 'Salaire net à payer', debit: null, debitLabel: null, credit: '2160', creditLabel: 'Salaires à payer', montantDebit: null, montantCredit: 5431.20, isSubLine: true },
         ],
       },
@@ -235,27 +235,27 @@ Indemnité km : CHF 120. LPP employé : CHF 310 / patronale : CHF 372.`,
         num: 2, titre: 'Allocations familiales',
         explication: 'Les AF sont avancées par l\'employeur puis remboursées par la caisse AF. On débite 5760 et on crédite 2160.',
         ecritures: [
-          { libelle: 'Allocations familiales Mme Rossi (2 enfants)', debit: '5760', debitLabel: 'Allocations familiales', credit: '2160', creditLabel: 'Salaires à payer', montantDebit: 622.00, montantCredit: 622.00 },
+          { libelle: 'Allocations familiales Léa Meyer (2 enfants)', debit: '5760', debitLabel: 'Allocations familiales', credit: '2160', creditLabel: 'Salaires à payer', montantDebit: 622.00, montantCredit: 622.00 },
         ],
       },
       {
         num: 3, titre: 'Indemnités repas et km',
         explication: 'Remboursements de frais — augmentent le net à verser sans créer de cotisations.',
         ecritures: [
-          { libelle: 'Indemnités repas + km Mme Rossi', debit: '5800', debitLabel: 'Autres charges personnel', credit: '2160', creditLabel: 'Salaires à payer', montantDebit: 440.00, montantCredit: 440.00 },
+          { libelle: 'Indemnités repas + km Léa Meyer', debit: '5800', debitLabel: 'Autres charges personnel', credit: '2160', creditLabel: 'Salaires à payer', montantDebit: 440.00, montantCredit: 440.00 },
         ],
       },
       {
         num: 4, titre: 'Charges patronales',
         ecritures: [
-          { libelle: 'Charges patronales Mme Rossi', debit: '5700', debitLabel: 'Charges sociales patronales', credit: '2270', creditLabel: 'Charges sociales à payer', montantDebit: 799.80, montantCredit: 799.80 },
+          { libelle: 'Charges patronales Léa Meyer', debit: '5700', debitLabel: 'Charges sociales patronales', credit: '2270', creditLabel: 'Charges sociales à payer', montantDebit: 799.80, montantCredit: 799.80 },
         ],
       },
       {
-        num: 5, titre: 'Versement total à Mme Rossi',
+        num: 5, titre: 'Versement total à Léa Meyer',
         explication: 'Net (5\'431.20) + AF (622) + indemnités (440) = CHF 6\'493.20.',
         ecritures: [
-          { libelle: 'Virement net total Mme Rossi', debit: '2160', debitLabel: 'Salaires à payer', credit: '1020', creditLabel: 'Banque', montantDebit: 6493.20, montantCredit: 6493.20 },
+          { libelle: 'Virement net total Léa Meyer', debit: '2160', debitLabel: 'Salaires à payer', credit: '1020', creditLabel: 'Banque', montantDebit: 6493.20, montantCredit: 6493.20 },
         ],
       },
       {
@@ -270,7 +270,7 @@ Indemnité km : CHF 120. LPP employé : CHF 310 / patronale : CHF 372.`,
   {
     id: 'sal-fiche-05',
     title: '13e salaire — provision mensuelle + versement décembre',
-    contexte: `Équipe Fidulex Sàrl — masse salariale mensuelle brute : CHF 20'000.
+    contexte: `Équipe SwiSSwatch SA — masse salariale mensuelle brute : CHF 20'000.
 Le 13e est provisionné chaque mois (1/12).
 En décembre, le 13e brut est versé (CHF 20'000).
 Taux global déductions employé ~13.5% / charges patronales ~14%.`,
@@ -332,9 +332,9 @@ Taux global déductions employé ~13.5% / charges patronales ~14%.`,
 
   {
     id: 'sal-fiche-06',
-    title: 'Départ en cours de mois — M. Favre (prorata)',
-    contexte: `M. Favre quitte l'entreprise le 20 mars (dernier jour travaillé).
-Mars : 21 jours ouvrables — M. Favre a travaillé 14 jours.
+    title: 'Départ en cours de mois — Lucas Morel (prorata)',
+    contexte: `Lucas Morel quitte l'entreprise le 20 mars (dernier jour travaillé).
+Mars : 21 jours ouvrables — Lucas Morel a travaillé 14 jours.
 Salaire brut mensuel : CHF 8'400.
 Brut proratisé : 8'400 × 14/21 = CHF 5'600.
 Solde vacances : 3 jours × (8'400/21) = CHF 1'200.
@@ -366,34 +366,34 @@ Indemnité de départ : CHF 2'000. LPP employé : CHF 280 / patronale : CHF 336.
         num: 1, titre: 'Salaire brut proratisé + déductions',
         explication: 'Toutes les cotisations sont calculées sur le brut effectif CHF 5\'600 (14/21 jours).',
         ecritures: [
-          { libelle: 'Salaire brut proratisé M. Favre (14/21 mars)', debit: '5000', debitLabel: 'Salaires', credit: '2270', creditLabel: 'Charges sociales à payer', montantDebit: 5600, montantCredit: 694.40, isMulti: true },
-          { libelle: 'Salaire net à payer M. Favre', debit: null, debitLabel: null, credit: '2160', creditLabel: 'Salaires à payer', montantDebit: null, montantCredit: 4905.60, isSubLine: true },
+          { libelle: 'Salaire brut proratisé Lucas Morel (14/21 mars)', debit: '5000', debitLabel: 'Salaires', credit: '2270', creditLabel: 'Charges sociales à payer', montantDebit: 5600, montantCredit: 694.40, isMulti: true },
+          { libelle: 'Salaire net à payer Lucas Morel', debit: null, debitLabel: null, credit: '2160', creditLabel: 'Salaires à payer', montantDebit: null, montantCredit: 4905.60, isSubLine: true },
         ],
       },
       {
         num: 2, titre: 'Solde vacances et indemnité de départ',
         ecritures: [
-          { libelle: 'Solde vacances M. Favre (3 jours)', debit: '5000', debitLabel: 'Salaires', credit: '2160', creditLabel: 'Salaires à payer', montantDebit: 1200, montantCredit: 1200 },
-          { libelle: 'Indemnité de départ M. Favre', debit: '5800', debitLabel: 'Autres charges personnel', credit: '2160', creditLabel: 'Salaires à payer', montantDebit: 2000, montantCredit: 2000 },
+          { libelle: 'Solde vacances Lucas Morel (3 jours)', debit: '5000', debitLabel: 'Salaires', credit: '2160', creditLabel: 'Salaires à payer', montantDebit: 1200, montantCredit: 1200 },
+          { libelle: 'Indemnité de départ Lucas Morel', debit: '5800', debitLabel: 'Autres charges personnel', credit: '2160', creditLabel: 'Salaires à payer', montantDebit: 2000, montantCredit: 2000 },
         ],
       },
       {
         num: 3, titre: 'Charges patronales',
         ecritures: [
-          { libelle: 'Charges patronales M. Favre', debit: '5700', debitLabel: 'Charges sociales patronales', credit: '2270', creditLabel: 'Charges sociales à payer', montantDebit: 722.40, montantCredit: 722.40 },
+          { libelle: 'Charges patronales Lucas Morel', debit: '5700', debitLabel: 'Charges sociales patronales', credit: '2270', creditLabel: 'Charges sociales à payer', montantDebit: 722.40, montantCredit: 722.40 },
         ],
       },
       {
         num: 4, titre: 'Versement solde de tout compte',
         explication: 'Total net = 4\'905.60 + 1\'200 + 2\'000 = CHF 8\'105.60.',
         ecritures: [
-          { libelle: 'Virement solde de tout compte M. Favre', debit: '2160', debitLabel: 'Salaires à payer', credit: '1020', creditLabel: 'Banque', montantDebit: 8105.60, montantCredit: 8105.60 },
+          { libelle: 'Virement solde de tout compte Lucas Morel', debit: '2160', debitLabel: 'Salaires à payer', credit: '1020', creditLabel: 'Banque', montantDebit: 8105.60, montantCredit: 8105.60 },
         ],
       },
       {
         num: 5, titre: 'Versement caisses sociales',
         ecritures: [
-          { libelle: 'Versement caisses sociales M. Favre', debit: '2270', debitLabel: 'Charges sociales à payer', credit: '1020', creditLabel: 'Banque', montantDebit: 1416.80, montantCredit: 1416.80 },
+          { libelle: 'Versement caisses sociales Lucas Morel', debit: '2270', debitLabel: 'Charges sociales à payer', credit: '1020', creditLabel: 'Banque', montantDebit: 1416.80, montantCredit: 1416.80 },
         ],
       },
     ],

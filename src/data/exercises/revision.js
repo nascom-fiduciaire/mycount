@@ -2,12 +2,12 @@ export const revisionExercises = [
   {
     id: 'rev-01', group: 'revision', type: 'journal', tag: 'base', difficulty: 3,
     title: 'Révision — Mois complet d\'une PME (mixte)',
-    description: `Passez les écritures du mois d'octobre pour Fidulex Sàrl. Ce cas mélange achats, ventes, TVA, salaires et paiements :
-1. 02.10 : Facture client Rossi SA — prestation CHF 8'000 HT + TVA 8.1%
+    description: `Passez les écritures du mois d'octobre pour SwiSSwatch SA. Ce cas mélange achats, ventes, TVA, salaires et paiements :
+1. 02.10 : Facture client Nivarox SA — prestation CHF 8'000 HT + TVA 8.1%
 2. 05.10 : Facture fournisseur marchandises CHF 5'000 HT + TVA 8.1%
 3. 10.10 : Paiement loyer CHF 2'200
 4. 15.10 : Salaire brut CHF 6'000 — déductions employé CHF 750 — net versé CHF 5'250
-5. 20.10 : Encaissement client Rossi SA (totalité TTC)
+5. 20.10 : Encaissement client Nivarox SA (totalité TTC)
 6. 25.10 : Paiement fournisseur (totalité TTC)
 7. 30.10 : Amortissement mensuel mobilier CHF 500 (méthode directe)`,
     note: 'Comptabilisez avec TVA (méthode effective, postes ouverts). Les salaires sont simplifiés.',
@@ -34,7 +34,7 @@ export const revisionExercises = [
   {
     id: 'rev-02', group: 'revision', type: 'journal', tag: 'base', difficulty: 3,
     title: 'Révision — Exercice annuel simplifié',
-    description: `Exercice annuel de Fidulex Sàrl — de l'ouverture au bouclement :
+    description: `Exercice annuel de SwiSSwatch SA — de l'ouverture au bouclement :
 1. Ouverture : Banque CHF 50'000, Capital CHF 50'000
 2. Achat marchandises à crédit CHF 15'000
 3. Vente marchandises à crédit CHF 28'000
@@ -61,7 +61,7 @@ export const revisionExercises = [
   {
     id: 'rev-03', group: 'revision', type: 'journal', tag: 'base', difficulty: 3,
     title: 'Cas intégrateur — Compta + TVA + Salaires + Bouclement',
-    description: `Cas complet couvrant tous les thèmes pour Fidulex Sàrl (novembre + bouclement) :
+    description: `Cas complet couvrant tous les thèmes pour SwiSSwatch SA (novembre + bouclement) :
 1. 01.11 : Facture client CHF 10'000 HT + TVA 8.1% = CHF 10'810
 2. 05.11 : Facture fournisseur CHF 4'000 HT + TVA 8.1% = CHF 4'324
 3. 10.11 : Salaire brut CHF 7'000 — déductions CHF 870 — net CHF 6'130

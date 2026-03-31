@@ -53,19 +53,19 @@ export const salairesCalcExercises = [
   {
     id: 'sal-q-05', group: 'salaires-calcul', type: 'qcm', tag: 'salaires', difficulty: 3,
     title: 'Coût employeur total',
-    description: 'M. Rossi : brut CHF 6\'000 — déductions employé CHF 744 — charges patronales CHF 1\'014. Le coût mensuel est :',
+    description: 'Théo Keller : brut CHF 6\'000 — déductions employé CHF 744 — charges patronales CHF 1\'014. Le coût mensuel est :',
     options: [
       { id: 'a', text: 'CHF 5\'256 (salaire net versé)', correct: false },
       { id: 'b', text: 'CHF 6\'000 (salaire brut)', correct: false },
       { id: 'c', text: 'CHF 7\'014 (brut + charges patronales)', correct: true },
       { id: 'd', text: 'CHF 6\'744 (brut + déductions employé)', correct: false },
     ],
-    explanation: 'Coût employeur = Brut + Charges patronales = 6\'000 + 1\'014 = CHF 7\'014. Les déductions (CHF 744) sont dans le brut — elles réduisent ce que Rossi reçoit (net = CHF 5\'256).',
+    explanation: 'Coût employeur = Brut + Charges patronales = 6\'000 + 1\'014 = CHF 7\'014. Les déductions (CHF 744) sont dans le brut — elles réduisent ce que Keller reçoit (net = CHF 5\'256).',
   },
   {
     id: 'sal-calc-01', group: 'salaires-calcul', type: 'calcul', tag: 'salaires', difficulty: 2,
-    title: 'Calculer le salaire net — M. Dupont',
-    description: 'Calculez les déductions employé et le salaire net de M. Dupont.',
+    title: 'Calculer le salaire net — Théo Keller',
+    description: 'Calculez les déductions employé et le salaire net de Théo Keller.',
     note: 'Taux 2024 : AVS/AI/APG 5.3% — AC 1.1% — LAANP 1.0% — LPP forfait.',
     data: [
       { label: 'Salaire brut mensuel', value: 'CHF 7\'200.00' },
@@ -83,8 +83,8 @@ export const salairesCalcExercises = [
   },
   {
     id: 'sal-calc-02', group: 'salaires-calcul', type: 'calcul', tag: 'salaires', difficulty: 2,
-    title: 'Charges patronales et coût total — M. Dupont',
-    description: 'Calculez les charges patronales et le coût total employeur pour M. Dupont.',
+    title: 'Charges patronales et coût total — Théo Keller',
+    description: 'Calculez les charges patronales et le coût total employeur pour Théo Keller.',
     note: 'Les charges patronales s\'ajoutent au brut — elles ne sont pas déduites du salaire.',
     data: [
       { label: 'Salaire brut', value: 'CHF 7\'200.00' },
@@ -102,8 +102,8 @@ export const salairesCalcExercises = [
   },
   {
     id: 'sal-calc-03', group: 'salaires-calcul', type: 'calcul', tag: 'salaires', difficulty: 2,
-    title: 'Temps partiel 60% — Mme Chen',
-    description: 'Calculez le brut proratisé et le salaire net de Mme Chen à 60%.',
+    title: 'Temps partiel 60% — Léa Meyer',
+    description: 'Calculez le brut proratisé et le salaire net de Léa Meyer à 60%.',
     note: 'Toutes les cotisations sont calculées sur le brut effectif (60%), pas sur le 100%.',
     data: [
       { label: 'Salaire brut à 100%', value: 'CHF 6\'500.00' },
@@ -122,8 +122,8 @@ export const salairesCalcExercises = [
   },
   {
     id: 'sal-calc-04', group: 'salaires-calcul', type: 'calcul', tag: 'salaires', difficulty: 3,
-    title: 'Impôt à la source — M. Silva',
-    description: 'Calculez les déductions et le net de M. Silva avec impôt à la source.',
+    title: 'Impôt à la source — Lucas Morel',
+    description: 'Calculez les déductions et le net de Lucas Morel avec impôt à la source.',
     note: 'L\'IS est calculé sur le brut. Il va au compte 2271, séparé des cotisations sociales (2270).',
     data: [
       { label: 'Salaire brut', value: 'CHF 5\'800.00' },
@@ -142,8 +142,8 @@ export const salairesCalcExercises = [
   },
   {
     id: 'sal-calc-05', group: 'salaires-calcul', type: 'calcul', tag: 'salaires', difficulty: 3,
-    title: 'Prorata de départ — M. Favre',
-    description: 'M. Favre part le 20 mars. Calculez son brut proratisé et son net.',
+    title: 'Prorata de départ — Lucas Morel',
+    description: 'Lucas Morel part le 20 mars. Calculez son brut proratisé et son net.',
     note: 'Prorata = brut mensuel × jours travaillés / jours ouvrables du mois.',
     data: [
       { label: 'Salaire brut mensuel', value: 'CHF 8\'400.00' },
@@ -164,7 +164,7 @@ export const salairesCalcExercises = [
   {
     id: 'sal-payslip-01', group: 'salaires-calcul', type: 'payslip-interactive', tag: 'salaires', difficulty: 2,
     title: 'Fiche de salaire — Employé standard 100%',
-    description: 'Complétez la fiche de salaire de M. Weber, employé à 100% chez Fidulex Sàrl.',
+    description: 'Complétez la fiche de salaire de Jules Weber, employé à 100% chez SwiSSwatch SA.',
     salaire: { brut: 6500, tauxActivite: 100, mois: 'Mars 2024' },
     references: [
       { label: 'AVS/AI/APG employé', taux: '5.3%', base: 'Salaire brut' },
@@ -197,7 +197,7 @@ export const salairesCalcExercises = [
   {
     id: 'sal-payslip-02', group: 'salaires-calcul', type: 'payslip-interactive', tag: 'salaires', difficulty: 2,
     title: 'Fiche de salaire — Temps partiel 60%',
-    description: 'Complétez la fiche de salaire de Mme Rossi, employée à 60%.',
+    description: 'Complétez la fiche de salaire de Léa Meyer, employée à 60%.',
     salaire: { brut: 3900, tauxActivite: 60, mois: 'Avril 2024' },
     references: [
       { label: 'AVS/AI/APG employé', taux: '5.3%', base: 'Salaire brut' },
@@ -230,7 +230,7 @@ export const salairesCalcExercises = [
   {
     id: 'sal-payslip-03', group: 'salaires-calcul', type: 'payslip-interactive', tag: 'salaires', difficulty: 3,
     title: 'Fiche de salaire — Permis B avec impôt à la source',
-    description: 'Complétez la fiche de M. Silva (permis B, célibataire, barème A0).',
+    description: 'Complétez la fiche de Lucas Morel (permis B, célibataire, barème A0).',
     salaire: { brut: 5800, tauxActivite: 100, mois: 'Mai 2024' },
     references: [
       { label: 'AVS/AI/APG employé', taux: '5.3%', base: 'Salaire brut' },
@@ -265,7 +265,7 @@ export const salairesCalcExercises = [
   {
     id: 'sal-payslip-04', group: 'salaires-calcul', type: 'payslip-interactive', tag: 'salaires', difficulty: 3,
     title: 'Fiche de salaire — Départ le 15 du mois (prorata)',
-    description: 'M. Keller quitte l\'entreprise le 15 juin. Calculez son dernier salaire (15 jours sur 30).',
+    description: 'Théo Keller quitte l\'entreprise le 15 juin. Calculez son dernier salaire (15 jours sur 30).',
     salaire: { brut: 3400, tauxActivite: 100, mois: 'Juin 2024 (prorata 15/30)' },
     note: 'Le brut est déjà proratisé : 6\'800 × 15/30 = 3\'400',
     references: [
@@ -335,7 +335,7 @@ export const salairesEcrituresExercises = [
   {
     id: 'sal-e-01', group: 'salaires-ecritures', type: 'journal', tag: 'salaires', difficulty: 3,
     title: 'Comptabilisation salaire — étapes 1 et 2',
-    description: 'Comptabilisez les étapes 1 (brut + déductions) et 2 (charges patronales) pour M. Rossi en mars.',
+    description: 'Comptabilisez les étapes 1 (brut + déductions) et 2 (charges patronales) pour Théo Keller en mars.',
     note: 'Débit 5000 pour le brut. Déductions employé → 2270. Net à verser → 2160. Charges patronales → débit 5700 / crédit 2270.',
     data: [
       { label: 'Salaire brut', value: 'CHF 6\'000.00' },
@@ -344,28 +344,28 @@ export const salairesEcrituresExercises = [
       { label: 'Charges patronales', value: 'CHF 1\'014.00' },
     ],
     ecritures: [
-      { id: 'e1', libelle: 'Salaire brut Rossi — déductions → 2270', debit: { num: '5000', label: 'Salaires' }, credit: { num: '2270', label: 'Charges sociales à payer' }, amount: 6000, amountCredit: 744, multiLine: true },
-      { id: 'e1b', libelle: 'Net à payer Rossi → 2160', debit: null, credit: { num: '2160', label: 'Salaires à payer' }, amount: null, amountCredit: 5256, isSubLine: true },
+      { id: 'e1', libelle: 'Salaire brut Keller — déductions → 2270', debit: { num: '5000', label: 'Salaires' }, credit: { num: '2270', label: 'Charges sociales à payer' }, amount: 6000, amountCredit: 744, multiLine: true },
+      { id: 'e1b', libelle: 'Net à payer Keller → 2160', debit: null, credit: { num: '2160', label: 'Salaires à payer' }, amount: null, amountCredit: 5256, isSubLine: true },
       { id: 'e2', libelle: 'Charges sociales patronales mars', debit: { num: '5700', label: 'Charges sociales patronales' }, credit: { num: '2270', label: 'Charges sociales à payer' }, amount: 1014 },
     ],
   },
   {
     id: 'sal-e-02', group: 'salaires-ecritures', type: 'journal', tag: 'salaires', difficulty: 3,
     title: 'Versements — salaire net et caisses sociales',
-    description: 'Passez les étapes 3 (virement salaire net) et 4 (versement caisses) pour M. Rossi.',
+    description: 'Passez les étapes 3 (virement salaire net) et 4 (versement caisses) pour Théo Keller.',
     data: [
       { label: 'Salaire net à verser', value: 'CHF 5\'256.00' },
       { label: 'Total à verser aux caisses', value: 'CHF 1\'758.00' },
     ],
     ecritures: [
-      { id: 'e3', libelle: 'Virement salaire net M. Rossi — 05.04', debit: { num: '2160', label: 'Salaires à payer' }, credit: { num: '1020', label: 'Banque' }, amount: 5256 },
+      { id: 'e3', libelle: 'Virement salaire net Théo Keller — 05.04', debit: { num: '2160', label: 'Salaires à payer' }, credit: { num: '1020', label: 'Banque' }, amount: 5256 },
       { id: 'e4', libelle: 'Versement caisses sociales (AVS+AC+LPP+LAA)', debit: { num: '2270', label: 'Charges sociales à payer' }, credit: { num: '1020', label: 'Banque' }, amount: 1758 },
     ],
   },
   {
     id: 'sal-e-03', group: 'salaires-ecritures', type: 'journal', tag: 'salaires', difficulty: 3,
-    title: 'Salaire avec impôt à la source — M. Silva',
-    description: 'Comptabilisez le salaire de M. Silva avec IS : brut + déductions + IS + charges patronales.',
+    title: 'Salaire avec impôt à la source — Lucas Morel',
+    description: 'Comptabilisez le salaire de Lucas Morel avec IS : brut + déductions + IS + charges patronales.',
     note: 'L\'IS (CHF 725) va au compte 2271, séparé de 2270. Les cotisations sociales = CHF 719.20.',
     data: [
       { label: 'Salaire brut', value: 'CHF 5\'800.00' },
@@ -375,10 +375,10 @@ export const salairesEcrituresExercises = [
       { label: 'Charges patronales', value: 'CHF 748.20' },
     ],
     ecritures: [
-      { id: 'e1', libelle: 'Salaire brut Silva — cotisations → 2270', debit: { num: '5000', label: 'Salaires' }, credit: { num: '2270', label: 'Charges sociales à payer' }, amount: 5800, amountCredit: 719.20, multiLine: true },
+      { id: 'e1', libelle: 'Salaire brut Morel — cotisations → 2270', debit: { num: '5000', label: 'Salaires' }, credit: { num: '2270', label: 'Charges sociales à payer' }, amount: 5800, amountCredit: 719.20, multiLine: true },
       { id: 'e1b', libelle: 'IS retenu → 2271', debit: null, credit: { num: '2271', label: 'IS à payer' }, amount: null, amountCredit: 725, isSubLine: true },
-      { id: 'e1c', libelle: 'Net à payer Silva → 2160', debit: null, credit: { num: '2160', label: 'Salaires à payer' }, amount: null, amountCredit: 4355.80, isSubLine: true },
-      { id: 'e2', libelle: 'Charges patronales M. Silva', debit: { num: '5700', label: 'Charges sociales patronales' }, credit: { num: '2270', label: 'Charges sociales à payer' }, amount: 748.20 },
+      { id: 'e1c', libelle: 'Net à payer Morel → 2160', debit: null, credit: { num: '2160', label: 'Salaires à payer' }, amount: null, amountCredit: 4355.80, isSubLine: true },
+      { id: 'e2', libelle: 'Charges patronales Lucas Morel', debit: { num: '5700', label: 'Charges sociales patronales' }, credit: { num: '2270', label: 'Charges sociales à payer' }, amount: 748.20 },
     ],
   },
   {
@@ -398,7 +398,7 @@ export const salairesEcrituresExercises = [
   {
     id: 'sal-e-05', group: 'salaires-ecritures', type: 'qcm', tag: 'salaires', difficulty: 2,
     title: 'Impact salaire sur le résultat',
-    description: 'Pour M. Rossi (brut CHF 6\'000 + charges patronales CHF 1\'014), la charge totale dans le compte de résultat est :',
+    description: 'Pour Théo Keller (brut CHF 6\'000 + charges patronales CHF 1\'014), la charge totale dans le compte de résultat est :',
     options: [
       { id: 'a', text: 'CHF 5\'256 (salaire net versé)', correct: false },
       { id: 'b', text: 'CHF 6\'000 (salaire brut)', correct: false },
@@ -428,7 +428,7 @@ export const salairesEcrituresExercises = [
   {
     id: 'sal-ecr-06', group: 'salaires-ecritures', type: 'journal', tag: 'salaires', difficulty: 2,
     title: 'Provision mensuelle du 13e salaire',
-    description: 'Fidulex Sàrl provisionne le 13e salaire chaque mois. Masse salariale brute mensuelle : CHF 25\'000. Passez l\'écriture de provision de janvier.',
+    description: 'SwiSSwatch SA provisionne le 13e salaire chaque mois. Masse salariale brute mensuelle : CHF 25\'000. Passez l\'écriture de provision de janvier.',
     data: [
       { label: 'Masse salariale brute', value: 'CHF 25\'000/mois' },
       { label: '13e salaire', value: '1/12 de la masse annuelle' },

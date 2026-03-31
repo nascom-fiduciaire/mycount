@@ -6,7 +6,7 @@ export const arretsExercises = [
   {
     id: 'arret-calc-01', group: 'salaires-calcul', type: 'calcul', tag: 'salaires', difficulty: 3,
     title: 'Arrêt maladie — IJM reçue par l\'employeur',
-    description: 'M. Rossi (CHF 6\'000/mois) est en arrêt 16 jours sur 21. Assurance IJM 80%, indemnité versée à l\'employeur. Calculez les montants clés.',
+    description: 'Théo Keller (CHF 6\'000/mois) est en arrêt 16 jours sur 21. Assurance IJM 80%, indemnité versée à l\'employeur. Calculez les montants clés.',
     note: 'Cotisations calculées sur la part à charge de l\'employeur (brut − IJM), pas sur le brut total.',
     data: [
       { label: 'Salaire brut mensuel', value: "CHF 6'000.00" },
@@ -18,7 +18,7 @@ export const arretsExercises = [
       { id: 'ijm', label: 'Indemnité IJM (80% × 6\'000 × 16/21)', placeholder: "3'657.14", correct: 3657.14, tol: 1, hint: '6\'000 × 0.8 × 16/21' },
       { id: 'part_emp', label: 'Part à charge de l\'employeur', placeholder: "2'342.86", correct: 2342.86, tol: 1, hint: '6\'000 − indemnité IJM' },
       { id: 'cotisations', label: 'Cotisations sur part employeur (13.5%)', placeholder: '316.29', correct: 316.29, tol: 1, hint: '2\'342.86 × 13.5%' },
-      { id: 'net', label: 'Salaire net versé à M. Rossi', placeholder: "5'683.71", correct: 5683.71, tol: 2, hint: '6\'000 − cotisations sur 6\'000 (pas sur 2\'342)' },
+      { id: 'net', label: 'Salaire net versé à Théo Keller', placeholder: "5'683.71", correct: 5683.71, tol: 2, hint: '6\'000 − cotisations sur 6\'000 (pas sur 2\'342)' },
     ],
     correction: 'IJM : 6\'000 × 80% × 16/21 = CHF 3\'657.14\nPart employeur : 6\'000 − 3\'657.14 = CHF 2\'342.86\nCotisations sur part emp. : 2\'342.86 × 13.5% = CHF 316.29\nNet : 6\'000 − (6\'000 × 13.5%) = CHF 5\'190 environ (cotisations sur brut habituel)',
   },
@@ -26,7 +26,7 @@ export const arretsExercises = [
   {
     id: 'arret-calc-02', group: 'salaires-calcul', type: 'calcul', tag: 'salaires', difficulty: 2,
     title: 'Arrêt maladie — sans assurance IJM (CO 324a)',
-    description: 'Mme Chen (CHF 4\'500/mois) est en arrêt 10 jours. Pas d\'assurance IJM. Calculez le coût pour l\'employeur.',
+    description: 'Léa Meyer (CHF 4\'500/mois) est en arrêt 10 jours. Pas d\'assurance IJM. Calculez le coût pour l\'employeur.',
     note: 'Sans assurance, l\'employeur supporte 100% du coût. Cotisations sur le brut maintenu complet.',
     data: [
       { label: 'Salaire brut mensuel', value: "CHF 4'500.00" },
@@ -37,7 +37,7 @@ export const arretsExercises = [
     champs: [
       { id: 'part_emp', label: 'Part à charge employeur (tout)', placeholder: "4'500.00", correct: 4500, tol: 0.10, hint: 'Sans assurance = brut complet' },
       { id: 'cotis_emp', label: 'Cotisations employé (13.5%)', placeholder: '607.50', correct: 607.50, tol: 1, hint: '4\'500 × 13.5%' },
-      { id: 'net', label: 'Salaire net versé à Mme Chen', placeholder: "3'892.50", correct: 3892.50, tol: 1, hint: '4\'500 − cotisations' },
+      { id: 'net', label: 'Salaire net versé à Léa Meyer', placeholder: "3'892.50", correct: 3892.50, tol: 1, hint: '4\'500 − cotisations' },
       { id: 'cout_total', label: 'Coût total employeur (brut + charges pat.)', placeholder: "5'107.50", correct: 5107.50, tol: 2, hint: '4\'500 + charges patronales (13.5%)' },
     ],
     correction: 'Part employeur : CHF 4\'500 (totalité — pas d\'assurance)\nCotisations employé : 4\'500 × 13.5% = CHF 607.50\nNet : 4\'500 − 607.50 = CHF 3\'892.50\nCoût total : 4\'500 + (4\'500 × 13.5%) = CHF 5\'107.50',
@@ -46,7 +46,7 @@ export const arretsExercises = [
   {
     id: 'arret-calc-03', group: 'salaires-calcul', type: 'calcul', tag: 'salaires', difficulty: 3,
     title: 'Accident LAA — indemnités SUVA',
-    description: 'M. Silva (CHF 5\'800/mois) accident le 05.03, arrêt 19 jours (21 jours ouvrables). SUVA verse 80% dès jour 3. Calculez les montants.',
+    description: 'Lucas Morel (CHF 5\'800/mois) accident le 05.03, arrêt 19 jours (21 jours ouvrables). SUVA verse 80% dès jour 3. Calculez les montants.',
     note: 'Les 2 premiers jours sont toujours à charge de l\'employeur. SUVA couvre dès le 3e jour. Cotisations sur la part employeur uniquement.',
     data: [
       { label: 'Salaire brut mensuel', value: "CHF 5'800.00" },
@@ -79,7 +79,7 @@ export const arretsExercises = [
   {
     id: 'arret-calc-05', group: 'salaires-calcul', type: 'qcm', tag: 'salaires', difficulty: 2,
     title: 'Cotisations pendant un arrêt maladie',
-    description: 'M. Rossi (brut CHF 6\'000) est en arrêt. L\'assureur IJM verse CHF 2\'500 à l\'employeur. Sur quelle base calcule-t-on les cotisations AVS/AC ?',
+    description: 'Théo Keller (brut CHF 6\'000) est en arrêt. L\'assureur IJM verse CHF 2\'500 à l\'employeur. Sur quelle base calcule-t-on les cotisations AVS/AC ?',
     options: [
       { id: 'a', text: "Sur CHF 6'000 (brut complet)", correct: false },
       { id: 'b', text: "Sur CHF 2'500 (indemnité IJM seulement)", correct: false },
@@ -92,7 +92,7 @@ export const arretsExercises = [
   {
     id: 'arret-calc-06', group: 'salaires-calcul', type: 'calcul', tag: 'salaires', difficulty: 3,
     title: 'Accident professionnel LAA — Indemnité SUVA',
-    description: 'M. Favre gagne CHF 6\'000 brut/mois et est victime d\'un accident professionnel. Il est en arrêt 45 jours.',
+    description: 'Lucas Morel gagne CHF 6\'000 brut/mois et est victime d\'un accident professionnel. Il est en arrêt 45 jours.',
     note: 'Les 3 premiers jours : l\'employeur paie 80% du salaire. Dès le 4e jour : la SUVA verse 80%.',
     data: [
       { label: 'Salaire brut mensuel', value: 'CHF 6\'000' },
@@ -112,7 +112,7 @@ export const arretsExercises = [
   {
     id: 'arret-calc-07', group: 'salaires-calcul', type: 'calcul', tag: 'salaires', difficulty: 3,
     title: 'Maladie longue durée — IJM sur 3 mois',
-    description: 'Mme Blanc (brut CHF 5\'400/mois) est en arrêt maladie 90 jours. L\'entreprise a une assurance IJM (indemnités journalières maladie).',
+    description: 'Emma Lang (brut CHF 5\'400/mois) est en arrêt maladie 90 jours. L\'entreprise a une assurance IJM (indemnités journalières maladie).',
     data: [
       { label: 'Salaire brut', value: 'CHF 5\'400/mois' },
       { label: 'Durée arrêt', value: '90 jours' },
