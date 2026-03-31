@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { P, H2, H3, Note, Loi, Tableau, Ecriture, TheoryLayout } from './TheoryUI';
+import { P, H3, Note, Loi, Tableau, Ecriture, TheoryLayout, Section } from './TheoryUI';
 
 // ─── COMPTE EN T ──────────────────────────────────────────────────────────────
 function CompteT({ title, debit = [], credit = [], totalD, totalC, solde, soldeLabel }) {
@@ -119,7 +119,7 @@ function TableauFIFO({ title, color, lignes, totalE, totalS, totalSol }) {
 function TabIntermittent() {
   return (
     <div>
-      <H2>1. Pourquoi inscrire les stocks au bilan ?</H2>
+      <Section title="1. Pourquoi inscrire les stocks au bilan ?" defaultOpen={true}>
       <P>Lorsqu'une entreprise achète des marchandises pour les revendre, toutes les factures d'achat ne peuvent pas être considérées comme des charges de l'exercice. Une partie des marchandises achetées n'est pas encore vendue au 31 décembre — elles appartiennent au patrimoine de l'entreprise et doivent figurer à l'actif du bilan.</P>
       <Loi art="Art. 959a al. 1 ch. 1 let. d CO">
         Les stocks et les prestations de services non facturées figurent dans les actifs circulants du bilan.
@@ -148,7 +148,8 @@ function TabIntermittent() {
         <div style={{ paddingLeft: 20 }}>49.. Rabais, déductions et escomptes obtenus</div>
       </div>
 
-      <H2>2. Principe de l'inventaire intermittent</H2>
+      </Section>
+      <Section title="2. Principe de l'inventaire intermittent" defaultOpen={false}>
       <P>L'inventaire intermittent est la méthode la plus simple. Elle implique que l'activité de l'entreprise soit peu complexe et que les dirigeants puissent renoncer à certaines informations en cours d'année (valeur du stock, marge brute, PRAMV). Ces indicateurs ne sont disponibles qu'au 31 décembre.</P>
       <P><strong>En cours d'année :</strong> toutes les factures d'achat sont enregistrées directement en charge dans le compte <strong>4000 Achats</strong>. Le compte 1200 n'est jamais touché.</P>
       <P><strong>Au 31 décembre :</strong> on effectue un comptage physique des marchandises en stock. On comptabilise ensuite la variation entre le stock initial et le stock final pour corriger les charges.</P>
@@ -156,7 +157,8 @@ function TabIntermittent() {
         Le montant de chaque poste présenté dans le bilan est justifié par un inventaire ou d'une autre manière. La prise d'inventaire est réalisée sur le terrain et fait l'objet d'un rapport écrit qui sera joint aux comptes.
       </Loi>
 
-      <H2>3. Les opérations courantes et leurs écritures</H2>
+      </Section>
+      <Section title="3. Les opérations courantes et leurs écritures" defaultOpen={false}>
 
       <H3>Achat de marchandises (méthode postes ouverts)</H3>
       <Ecriture debit="4000 Achats" credit="2000 Fournisseurs" montant="350'000" libelle="Factures d'achats de l'année" />
@@ -195,7 +197,8 @@ function TabIntermittent() {
         Écriture : <strong>Débit 4800 Variation de stocks CHF 30'000 / Crédit 1200 Stock CHF 30'000</strong>
       </Note>
 
-      <H2>4. Exemple complet — SwiSSwatch SA, exercice N</H2>
+      </Section>
+      <Section title="4. Exemple complet — SwiSSwatch SA, exercice N" defaultOpen={false}>
       <Note>
         <strong>Données :</strong> (a) Stock initial 01.01 : CHF 42'000 | (b) Achats annuels : CHF 350'000 | (c) Frais de transport : CHF 20'000 | (d) Retour fournisseur 03.09 : CHF 10'000 | (e) Ristourne 5% sur CHF 340'000 = CHF 17'000 | (f) Ventes annuelles : CHF 550'000 | (g) Retours clients : CHF 2'000 | (h) Rabais accordés : CHF 10'000 | (i) Stock final inventaire 31.12 : CHF 12'000
       </Note>
@@ -273,7 +276,8 @@ function TabIntermittent() {
         <strong>Attention :</strong> sans comptabiliser la variation de stock (CHF 30'000), la marge brute aurait été surévaluée de CHF 30'000 — soit CHF 195'000 au lieu de CHF 165'000. L'inventaire physique est indispensable pour un résultat correct.
       </Note>
 
-      <H2>5. Points clés à retenir</H2>
+      </Section>
+      <Section title="5. Points clés à retenir" defaultOpen={false}>
       {[
         'En cours d\'année : tout achat → débit 4000. Le compte 1200 n\'est jamais touché.',
         'Au 31.12 : une seule écriture de variation de stock, basée sur le comptage physique.',
@@ -289,6 +293,7 @@ function TabIntermittent() {
           <span>{pt}</span>
         </div>
       ))}
+      </Section>
     </div>
   );
 }
@@ -320,11 +325,12 @@ function TabPermanent() {
 
   return (
     <div>
-      <H2>1. Principe — mise à jour permanente du stock</H2>
+      <Section title="1. Principe — mise à jour permanente du stock" defaultOpen={true}>
       <P>Dans l'inventaire permanent, le compte <strong>1200 Stock</strong> est mis à jour après chaque mouvement de marchandises — achat ou vente. Le dirigeant connaît en temps réel la valeur du stock, le PRAMV et la marge brute, sans attendre la clôture annuelle.</P>
       <P>Tous les achats sont enregistrés directement dans le compte <strong>1200 Stock</strong> (pas dans 4000). Lors de chaque vente, le stock est réduit du coût d'achat du bien vendu, et la contrepartie va dans le compte <strong>4000 PRAMV</strong>.</P>
 
-      <H2>2. Les deux écritures à chaque vente</H2>
+      </Section>
+      <Section title="2. Les deux écritures à chaque vente" defaultOpen={false}>
       <P>C'est la caractéristique essentielle de l'inventaire permanent : chaque vente génère <strong>deux écritures simultanées</strong> :</P>
 
       <H3>Écriture 1 — enregistrer le produit au prix de vente</H3>
@@ -343,7 +349,8 @@ function TabPermanent() {
       <Ecriture debit="3800 Déductions" credit="3000 Ventes" montant="prix de vente" libelle="Annulation du produit" />
       <Ecriture debit="1200 Stock" credit="4000 PRAMV" montant="coût d'achat" libelle="Remise en stock au coût d'achat" />
 
-      <H2>3. Exemple complet — Magasin de montres avec codes-barres</H2>
+      </Section>
+      <Section title="3. Exemple complet — Magasin de montres avec codes-barres" defaultOpen={false}>
       <P>Léa Meyer a investi dans un système de caisse avec codes-barres qui comptabilise automatiquement chaque vente. Le système met à jour en temps réel les comptes 1200, 3000, 3800 et 4000.</P>
 
       <Tableau
@@ -399,7 +406,8 @@ function TabPermanent() {
         Même en inventaire permanent, le <strong>comptage physique annuel est obligatoire</strong> (art. 958c al. 2 CO). Les écarts révèlent des pertes, des erreurs de saisie ou des vols. Sans ce contrôle, le stock serait surévalué de CHF 70 au bilan.
       </Note>
 
-      <H2>4. Les méthodes d'évaluation du stock</H2>
+      </Section>
+      <Section title="4. Les méthodes d'évaluation du stock" defaultOpen={false}>
       <P>En inventaire permanent, chaque sortie de stock doit être valorisée au prix d'achat. Lorsque les prix varient d'une commande à l'autre, il faut choisir quelle valeur utiliser. Quatre méthodes sont reconnues :</P>
 
       <Tableau
@@ -416,7 +424,8 @@ function TabPermanent() {
         La présentation et les méthodes d'évaluation doivent rester stables d'un exercice à l'autre. Tout changement de méthode doit être justifié et mentionné dans l'annexe aux comptes.
       </Loi>
 
-      <H2>5. Exemple chiffré FIFO vs LIFO — tableaux complets</H2>
+      </Section>
+      <Section title="5. Exemple chiffré FIFO vs LIFO — tableaux complets" defaultOpen={false}>
       <Note>
         <strong>Données :</strong> Stock initial 300 unités à CHF 10 | Achat 1 : 200 unités à CHF 12 | Achat 2 : 300 unités à CHF 14 | Achat 3 : 200 unités à CHF 16<br />
         Vente A : 400 unités | Vente B : 200 unités | Vente C : 100 unités | Prix de vente : CHF 20/unité<br />
@@ -464,7 +473,8 @@ function TabPermanent() {
         Dans cet exemple, l'écart entre FIFO et LIFO est de <strong>CHF 600</strong>. Sur une PME avec des millions de francs de stock, cet écart peut représenter des dizaines de milliers de francs d'impôts. Le choix de la méthode est donc une décision de gestion fiscale importante — mais rappel : elle doit rester constante d'un exercice à l'autre.
       </Note>
 
-      <H2>6. Comparaison des deux méthodes</H2>
+      </Section>
+      <Section title="6. Comparaison des deux méthodes" defaultOpen={false}>
       <Tableau
         headers={['Critère', 'Inventaire intermittent', 'Inventaire permanent']}
         rows={[
@@ -478,7 +488,8 @@ function TabPermanent() {
         ]}
       />
 
-      <H2>7. Points clés à retenir</H2>
+      </Section>
+      <Section title="7. Points clés à retenir" defaultOpen={false}>
       {[
         'Chaque achat → débit 1200 Stock (pas 4000 comme en intermittent).',
         'Chaque vente → deux écritures : produit au prix de vente (crédit 3000) + sortie de stock au coût d\'achat (débit 4000 PRAMV / crédit 1200).',
@@ -494,6 +505,7 @@ function TabPermanent() {
           <span>{pt}</span>
         </div>
       ))}
+      </Section>
     </div>
   );
 }
@@ -502,7 +514,7 @@ function TabPermanent() {
 function TabEvaluation() {
   return (
     <div>
-      <H2>1. Principe du plus bas (Lower of Cost or Market)</H2>
+      <Section title="1. Principe du plus bas (Lower of Cost or Market)" defaultOpen={true}>
       <P>L&apos;article 960a CO impose d&apos;évaluer les actifs circulants au plus bas entre le coût d&apos;acquisition et la valeur de marché (ou valeur de réalisation). Ce principe s&apos;applique directement aux stocks de marchandises.</P>
       <P>Concrètement, si le stock a coûté CHF 50&apos;000 à l&apos;achat mais ne vaut plus que CHF 42&apos;000 sur le marché au 31.12, il faut le déprécier à CHF 42&apos;000.</P>
       <Loi art="Art. 960a al. 3 CO">
@@ -510,7 +522,8 @@ function TabEvaluation() {
       </Loi>
       <Ecriture debit="4080 Dépréciation stock" credit="1200 Stock marchandises" montant="8'000" libelle="Dépréciation stock au 31.12 — valeur de marché inférieure au coût" />
 
-      <H2>2. Provision pour stock obsolète</H2>
+      </Section>
+      <Section title="2. Provision pour stock obsolète" defaultOpen={false}>
       <P>En plus de la dépréciation au prix du marché, l&apos;entreprise doit constituer une provision si elle détient des marchandises invendables, endommagées, ou dont la rotation est très lente.</P>
       <P>En pratique, beaucoup de fiduciaires appliquent un abattement forfaitaire de 1/3 sur le stock (méthode dite des 2/3). Le stock est ainsi comptabilisé à 2/3 de sa valeur réelle, ce qui constitue une réserve latente autorisée par le CO.</P>
       <Note color="yellow">
@@ -525,7 +538,8 @@ function TabEvaluation() {
         ]}
       />
 
-      <H2>3. Travaux en cours et produits semi-finis</H2>
+      </Section>
+      <Section title="3. Travaux en cours et produits semi-finis" defaultOpen={false}>
       <P>Pour les entreprises de production ou de services (bureau d&apos;ingénierie, architectes, etc.), il faut également évaluer les travaux en cours au 31.12.</P>
       <P>Les travaux en cours sont évalués au coût de production (matières + main-d&apos;œuvre directe + part des frais généraux). Ils sont comptabilisés à l&apos;actif au compte 1270 (Travaux en cours).</P>
       <Ecriture debit="1270 Travaux en cours" credit="4900 Variation travaux en cours" montant="xxx" libelle="Activation des travaux en cours au 31.12" />
@@ -533,10 +547,12 @@ function TabEvaluation() {
         La variation des travaux en cours est un produit (crédit 4900) qui compense les charges engagées durant l&apos;exercice pour des projets non encore facturés.
       </Note>
 
-      <H2>4. Démarque connue et inconnue</H2>
+      </Section>
+      <Section title="4. Démarque connue et inconnue" defaultOpen={false}>
       <P>La démarque connue comprend les marchandises identifiées comme perdues, volées ou endommagées. La démarque inconnue est la différence entre le stock théorique et le stock réel constaté lors de l&apos;inventaire physique.</P>
       <P>Les deux types de démarque augmentent le coût des marchandises vendues et réduisent le résultat.</P>
       <Ecriture debit="4000 Charges marchandises" credit="1200 Stock" montant="xxx" libelle="Constatation de la démarque (écart d'inventaire)" />
+      </Section>
     </div>
   );
 }

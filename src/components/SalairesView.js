@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { P, H2, H3, Note, Loi, Tableau, Ecriture, TheoryLayout } from './TheoryUI';
+import { P, H3, Note, Loi, Tableau, Ecriture, TheoryLayout, Section } from './TheoryUI';
 import { fichesSalaire } from '../data/theory/09-fiches-salaire';
 
 // ─── UTILITAIRES ──────────────────────────────────────────────────────────────
@@ -12,11 +12,12 @@ function fmt(n) {
 function TabAssurances() {
   return (
     <div>
-      <H2>1. Vue d'ensemble du système suisse</H2>
+      <Section title="1. Vue d'ensemble du système suisse" defaultOpen={true}>
       <P>En Suisse, les revenus du travail — salarié ou indépendant — sont obligatoirement soumis à plusieurs assurances sociales. Ces assurances garantissent un revenu de remplacement dans les situations d'incapacité de travail (maladie, accident, invalidité, vieillesse, chômage).</P>
       <P>L'employeur a la responsabilité de payer l'intégralité des cotisations dues — sa part et celle du salarié. La part de l'employé est retenue directement sur le salaire.</P>
 
-      <H2>2. AVS / AI / APG</H2>
+      </Section>
+      <Section title="2. AVS / AI / APG" defaultOpen={false}>
       <Loi art="Art. 5 LAVS — Cotisations salariés">
         Une cotisation de <strong>4.35%</strong> est perçue sur le revenu provenant d'une activité dépendante (salaire déterminant).
       </Loi>
@@ -35,7 +36,8 @@ function TabAssurances() {
       />
       <Note color="blue">Les cotisations AI et APG reprennent les mêmes règles que l'AVS — elles sont calculées par les mêmes caisses de compensation et sur la même base salariale.</Note>
 
-      <H2>3. Assurance chômage (AC)</H2>
+      </Section>
+      <Section title="3. Assurance chômage (AC)" defaultOpen={false}>
       <Loi art="Art. 3 LACI — Taux de cotisation">
         Les cotisations s'élèvent à <strong>2.2%</strong> jusqu'au montant maximal du gain mensuel assuré (CHF 12'350/mois = CHF 148'200/an). Elles sont à parts égales à la charge du travailleur et de l'employeur.
       </Loi>
@@ -49,7 +51,8 @@ function TabAssurances() {
       />
       <Note>* La cotisation de solidarité a été suspendue depuis le 1er janvier 2023 en raison de la bonne situation conjoncturelle. Elle peut être réactivée par le Conseil fédéral.</Note>
 
-      <H2>4. Assurance accidents (LAA)</H2>
+      </Section>
+      <Section title="4. Assurance accidents (LAA)" defaultOpen={false}>
       <Loi art="Art. 91 LAA — Prise en charge des primes">
         Les primes d'assurance accidents <strong>professionnels</strong> sont à la charge de l'employeur. Les primes d'assurance accidents <strong>non professionnels</strong> sont à la charge du travailleur. L'employeur les retient sur le salaire.
       </Loi>
@@ -63,7 +66,8 @@ function TabAssurances() {
       />
       <Note color="blue">Le taux exact dépend du contrat d'assurance (SUVA ou assureur privé) et du secteur d'activité. L'employeur peut prendre volontairement en charge la LAANP — cette pratique est admise.</Note>
 
-      <H2>5. Prévoyance professionnelle (LPP)</H2>
+      </Section>
+      <Section title="5. Prévoyance professionnelle (LPP)" defaultOpen={false}>
       <Loi art="Art. 7 LPP — Salariés assurés">
         Les salariés auxquels un même employeur verse un salaire annuel supérieur à <strong>CHF 22'050</strong> sont soumis à l'assurance obligatoire dès le 1er janvier suivant leur 17e anniversaire (risques décès/invalidité) et leur 24e anniversaire (vieillesse).
       </Loi>
@@ -85,13 +89,15 @@ function TabAssurances() {
       </Loi>
       <Note color="blue">Le taux de cotisation LPP varie selon l'âge et l'institution de prévoyance. L'employeur paie l'intégralité à la caisse et retient la part employé sur le salaire.</Note>
 
-      <H2>6. Allocations familiales (CAF)</H2>
+      </Section>
+      <Section title="6. Allocations familiales (CAF)" defaultOpen={false}>
       <Loi art="Art. 5 LAFam — Montants minimaux">
         L'allocation pour enfant s'élève à <strong>CHF 200/mois minimum</strong>. L'allocation de formation professionnelle s'élève à <strong>CHF 250/mois minimum</strong> (de 16 à 25 ans).
       </Loi>
       <P>Les cotisations CAF sont entièrement à la charge de l'employeur. Le taux varie selon le canton. Les allocations reçues de la caisse sont transmises à l'employé — elles n'ont aucun impact sur le compte de résultat de l'entreprise (transit par le compte 2275).</P>
 
-      <H2>7. Tableau récapitulatif global</H2>
+      </Section>
+      <Section title="7. Tableau récapitulatif global" defaultOpen={false}>
       <Tableau
         caption="Récapitulatif cotisations sociales 2024 — exemple CHF 3'000 brut/mois"
         headers={['Assurance', 'Taux employé', 'CHF employé', 'Taux employeur', 'CHF employeur']}
@@ -106,6 +112,7 @@ function TabAssurances() {
         ]}
       />
       <Note>* Salaire coordonné mensuel = (3'000 × 12 − 25'725) ÷ 12 = CHF 974.58/mois. Les taux LPP sont à titre indicatif — ils varient selon la caisse.</Note>
+      </Section>
     </div>
   );
 }
@@ -114,10 +121,11 @@ function TabAssurances() {
 function TabCalcul() {
   return (
     <div>
-      <H2>1. Le décompte de salaire — structure</H2>
+      <Section title="1. Le décompte de salaire — structure" defaultOpen={true}>
       <P>Le décompte de salaire (fiche de salaire) présente le passage du salaire brut au salaire net versé à l'employé, puis au coût total pour l'employeur. C'est un document légal que l'employeur doit remettre à chaque paiement.</P>
 
-      <H2>2. Exemple complet — Jules Weber, 27 ans, 1 enfant</H2>
+      </Section>
+      <Section title="2. Exemple complet — Jules Weber, 27 ans, 1 enfant" defaultOpen={false}>
       <Note>
         <strong>Données :</strong> Salaire brut contractuel : CHF 3'000/mois | 1 enfant (allocation CHF 200) | LPP cotisation totale CHF 3'600/an = CHF 300/mois (50%/50%) | LAANP 2.50‰ | LAAP 0.80‰ | CAF 3.00% | Taux AVS/AI/APG 5.30% | AC 1.10%
       </Note>
@@ -163,7 +171,8 @@ function TabCalcul() {
         </table>
       </div>
 
-      <H2>3. Formule de base</H2>
+      </Section>
+      <Section title="3. Formule de base" defaultOpen={false}>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 12, margin: '16px 0' }}>
         {[
           { label: 'Salaire net', formula: 'Brut − déductions employé + allocations', color: '#2563eb' },
@@ -177,7 +186,8 @@ function TabCalcul() {
         ))}
       </div>
 
-      <H2>4. Particularités légales</H2>
+      </Section>
+      <Section title="4. Particularités légales" defaultOpen={false}>
       <H3>Paiement du 13e salaire</H3>
       <P>Lorsqu'un employé a droit à un 13e salaire, il est versé généralement en décembre. Les cotisations sociales s'appliquent normalement sur ce montant. La base LPP est calculée sur la base annuelle incluant le 13e.</P>
 
@@ -193,6 +203,7 @@ function TabCalcul() {
       <Loi art="Art. 323 CO">
         Sauf accord ou usage contraire, l'employeur paie le salaire à la fin de chaque mois.
       </Loi>
+      </Section>
     </div>
   );
 }
@@ -201,7 +212,7 @@ function TabCalcul() {
 function TabComptabilisation() {
   return (
     <div>
-      <H2>1. Deux méthodes de comptabilisation</H2>
+      <Section title="1. Deux méthodes de comptabilisation" defaultOpen={true}>
       <P>En Suisse, il existe deux méthodes pour comptabiliser les salaires et les charges sociales. Les deux aboutissent au même résultat final mais diffèrent dans le traitement intermédiaire.</P>
 
       <Tableau
@@ -214,7 +225,8 @@ function TabComptabilisation() {
         ]}
       />
 
-      <H2>2. Méthode 1 — Compte Charges sociales (5700)</H2>
+      </Section>
+      <Section title="2. Méthode 1 — Compte Charges sociales (5700)" defaultOpen={false}>
       <P>Les acomptes de charges sociales sont payés en débit du compte 5700. Lors du versement des salaires, la part employé est créditée en 5700 pour corriger le montant (on avait trop chargé).</P>
 
       <H3>Étape 1 — Paiement des assurances sociales (début du mois)</H3>
@@ -241,7 +253,8 @@ function TabComptabilisation() {
         <strong>5000 Salaires : CHF 3'000</strong> (salaire brut) | <strong>5700 Charges sociales : CHF 456</strong> (part employeur uniquement)
       </Note>
 
-      <H2>3. Méthode 2 — Compte Dette assurances sociales (2270)</H2>
+      </Section>
+      <Section title="3. Méthode 2 — Compte Dette assurances sociales (2270)" defaultOpen={false}>
       <P>Les acomptes payés aux assurances sont comptabilisés en bilan (2270) comme des avances. Lors du versement des salaires, on constate les charges réelles en 5700 et on crédite 2270.</P>
 
       <H3>Étape 1 — Paiement des assurances (débit 2270)</H3>
@@ -261,7 +274,8 @@ function TabComptabilisation() {
         Avantage : le compte 5700 affiche en permanence uniquement la <strong>part employeur</strong> — pas besoin de correction. Le compte 2270 est soldé à zéro si les acomptes correspondent aux salaires réels.
       </Note>
 
-      <H2>4. Comptes utilisés — récapitulatif</H2>
+      </Section>
+      <Section title="4. Comptes utilisés — récapitulatif" defaultOpen={false}>
       <Tableau
         headers={['Compte', 'Intitulé', 'Nature', 'Rôle']}
         rows={[
@@ -273,6 +287,7 @@ function TabComptabilisation() {
           { cells: ['2160', 'Salaires à payer', 'Passif CT', 'Salaires nets dus mais non encore versés'] },
         ]}
       />
+      </Section>
     </div>
   );
 }
@@ -639,7 +654,7 @@ function TabArrets() {
 function TabPointsCles() {
   return (
     <div>
-      <H2>1. Indépendants — charges sociales spécifiques</H2>
+      <Section title="1. Indépendants — charges sociales spécifiques" defaultOpen={true}>
       <Loi art="Art. 8 LAVS — Cotisations indépendants">
         Une cotisation de <strong>8.1%</strong> est perçue sur le revenu provenant d'une activité indépendante (au lieu de 2 × 4.35% pour les salariés).
       </Loi>
@@ -656,7 +671,8 @@ function TabPointsCles() {
       />
       <Note color="blue">L'indépendant paie ses cotisations AVS directement à sa caisse de compensation. Il ne peut pas cotiser à l'AC et ne bénéficie pas des prestations chômage.</Note>
 
-      <H2>2. Impôt à la source</H2>
+      </Section>
+      <Section title="2. Impôt à la source" defaultOpen={false}>
       <Loi art="Loi sur l'impôt à la source (LIS)">
         L'impôt à la source est dû sur la rémunération des travailleurs étrangers domiciliés en Suisse sans permis d'établissement (permis C), et sur les revenus des personnes domiciliées à l'étranger qui travaillent en Suisse.
       </Loi>
@@ -664,11 +680,13 @@ function TabPointsCles() {
       <Ecriture debit="5000 Salaires" credit="2204 Impôt à la source dû" montant="xxx" libelle="Retenue IS sur salaire de l'employé" />
       <Ecriture debit="2204 Impôt à la source dû" credit="1020 Banque" montant="xxx" libelle="Versement IS à l'autorité fiscale" sub />
 
-      <H2>3. Acomptes de primes et décompte annuel final</H2>
+      </Section>
+      <Section title="3. Acomptes de primes et décompte annuel final" defaultOpen={false}>
       <P>Les primes d'assurances sociales sont payées par acomptes mensuels ou trimestriels basés sur une estimation des salaires. En fin d'année, l'employeur réalise un décompte final qui peut générer un solde positif ou négatif.</P>
       <Note>Si les salaires réels sont supérieurs aux salaires estimés → solde de prime à payer à l'assurance. Si inférieurs → remboursement par l'assurance. Ce décompte final doit être comptabilisé comme une correction de charges ou un produit.</Note>
 
-      <H2>4. Erreurs fréquentes en pratique</H2>
+      </Section>
+      <Section title="4. Erreurs fréquentes en pratique" defaultOpen={false}>
       {[
         { titre: 'Calculer les cotisations sur le salaire TTC', desc: 'En méthode nette, les cotisations s\'appliquent sur le salaire brut HT. Ne pas inclure la TVA éventuelle.' },
         { titre: 'Oublier le délai de carence LAA (2 jours)', desc: 'Les 2 premiers jours d\'accident sont à la charge de l\'employeur — pas de SUVA. Erreur fréquente dans les calculs d\'arrêt.' },
@@ -686,13 +704,15 @@ function TabPointsCles() {
         </div>
       ))}
 
-      <H2>5. Checklist mensuelle paie</H2>
+      </Section>
+      <Section title="5. Checklist mensuelle paie" defaultOpen={false}>
       {['Vérifier les contrats — taux d\'activité, 13e salaire, primes', 'Calculer les jours d\'absence et les arrêts éventuels', 'Appliquer les cotisations sur la bonne base (brut ou part employeur)', 'Vérifier les allocations familiales et les décisions CAF en cours', 'Comptabiliser la fiche de salaire (méthode choisie et constante)', 'Virer le salaire net au plus tard le dernier jour ouvrable du mois', 'Payer les acomptes de charges sociales selon le calendrier convenu', 'Archiver les fiches de salaire signées (conservation 10 ans)'].map((pt, i) => (
         <div key={i} style={{ display: 'flex', gap: 10, padding: '6px 0', fontSize: '0.84rem', color: '#475569', alignItems: 'flex-start' }}>
           <span style={{ width: 20, height: 20, borderRadius: '50%', background: '#2563eb', color: '#fff', fontSize: '0.68rem', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 1 }}>{i + 1}</span>
           <span>{pt}</span>
         </div>
       ))}
+      </Section>
     </div>
   );
 }

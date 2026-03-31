@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { P, H2, H3, Note, Loi, Tableau, Ecriture, TheoryLayout } from './TheoryUI';
+import { P, H3, Note, Loi, Tableau, Ecriture, TheoryLayout, Section } from './TheoryUI';
 
 function DecompteBox({ title, rows, total, color }) {
   const c = color || '#2563eb';
@@ -33,11 +33,12 @@ function DecompteBox({ title, rows, total, color }) {
 function TabAssujettissement() {
   return (
     <div>
-      <H2>1. Qu'est-ce que la TVA ?</H2>
+      <Section title="1. Qu'est-ce que la TVA ?" defaultOpen={true}>
       <P>La taxe sur la valeur ajoutée (TVA) est un impôt indirect prélevé par les entreprises et supporté par le consommateur final. Elle frappe les biens et services consommés en Suisse, les prestations à soi-même et les importations. En Suisse, la TVA est régie par la <strong>Loi fédérale régissant la taxe sur la valeur ajoutée (LTVA)</strong>, complétée par l'Ordonnance (OTVA) et les publications de l'Administration fédérale des contributions (AFC).</P>
       <P>Les montants de TVA encaissés par les entreprises ne leur appartiennent pas — ils transitent par leurs comptes avant d'être reversés périodiquement à l'AFC. De même, la TVA payée aux fournisseurs (impôt préalable) peut être récupérée auprès de l'AFC.</P>
 
-      <H2>2. Le mécanisme de la TVA — chaîne de valeur</H2>
+      </Section>
+      <Section title="2. Le mécanisme de la TVA — chaîne de valeur" defaultOpen={false}>
       <P>La TVA est perçue à chaque stade de la chaîne de production. Chaque agent économique collecte la TVA sur ses ventes et déduit la TVA payée sur ses achats. Seul le consommateur final supporte réellement la taxe.</P>
       <Tableau
         caption="Exemple — fabrication d'une armoire (taux normal 8.1%)"
@@ -53,7 +54,8 @@ function TabAssujettissement() {
       />
       <Note color="green">L'AFC encaisse la totalité des CHF 32.40 sans aucun contact avec le consommateur final — grâce aux décomptes périodiques réalisés par chaque entreprise assujettie.</Note>
 
-      <H2>3. Qui est assujetti à la TVA ?</H2>
+      </Section>
+      <Section title="3. Qui est assujetti à la TVA ?" defaultOpen={false}>
       <Loi art="Art. 10 al. 1 LTVA — Principe général">
         Est assujetti à l'impôt quiconque exploite une entreprise, même sans but lucratif et quels que soient sa forme juridique et le but poursuivi.
       </Loi>
@@ -72,7 +74,8 @@ function TabAssujettissement() {
       />
       <Note>L'entreprise a la responsabilité de s'annoncer elle-même à l'AFC dès qu'elle atteint le seuil. L'AFC lui attribue un numéro TVA qui doit figurer sur chaque facture émise.</Note>
 
-      <H2>4. Les taux de TVA applicables en Suisse (2024)</H2>
+      </Section>
+      <Section title="4. Les taux de TVA applicables en Suisse (2024)" defaultOpen={false}>
       <Loi art="Art. 25 LTVA — Taux de l'impôt">
         Le taux normal est de <strong>8.1%</strong>. Le taux réduit de <strong>2.6%</strong> s'applique aux denrées alimentaires, médicaments, livres et journaux. Le taux spécial de <strong>3.8%</strong> s'applique aux prestations d'hébergement (hôtels, avec ou sans petit-déjeuner).
       </Loi>
@@ -88,7 +91,8 @@ function TabAssujettissement() {
         ]}
       />
 
-      <H2>5. Forme et contenu des factures</H2>
+      </Section>
+      <Section title="5. Forme et contenu des factures" defaultOpen={false}>
       <Loi art="Art. 26 al. 2 LTVA — Contenu obligatoire d'une facture TVA">
         La facture doit mentionner : nom et localité du fournisseur, numéro TVA, nom du destinataire, date ou période de la prestation, nature et volume de la prestation, montant de la contre-prestation, taux d'imposition applicable et montant de la TVA due.
       </Loi>
@@ -97,7 +101,8 @@ function TabAssujettissement() {
       </Loi>
       <Note>Une facture sans numéro TVA ou sans mention du taux applicable ne permet pas à l'acheteur de déduire l'impôt préalable. Vérifiez systématiquement les factures reçues avant de comptabiliser l'IP.</Note>
 
-      <H2>6. Prestations exclues vs prestations exonérées</H2>
+      </Section>
+      <Section title="6. Prestations exclues vs prestations exonérées" defaultOpen={false}>
       <P>La distinction entre ces deux catégories est fondamentale car elle détermine le droit à la déduction de l'impôt préalable.</P>
       <Tableau
         caption="Différence entre exclues et exonérées"
@@ -110,6 +115,7 @@ function TabAssujettissement() {
         ]}
       />
       <Note color="red">Une entreprise qui réalise des prestations exclues ne peut pas récupérer la TVA payée sur ses achats liés à ces prestations — elle supporte définitivement la TVA comme un consommateur.</Note>
+      </Section>
     </div>
   );
 }
@@ -118,7 +124,7 @@ function TabAssujettissement() {
 function TabMethodeEffective() {
   return (
     <div>
-      <H2>1. Principe de la comptabilisation au net</H2>
+      <Section title="1. Principe de la comptabilisation au net" defaultOpen={true}>
       <P>Dans la méthode effective, la TVA n'est ni un produit ni une charge — c'est une taxe qui transite par les comptes de bilan. Chaque facture est comptabilisée en séparant le montant hors taxe (HT) et le montant de TVA.</P>
       <P>Trois comptes de bilan sont utilisés :</P>
       <Tableau
@@ -131,7 +137,8 @@ function TabMethodeEffective() {
       />
       <Note color="green">Avantage de cette méthode : les comptes de charges et produits affichent des montants HT. La TVA est parfaitement isolée dans les comptes de bilan, ce qui facilite les contrôles et les décomptes.</Note>
 
-      <H2>2. Comptabilisation des ventes</H2>
+      </Section>
+      <Section title="2. Comptabilisation des ventes" defaultOpen={false}>
       <P>Lors d'une vente, on sépare le chiffre d'affaires HT (compte de produit) de la TVA collectée (compte de bilan 2200) :</P>
       <Note>Exemple : Léa Meyer vend des montres pour CHF 550'000 HT. Taux TVA denrées alimentaires : <strong>2.6%</strong> → TVA = CHF 14'300 → Prix TTC = CHF 564'300</Note>
 
@@ -142,7 +149,8 @@ function TabMethodeEffective() {
 
       <Note color="green">Le compte 3000 Ventes n'enregistre que le montant HT — le chiffre d'affaires réel sans TVA. Le compte 2200 accumule la TVA à reverser à l'AFC.</Note>
 
-      <H2>3. Comptabilisation des achats de marchandises</H2>
+      </Section>
+      <Section title="3. Comptabilisation des achats de marchandises" defaultOpen={false}>
       <Note>Exemple : achats de marchandises CHF 369'000 TTC (taux 2.6%) → HT = CHF 359'649 — IP = CHF 9'351</Note>
       <P>Formule : HT = TTC ÷ (1 + taux) | IP = TTC − HT</P>
       <P>Vérification : CHF 369'000 ÷ 1.026 = CHF 359'649 HT | CHF 369'000 − 359'649 = CHF 9'351 IP</P>
@@ -151,7 +159,8 @@ function TabMethodeEffective() {
       <Ecriture debit="1170 IP sur achats" credit="2000 Fournisseurs" montant="9'351" libelle="TVA 2.6% payée aux fournisseurs — récupérable à l'AFC" sub />
       <Ecriture debit="2000 Fournisseurs" credit="1020 Banque" montant="369'000" libelle="Paiement TTC au fournisseur" sub />
 
-      <H2>4. Comptabilisation des investissements et autres charges</H2>
+      </Section>
+      <Section title="4. Comptabilisation des investissements et autres charges" defaultOpen={false}>
       <Note>Exemple : investissement en machines CHF 53'850 TTC (taux normal 8.1%) → HT = CHF 49'815 — IP = CHF 4'035</Note>
       <P>Vérification : CHF 53'850 ÷ 1.081 = CHF 49'815 HT | CHF 53'850 − 49'815 = CHF 4'035 IP</P>
 
@@ -159,7 +168,8 @@ function TabMethodeEffective() {
       <Ecriture debit="1171 IP sur inv. et ACE" credit="2000 Fournisseurs" montant="4'035" libelle="TVA 8.1% sur investissement — compte séparé de 1170" sub />
       <Ecriture debit="2000 Fournisseurs" credit="1020 Banque" montant="53'850" libelle="Paiement TTC" sub />
 
-      <H2>5. Réalisation du décompte TVA trimestriel</H2>
+      </Section>
+      <Section title="5. Réalisation du décompte TVA trimestriel" defaultOpen={false}>
       <P>Le décompte TVA consiste à soustraire les impôts préalables de la TVA due. Le solde est à payer à l'AFC (ou remboursé par l'AFC si les IP dépassent la TVA due).</P>
       <Loi art="Art. 35 al. 1 LTVA — Périodicité du décompte">
         Le décompte TVA est en général réalisé <strong>trimestriellement</strong>. Il est réalisé semestriellement pour les assujettis qui appliquent la méthode du taux de la dette fiscale nette.
@@ -186,7 +196,8 @@ function TabMethodeEffective() {
 
       <Note color="green">Après le décompte, les comptes 1170, 1171 et 2200 sont soldés à zéro. Si l'IP dépassait la TVA due, c'est l'AFC qui rembourse — on débiterait alors 1020 Banque au crédit de 2200.</Note>
 
-      <H2>6. Formules de conversion HT ↔ TTC</H2>
+      </Section>
+      <Section title="6. Formules de conversion HT ↔ TTC" defaultOpen={false}>
       <Tableau
         caption="Formules pratiques — à maîtriser absolument"
         headers={['Calcul', 'Formule', 'Exemple (taux 8.1%)']}
@@ -206,6 +217,7 @@ function TabMethodeEffective() {
           { cells: ['3.8% (hébergement)', '÷ 1.038', '× 1.038', '× 0.038'] },
         ]}
       />
+      </Section>
     </div>
   );
 }
@@ -214,7 +226,7 @@ function TabMethodeEffective() {
 function TabDetteFiscaleNette() {
   return (
     <div>
-      <H2>1. Principe — méthode simplifiée</H2>
+      <Section title="1. Principe — méthode simplifiée" defaultOpen={true}>
       <P>Pour simplifier la charge administrative des petites entreprises, le législateur a prévu une méthode de décompte simplifiée. Au lieu de comptabiliser séparément la TVA sur chaque facture, toutes les opérations sont enregistrées aux montants TTC et le décompte se calcule en appliquant un taux forfaitaire sur le chiffre d'affaires TTC.</P>
 
       <Loi art="Art. 37 al. 1 LTVA — Conditions d'application">
@@ -227,7 +239,8 @@ function TabDetteFiscaleNette() {
         L'assujetti doit appliquer cette méthode pendant au moins une période fiscale complète (une année).
       </Loi>
 
-      <H2>2. Les taux de la dette fiscale nette</H2>
+      </Section>
+      <Section title="2. Les taux de la dette fiscale nette" defaultOpen={false}>
       <P>L'AFC fixe un taux forfaitaire pour chaque secteur d'activité. Ce taux est <strong>toujours inférieur au taux légal</strong> car il tient compte de l'impôt préalable moyen de la branche. Il n'est donc pas nécessaire de comptabiliser séparément les impôts préalables.</P>
 
       <Tableau
@@ -243,7 +256,8 @@ function TabDetteFiscaleNette() {
       />
       <Note>Les taux DFN sont publiés et mis à jour par l'AFC. Ils varient selon la branche et sont négociés avec les associations professionnelles (art. 37 al. 3 LTVA). Vérifiez toujours le taux applicable sur le site de l'AFC avant de l'appliquer.</Note>
 
-      <H2>3. Comptabilisation au brut — toutes opérations en TTC</H2>
+      </Section>
+      <Section title="3. Comptabilisation au brut — toutes opérations en TTC" defaultOpen={false}>
       <P>En méthode DFN, aucune séparation HT/TVA n'est nécessaire. Tout est enregistré au montant TTC payé ou encaissé. Les comptes 1170, 1171 et 2200 ne sont pas utilisés.</P>
 
       <Note>Exemple : Léa Meyer applique le taux DFN de 0.1% (fabrication de montres). CA HT = CHF 550'000 → CA TTC = 550'000 × 1.026 = <strong>CHF 564'300</strong></Note>
@@ -257,7 +271,8 @@ function TabDetteFiscaleNette() {
       <H3>Comptabilisation des investissements (TTC)</H3>
       <Ecriture debit="1500 Actif immobilisé (TTC)" credit="1020 Banque" montant="53'850" libelle="Investissement enregistré TTC — aucune déduction IP" />
 
-      <H2>4. Réalisation du décompte TVA (semestriel)</H2>
+      </Section>
+      <Section title="4. Réalisation du décompte TVA (semestriel)" defaultOpen={false}>
       <P>Le décompte DFN est réalisé deux fois par an (semestriellement). Il suffit de multiplier le CA TTC par le taux DFN :</P>
 
       <DecompteBox
@@ -274,7 +289,8 @@ function TabDetteFiscaleNette() {
       <Ecriture debit="3000 Ventes (TTC)" credit="2200 TVA Due" montant="564.30" libelle="Constatation de la TVA due au taux DFN (0.1% × 564'300)" />
       <Ecriture debit="2200 TVA Due" credit="1020 Banque" montant="564.30" libelle="Versement à l'AFC" sub />
 
-      <H2>5. Comparaison des deux méthodes</H2>
+      </Section>
+      <Section title="5. Comparaison des deux méthodes" defaultOpen={false}>
       <Tableau
         caption="Méthode effective (au net) vs Taux DFN (au brut)"
         headers={['Critère', 'Méthode effective', 'Taux DFN']}
@@ -289,6 +305,7 @@ function TabDetteFiscaleNette() {
         ]}
       />
       <Note>Le choix entre les deux méthodes dépend de la structure de coûts de l'entreprise. Une entreprise avec beaucoup d'achats de matières (IP élevé) peut avoir intérêt à la méthode effective. Une entreprise de services (peu d'achats) peut préférer la simplicité du taux DFN.</Note>
+      </Section>
     </div>
   );
 }
@@ -297,7 +314,7 @@ function TabDetteFiscaleNette() {
 function TabCasPratiques() {
   return (
     <div>
-      <H2>Cas 1 — Cycle complet TVA effective (taux réduit 2.6%)</H2>
+      <Section title="Cas 1 — Cycle complet TVA effective (taux réduit 2.6%)" defaultOpen={true}>
       <Note>Entreprise : SwiSSwatch SA assujettie à la TVA. CA annuel CHF 180'000 HT. Achats matières CHF 80'000 TTC (taux 2.6%). Loyer CHF 24'000 TTC (taux 8.1%). Décompte trimestriel.</Note>
 
       <H3>Étape 1 — Ventes trimestrielles (CA = CHF 45'000 HT × 4 trimestres)</H3>
@@ -328,7 +345,8 @@ function TabCasPratiques() {
       <Ecriture debit="2200 TVA Due" credit="1171 IP sur ACE" montant="450" libelle="Compensation IP loyer" sub />
       <Ecriture debit="2200 TVA Due" credit="1020 Banque" montant="213" libelle="Versement solde à l'AFC" sub />
 
-      <H2>Cas 2 — Taux mixtes sur une même facture</H2>
+      </Section>
+      <Section title="Cas 2 — Taux mixtes sur une même facture" defaultOpen={false}>
       <Note>Un traiteur facture à un client un repas livré à domicile. La facture comprend : nourriture CHF 200 HT (taux 2.6%) + service de livraison CHF 50 HT (taux 8.1%).</Note>
 
       <H3>Calcul de la facture</H3>
@@ -345,7 +363,8 @@ function TabCasPratiques() {
       <Ecriture debit="1100 Clients" credit="2200 TVA Due" montant="5.20" libelle="TVA 2.6% sur nourriture" sub />
       <Ecriture debit="1100 Clients" credit="2200 TVA Due" montant="4.05" libelle="TVA 8.1% sur livraison" sub />
 
-      <H2>Cas 3 — Remboursement de TVA (IP supérieur à TVA due)</H2>
+      </Section>
+      <Section title="Cas 3 — Remboursement de TVA (IP supérieur à TVA due)" defaultOpen={false}>
       <Note>Un exportateur vend 100% à l'étranger (taux 0% — exonéré). Ses achats sont soumis à TVA. TVA due = CHF 0. IP sur achats = CHF 8'500. L'AFC rembourse le solde.</Note>
       <DecompteBox
         title="Décompte TVA — Exportateur"
@@ -360,12 +379,14 @@ function TabCasPratiques() {
       <Ecriture debit="1020 Banque" credit="2200 TVA Due" montant="8'500" libelle="Remboursement de l'AFC — crédit de 2200" />
       <Note color="green">Les exportateurs récupèrent systématiquement la TVA payée sur leurs achats. C'est l'un des avantages de l'assujettissement volontaire pour les entreprises sous le seuil de CHF 100'000.</Note>
 
-      <H2>Cas 4 — Prestations à soi-même</H2>
+      </Section>
+      <Section title="Cas 4 — Prestations à soi-même" defaultOpen={false}>
       <Loi art="Art. 31 LTVA — Prestations à soi-même">
         L'assujetti qui prélève de son entreprise des biens ou des services pour un usage privé a l'obligation de décompter la TVA grevant l'opération. Le montant de TVA est comptabilisé comme une réduction de l'impôt préalable.
       </Loi>
       <Note>Exemple : un horloger assujetti prélève CHF 500 de marchandises de son stock pour sa consommation personnelle. Il doit décompter la TVA comme si c'était une vente à un client.</Note>
       <Ecriture debit="8500 Prélèvements privés (ou 6xxx)" credit="1170 IP sur achats" montant="13" libelle="TVA sur prélèvement privé (500 × 2.6%) — réduction IP" />
+      </Section>
     </div>
   );
 }
@@ -374,7 +395,7 @@ function TabCasPratiques() {
 function TabPointsCles() {
   return (
     <div>
-      <H2>1. Les erreurs les plus fréquentes en pratique fiduciaire</H2>
+      <Section title="1. Les erreurs les plus fréquentes en pratique fiduciaire" defaultOpen={true}>
 
       <H3>Erreur 1 — Confondre exclue et exonérée</H3>
       <Note color="red">Une association qui loue des appartements (prestation exclue) ne peut PAS déduire la TVA payée sur ses frais de rénovation. Un exportateur (prestation exonérée) peut récupérer intégralement la TVA sur ses achats. La différence est fondamentale pour le calcul de l'IP déductible.</Note>
@@ -391,7 +412,8 @@ function TabPointsCles() {
       <H3>Erreur 5 — Mauvaise périodicité du décompte</H3>
       <Note color="red">Méthode effective → décompte trimestriel. Méthode DFN → décompte semestriel. Un retard de décompte entraîne des intérêts moratoires.</Note>
 
-      <H2>2. Récapitulatif des comptes TVA</H2>
+      </Section>
+      <Section title="2. Récapitulatif des comptes TVA" defaultOpen={false}>
       <Tableau
         caption="Tous les comptes TVA — plan comptable PME suisse"
         headers={['Compte', 'Intitulé', 'Méthode', 'Mouvement']}
@@ -404,7 +426,8 @@ function TabPointsCles() {
         ]}
       />
 
-      <H2>3. Checklist décompte TVA trimestriel</H2>
+      </Section>
+      <Section title="3. Checklist décompte TVA trimestriel" defaultOpen={false}>
       {[
         'Additionner tous les crédits du compte 2200 (TVA collectée sur ventes)',
         'Additionner tous les débits du compte 1170 (IP sur achats de marchandises)',
@@ -421,7 +444,8 @@ function TabPointsCles() {
         </div>
       ))}
 
-      <H2>4. Résumé des articles de loi essentiels</H2>
+      </Section>
+      <Section title="4. Résumé des articles de loi essentiels" defaultOpen={false}>
       <Tableau
         headers={['Article', 'Sujet', 'Contenu essentiel']}
         rows={[
@@ -437,6 +461,7 @@ function TabPointsCles() {
           { cells: ['Art. 39 LTVA', 'Base du décompte', 'Contre-prestations convenues (par défaut) ou reçues (sur autorisation)'] },
         ]}
       />
+      </Section>
     </div>
   );
 }
@@ -445,7 +470,7 @@ function TabPointsCles() {
 function TabExemptions() {
   return (
     <div>
-      <H2>1. Prestations exonérées (art. 21 LTVA)</H2>
+      <Section title="1. Prestations exonérées (art. 21 LTVA)" defaultOpen={true}>
       <P>Certaines prestations sont exclues du champ de la TVA par la loi. Les fournisseurs de ces prestations ne facturent pas de TVA à leurs clients, mais ne peuvent pas non plus récupérer l'impôt préalable sur leurs propres achats. Les principales catégories sont :</P>
       <P><strong>Soins médicaux</strong> — prestations fournies par les médecins, dentistes, physiothérapeutes, psychologues et autres professionnels de la santé reconnus. Seules les prestations à visée thérapeutique sont exclues ; les prestations esthétiques restent imposables.</P>
       <P><strong>Formation et enseignement</strong> — enseignement scolaire, universitaire, formation professionnelle continue, cours de langues et de musique dispensés par des institutions reconnues ou des enseignants indépendants.</P>
@@ -458,12 +483,14 @@ function TabExemptions() {
       </Loi>
       <Note>Attention : exonéré = pas de TVA mais aussi pas de récupération de l'impôt préalable. L'assujetti peut opter pour l'imposition volontaire (art. 22 LTVA) s'il fournit ces prestations à d'autres assujettis.</Note>
 
-      <H2>2. Prestations exonérées avec droit à déduction (art. 23 LTVA)</H2>
+      </Section>
+      <Section title="2. Prestations exonérées avec droit à déduction (art. 23 LTVA)" defaultOpen={false}>
       <P>Les exportations de biens, les prestations de services fournies à des destinataires ayant leur siège à l'étranger et les transports internationaux de biens et de personnes constituent des prestations exonérées au sens de l'art. 23 LTVA. Le taux applicable est de 0%.</P>
       <P>Contrairement aux exclusions de l'art. 21, ces prestations ouvrent droit à la déduction de l'impôt préalable (taux 0%).</P>
       <Note color="green">C'est la situation la plus avantageuse : pas de TVA facturée, mais récupération intégrale de l'impôt préalable sur les achats.</Note>
 
-      <H2>3. Moment de l'imposition et méthodes de décompte</H2>
+      </Section>
+      <Section title="3. Moment de l'imposition et méthodes de décompte" defaultOpen={false}>
       <P>La TVA peut être déclarée selon deux méthodes distinctes, qui diffèrent par le moment où la créance fiscale naît :</P>
       <P><strong>Contre-prestations convenues (accrual)</strong> — la TVA est due dès l'émission de la facture, indépendamment de l'encaissement effectif. C'est la méthode par défaut.</P>
       <P><strong>Contre-prestations reçues (cash)</strong> — la TVA n'est due qu'au moment de l'encaissement effectif du prix. Cette méthode nécessite une autorisation de l'AFC.</P>
@@ -481,7 +508,8 @@ function TabExemptions() {
         L'art. 39 LTVA prévoit le décompte selon les contre-prestations convenues (par défaut). L'art. 40 LTVA autorise, sur demande, le décompte selon les contre-prestations reçues lorsque les conditions sont remplies.
       </Loi>
 
-      <H2>4. Cas spéciaux</H2>
+      </Section>
+      <Section title="4. Cas spéciaux" defaultOpen={false}>
 
       <H3>Importation de biens</H3>
       <P>Lors de l'importation de biens en Suisse, la TVA est perçue par l'Office fédéral de la douane et de la sécurité des frontières (OFDF) au passage de la frontière. Si l'entreprise importatrice est assujettie à la TVA, elle peut récupérer cette TVA d'importation en tant qu'impôt préalable dans son décompte périodique.</P>
@@ -498,6 +526,7 @@ function TabExemptions() {
       <H3>Double affectation et correction pro rata</H3>
       <P>Lorsqu'un assujetti réalise à la fois des prestations imposables et exonérées (sans droit à déduction), il doit répartir l'impôt préalable proportionnellement.</P>
       <P>Exemple : un cabinet médical exerce une activité de soins thérapeutiques (prestation exclue selon l'art. 21 LTVA) et une activité de médecine esthétique (prestation imposable au taux normal). L'impôt préalable sur les charges communes (loyer, administration, informatique) n'est récupérable qu'à hauteur de la part du chiffre d'affaires imposable par rapport au chiffre d'affaires total. Seule la TVA sur les achats directement liés à l'activité imposable (esthétique) est intégralement déductible.</P>
+      </Section>
     </div>
   );
 }

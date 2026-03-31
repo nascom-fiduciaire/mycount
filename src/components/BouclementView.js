@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { P, H2, H3, Note, Loi, Tableau, Ecriture, TheoryLayout } from './TheoryUI';
+import { P, H3, Note, Loi, Tableau, Ecriture, TheoryLayout, Section } from './TheoryUI';
 
 // ─── ONGLET 1 : VUE D'ENSEMBLE ────────────────────────────────────────────────
 function TabOverview() {
@@ -17,13 +17,14 @@ function TabOverview() {
   ];
   return (
     <div>
-      <H2>1. Qu'est-ce que le bouclement ?</H2>
+      <Section title="1. Qu'est-ce que le bouclement ?" defaultOpen={true}>
       <P>Le bouclement comptable est l'ensemble des opérations effectuées en fin d'exercice pour s'assurer que les comptes présentent une image fidèle et correcte de la situation économique de l'entreprise au 31 décembre. C'est une étape critique en fiduciaire — une erreur ou un oubli peut fausser le résultat et l'impôt de toute l'année.</P>
       <Note color="blue">
         <strong>Important :</strong> Ce guide part du principe que les charges sociales sont comptabilisées par les <strong>comptes du bilan durant l'année</strong> (méthode provisions — comptes 227x). Exemple : paiement d'une facture AVS → Débit 2270 / Crédit 1020.
       </Note>
 
-      <H2>2. Ordre des opérations au 31 décembre</H2>
+      </Section>
+      <Section title="2. Ordre des opérations au 31 décembre" defaultOpen={false}>
       <div style={{ margin: '16px 0' }}>
         {steps.map((s, i) => (
           <div key={i} style={{ display: 'flex', gap: 14, marginBottom: 10, alignItems: 'flex-start' }}>
@@ -37,6 +38,7 @@ function TabOverview() {
       </div>
 
 
+      </Section>
     </div>
   );
 }
@@ -45,7 +47,7 @@ function TabOverview() {
 function TabDebiteurs() {
   return (
     <div>
-      <H2>1. Réconciliation des comptes de liquidités</H2>
+      <Section title="1. Réconciliation des comptes de liquidités" defaultOpen={true}>
       <P>Avant tout autre travail, il faut s'assurer que les soldes comptables correspondent à la réalité.</P>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 12, margin: '14px 0' }}>
         {[
@@ -63,7 +65,8 @@ function TabDebiteurs() {
         ))}
       </div>
 
-      <H2>2. Débiteurs — ajustement au 31.12</H2>
+      </Section>
+      <Section title="2. Débiteurs — ajustement au 31.12" defaultOpen={false}>
       <P>Un état détaillé des débiteurs au 31.12 doit être demandé au client. L'écriture doit ramener le solde du compte 1100 au total exact de fin d'année.</P>
       <Note color="blue">
         <strong>TVA à l'encaissement :</strong> Si l'entreprise décompte la TVA à l'encaissement (la plupart des petites entreprises), le montant à insérer dans les débiteurs doit être <strong>hors taxe (HT)</strong>. Il faut diviser le montant TTC par 1.081 (ou 1.026 selon le taux).
@@ -73,7 +76,8 @@ function TabDebiteurs() {
       <Ecriture debit="1100 Débiteurs" credit="3000 Chiffre d'affaires" montant="xxx HT" libelle="Augmentation des débiteurs au 31.12 (si solde final > solde initial)" />
       <Ecriture debit="3000 Chiffre d'affaires" credit="1100 Débiteurs" montant="xxx HT" libelle="Diminution des débiteurs au 31.12 (si solde final < solde initial)" sub />
 
-      <H2>3. Le ducroire — provision pour pertes sur créances</H2>
+      </Section>
+      <Section title="3. Le ducroire — provision pour pertes sur créances" defaultOpen={false}>
       <P>Le ducroire (compte 1109) est une provision forfaitaire pour le risque que certains clients ne paient pas. C'est un compte d'actif qui <strong>fonctionne comme un passif</strong> — son solde est créditeur et vient en déduction des créances clients.</P>
 
       <Tableau
@@ -109,8 +113,10 @@ function TabDebiteurs() {
 
       <Note color="red">Le compte 1109 Ducroire est un compte d'actif à solde <strong>créditeur</strong> — il fonctionne comme un passif. Au bilan, il apparaît en déduction des créances clients (valeur nette).</Note>
 
-      <H2>4. Créanciers</H2>
+      </Section>
+      <Section title="4. Créanciers" defaultOpen={false}>
       <P>De même, un état détaillé des créanciers (fournisseurs) au 31.12 doit être demandé. Le solde du compte 2000 doit correspondre exactement à la somme des factures fournisseurs ouvertes. Tout écart doit être analysé et justifié.</P>
+      </Section>
     </div>
   );
 }
@@ -119,7 +125,7 @@ function TabDebiteurs() {
 function TabTransitoires() {
   return (
     <div>
-      <H2>1. Les actifs transitoires (1300)</H2>
+      <Section title="1. Les actifs transitoires (1300)" defaultOpen={true}>
       <P>Les actifs transitoires regroupent deux catégories de régularisations :</P>
 
       <H3>Charges payées d'avance</H3>
@@ -133,7 +139,8 @@ function TabTransitoires() {
       <Note color="yellow">Exemples : intérêts annuels sur un prêt accordé, loyers non encore encaissés (d'un immeuble de rendement).</Note>
       <Ecriture debit="1300 Actifs transitoires" credit="6950 Produits financiers (ou 7500)" montant="xxx" libelle="Produit à recevoir — acquis en N, encaissé en N+1" />
 
-      <H2>2. Les passifs transitoires (2300)</H2>
+      </Section>
+      <Section title="2. Les passifs transitoires (2300)" defaultOpen={false}>
 
       <H3>Charges à payer</H3>
       <P>Ce sont des charges qui concernent l'année N mais dont la facture n'est pas encore reçue ou payée. On les constate quand même pour respecter la délimitation périodique.</P>
@@ -146,11 +153,13 @@ function TabTransitoires() {
       <Note color="yellow">Exemple : client qui paie son loyer de janvier en décembre, abonnement encaissé d'avance.</Note>
       <Ecriture debit="3000 Ventes (ou 7500)" credit="2300 Passifs transitoires" montant="xxx" libelle="Produit reçu d'avance — encaissé en N, concerne N+1" />
 
-      <H2>3. Variation des travaux en cours (1280)</H2>
+      </Section>
+      <Section title="3. Variation des travaux en cours (1280)" defaultOpen={false}>
       <P>Les travaux en cours sont des prestations réalisées mais pas encore facturées. Ils sont valorisés au <strong>coût de revient</strong> (pas au prix de vente).</P>
       <Ecriture debit="1280 Travaux en cours" credit="3940 Variation valeur prestations non facturées" montant="xxx" libelle="Comptabilisation des travaux en cours au 31.12" />
 
-      <H2>4. Le stock final (inventaire)</H2>
+      </Section>
+      <Section title="4. Le stock final (inventaire)" defaultOpen={false}>
       <P>Le stock doit être valorisé au <strong>coût d'achat ou de production</strong>, ou à la valeur de marché si elle est inférieure (principe de prudence, art. 960 CO).</P>
 
       <H3>La règle des 2/3 — spécificité fiscale suisse</H3>
@@ -167,6 +176,7 @@ function TabTransitoires() {
 
       <Ecriture debit="1200 Stock de marchandises" credit="3901 Variation de stock" montant="xxx" libelle="Stock final au 31.12 — écriture d'inventaire" />
       <Note color="yellow">Si le stock diminue par rapport à l'année précédente, l'écriture est inversée : Débit 3901 / Crédit 1200.</Note>
+      </Section>
     </div>
   );
 }
@@ -175,7 +185,7 @@ function TabTransitoires() {
 function TabAmortissements() {
   return (
     <div>
-      <H2>1. Les amortissements — principes</H2>
+      <Section title="1. Les amortissements — principes" defaultOpen={true}>
       <P>L'amortissement répartit le coût d'un bien durable sur sa durée d'utilisation. Les taux maximaux admis fiscalement sont publiés dans la <strong>Notice A/1995</strong> de l'Administration fédérale des finances (AFC).</P>
 
       <Tableau
@@ -192,7 +202,8 @@ function TabAmortissements() {
       />
       <Note color="yellow">Ces taux sont des <strong>maximaux fiscaux</strong>. L'entreprise peut amortir moins. Elle ne peut pas amortir plus sans risque de redressement fiscal. Référence : <strong>Notice A/1995 ESTV</strong>.</Note>
 
-      <H2>2. Méthode directe vs méthode indirecte</H2>
+      </Section>
+      <Section title="2. Méthode directe vs méthode indirecte" defaultOpen={false}>
       <Tableau
         headers={['', 'Méthode directe', 'Méthode indirecte']}
         rows={[
@@ -223,7 +234,8 @@ function TabAmortissements() {
         ]}
       />
 
-      <H2>3. Parts privées s/frais véhicule</H2>
+      </Section>
+      <Section title="3. Parts privées s/frais véhicule" defaultOpen={false}>
       <P>Lorsqu'un véhicule d'entreprise est utilisé à des fins privées (y compris trajets domicile-travail), une <strong>part privée doit obligatoirement être comptabilisée au moins une fois par an</strong>, tant au niveau comptable que fiscal et TVA.</P>
 
       <Tableau
@@ -258,11 +270,13 @@ function TabAmortissements() {
         <strong>TDFN :</strong> Pour les indépendants au taux de dette fiscale nette, la part privée est sans TVA (la TVA est déjà prise en compte dans le TDFN).
       </Note>
 
-      <H2>4. Prélèvements en nature (restaurants, commerces)</H2>
+      </Section>
+      <Section title="4. Prélèvements en nature (restaurants, commerces)" defaultOpen={false}>
       <P>Chaque propriétaire de restaurant, commerce de détail, snack ou boulangerie est tenu de comptabiliser des parts privées pour les prélèvements de marchandises à titre privé pour lui et sa famille. Les montants sont définis dans la <strong>Notice N1/2007</strong> de l'AFC.</P>
       <Ecriture debit="2110 CC Actionnaire" credit="4200 Achats de marchandises" montant="xxx" libelle="Parts privées pour prélèvements en nature — écriture TVA incluse" />
 
-      <H2>5. Cession d'un actif immobilisé</H2>
+      </Section>
+      <Section title="5. Cession d'un actif immobilisé" defaultOpen={false}>
       <P>La vente d'une immobilisation (véhicule, machine, mobilier) en cours ou en fin d'exercice génère plusieurs écritures. Il faut d'abord solder la valeur résiduelle comptable, puis constater le produit de cession et dégager le résultat.</P>
       <Note color="yellow">
         <strong>Exemple :</strong> Véhicule acheté CHF 20'000, amorti CHF 8'000 (valeur nette comptable = CHF 12'000). Vendu CHF 10'000 TTC (8.1%) → HT = CHF 9'250.
@@ -277,6 +291,7 @@ function TabAmortissements() {
         Si le prix de vente HT est supérieur à la valeur nette comptable → <strong>gain sur cession</strong> → Crédit 8500 (ou compte de produit exceptionnel 8000).<br />
         Si inférieur → <strong>perte sur cession</strong> → Débit 8500.
       </Note>
+      </Section>
     </div>
   );
 }
@@ -285,7 +300,7 @@ function TabAmortissements() {
 function TabSalairesTVA() {
   return (
     <div>
-      <H2>1. Salaires et charges sociales au 31 décembre</H2>
+      <Section title="1. Salaires et charges sociales au 31 décembre" defaultOpen={true}>
       <P>Au 31 décembre, toutes les rémunérations déjà "gagnées" par le personnel ainsi que les charges sociales correspondantes doivent être comptabilisées — même si elles ne seront payées qu'en janvier ou facturées par les caisses qu'au 1er trimestre suivant.</P>
       <Note color="blue">L'objectif est de présenter un résultat fidèle et d'éviter de reporter des charges sur l'exercice suivant (principe de délimitation périodique, art. 958b CO).</Note>
 
@@ -306,7 +321,8 @@ function TabSalairesTVA() {
       <Ecriture debit="2270 AVS" credit="5710 Allocations familiales" montant="xxx" libelle="Allocations familiales — virement de la caisse AVS" sub />
       <Ecriture debit="2278 Impôt à la source" credit="5780 IS à reverser" montant="xxx" libelle="Impôt à la source — régularisation" sub />
 
-      <H2>2. Décompte TVA final</H2>
+      </Section>
+      <Section title="2. Décompte TVA final" defaultOpen={false}>
       <P>Après avoir effectué la concordance TVA, on regroupe les comptes d'impôt préalable et de TVA due dans le compte de décompte 2201. Ce compte sert de compte de transit annuel — il isole le solde net dû à l'AFC.</P>
 
       <H3>Logique du regroupement</H3>
@@ -323,6 +339,7 @@ function TabSalairesTVA() {
       <Ecriture debit="2201 Décompte TVA" credit="1172 IP s/investissements" montant="xxx" libelle="Transfert IP investissements" sub />
       <Ecriture debit="2200 TVA Due" credit="2201 Décompte TVA" montant="xxx" libelle="Transfert TVA collectée — augmente le solde dû à l'AFC" sub />
       <Ecriture debit="2201 Décompte TVA" credit="1020 Banque" montant="xxx" libelle="Paiement du solde net à l'AFC (solde créditeur de 2201)" sub />
+      </Section>
     </div>
   );
 }
@@ -331,7 +348,7 @@ function TabSalairesTVA() {
 function TabImpots() {
   return (
     <div>
-      <H2>1. Compte courant actionnaire — intérêts</H2>
+      <Section title="1. Compte courant actionnaire — intérêts" defaultOpen={true}>
       <P>Lorsque la société accorde un prêt à un actionnaire (ou inversement), il est <strong>obligatoire</strong> de comptabiliser un intérêt conforme aux conditions du marché. Cela permet de respecter le <strong>principe du tiers indépendant</strong> (art. 58 al. 1 let. b LIFD) et d'éviter que la relation ne soit requalifiée en avantage patrimonial non justifié.</P>
       <Note color="purple">
         Le taux d'intérêt applicable est publié chaque année par l'AFC dans ses lettres circulaires. Consulter : <strong>estv.admin.ch → IFD → Lettres circulaires</strong>. En 2025, le taux indicatif pour les prêts actionnaire était de 1.5%.
@@ -341,7 +358,8 @@ function TabImpots() {
       <Ecriture debit="2110 CC Actionnaire" credit="6950 Produits financiers" montant="xxx" libelle="Intérêts s/CC Actionnaire 1.5% — actionnaire débiteur envers la société" />
       <Ecriture debit="6950 Charges financières" credit="2110 CC Actionnaire" montant="xxx" libelle="Intérêts s/CC Actionnaire — société débitrice envers l'actionnaire" sub />
 
-      <H2>2. Provision pour impôts</H2>
+      </Section>
+      <Section title="2. Provision pour impôts" defaultOpen={false}>
       <P>En fin d'année, après avoir saisi toutes les écritures de bouclement, il est nécessaire de calculer et provisionner l'impôt sur les sociétés. Le résultat imposable est le bénéfice <strong>avant impôts</strong>.</P>
       <Note color="blue">
         Outil de calcul : <strong>swisstaxcalculator.estv.admin.ch → Personnes morales</strong><br />
@@ -360,19 +378,22 @@ function TabImpots() {
         <strong>Important :</strong> Le compte 8900 doit afficher <strong>uniquement le montant d'impôts de l'année traitée</strong> — pas les acomptes d'autres années. Le compte 2208 sert de compte de transit pour les paiements en cours d'année.
       </Note>
 
-      <H2>3. Réserve générale obligatoire</H2>
+      </Section>
+      <Section title="3. Réserve générale obligatoire" defaultOpen={false}>
       <P>Pour les sociétés anonymes (SA), la loi impose la constitution d'une réserve légale issue du bénéfice :</P>
       <Note color="blue">
         <strong>5% du bénéfice net</strong> doit être attribué à la réserve légale issue du bénéfice (compte 2950), jusqu'à ce que celle-ci atteigne <strong>50% du capital-actions</strong> (art. 671 CO).
       </Note>
       <Ecriture debit="2979 Bénéfice de l'exercice" credit="2950 Réserve légale issue du bénéfice" montant="xxx" libelle="Attribution 5% du bénéfice à la réserve légale" />
 
-      <H2>4. Clôture des comptes de résultat</H2>
+      </Section>
+      <Section title="4. Clôture des comptes de résultat" defaultOpen={false}>
       <P>En fin d'exercice, tous les comptes de charges et de produits sont soldés et virés dans le compte 9000 Compte de résultat, puis le résultat final est reporté dans les fonds propres du bilan (compte 2979).</P>
       <Ecriture debit="9000 Compte de résultat" credit="2979 Résultat de l'exercice" montant="xxx" libelle="Report du bénéfice dans les fonds propres" />
       <Ecriture debit="2979 Résultat de l'exercice" credit="9000 Compte de résultat" montant="xxx" libelle="Report de la perte dans les fonds propres (écriture inverse)" sub />
 
-      <H2>5. Points clés à retenir</H2>
+      </Section>
+      <Section title="5. Points clés à retenir" defaultOpen={false}>
       {[
         'Intérêts C/C actionnaire : obligatoires — taux AFC publié annuellement.',
         'Paiements d\'impôts en cours d\'année → compte 2208 (bilan, pas de résultat).',
@@ -385,6 +406,7 @@ function TabImpots() {
           <span style={{ color: '#2563eb', fontWeight: 700, flexShrink: 0 }}>→</span><span>{pt}</span>
         </div>
       ))}
+      </Section>
     </div>
   );
 }
@@ -393,7 +415,7 @@ function TabImpots() {
 function TabProvisions() {
   return (
     <div>
-      <H2>1. Provisions pour risques et charges (art. 960e CO)</H2>
+      <Section title="1. Provisions pour risques et charges (art. 960e CO)" defaultOpen={true}>
       <P>Les provisions sont des dettes estimées, incertaines dans leur montant ou leur échéance, mais probables. Le CO impose de comptabiliser toute perte prévisible, même si son montant exact n&apos;est pas connu.</P>
       <P>Types de provisions courantes en PME :</P>
       <Tableau
@@ -411,14 +433,16 @@ function TabProvisions() {
       </Loi>
       <Ecriture debit="6800 Charges d'exploitation" credit="2350 Provision litiges" montant="50'000" libelle="Provision pour procès — risque estimé probable" />
 
-      <H2>2. Reprise de provisions</H2>
+      </Section>
+      <Section title="2. Reprise de provisions" defaultOpen={false}>
       <P>Lorsqu&apos;une provision n&apos;est plus justifiée (le risque a disparu), elle doit être dissoute. La dissolution crée un produit extraordinaire.</P>
       <Ecriture debit="2350 Provision litiges" credit="3900 Produits exceptionnels" montant="50'000" libelle="Dissolution provision — procès gagné" />
       <Note color="green">
         Attention : si le risque se réalise pour un montant différent de la provision, il faut ajuster. Exemple : provision de CHF 50&apos;000, condamnation de CHF 35&apos;000 → on utilise 35&apos;000 de la provision et on dissout les 15&apos;000 restants.
       </Note>
 
-      <H2>3. Continuité de l&apos;exploitation (going concern)</H2>
+      </Section>
+      <Section title="3. Continuité de l&apos;exploitation (going concern)" defaultOpen={false}>
       <P>L&apos;art. 958a CO impose que les comptes soient établis dans l&apos;hypothèse de la continuité de l&apos;exploitation, sauf si des indices contraires existent.</P>
       <P>Si la continuité est menacée (perte de capital art. 725 CO, surendettement art. 725b CO), les actifs doivent être évalués à leur valeur de liquidation, généralement bien inférieure à la valeur comptable.</P>
       <Loi art="Art. 725 CO">
@@ -428,7 +452,8 @@ function TabProvisions() {
         En cas de surendettement (art. 725b CO), le conseil d&apos;administration doit aviser le juge, sauf si des créanciers acceptent une postposition de leurs créances.
       </Note>
 
-      <H2>4. Événements postérieurs à la clôture</H2>
+      </Section>
+      <Section title="4. Événements postérieurs à la clôture" defaultOpen={false}>
       <P>Des événements significatifs peuvent survenir entre la date de clôture (31.12) et la date d&apos;approbation des comptes par l&apos;assemblée générale. Le CO impose de les prendre en compte.</P>
       <H3>Événements à ajuster (type 1)</H3>
       <P>Si l&apos;événement existait déjà au 31.12 mais n&apos;a été confirmé qu&apos;après, il faut ajuster les comptes. Exemple : un client important fait faillite en janvier, confirmant que la créance au 31.12 était déjà douteuse.</P>
@@ -444,7 +469,8 @@ function TabProvisions() {
         ]}
       />
 
-      <H2>5. Usage privé détaillé</H2>
+      </Section>
+      <Section title="5. Usage privé détaillé" defaultOpen={false}>
       <P>Lorsque l&apos;entrepreneur ou ses proches utilisent des biens de l&apos;entreprise à titre privé, il faut comptabiliser la part privée.</P>
       <H3>Véhicule</H3>
       <P>La part privée véhicule est calculée forfaitairement : 0.9% du prix d&apos;achat par mois (soit 10.8% par an). Alternative : 4% de la valeur résiduelle si le véhicule est ancien.</P>
@@ -459,6 +485,7 @@ function TabProvisions() {
       <H3>Prélèvements en nature</H3>
       <P>Les prélèvements en nature (marchandises, nourriture) sont évalués selon les forfaits AFC. Pour un couple : CHF 14&apos;400/an (2024). Ces montants sont soumis à la TVA.</P>
       <Ecriture debit="2800 Privé" credit="3200 Ventes marchandises" montant="14'400" libelle="Prélèvements en nature — forfait AFC" />
+      </Section>
     </div>
   );
 }
