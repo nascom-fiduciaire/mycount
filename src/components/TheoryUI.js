@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // ─── Paragraph ───────────────────────────────────────────────────────────────
 export function P({ children }) {
@@ -63,6 +63,62 @@ export function H3({ children }) {
       <span style={{ width: 4, height: 16, background: '#2563eb', borderRadius: 2, flexShrink: 0 }} />
       {children}
     </h3>
+  );
+}
+
+// ─── Section accordéon (H2 cliquable + contenu repliable) ───────────────────
+export function Section({ title, children, defaultOpen = false }) {
+  const [open, setOpen] = useState(defaultOpen);
+  const text = typeof title === 'string' ? title : '';
+  const numMatch = text.match(/^(\d+)[.\s—–-]+\s*(.*)/);
+
+  return (
+    <div className="theory-h2" style={{ overflow: 'hidden' }}>
+      <div
+        onClick={() => setOpen(o => !o)}
+        style={{
+          display: 'flex', alignItems: 'stretch', cursor: 'pointer',
+          borderRadius: open ? '10px 10px 0 0' : 10, overflow: 'hidden',
+          background: '#fff', border: '1px solid #e2e8f0',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
+          transition: 'all 0.15s ease',
+        }}
+      >
+        {numMatch ? (
+          <div style={{
+            background: 'linear-gradient(135deg, #2563eb, #3b82f6)', color: '#fff',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            minWidth: 48, fontWeight: 800, fontSize: '1.1rem',
+            fontFamily: 'JetBrains Mono, monospace', letterSpacing: '-0.02em', flexShrink: 0,
+          }}>
+            {numMatch[1]}
+          </div>
+        ) : (
+          <div style={{ width: 5, background: 'linear-gradient(135deg, #2563eb, #3b82f6)', flexShrink: 0 }} />
+        )}
+        <div style={{ padding: '11px 18px', flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <h2 style={{ margin: 0, fontSize: '1rem', fontWeight: 700, color: '#0f172a', letterSpacing: '-0.01em' }}>
+            {numMatch ? numMatch[2] : title}
+          </h2>
+          <span style={{
+            fontSize: '0.85rem', color: '#94a3b8', transition: 'transform 0.2s ease',
+            transform: open ? 'rotate(180deg)' : 'rotate(0deg)', flexShrink: 0, marginLeft: 12,
+          }}>
+            ▾
+          </span>
+        </div>
+      </div>
+      {open && (
+        <div style={{
+          padding: '16px 20px 8px', background: '#fff',
+          border: '1px solid #e2e8f0', borderTop: 'none',
+          borderRadius: '0 0 10px 10px',
+          animation: 'feedbackIn 0.2s ease',
+        }}>
+          {children}
+        </div>
+      )}
+    </div>
   );
 }
 
