@@ -6,7 +6,6 @@ import TheoryView from './components/TheoryView';
 import ExerciseView from './components/ExerciseView';
 import Dashboard from './components/Dashboard';
 import PlanComptableView from './components/PlanComptableView';
-import ChapterPage from './components/ChapterPage';
 import FichesSalaireView from './components/FichesSalaireView';
 import ArretsMaladieView from './components/ArretsMaladieView';
 import MarchandisesView from './components/MarchandisesView';
@@ -36,7 +35,6 @@ export default function App() {
   const [activeModule, setActiveModule] = useState(() => {
     try { return localStorage.getItem(MODULE_KEY) || 'generale'; } catch { return 'generale'; }
   });
-  const [activeChapter, setActiveChapter] = useState(null);
   const [scores, setScores] = useState(loadScores);
   const [showLanding, setShowLanding] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -53,7 +51,6 @@ export default function App() {
   const handleSetTheory  = (id) => { setActiveTheory(id); closeSidebar(); setTimeout(scrollTop, 10); };
   const handleSetGroup   = (id) => { setActiveGroup(id);  closeSidebar(); setTimeout(scrollTop, 10); };
   const handleSetModule  = (id) => { setActiveModule(id); setView('dashboard'); closeSidebar(); setTimeout(scrollTop, 10); };
-  const handleSetChapter = (chapter) => { setActiveChapter(chapter); setView('chapter'); closeSidebar(); setTimeout(scrollTop, 10); };
 
   const handleResetScores = () => {
     if (window.confirm('Remettre tous les scores à zéro ?')) {
@@ -84,7 +81,6 @@ export default function App() {
         activeTheory={activeTheory} setActiveTheory={handleSetTheory}
         activeGroup={activeGroup}   setActiveGroup={handleSetGroup}
         activeModule={activeModule} setActiveModule={handleSetModule}
-        activeChapter={activeChapter} setActiveChapter={handleSetChapter}
         scores={scores}
         className={sidebarOpen ? 'open' : ''}
       />
@@ -92,14 +88,6 @@ export default function App() {
         {view === 'dashboard'         && <Dashboard scores={scores} setView={handleSetView} setActiveGroup={handleSetGroup} setActiveTheory={handleSetTheory} onReset={handleResetScores} activeModule={activeModule} />}
         {view === 'theory'            && <TheoryView activeTheory={activeTheory} />}
         {view === 'exercises'         && <ExerciseView activeGroup={activeGroup} setActiveGroup={handleSetGroup} scores={scores} setScores={setScores} />}
-        {view === 'chapter' && activeChapter && (
-          <ChapterPage
-            chapter={activeChapter}
-            onOpenTheory={() => handleSetView(activeChapter.special)}
-            onOpenExercise={(groupId) => { handleSetGroup(groupId); handleSetView('exercises'); }}
-            scores={scores}
-          />
-        )}
         {view === 'plan-comptable'    && <PlanComptableView />}
         {view === 'fiches-salaire'    && <FichesSalaireView />}
         {view === 'arrets-maladie'    && <ArretsMaladieView />}
