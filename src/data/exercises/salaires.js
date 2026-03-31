@@ -385,14 +385,14 @@ export const salairesEcrituresExercises = [
     id: 'sal-e-04', group: 'salaires-ecritures', type: 'journal', tag: 'salaires', difficulty: 3,
     title: 'Provision mensuelle 13e salaire',
     description: 'Comptabilisez la provision mensuelle de janvier pour le 13e salaire de l\'équipe.',
-    note: 'On débite les charges et on crédite 2280 Passifs transitoires (pas 2270). La provision sera soldée en décembre lors du versement effectif.',
+    note: 'On débite les charges et on crédite 2300 Passifs de régularisation (pas 2270). La provision sera soldée en décembre lors du versement effectif.',
     data: [
       { label: 'Provision 13e brut (1/12)', value: 'CHF 1\'667.00' },
       { label: 'Provision charges patronales (1/12)', value: 'CHF 233.00' },
     ],
     ecritures: [
-      { id: 'e1', libelle: 'Provision 13e salaire janvier (1/12)', debit: { num: '5000', label: 'Salaires' }, credit: { num: '2280', label: 'Passifs transitoires' }, amount: 1667 },
-      { id: 'e2', libelle: 'Provision charges patronales 13e janvier', debit: { num: '5700', label: 'Charges sociales patronales' }, credit: { num: '2280', label: 'Passifs transitoires' }, amount: 233 },
+      { id: 'e1', libelle: 'Provision 13e salaire janvier (1/12)', debit: { num: '5000', label: 'Salaires' }, credit: { num: '2300', label: 'Passifs de régularisation' }, amount: 1667 },
+      { id: 'e2', libelle: 'Provision charges patronales 13e janvier', debit: { num: '5700', label: 'Charges sociales patronales' }, credit: { num: '2300', label: 'Passifs de régularisation' }, amount: 233 },
     ],
   },
   {
@@ -435,7 +435,7 @@ export const salairesEcrituresExercises = [
     ],
     note: 'Provision mensuelle = masse brute / 12 = 25\'000 / 12 = CHF 2\'083.35',
     ecritures: [
-      { id: 'e1', libelle: 'Provision 13e salaire (1/12)', debit: { num: '5000', label: 'Salaires' }, credit: { num: '2260', label: 'Provision 13e salaire' }, amount: 2083.35 },
+      { id: 'e1', libelle: 'Provision 13e salaire (1/12)', debit: { num: '5000', label: 'Salaires' }, credit: { num: '2300', label: 'Passifs de régularisation' }, amount: 2083.35 },
     ],
   },
 ];

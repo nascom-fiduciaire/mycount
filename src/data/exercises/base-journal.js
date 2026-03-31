@@ -60,8 +60,8 @@ export const baseJournalExercises = [
       { label: '28.06 — Assurance RC', value: "CHF 620.00" },
     ],
     ecritures: [
-      { id: 'e1', libelle: '01.06 — Loyer bureau juin', debit: { num: '6000', label: 'Loyers' }, credit: { num: '1020', label: 'Banque' }, amount: 2800 },
-      { id: 'e2', libelle: '03.06 — Facture téléphonie HT', debit: { num: '6500', label: 'Charges admin/informatique' }, credit: { num: '2000', label: 'Créanciers' }, amount: 340 },
+      { id: 'e1', libelle: '01.06 — Loyer bureau juin', debit: { num: '6000', label: 'Charges de locaux' }, credit: { num: '1020', label: 'Banque' }, amount: 2800 },
+      { id: 'e2', libelle: '03.06 — Facture téléphonie HT', debit: { num: '6500', label: 'Charges d\'administration' }, credit: { num: '2000', label: 'Créanciers' }, amount: 340 },
       { id: 'e3', libelle: '08.06 — Facture Rossi SA prestations HT', debit: { num: '1100', label: 'Débiteurs' }, credit: { num: '3400', label: 'Produits prestations' }, amount: 4200 },
       { id: 'e4', libelle: '15.06 — Paiement facture téléphonie', debit: { num: '2000', label: 'Créanciers' }, credit: { num: '1020', label: 'Banque' }, amount: 340 },
       { id: 'e5', libelle: '22.06 — Encaissement Rossi SA', debit: { num: '1020', label: 'Banque' }, credit: { num: '1100', label: 'Débiteurs' }, amount: 4200 },
@@ -85,9 +85,9 @@ export const baseJournalExercises = [
     ],
     ecritures: [
       { id: 'e1', libelle: '10.05 — Achat véhicule (acompte banque)', debit: { num: '1530', label: 'Parc de véhicules' }, credit: { num: '1020', label: 'Banque' }, amount: 38000, amountCredit: 18000, multiLine: true },
-      { id: 'e1b', libelle: 'Financement emprunt bancaire', debit: null, credit: { num: '2300', label: 'Dettes à long terme' }, amount: null, amountCredit: 20000, isSubLine: true },
-      { id: 'e2', libelle: '30.06 — Remboursement capital emprunt', debit: { num: '2300', label: 'Dettes à long terme' }, credit: { num: '1020', label: 'Banque' }, amount: 400 },
-      { id: 'e3', libelle: '30.06 — Intérêts emprunt du mois', debit: { num: '6800', label: 'Charges financières' }, credit: { num: '1020', label: 'Banque' }, amount: 75 },
+      { id: 'e1b', libelle: 'Financement emprunt bancaire', debit: null, credit: { num: '2400', label: 'Emprunts bancaires' }, amount: null, amountCredit: 20000, isSubLine: true },
+      { id: 'e2', libelle: '30.06 — Remboursement capital emprunt', debit: { num: '2400', label: 'Emprunts bancaires' }, credit: { num: '1020', label: 'Banque' }, amount: 400 },
+      { id: 'e3', libelle: '30.06 — Intérêts emprunt du mois', debit: { num: '6900', label: 'Charges financières' }, credit: { num: '1020', label: 'Banque' }, amount: 75 },
     ],
   },
 
@@ -107,8 +107,8 @@ export const baseJournalExercises = [
       { label: 'Variation à constituer', value: "CHF 750.00" },
     ],
     ecritures: [
-      { id: 'e1', libelle: '05.12 — Perte sur débiteur — Failli SA insolvable', debit: { num: '6950', label: 'Pertes sur débiteurs' }, credit: { num: '1100', label: 'Débiteurs' }, amount: 4200 },
-      { id: 'e2', libelle: '31.12 — Augmentation ducroire (1\'800 → 2\'550)', debit: { num: '6960', label: 'Variation ducroire' }, credit: { num: '1109', label: 'Ducroire' }, amount: 750 },
+      { id: 'e1', libelle: '05.12 — Perte sur débiteur — Failli SA insolvable', debit: { num: '3805', label: 'Pertes sur clients, variation du ducroire' }, credit: { num: '1100', label: 'Débiteurs' }, amount: 4200 },
+      { id: 'e2', libelle: '31.12 — Augmentation ducroire (1\'800 → 2\'550)', debit: { num: '3805', label: 'Pertes sur clients, variation du ducroire' }, credit: { num: '1109', label: 'Ducroire' }, amount: 750 },
     ],
   },
 
@@ -128,14 +128,14 @@ export const baseJournalExercises = [
   {
     id: 'bj-07', group: 'base-journal', type: 'qcm', tag: 'base', difficulty: 2,
     title: 'Impact du remboursement d\'emprunt sur le résultat',
-    description: 'Le remboursement de CHF 2\'000 du capital d\'un emprunt bancaire (2300) affecte-t-il le résultat de l\'exercice ?',
+    description: 'Le remboursement de CHF 2\'000 du capital d\'un emprunt bancaire (2400) affecte-t-il le résultat de l\'exercice ?',
     options: [
       { id: 'a', text: 'Oui — c\'est un décaissement, donc une charge', correct: false },
       { id: 'b', text: 'Oui — les remboursements d\'emprunt sont des charges financières', correct: false },
       { id: 'c', text: 'Non — c\'est uniquement un mouvement bilantiel (Passif ↓ / Actif ↓)', correct: true },
       { id: 'd', text: 'Non — mais il faut quand même le passer en charges hors bilan', correct: false },
     ],
-    explanation: 'Le remboursement du **capital** est un mouvement purement bilantiel :\nDébit 2300 Dettes (passif ↓) / Crédit 1020 Banque (actif ↓)\n\nSeuls les **intérêts** (compte 6800) constituent une charge qui affecte le résultat.\nRembourser une dette = apurer un passif, pas consommer une ressource.',
+    explanation: 'Le remboursement du **capital** est un mouvement purement bilantiel :\nDébit 2400 Emprunts bancaires (passif ↓) / Crédit 1020 Banque (actif ↓)\n\nSeuls les **intérêts** (compte 6900) constituent une charge qui affecte le résultat.\nRembourser une dette = apurer un passif, pas consommer une ressource.',
   },
 
   {
@@ -168,7 +168,7 @@ export const baseJournalExercises = [
     id: 'bj-08', group: 'base-journal', type: 'journal', tag: 'base', difficulty: 2,
     title: 'Paiement avec escompte fournisseur',
     description: 'Fidulex Sàrl reçoit une facture fournisseur de CHF 5\'000 HT et paie dans le délai d\'escompte (2%).',
-    note: 'L\'escompte obtenu est un produit financier (compte 3800).',
+    note: 'L\'escompte obtenu est un produit financier (compte 6950).',
     data: [
       { label: 'Facture fournisseur', value: "CHF 5'000.00 HT" },
       { label: 'Escompte accordé', value: '2% si paiement sous 10 jours' },
@@ -177,7 +177,7 @@ export const baseJournalExercises = [
     ecritures: [
       { id: 'e1', libelle: 'Réception facture fournisseur', debit: { num: '4000', label: 'Charges marchandises' }, credit: { num: '2000', label: 'Créanciers' }, amount: 5000 },
       { id: 'e2', libelle: 'Paiement avec escompte 2%', debit: { num: '2000', label: 'Créanciers' }, credit: { num: '1020', label: 'Banque' }, amount: 4900 },
-      { id: 'e3', libelle: 'Escompte obtenu', debit: { num: '2000', label: 'Créanciers' }, credit: { num: '3800', label: 'Escomptes obtenus' }, amount: 100 },
+      { id: 'e3', libelle: 'Escompte obtenu', debit: { num: '2000', label: 'Créanciers' }, credit: { num: '6950', label: 'Produits financiers' }, amount: 100 },
     ],
   },
 
@@ -185,28 +185,28 @@ export const baseJournalExercises = [
     id: 'bj-09', group: 'base-journal', type: 'journal', tag: 'base', difficulty: 2,
     title: 'Perte définitive sur débiteur',
     description: 'Le client Müller AG est en faillite. Sa créance de CHF 3\'200 est définitivement perdue.',
-    note: 'La perte sur débiteurs est une charge extraordinaire (6900) si elle dépasse la provision ducroire.',
+    note: 'La perte sur débiteurs est comptabilisée au compte 3805 (Pertes sur clients, variation du ducroire).',
     data: [
       { label: 'Créance Müller AG', value: "CHF 3'200.00" },
       { label: 'Statut', value: 'Acte de défaut de biens reçu' },
     ],
     ecritures: [
-      { id: 'e1', libelle: 'Constatation perte sur débiteur Müller AG', debit: { num: '3900', label: 'Pertes sur débiteurs' }, credit: { num: '1100', label: 'Débiteurs' }, amount: 3200 },
+      { id: 'e1', libelle: 'Constatation perte sur débiteur Müller AG', debit: { num: '3805', label: 'Pertes sur clients, variation du ducroire' }, credit: { num: '1100', label: 'Débiteurs' }, amount: 3200 },
     ],
   },
 
   {
     id: 'bj-10', group: 'base-journal', type: 'journal', tag: 'base', difficulty: 2,
     title: 'Extourne — Correction d\'écriture erronée',
-    description: 'Une facture d\'électricité de CHF 850 a été comptabilisée par erreur au compte 6100 (Loyer). Corrigez l\'erreur.',
+    description: 'Une facture d\'électricité de CHF 850 a été comptabilisée par erreur au compte 6000 (Charges de locaux). Corrigez l\'erreur.',
     note: 'On passe d\'abord l\'extourne (écriture inverse), puis l\'écriture correcte.',
     data: [
-      { label: 'Écriture erronée', value: 'Débit 6100 / Crédit 2000 — CHF 850' },
-      { label: 'Compte correct', value: '6200 Électricité, gaz' },
+      { label: 'Écriture erronée', value: 'Débit 6000 / Crédit 2000 — CHF 850' },
+      { label: 'Compte correct', value: '6400 Charges d\'énergie' },
     ],
     ecritures: [
-      { id: 'e1', libelle: 'Extourne de l\'écriture erronée', debit: { num: '2000', label: 'Créanciers' }, credit: { num: '6100', label: 'Loyer' }, amount: 850 },
-      { id: 'e2', libelle: 'Écriture correcte — Électricité', debit: { num: '6200', label: 'Électricité' }, credit: { num: '2000', label: 'Créanciers' }, amount: 850 },
+      { id: 'e1', libelle: 'Extourne de l\'écriture erronée', debit: { num: '2000', label: 'Créanciers' }, credit: { num: '6000', label: 'Charges de locaux' }, amount: 850 },
+      { id: 'e2', libelle: 'Écriture correcte — Électricité', debit: { num: '6400', label: 'Charges d\'énergie' }, credit: { num: '2000', label: 'Créanciers' }, amount: 850 },
     ],
   },
 
@@ -239,16 +239,16 @@ export const baseJournalExercises = [
 10. 30.09 : Intérêts bancaires reçus CHF 45`,
     note: 'Comptabilisez en postes ouverts (débiteurs/créanciers). Les salaires sont simplifiés.',
     ecritures: [
-      { id: 'e1', libelle: '01.09 — Paiement loyer', debit: { num: '6100', label: 'Loyer' }, credit: { num: '1020', label: 'Banque' }, amount: 2500 },
+      { id: 'e1', libelle: '01.09 — Paiement loyer', debit: { num: '6000', label: 'Charges de locaux' }, credit: { num: '1020', label: 'Banque' }, amount: 2500 },
       { id: 'e2', libelle: '03.09 — Facture fournisseur marchandises', debit: { num: '4000', label: 'Charges marchandises' }, credit: { num: '2000', label: 'Créanciers' }, amount: 8000 },
       { id: 'e3', libelle: '05.09 — Facture client prestations', debit: { num: '1100', label: 'Débiteurs' }, credit: { num: '3400', label: 'Produits prestations' }, amount: 12000 },
       { id: 'e4', libelle: '10.09 — Paiement salaire net', debit: { num: '5000', label: 'Salaires' }, credit: { num: '1020', label: 'Banque' }, amount: 5200 },
       { id: 'e5', libelle: '10.09 — Retenue charges sociales employé', debit: { num: '5000', label: 'Salaires' }, credit: { num: '2270', label: 'Charges sociales à payer' }, amount: 800 },
       { id: 'e6', libelle: '12.09 — Encaissement client', debit: { num: '1020', label: 'Banque' }, credit: { num: '1100', label: 'Débiteurs' }, amount: 12000 },
       { id: 'e7', libelle: '15.09 — Paiement fournisseur', debit: { num: '2000', label: 'Créanciers' }, credit: { num: '1020', label: 'Banque' }, amount: 8000 },
-      { id: 'e8', libelle: '20.09 — Facture téléphone', debit: { num: '6500', label: 'Téléphone' }, credit: { num: '2000', label: 'Créanciers' }, amount: 180 },
+      { id: 'e8', libelle: '20.09 — Facture téléphone', debit: { num: '6500', label: 'Charges d\'administration' }, credit: { num: '2000', label: 'Créanciers' }, amount: 180 },
       { id: 'e9', libelle: '25.09 — Prélèvement privé', debit: { num: '2800', label: 'Privé' }, credit: { num: '1020', label: 'Banque' }, amount: 1000 },
-      { id: 'e10', libelle: '30.09 — Intérêts bancaires reçus', debit: { num: '1020', label: 'Banque' }, credit: { num: '3800', label: 'Produits financiers' }, amount: 45 },
+      { id: 'e10', libelle: '30.09 — Intérêts bancaires reçus', debit: { num: '1020', label: 'Banque' }, credit: { num: '6950', label: 'Produits financiers' }, amount: 45 },
     ],
   },
 
@@ -270,8 +270,8 @@ export const baseJournalExercises = [
       { id: 'e3', libelle: 'Vente marchandises', debit: { num: '1100', label: 'Débiteurs' }, credit: { num: '3200', label: 'Ventes marchandises' }, amount: 35000 },
       { id: 'e4', libelle: 'Encaissement client', debit: { num: '1020', label: 'Banque' }, credit: { num: '1100', label: 'Débiteurs' }, amount: 35000 },
       { id: 'e5', libelle: 'Paiement fournisseur', debit: { num: '2000', label: 'Créanciers' }, credit: { num: '1020', label: 'Banque' }, amount: 20000 },
-      { id: 'e6', libelle: 'Amortissement mobilier', debit: { num: '6800', label: 'Amortissements' }, credit: { num: '1500', label: 'Mobilier' }, amount: 3000 },
-      { id: 'e7', libelle: 'Variation de stock (diminution)', debit: { num: '4080', label: 'Variation de stock' }, credit: { num: '1200', label: 'Stock marchandises' }, amount: 3000 },
+      { id: 'e6', libelle: 'Amortissement mobilier', debit: { num: '6800', label: 'Amortissements' }, credit: { num: '1510', label: 'Mobilier et installations' }, amount: 3000 },
+      { id: 'e7', libelle: 'Variation de stock (diminution)', debit: { num: '4800', label: 'Variation de stocks' }, credit: { num: '1200', label: 'Stock marchandises' }, amount: 3000 },
     ],
   },
 ];

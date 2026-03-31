@@ -311,11 +311,14 @@ export default function LandingPage({ onStart, onSelectModule }) {
         <div style={s.heroGlow} />
         <img src="/logo.svg" alt="MyCount" style={s.logo} />
         <h1 style={s.heroTitle}>MyCount</h1>
-        <p style={s.heroSub}>
-          Votre compagnon pour la comptabilit{'\u00e9'} et la finance suisse
+        <p style={{ ...s.heroSub, maxWidth: 600 }}>
+          Ce site propose des ressources pour apprendre la comptabilité et la finance suisse. Il est destiné aux étudiants en formation commerciale, aux apprentis en fiduciaire, mais aussi à toute personne souhaitant découvrir la comptabilité ou se perfectionner dans ce domaine.
+        </p>
+        <p style={{ ...s.heroSub, maxWidth: 560, fontSize: isMobile ? '0.88rem' : '0.95rem', marginBottom: 32, color: 'rgba(255,255,255,0.5)' }}>
+          Théorie détaillée, exercices interactifs avec correction automatique, fiches de salaire à compléter, plan comptable intégré — tout est là pour apprendre à votre rythme.
         </p>
         <div style={s.badge}>
-          {'\ud83c\udde8\ud83c\udded'} Conforme au droit suisse {'\u00b7'} CO {'\u00b7'} LTVA {'\u00b7'} LAVS
+          {'\ud83c\udde8\ud83c\udded'} Conforme au droit suisse
         </div>
         <button
           style={{
@@ -326,10 +329,10 @@ export default function LandingPage({ onStart, onSelectModule }) {
           onMouseLeave={() => setHoveredCta(false)}
           onClick={onStart}
         >
-          Commencer l{'\u2019'}apprentissage
+          Commencer l'apprentissage
           <ArrowRight size={18} />
         </button>
-        <p style={s.heroFootnote}>100% gratuit {'\u00b7'} Aucune inscription requise</p>
+        <p style={{ ...s.heroFootnote, marginTop: 20, fontSize: '0.76rem' }}>Nous vous souhaitons beaucoup de plaisir dans votre apprentissage !</p>
       </section>
 
       {/* ───── FEATURES ───── */}

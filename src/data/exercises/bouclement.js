@@ -5,19 +5,19 @@ export const bouclementExercises = [
     id: 'boucl-01', group: 'bouclement', type: 'journal', tag: 'bouclement', difficulty: 2,
     title: 'Amortissements annuels — 3 actifs',
     description: `Au 31.12, comptabilisez les amortissements sur 3 actifs :
-1. Mobilier (1520) : CHF 24'000 à 20% linéaire
-2. Informatique (1540) : CHF 15'000 à 33% linéaire
+1. Mobilier (1510) : CHF 24'000 à 20% linéaire
+2. Informatique (1520) : CHF 15'000 à 33% linéaire
 3. Véhicule (1530) : CHF 45'000 à 25% linéaire`,
-    note: 'Amortissement linéaire = valeur × taux. Toujours : Débit 6700 / Crédit compte d\'actif concerné.',
+    note: 'Amortissement linéaire = valeur × taux. Toujours : Débit 6800 / Crédit compte d\'actif concerné.',
     data: [
-      { label: 'Mobilier (1520) — 20%', value: "CHF 4'800.00" },
-      { label: 'Informatique (1540) — 33%', value: "CHF 4'950.00" },
+      { label: 'Mobilier (1510) — 20%', value: "CHF 4'800.00" },
+      { label: 'Informatique (1520) — 33%', value: "CHF 4'950.00" },
       { label: 'Véhicule (1530) — 25%', value: "CHF 11'250.00" },
     ],
     ecritures: [
-      { id: 'e1', libelle: '31.12 — Amortissement mobilier (20% × 24\'000)', debit: { num: '6700', label: 'Amortissements' }, credit: { num: '1520', label: 'Mobilier et installations' }, amount: 4800 },
-      { id: 'e2', libelle: '31.12 — Amortissement informatique (33% × 15\'000)', debit: { num: '6700', label: 'Amortissements' }, credit: { num: '1540', label: 'Matériel informatique' }, amount: 4950 },
-      { id: 'e3', libelle: '31.12 — Amortissement véhicule (25% × 45\'000)', debit: { num: '6700', label: 'Amortissements' }, credit: { num: '1530', label: 'Parc de véhicules' }, amount: 11250 },
+      { id: 'e1', libelle: '31.12 — Amortissement mobilier (20% × 24\'000)', debit: { num: '6800', label: 'Amortissements' }, credit: { num: '1510', label: 'Mobilier et installations' }, amount: 4800 },
+      { id: 'e2', libelle: '31.12 — Amortissement informatique (33% × 15\'000)', debit: { num: '6800', label: 'Amortissements' }, credit: { num: '1520', label: 'Matériel informatique' }, amount: 4950 },
+      { id: 'e3', libelle: '31.12 — Amortissement véhicule (25% × 45\'000)', debit: { num: '6800', label: 'Amortissements' }, credit: { num: '1530', label: 'Parc de véhicules' }, amount: 11250 },
     ],
   },
 
@@ -37,10 +37,10 @@ export const bouclementExercises = [
       { label: 'Prestations décembre non facturées', value: "CHF 4'500.00 → actif transitoire" },
     ],
     ecritures: [
-      { id: 'e1', libelle: '31.12 — Charge payée d\'avance assurance (9 mois N+1)', debit: { num: '1180', label: 'Actifs transitoires' }, credit: { num: '6300', label: 'Assurances et taxes' }, amount: 2700 },
-      { id: 'e2', libelle: '31.12 — Intérêts bancaires à payer (courus)', debit: { num: '6800', label: 'Charges financières' }, credit: { num: '2280', label: 'Passifs transitoires' }, amount: 380 },
-      { id: 'e3', libelle: '31.12 — Loyer janvier N+1 reçu d\'avance', debit: { num: '1020', label: 'Banque' }, credit: { num: '2280', label: 'Passifs transitoires' }, amount: 2800 },
-      { id: 'e4', libelle: '31.12 — Produits à recevoir (prestations décembre)', debit: { num: '1180', label: 'Actifs transitoires' }, credit: { num: '3400', label: 'Produits prestations' }, amount: 4500 },
+      { id: 'e1', libelle: '31.12 — Charge payée d\'avance assurance (9 mois N+1)', debit: { num: '1300', label: 'Charges payées d\'avance' }, credit: { num: '6300', label: 'Assurances et taxes' }, amount: 2700 },
+      { id: 'e2', libelle: '31.12 — Intérêts bancaires à payer (courus)', debit: { num: '6900', label: 'Charges financières' }, credit: { num: '2300', label: 'Passifs de régularisation' }, amount: 380 },
+      { id: 'e3', libelle: '31.12 — Loyer janvier N+1 reçu d\'avance', debit: { num: '1020', label: 'Banque' }, credit: { num: '2300', label: 'Passifs de régularisation' }, amount: 2800 },
+      { id: 'e4', libelle: '31.12 — Produits à recevoir (prestations décembre)', debit: { num: '1301', label: 'Produits à recevoir' }, credit: { num: '3400', label: 'Produits prestations' }, amount: 4500 },
     ],
   },
 
@@ -61,11 +61,11 @@ export const bouclementExercises = [
       { label: 'Variation ducroire', value: "CHF 900.00 (augmentation)" },
     ],
     ecritures: [
-      { id: 'e1', libelle: '31.12 — Amortissement mobilier 20%', debit: { num: '6700', label: 'Amortissements' }, credit: { num: '1520', label: 'Mobilier et installations' }, amount: 6000 },
+      { id: 'e1', libelle: '31.12 — Amortissement mobilier 20%', debit: { num: '6800', label: 'Amortissements' }, credit: { num: '1510', label: 'Mobilier et installations' }, amount: 6000 },
       { id: 'e2', libelle: '31.12 — Provision impôts directs estimés', debit: { num: '8500', label: 'Impôts directs' }, credit: { num: '2500', label: 'Provisions' }, amount: 12500 },
-      { id: 'e3', libelle: '31.12 — Honoraires décembre à recevoir', debit: { num: '1180', label: 'Actifs transitoires' }, credit: { num: '3400', label: 'Produits prestations' }, amount: 7200 },
-      { id: 'e4', libelle: '31.12 — Frais audit à payer (non facturés)', debit: { num: '6500', label: 'Charges admin/informatique' }, credit: { num: '2280', label: 'Passifs transitoires' }, amount: 3800 },
-      { id: 'e5', libelle: '31.12 — Augmentation ducroire (4\'200 → 5\'100)', debit: { num: '6960', label: 'Variation ducroire' }, credit: { num: '1109', label: 'Ducroire' }, amount: 900 },
+      { id: 'e3', libelle: '31.12 — Honoraires décembre à recevoir', debit: { num: '1301', label: 'Produits à recevoir' }, credit: { num: '3400', label: 'Produits prestations' }, amount: 7200 },
+      { id: 'e4', libelle: '31.12 — Frais audit à payer (non facturés)', debit: { num: '6500', label: 'Charges d\'administration' }, credit: { num: '2300', label: 'Passifs de régularisation' }, amount: 3800 },
+      { id: 'e5', libelle: '31.12 — Augmentation ducroire (4\'200 → 5\'100)', debit: { num: '3805', label: 'Pertes sur clients, variation du ducroire' }, credit: { num: '1109', label: 'Ducroire' }, amount: 900 },
     ],
   },
 
@@ -79,7 +79,7 @@ export const bouclementExercises = [
       { id: 'c', text: "CHF 6'000 (totalité)", correct: false },
       { id: 'd', text: "CHF 0", correct: false },
     ],
-    explanation: "Consommé en N : sept-oct-nov-déc = 4 mois → charge N = 6'000 × 4/12 = CHF 2'000\nRestant N+1 : jan à août = 8 mois → **actif transitoire = CHF 4'000**\n\nÉcriture : Débit 1180 CHF 4'000 / Crédit 6300 CHF 4'000",
+    explanation: "Consommé en N : sept-oct-nov-déc = 4 mois → charge N = 6'000 × 4/12 = CHF 2'000\nRestant N+1 : jan à août = 8 mois → **actif transitoire = CHF 4'000**\n\nÉcriture : Débit 1300 CHF 4'000 / Crédit 6300 CHF 4'000",
   },
 
   // ─── QCM SUPPLÉMENTAIRES ──────────────────────────────────────────────
@@ -121,7 +121,7 @@ export const bouclementExercises = [
     ],
     note: 'D\u00e9gressif = taux appliqu\u00e9 sur la valeur r\u00e9siduelle (nette), pas sur la valeur d\'acquisition.',
     ecritures: [
-      { id: 'e1', libelle: 'Amortissement v\u00e9hicule 40% d\u00e9gressif', debit: { num: '6830', label: 'Amortissements v\u00e9hicules' }, credit: { num: '1539', label: 'Ajustement valeur v\u00e9hicules' }, amount: 9600 },
+      { id: 'e1', libelle: 'Amortissement v\u00e9hicule 40% d\u00e9gressif', debit: { num: '6800', label: 'Amortissements' }, credit: { num: '1539', label: 'Ajustement valeur v\u00e9hicules' }, amount: 9600 },
     ],
   },
 
@@ -130,9 +130,9 @@ export const bouclementExercises = [
     title: 'Provisions de fin d\'ann\u00e9e',
     description: 'Bouclement 31.12 \u2014 passez les 3 provisions :\n1. Provision pour imp\u00f4ts estim\u00e9s : CHF 15\'000\n2. Provision pour garantie SAV : CHF 8\'000\n3. Provision pour proc\u00e8s en cours : CHF 25\'000',
     ecritures: [
-      { id: 'e1', libelle: 'Provision pour imp\u00f4ts', debit: { num: '8900', label: 'Charge d\'imp\u00f4ts' }, credit: { num: '2300', label: 'Provision imp\u00f4ts' }, amount: 15000 },
-      { id: 'e2', libelle: 'Provision pour garantie SAV', debit: { num: '6800', label: 'Charges d\'exploitation' }, credit: { num: '2330', label: 'Provision garanties' }, amount: 8000 },
-      { id: 'e3', libelle: 'Provision pour proc\u00e8s', debit: { num: '6800', label: 'Charges d\'exploitation' }, credit: { num: '2350', label: 'Provision litiges' }, amount: 25000 },
+      { id: 'e1', libelle: 'Provision pour imp\u00f4ts', debit: { num: '8900', label: 'Imp\u00f4ts directs' }, credit: { num: '2208', label: 'Imp\u00f4ts directs \u00e0 payer' }, amount: 15000 },
+      { id: 'e2', libelle: 'Provision pour garantie SAV', debit: { num: '6700', label: 'Autres charges d\'exploitation' }, credit: { num: '2330', label: 'Provisions \u00e0 court terme' }, amount: 8000 },
+      { id: 'e3', libelle: 'Provision pour proc\u00e8s', debit: { num: '6700', label: 'Autres charges d\'exploitation' }, credit: { num: '2500', label: 'Provisions \u00e0 long terme' }, amount: 25000 },
     ],
   },
 
@@ -141,13 +141,13 @@ export const bouclementExercises = [
     title: 'Bouclement complet \u2014 8 op\u00e9rations',
     description: 'Passez toutes les \u00e9critures de bouclement au 31.12 :\n1. Amortissement mobilier CHF 5\'000 (lin\u00e9aire, m\u00e9thode directe)\n2. Amortissement v\u00e9hicule CHF 8\'000 (d\u00e9gressif, m\u00e9thode indirecte)\n3. Provision ducroire port\u00e9e \u00e0 CHF 3\'000 (solde actuel CHF 1\'500)\n4. Loyer pay\u00e9 d\'avance CHF 2\'500 (janvier N+1)\n5. Int\u00e9r\u00eats courus \u00e0 recevoir CHF 600\n6. Provision pour imp\u00f4ts CHF 12\'000\n7. Facture d\'audit \u00e0 provisionner CHF 4\'000\n8. Charges sociales provisionn\u00e9es CHF 1\'800',
     ecritures: [
-      { id: 'e1', libelle: 'Amortissement mobilier (lin\u00e9aire direct)', debit: { num: '6800', label: 'Amortissements' }, credit: { num: '1500', label: 'Mobilier' }, amount: 5000 },
-      { id: 'e2', libelle: 'Amortissement v\u00e9hicule (d\u00e9gressif indirect)', debit: { num: '6830', label: 'Amortissements v\u00e9hicules' }, credit: { num: '1539', label: 'Ajustement valeur v\u00e9hicules' }, amount: 8000 },
-      { id: 'e3', libelle: 'Ajustement provision ducroire', debit: { num: '3900', label: 'Pertes sur d\u00e9biteurs' }, credit: { num: '1109', label: 'Ducroire' }, amount: 1500 },
-      { id: 'e4', libelle: 'Loyer pay\u00e9 d\'avance (actif transitoire)', debit: { num: '1300', label: 'Charges pay\u00e9es d\'avance' }, credit: { num: '6100', label: 'Loyer' }, amount: 2500 },
-      { id: 'e5', libelle: 'Int\u00e9r\u00eats courus \u00e0 recevoir', debit: { num: '1300', label: 'Produits \u00e0 recevoir' }, credit: { num: '3800', label: 'Produits financiers' }, amount: 600 },
-      { id: 'e6', libelle: 'Provision pour imp\u00f4ts', debit: { num: '8900', label: 'Charge d\'imp\u00f4ts' }, credit: { num: '2300', label: 'Provision imp\u00f4ts' }, amount: 12000 },
-      { id: 'e7', libelle: 'Provision frais d\'audit', debit: { num: '6700', label: 'Honoraires' }, credit: { num: '2300', label: 'Charges \u00e0 payer' }, amount: 4000 },
+      { id: 'e1', libelle: 'Amortissement mobilier (lin\u00e9aire direct)', debit: { num: '6800', label: 'Amortissements' }, credit: { num: '1510', label: 'Mobilier et installations' }, amount: 5000 },
+      { id: 'e2', libelle: 'Amortissement v\u00e9hicule (d\u00e9gressif indirect)', debit: { num: '6800', label: 'Amortissements' }, credit: { num: '1539', label: 'Ajustement valeur v\u00e9hicules' }, amount: 8000 },
+      { id: 'e3', libelle: 'Ajustement provision ducroire', debit: { num: '3805', label: 'Pertes sur clients, variation du ducroire' }, credit: { num: '1109', label: 'Ducroire' }, amount: 1500 },
+      { id: 'e4', libelle: 'Loyer pay\u00e9 d\'avance (actif transitoire)', debit: { num: '1300', label: 'Charges pay\u00e9es d\'avance' }, credit: { num: '6000', label: 'Charges de locaux' }, amount: 2500 },
+      { id: 'e5', libelle: 'Int\u00e9r\u00eats courus \u00e0 recevoir', debit: { num: '1301', label: 'Produits \u00e0 recevoir' }, credit: { num: '6950', label: 'Produits financiers' }, amount: 600 },
+      { id: 'e6', libelle: 'Provision pour imp\u00f4ts', debit: { num: '8900', label: 'Imp\u00f4ts directs' }, credit: { num: '2208', label: 'Imp\u00f4ts directs \u00e0 payer' }, amount: 12000 },
+      { id: 'e7', libelle: 'Provision frais d\'audit', debit: { num: '6700', label: 'Autres charges d\'exploitation' }, credit: { num: '2300', label: 'Passifs de r\u00e9gularisation' }, amount: 4000 },
       { id: 'e8', libelle: 'Charges sociales provisionn\u00e9es', debit: { num: '5700', label: 'Charges sociales' }, credit: { num: '2270', label: 'Charges sociales \u00e0 payer' }, amount: 1800 },
     ],
   },

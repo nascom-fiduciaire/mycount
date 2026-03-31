@@ -123,7 +123,6 @@ export const marchandisesExercises = [
     data: [
       { label: 'Stock initial', value: "CHF 15'000" },
       { label: 'Stock final (inventaire physique)', value: "CHF 22'000" },
-      { label: 'Variation', value: "+ CHF 7'000 (stock augmente)" },
     ],
     ecritures: [
       { id: 'e1', libelle: '31.12 — Variation de stocks (augmentation)', debit: { num: '1200', label: 'Stock de marchandises' }, credit: { num: '4800', label: 'Variation de stocks' }, amount: 7000 },

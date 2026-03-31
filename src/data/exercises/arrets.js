@@ -73,7 +73,7 @@ export const arretsExercises = [
       { id: 'c', text: '5000 Salaires (diminution directe)', correct: false },
       { id: 'd', text: '2000 Créanciers', correct: false },
     ],
-    explanation: 'L\'indemnité IJM reçue est comptabilisée au crédit du compte **5005 Indemnités reçues** — un sous-compte de charges personnel qui vient en diminution du coût du personnel.\n\nÉcriture à la réception :\nDébit 1180 Actifs transitoires CHF 2\'500 / Crédit 5005 Indemnités CHF 2\'500\n\nPuis à l\'encaissement :\nDébit 1020 Banque / Crédit 1180',
+    explanation: 'L\'indemnité IJM reçue est comptabilisée au crédit du compte **5005 Indemnités reçues** — un sous-compte de charges personnel qui vient en diminution du coût du personnel.\n\nÉcriture à la réception :\nDébit 1301 Produits à recevoir CHF 2\'500 / Crédit 5005 Indemnités CHF 2\'500\n\nPuis à l\'encaissement :\nDébit 1020 Banque / Crédit 1301',
   },
 
   {

@@ -176,7 +176,7 @@ Le gain d'assainissement de CHF 105'000 compense partiellement la perte de CHF 1
     title: 'Emission d\'un emprunt obligataire au-dessus du pair',
     description: `La societe emet un emprunt obligataire de CHF 500'000 (500 obligations de CHF 1'000) au taux d'emission de 103% (au-dessus du pair).
 Les frais d'emission s'elevent a CHF 8'000.`,
-    note: 'Emission au-dessus du pair : le disagio (prime d\'emission) est comptabilise au compte 7000 Produits financiers.',
+    note: 'Emission au-dessus du pair : le disagio (prime d\'emission) est comptabilise au compte 6950 Produits financiers.',
     data: [
       { label: 'Valeur nominale emprunt', value: "CHF 500'000" },
       { label: 'Taux d\'emission', value: '103%' },
@@ -186,15 +186,15 @@ Les frais d'emission s'elevent a CHF 8'000.`,
     ],
     ecritures: [
       { id: 'e1', libelle: 'Souscription — valeur nominale de l\'emprunt', debit: { num: '1195', label: 'Souscripteurs obligations' }, credit: { num: '2430', label: 'Emprunts obligataires' }, amount: 500000 },
-      { id: 'e2', libelle: 'Prime d\'emission (103% − 100%)', debit: { num: '1195', label: 'Souscripteurs obligations' }, credit: { num: '7000', label: 'Produits financiers' }, amount: 15000 },
+      { id: 'e2', libelle: 'Prime d\'emission (103% − 100%)', debit: { num: '1195', label: 'Souscripteurs obligations' }, credit: { num: '6950', label: 'Produits financiers' }, amount: 15000 },
       { id: 'e3', libelle: 'Liberation — encaissement par banque', debit: { num: '1020', label: 'Banque' }, credit: { num: '1195', label: 'Souscripteurs obligations' }, amount: 515000 },
-      { id: 'e4', libelle: 'Frais d\'emission de l\'emprunt', debit: { num: '7010', label: 'Charges financieres' }, credit: { num: '1020', label: 'Banque' }, amount: 8000 },
+      { id: 'e4', libelle: 'Frais d\'emission de l\'emprunt', debit: { num: '6900', label: 'Charges financieres' }, credit: { num: '1020', label: 'Banque' }, amount: 8000 },
     ],
     hint: 'Au-dessus du pair : les souscripteurs paient plus que la valeur nominale. La difference est un produit financier pour l\'emetteur.',
     correction: `1) Souscription VN : CHF 500'000 → Debit 1195 / Credit 2430.
-2) Prime : 500'000 × 3% = CHF 15'000 → Debit 1195 / Credit 7000.
+2) Prime : 500'000 × 3% = CHF 15'000 → Debit 1195 / Credit 6950.
 3) Liberation : CHF 515'000 encaisses → Debit 1020 / Credit 1195.
-4) Frais : CHF 8'000 → Debit 7010 / Credit 1020.
+4) Frais : CHF 8'000 → Debit 6900 / Credit 1020.
 Controle : le compte 1195 est solde (500'000 + 15'000 − 515'000 = 0). ✓`,
   },
 
@@ -376,7 +376,7 @@ Les actionnaires de B detiennent desormais 250 actions de la societe A.`,
       { label: 'Type', value: 'Abandon de créances (art. 725a CO)' },
     ],
     ecritures: [
-      { id: 'e1', libelle: 'Abandon de créances — suppression de la dette', debit: { num: '2000', label: 'Créanciers' }, credit: { num: '3900', label: 'Produits exceptionnels' }, amount: 150000 },
+      { id: 'e1', libelle: 'Abandon de créances — suppression de la dette', debit: { num: '2000', label: 'Créanciers' }, credit: { num: '8100', label: 'Produits exceptionnels' }, amount: 150000 },
     ],
   },
 
