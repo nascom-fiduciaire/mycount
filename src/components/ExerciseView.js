@@ -524,6 +524,405 @@ function PayslipInteractiveExercise({ ex, onComplete }) {
   );
 }
 
+// ─── EXAM ───────────────────────────────────────────────────────────────────
+function ExamExercise({ ex, onComplete }) {
+  const [currentSection, setCurrentSection] = useState(0);
+  const [sectionScores, setSectionScores] = useState({});
+  const [sectionCompleted, setSectionCompleted] = useState({});
+  const [examFinished, setExamFinished] = useState(false);
+
+  // Per-section state
+  const [inputs, setInputs] = useState({});
+  const [submitted, setSubmitted] = useState({});
+  const [results, setResults] = useState({});
+  // QCM-multi selections: { sectionIdx: { questionId: optionId } }
+  const [qcmSelections, setQcmSelections] = useState({});
+
+  const sections = ex.sections || [];
+  const section = sections[currentSection];
+
+  const set = (key, val) => setInputs(p => ({ ...p, [key]: val }));
+  const get = (key) => inputs[key] || '';
+  const isSubmitted = !!submitted[currentSection];
+
+  // ── QCM-multi validation ──
+  const validateQcmMulti = () => {
+    const sel = qcmSelections[currentSection] || {};
+    const res = {};
+    let correct = 0;
+    section.questions.forEach(q => {
+      const picked = sel[q.id];
+      const ok = !!q.options.find(o => o.id === picked && o.correct);
+      res[q.id] = ok;
+      if (ok) correct++;
+    });
+    const total = section.questions.length;
+    const pts = total > 0 ? Math.round((correct / total) * section.points) : 0;
+    setResults(p => ({ ...p, [currentSection]: res }));
+    setSubmitted(p => ({ ...p, [currentSection]: true }));
+    setSectionScores(p => ({ ...p, [currentSection]: pts }));
+    setSectionCompleted(p => ({ ...p, [currentSection]: true }));
+  };
+
+  // ── Journal validation ──
+  const validateJournal = () => {
+    const fields = [];
+    section.ecritures.forEach(e => {
+      if (e.debit) fields.push({ key: `${currentSection}_${e.id}_da`, correct: e.debit.num });
+      if (e.credit) fields.push({ key: `${currentSection}_${e.id}_ca`, correct: e.credit.num });
+      if (e.amount != null) fields.push({ key: `${currentSection}_${e.id}_dam`, correct: e.amount, isAmt: true });
+      if (e.amountCredit != null) fields.push({ key: `${currentSection}_${e.id}_cam`, correct: e.amountCredit, isAmt: true });
+    });
+    const res = {};
+    let correct = 0;
+    fields.forEach(f => {
+      const val = get(f.key).trim();
+      const ok = f.isAmt ? close(parseAmt(val), f.correct) : val === String(f.correct);
+      res[f.key] = ok;
+      if (ok) correct++;
+    });
+    const pts = fields.length > 0 ? Math.round((correct / fields.length) * section.points) : 0;
+    setResults(p => ({ ...p, [currentSection]: res }));
+    setSubmitted(p => ({ ...p, [currentSection]: true }));
+    setSectionScores(p => ({ ...p, [currentSection]: pts }));
+    setSectionCompleted(p => ({ ...p, [currentSection]: true }));
+  };
+
+  // ── Calcul validation ──
+  const validateCalcul = () => {
+    const res = {};
+    let correct = 0;
+    section.champs.forEach(c => {
+      const val = parseAmt(get(`${currentSection}_${c.id}`));
+      const ok = close(val, c.correct, c.tol || 0.10);
+      res[`${currentSection}_${c.id}`] = ok;
+      if (ok) correct++;
+    });
+    const pts = section.champs.length > 0 ? Math.round((correct / section.champs.length) * section.points) : 0;
+    setResults(p => ({ ...p, [currentSection]: res }));
+    setSubmitted(p => ({ ...p, [currentSection]: true }));
+    setSectionScores(p => ({ ...p, [currentSection]: pts }));
+    setSectionCompleted(p => ({ ...p, [currentSection]: true }));
+  };
+
+  const handleValidate = () => {
+    if (section.type === 'qcm-multi') validateQcmMulti();
+    else if (section.type === 'journal') validateJournal();
+    else if (section.type === 'calcul') validateCalcul();
+  };
+
+  const handleNext = () => {
+    if (currentSection < sections.length - 1) {
+      setCurrentSection(currentSection + 1);
+    } else {
+      // Exam finished
+      setExamFinished(true);
+      const totalMax = sections.reduce((s, sec) => s + sec.points, 0);
+      const totalScore = sections.reduce((s, _, i) => s + (sectionScores[i] || 0), 0);
+      onComplete(totalMax > 0 ? totalScore / totalMax : 0);
+    }
+  };
+
+  const cls = (key) => {
+    const secRes = results[currentSection] || {};
+    if (!isSubmitted) return '';
+    return secRes[key] ? 'correct' : 'wrong';
+  };
+
+  // ── Summary card ──
+  if (examFinished) {
+    const totalMax = sections.reduce((s, sec) => s + sec.points, 0);
+    const totalScore = sections.reduce((s, _, i) => s + (sectionScores[i] || 0), 0);
+    const pct = totalMax > 0 ? Math.round((totalScore / totalMax) * 100) : 0;
+    const note = Math.min(6, Math.max(1, 1 + 5 * (totalScore / totalMax)));
+    const noteRounded = Math.round(note * 10) / 10;
+    const passed = noteRounded >= 4.0;
+
+    return (
+      <div style={{
+        maxWidth: 520, margin: '24px auto', background: 'var(--bg1, #fff)', border: '2px solid var(--border2, #ddd)',
+        borderRadius: 14, boxShadow: '0 4px 24px rgba(0,0,0,0.08)', overflow: 'hidden',
+      }}>
+        <div style={{
+          padding: '18px 24px', background: passed ? '#e6f4ed' : '#fdf0ee',
+          borderBottom: '2px solid var(--border2, #ddd)', textAlign: 'center',
+        }}>
+          <div style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--text1)', letterSpacing: '0.02em' }}>
+            RESULTATS DE L'EXAMEN
+          </div>
+        </div>
+        <div style={{ padding: '16px 24px' }}>
+          {sections.map((sec, i) => (
+            <div key={sec.id} style={{
+              display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+              padding: '9px 0', borderBottom: '1px solid var(--border1, #eee)', fontSize: '0.84rem',
+            }}>
+              <span style={{ color: 'var(--text2)', fontWeight: 500 }}>{sec.title}</span>
+              <span style={{
+                fontWeight: 700, fontVariantNumeric: 'tabular-nums',
+                color: (sectionScores[i] || 0) >= sec.points * 0.6 ? '#1a7a4a' : '#c0392b',
+              }}>
+                {sectionScores[i] || 0}/{sec.points} pts
+              </span>
+            </div>
+          ))}
+        </div>
+        <div style={{
+          padding: '16px 24px', background: 'var(--bg2, #f8f8f8)',
+          borderTop: '2px solid var(--border2, #ddd)',
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+            <span style={{ fontSize: '0.92rem', fontWeight: 700, color: 'var(--text1)' }}>TOTAL</span>
+            <span style={{ fontSize: '0.92rem', fontWeight: 800, color: 'var(--text1)' }}>
+              {totalScore}/{totalMax} points ({pct}%)
+            </span>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <span style={{ fontSize: '0.92rem', fontWeight: 700, color: 'var(--text1)' }}>Note</span>
+            <span style={{
+              fontSize: '1.1rem', fontWeight: 800,
+              color: passed ? '#1a7a4a' : '#c0392b',
+            }}>
+              {noteRounded.toFixed(1)} / 6
+            </span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // ── Section rendering ──
+  const progressPct = sections.length > 0 ? ((currentSection + 1) / sections.length) * 100 : 0;
+  const secRes = results[currentSection] || {};
+
+  const renderQcmMulti = () => {
+    const sel = qcmSelections[currentSection] || {};
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+        {section.questions.map((q, qi) => {
+          const picked = sel[q.id];
+          const qOk = isSubmitted && secRes[q.id];
+          return (
+            <div key={q.id} style={{
+              padding: '14px 16px', background: 'var(--bg2)', borderRadius: 10,
+              border: isSubmitted ? `2px solid ${qOk ? '#1a7a4a' : '#c0392b'}` : '1px solid var(--border1)',
+            }}>
+              <div style={{ fontSize: '0.84rem', fontWeight: 600, color: 'var(--text1)', marginBottom: 10 }}>
+                {qi + 1}. {q.text}
+              </div>
+              <div className="qcm-options">
+                {q.options.map(opt => {
+                  let optClass = '';
+                  if (!isSubmitted) {
+                    optClass = picked === opt.id ? 'selected' : '';
+                  } else {
+                    if (opt.correct) optClass = 'correct';
+                    else if (picked === opt.id && !opt.correct) optClass = 'wrong';
+                  }
+                  return (
+                    <div key={opt.id} className={`qcm-option ${optClass}`}
+                      onClick={() => {
+                        if (isSubmitted) return;
+                        setQcmSelections(p => ({
+                          ...p,
+                          [currentSection]: { ...(p[currentSection] || {}), [q.id]: opt.id }
+                        }));
+                      }}>
+                      <span className="qcm-letter">{opt.id.toUpperCase()}.</span>
+                      <span>{opt.text}</span>
+                      {isSubmitted && opt.correct && <CheckCircle2 size={15} strokeWidth={2} color="#1a7a4a" style={{ marginLeft: 'auto', flexShrink: 0 }} />}
+                      {isSubmitted && picked === opt.id && !opt.correct && <XCircle size={15} strokeWidth={2} color="#c0392b" style={{ marginLeft: 'auto', flexShrink: 0 }} />}
+                    </div>
+                  );
+                })}
+              </div>
+              {isSubmitted && q.explanation && (
+                <div style={{ marginTop: 8, fontSize: '0.78rem', color: qOk ? '#1a7a4a' : '#c0392b', fontStyle: 'italic' }}>
+                  {q.explanation}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    );
+  };
+
+  const renderJournal = () => (
+    <div className="journal-wrap">
+      <table className="journal-table">
+        <thead>
+          <tr>
+            <th style={{ width: '16%' }}>N Debit</th>
+            <th style={{ width: '16%' }}>N Credit</th>
+            <th style={{ width: '34%' }}>Libelle</th>
+            <th style={{ width: '17%' }}>Debit CHF</th>
+            <th style={{ width: '17%' }}>Credit CHF</th>
+          </tr>
+        </thead>
+        <tbody>
+          {section.ecritures.map(e => (
+            <tr key={e.id} className={e.isSubLine ? 'row-sub' : 'row-main'}>
+              <td className={e.isSubLine ? 'indent-cell' : ''}>
+                {e.debit
+                  ? <input className={`journal-input ${cls(`${currentSection}_${e.id}_da`)}`} value={get(`${currentSection}_${e.id}_da`)} onChange={ev => set(`${currentSection}_${e.id}_da`, ev.target.value)} placeholder="1000" disabled={isSubmitted} />
+                  : <span style={{ color: 'var(--text4)', fontSize: '0.75rem' }}>--</span>}
+              </td>
+              <td>
+                {e.credit
+                  ? <input className={`journal-input ${cls(`${currentSection}_${e.id}_ca`)}`} value={get(`${currentSection}_${e.id}_ca`)} onChange={ev => set(`${currentSection}_${e.id}_ca`, ev.target.value)} placeholder="2000" disabled={isSubmitted} />
+                  : <span style={{ color: 'var(--text4)', fontSize: '0.75rem' }}>--</span>}
+              </td>
+              <td><span className="libelle-text">{e.libelle}</span></td>
+              <td>
+                {e.amount != null
+                  ? <input className={`journal-input ${cls(`${currentSection}_${e.id}_dam`)}`} value={get(`${currentSection}_${e.id}_dam`)} onChange={ev => set(`${currentSection}_${e.id}_dam`, ev.target.value)} placeholder="0.00" disabled={isSubmitted} />
+                  : <span style={{ color: 'var(--text4)', fontSize: '0.75rem' }}>--</span>}
+              </td>
+              <td>
+                {e.amountCredit != null
+                  ? <input className={`journal-input ${cls(`${currentSection}_${e.id}_cam`)}`} value={get(`${currentSection}_${e.id}_cam`)} onChange={ev => set(`${currentSection}_${e.id}_cam`, ev.target.value)} placeholder="0.00" disabled={isSubmitted} />
+                  : <span style={{ color: 'var(--text4)', fontSize: '0.75rem' }}>--</span>}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+
+  const renderCalcul = () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 10, margin: '16px 0' }}>
+      {section.champs.map(c => (
+        <div key={c.id} style={{
+          display: 'flex', alignItems: 'center', gap: 12, padding: '10px 14px',
+          background: 'var(--bg2)', borderRadius: 8, border: '1px solid var(--border1)',
+        }}>
+          <label style={{ flex: '0 0 55%', fontSize: '0.82rem', fontWeight: 500, color: 'var(--text2)' }}>
+            {c.label}
+          </label>
+          <input
+            className={`journal-input ${cls(`${currentSection}_${c.id}`)}`}
+            value={get(`${currentSection}_${c.id}`)}
+            onChange={ev => set(`${currentSection}_${c.id}`, ev.target.value)}
+            placeholder="Votre reponse"
+            disabled={isSubmitted}
+            style={{ flex: 1, textAlign: 'right' }}
+          />
+        </div>
+      ))}
+    </div>
+  );
+
+  return (
+    <div>
+      {/* Exam header */}
+      <div style={{
+        textAlign: 'center', marginBottom: 8, fontSize: '1.05rem', fontWeight: 800,
+        color: 'var(--text1)', letterSpacing: '0.02em',
+      }}>
+        {ex.title || 'EXAMEN FINAL'}
+      </div>
+
+      {/* Progress bar */}
+      <div style={{
+        height: 6, background: 'var(--border1, #e0e0e0)', borderRadius: 3, margin: '0 0 12px', overflow: 'hidden',
+      }}>
+        <div style={{
+          height: '100%', width: `${progressPct}%`, background: 'var(--blue, #3b82f6)',
+          borderRadius: 3, transition: 'width 0.3s ease',
+        }} />
+      </div>
+
+      {/* Section tabs */}
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 18 }}>
+        {sections.map((sec, i) => {
+          const isActive = i === currentSection;
+          const isDone = !!sectionCompleted[i];
+          const canClick = isActive || isDone;
+          return (
+            <button key={sec.id}
+              onClick={() => canClick && setCurrentSection(i)}
+              style={{
+                padding: '5px 12px', borderRadius: 20, fontSize: '0.72rem', fontWeight: 600,
+                border: isActive ? '2px solid var(--blue, #3b82f6)' : '1px solid var(--border2, #ddd)',
+                background: isDone ? '#e6f4ed' : isActive ? 'var(--bg1, #fff)' : 'var(--bg2, #f5f5f5)',
+                color: isDone ? '#1a7a4a' : isActive ? 'var(--blue, #3b82f6)' : 'var(--text3, #999)',
+                cursor: canClick ? 'pointer' : 'default',
+                opacity: canClick ? 1 : 0.5,
+                display: 'flex', alignItems: 'center', gap: 4,
+              }}>
+              {isDone && <CheckCircle2 size={12} strokeWidth={2} color="#1a7a4a" />}
+              P{i + 1} {sec.title.replace(/^Partie \d+ —\s*/, '')}
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Current section */}
+      <div style={{
+        padding: '18px 20px', background: 'var(--bg1, #fff)', border: '1px solid var(--border2, #ddd)',
+        borderRadius: 12, marginBottom: 16,
+      }}>
+        <div style={{ fontSize: '0.92rem', fontWeight: 700, color: 'var(--text1)', marginBottom: 4 }}>
+          {section.title}
+        </div>
+        <div style={{ fontSize: '0.75rem', color: 'var(--text3)', marginBottom: 14 }}>
+          {section.points} points
+        </div>
+
+        {section.description && (
+          <div className="exercise-desc" style={{ whiteSpace: 'pre-line', marginBottom: 14 }}>
+            {section.description}
+          </div>
+        )}
+
+        {section.data && section.data.length > 0 && (
+          <div className="data-table-wrap" style={{ marginBottom: 14 }}>
+            <table className="data-table">
+              <thead><tr><th>Donnee</th><th>Valeur</th></tr></thead>
+              <tbody>{section.data.map((d, i) => <tr key={i}><td>{d.label}</td><td>{d.value}</td></tr>)}</tbody>
+            </table>
+          </div>
+        )}
+
+        {section.type === 'qcm-multi' && renderQcmMulti()}
+        {section.type === 'journal' && renderJournal()}
+        {section.type === 'calcul' && renderCalcul()}
+
+        {/* Section score feedback */}
+        {isSubmitted && (
+          <div className={`feedback ${(sectionScores[currentSection] || 0) >= section.points * 0.6 ? 'success' : (sectionScores[currentSection] || 0) > 0 ? 'partial' : 'error'}`}
+            style={{ marginTop: 14 }}>
+            <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+              {(sectionScores[currentSection] || 0) >= section.points * 0.6
+                ? <CheckCircle2 size={16} strokeWidth={2} color="#1a7a4a" style={{ flexShrink: 0 }} />
+                : <XCircle size={16} strokeWidth={2} color={(sectionScores[currentSection] || 0) > 0 ? '#d4600a' : '#c0392b'} style={{ flexShrink: 0 }} />}
+              <span style={{ fontWeight: 600 }}>
+                {sectionScores[currentSection] || 0}/{section.points} points
+              </span>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Action buttons */}
+      <div className="btn-row">
+        {!isSubmitted ? (
+          <button className="btn btn-primary" onClick={handleValidate}>
+            <Send size={14} strokeWidth={2} /> Valider la partie
+          </button>
+        ) : (
+          <button className="btn btn-primary" onClick={handleNext}>
+            {currentSection < sections.length - 1 ? 'Section suivante' : 'Voir les resultats'}{' '}
+            <ChevronRight size={15} strokeWidth={2} />
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
 // ─── MAIN ────────────────────────────────────────────────────────────────────
 export default function ExerciseView({ activeGroup, setActiveGroup, scores, setScores }) {
   const group = exerciseGroups.find(g => g.id === activeGroup) || exerciseGroups[0];
@@ -634,6 +1033,7 @@ export default function ExerciseView({ activeGroup, setActiveGroup, scores, setS
           {current.type === 'payslip' && <PayslipExercise key={`${current.id}-${idx}`} ex={current} />}
           {current.type === 'calcul'  && <CalculExercise  key={`${current.id}-${idx}`} ex={current} onComplete={handleComplete} />}
           {current.type === 'payslip-interactive' && <PayslipInteractiveExercise key={`${current.id}-${idx}`} ex={current} onComplete={handleComplete} />}
+          {current.type === 'exam' && <ExamExercise key={`${current.id}-${idx}`} ex={current} onComplete={handleComplete} />}
         </div>
 
         {/* Navigation */}

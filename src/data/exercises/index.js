@@ -8,6 +8,7 @@ import { societesExerciseGroups, societesExercises } from './societes';
 import { analyseExerciseGroups, analyseExercises } from './analyse';
 import { investissementsExercises } from './investissements';
 import { revisionExercises } from './revision';
+import { examenExercises } from './examen';
 
 export const exerciseGroups = [
   { id: 'base-journal',        label: 'Journal — Cas complets',      icon: '📝', tag: 'base',       description: 'Situations complètes avec plusieurs écritures liées' },
@@ -21,6 +22,7 @@ export const exerciseGroups = [
   ...analyseExerciseGroups,
   { id: 'investissements',     label: 'Investissements',             icon: '📈', tag: 'analyse',    description: 'VAN, TRI, Payback, WACC — choix de projets' },
   { id: 'revision',            label: 'Révision transversale',       icon: '🔄', tag: 'base',       description: 'Cas complets mélangeant plusieurs thèmes : achats, ventes, TVA, salaires, bouclement' },
+  { id: 'examen',              label: 'Examen final',                icon: '🎓', tag: 'base',       description: 'Examen complet en 6 parties : théorie, écritures, salaires, bouclement, analyse, investissement' },
 ];
 
 export const exercises = [
@@ -36,4 +38,5 @@ export const exercises = [
   ...analyseExercises,
   ...investissementsExercises,
   ...revisionExercises,
+  ...examenExercises,
 ];

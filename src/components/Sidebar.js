@@ -3,7 +3,7 @@ import {
   LayoutDashboard, BookOpen, PenSquare, Percent, Banknote,
   CalendarClock, ChevronRight, FileText, Table2,
   ClipboardList, Scale, Package, TrendingUp, RotateCcw,
-  Building2, BarChart3, Calculator, PieChart, Target
+  Building2, BarChart3, Calculator, PieChart, Target, Award
 } from 'lucide-react';
 import { MODULES } from '../data/modules';
 import { exerciseGroups, exercises } from '../data/exercises/index';
@@ -53,6 +53,7 @@ const EXERCISE_ICONS = {
   'analyse-qcm':          <BarChart3 size={13} strokeWidth={1.8} />,
   'investissements':       <TrendingUp size={13} strokeWidth={1.8} />,
   'revision':              <RotateCcw size={13} strokeWidth={1.8} />,
+  'examen':                <Award size={13} strokeWidth={1.8} />,
 };
 
 const iconStyle = { display: 'flex', alignItems: 'center', flexShrink: 0 };

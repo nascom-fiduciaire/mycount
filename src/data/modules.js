@@ -10,7 +10,7 @@ export const MODULES = [
     icon: BookOpen,
     exerciseIds: [
       'base-journal', 'tva-calculs', 'tva-ecritures',
-      'marchandises', 'salaires-calcul', 'salaires-ecritures', 'bouclement', 'revision',
+      'marchandises', 'salaires-calcul', 'salaires-ecritures', 'bouclement', 'revision', 'examen',
     ],
     theoryGroups: [
       { label: '1. Prescriptions légales',       chapters: [], special: 'prescriptions' },
