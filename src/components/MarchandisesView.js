@@ -135,13 +135,13 @@ function TabIntermittent() {
           { cells: ['4000', 'Achats de marchandises', 'Charges du compte de résultat', 'Montant des achats comptabilisés en cours d\'année'] },
         ]}
       />
-      <P>Selon la taille de l'entreprise et ses besoins, on peut multiplier les comptes d'achats. Voici l'arborescence complète pour une chocolaterie :</P>
+      <P>Selon la taille de l'entreprise et ses besoins, on peut multiplier les comptes d'achats. Voici l'arborescence complète pour une manufacture horlogère :</P>
       <div style={{ margin: '12px 0', padding: '14px 18px', background: '#f8f9fb', border: '1px solid #e2e8f0', borderRadius: 7, fontFamily: 'JetBrains Mono, monospace', fontSize: '0.8rem', color: '#475569', lineHeight: 2 }}>
         <div style={{ color: '#0f172a', fontWeight: 700 }}>4 — Charges de matériel, de marchandises et de prestations de tiers</div>
         <div style={{ paddingLeft: 20 }}>40.. Achats de matière première</div>
-        <div style={{ paddingLeft: 40 }}>4010 Achats de beurre de cacao</div>
-        <div style={{ paddingLeft: 40 }}>4020 Achats de sucre</div>
-        <div style={{ paddingLeft: 40 }}>4030 Achats de farine</div>
+        <div style={{ paddingLeft: 40 }}>4010 Achats de mouvements</div>
+        <div style={{ paddingLeft: 40 }}>4020 Achats de cadrans</div>
+        <div style={{ paddingLeft: 40 }}>4030 Achats de bracelets</div>
         <div style={{ paddingLeft: 20 }}>42.. Achats de marchandises destinées à la revente</div>
         <div style={{ paddingLeft: 20 }}>47.. Frais d'achats et de transport</div>
         <div style={{ paddingLeft: 20 }}>48.. Variations de stocks</div>
@@ -195,7 +195,7 @@ function TabIntermittent() {
         Écriture : <strong>Débit 4800 Variation de stocks CHF 30'000 / Crédit 1200 Stock CHF 30'000</strong>
       </Note>
 
-      <H2>4. Exemple complet — Chocolaterie Onyme, exercice N</H2>
+      <H2>4. Exemple complet — SwiSSwatch SA, exercice N</H2>
       <Note>
         <strong>Données :</strong> (a) Stock initial 01.01 : CHF 42'000 | (b) Achats annuels : CHF 350'000 | (c) Frais de transport : CHF 20'000 | (d) Retour fournisseur 03.09 : CHF 10'000 | (e) Ristourne 5% sur CHF 340'000 = CHF 17'000 | (f) Ventes annuelles : CHF 550'000 | (g) Retours clients : CHF 2'000 | (h) Rabais accordés : CHF 10'000 | (i) Stock final inventaire 31.12 : CHF 12'000
       </Note>
@@ -251,7 +251,7 @@ function TabIntermittent() {
 
       <H3>Compte de résultat — 1er niveau au 31.12.N</H3>
       <TableauResultat
-        title="Compte de résultat — Chocolaterie Onyme au 31.12.N"
+        title="Compte de résultat — SwiSSwatch SA au 31.12.N"
         rows={[
           ['3000 Ventes', '', '+ CHF 550\'000', false],
           ['3800 Déductions accordées (retours + rabais)', '', '− CHF 12\'000', false],
@@ -343,8 +343,8 @@ function TabPermanent() {
       <Ecriture debit="3800 Déductions" credit="3000 Ventes" montant="prix de vente" libelle="Annulation du produit" />
       <Ecriture debit="1200 Stock" credit="4000 PRAMV" montant="coût d'achat" libelle="Remise en stock au coût d'achat" />
 
-      <H2>3. Exemple complet — Magasin de chocolats avec codes-barres</H2>
-      <P>Madame Onyme a investi dans un système de caisse avec codes-barres qui comptabilise automatiquement chaque vente. Le système met à jour en temps réel les comptes 1200, 3000, 3800 et 4000.</P>
+      <H2>3. Exemple complet — Magasin de montres avec codes-barres</H2>
+      <P>Léa Meyer a investi dans un système de caisse avec codes-barres qui comptabilise automatiquement chaque vente. Le système met à jour en temps réel les comptes 1200, 3000, 3800 et 4000.</P>
 
       <Tableau
         headers={['Donnée', 'Valeur']}
@@ -363,7 +363,7 @@ function TabPermanent() {
       <H3>Comptes en T après toutes les opérations</H3>
       <GrilleT comptes={[
         {
-          title: '1200 Stock de chocolats',
+          title: '1200 Stock de montres',
           debit: [{ label: '(a) Solde initial', amount: "30'000" }, { label: '(c) Retours clients', amount: "1'000" }, { label: '(e) Achats 26\'000u', amount: "260'000" }],
           credit: [{ label: '(b) Ventes 28\'000u', amount: "280'000" }, { label: 'Solde théorique', amount: "11'000", hl: true }],
           totalD: "291'000", totalC: "291'000",

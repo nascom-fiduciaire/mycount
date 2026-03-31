@@ -6,7 +6,7 @@ function TabIntro() {
   return (
     <div>
       <H2>1. À quoi sert la comptabilité ?</H2>
-      <P>Imaginez que vous ouvrez une boulangerie. Chaque jour, vous achetez de la farine, payez vos employés, encaissez vos ventes. Au bout d'un mois, vous vous posez une question simple : <strong>est-ce que mon activité gagne de l'argent, ou en perd-elle ?</strong></P>
+      <P>Imaginez que vous ouvrez une manufacture horlogère. Chaque jour, vous achetez des composants, payez vos employés, encaissez vos ventes. Au bout d'un mois, vous vous posez une question simple : <strong>est-ce que mon activité gagne de l'argent, ou en perd-elle ?</strong></P>
       <P>La comptabilité est le système qui permet de répondre à cette question — et à bien d'autres. Elle enregistre, classe et présente tous les événements financiers de votre entreprise de manière organisée et vérifiable. En Suisse, c'est aussi une <strong>obligation légale</strong> pour la plupart des entreprises (CO art. 957 ss).</P>
 
       <H2>2. Ce que la comptabilité permet de savoir</H2>
@@ -15,7 +15,7 @@ function TabIntro() {
         rows={[
           { cells: ['Que possède l\'entreprise ? Que doit-elle ?', 'Le bilan', 'CHF 45\'000 de machines, CHF 12\'000 de dettes fournisseurs'] },
           { cells: ['L\'activité est-elle rentable ?', 'Le compte de résultat', 'Ventes CHF 85\'000 − Charges CHF 72\'000 = Bénéfice CHF 13\'000'] },
-          { cells: ['Qui me doit de l\'argent ? Qui dois-je payer ?', 'Grand livre / postes ouverts', 'Client Martin doit CHF 1\'500 — Fournisseur Moulin doit recevoir CHF 800'] },
+          { cells: ['Qui me doit de l\'argent ? Qui dois-je payer ?', 'Grand livre / postes ouverts', 'Client Bucherer AG doit CHF 1\'500 — Fournisseur Nivarox SA doit recevoir CHF 800'] },
         ]}
       />
 
@@ -107,7 +107,7 @@ function TabBilan() {
           { cells: ['Immobilisations financières', '1400–1480', 'Participations dans d\'autres sociétés, prêts LT'] },
         ]}
       />
-      <Note color="yellow">Exemple : une boulangerie achète un four CHF 45'000. Ce four sera utilisé 10 ans → actif immobilisé. Son coût sera réparti sur 10 ans via les amortissements (CHF 4'500/an).</Note>
+      <Note color="yellow">Exemple : une manufacture horlogère achète une machine CNC CHF 45'000. Cette machine sera utilisée 10 ans → actif immobilisé. Son coût sera réparti sur 10 ans via les amortissements (CHF 4'500/an).</Note>
 
       <H3>Les actifs circulants — ce qui tourne vite (&lt; 12 mois)</H3>
       <P>Ce sont les biens et droits qui se transforment en liquidités dans les 12 mois. Ils sont directement liés au cycle d'exploitation quotidien.</P>
@@ -138,7 +138,7 @@ function TabBilan() {
         ]}
       />
 
-      <H2>4. Exemple de bilan — Boulangerie Onyme au 31.12.N</H2>
+      <H2>4. Exemple de bilan — SwiSSwatch SA au 31.12.N</H2>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0, border: '2px solid #2c5f8a', borderRadius: 8, overflow: 'hidden', margin: '16px 0' }}>
         {[
           { title: 'ACTIF', bg: '#2c5f8a' },
@@ -150,12 +150,12 @@ function TabBilan() {
           <tbody>
             {[
               ['Actifs immobilisés', '', true],
-              ['Four industriel', "36'000", false],
-              ['Véhicule livraison', "8'000", false],
+              ['Machines de production', "36'000", false],
+              ['Véhicule utilitaire', "8'000", false],
               ['Actifs circulants', '', true],
               ['Banque', "8'000", false],
               ['Créances clients', "1'500", false],
-              ['Stock de farine', "3'200", false],
+              ['Stock de composants', "3'200", false],
               ['TOTAL ACTIF', "56'700", true],
             ].map(([label, montant, bold], i) => (
               <tr key={i} style={{ background: bold ? '#e8f0f8' : i % 2 === 0 ? '#fff' : '#f8f9fb', borderBottom: '1px solid #dde2ea' }}>
@@ -186,7 +186,7 @@ function TabBilan() {
           </tbody>
         </table>
       </div>
-      <Note color="green">Lecture : La boulangerie possède CHF 56'700 d'actifs, financés par CHF 37'000 de fonds propres (capital + réserves + bénéfice) et CHF 19'700 de dettes. L'équilibre est parfait.</Note>
+      <Note color="green">Lecture : SwiSSwatch SA possède CHF 56'700 d'actifs, financés par CHF 37'000 de fonds propres (capital + réserves + bénéfice) et CHF 19'700 de dettes. L'équilibre est parfait.</Note>
 
       <H2>5. Comment le bilan évolue</H2>
       <Tableau
@@ -256,7 +256,7 @@ function TabResultat() {
 
       <H2>4. La structure en cascade — indicateurs clés</H2>
       <div style={{ border: '2px solid #2c5f8a', borderRadius: 8, overflow: 'hidden', margin: '16px 0' }}>
-        <div style={{ background: '#2c5f8a', padding: '9px 16px', color: '#fff', fontWeight: 700, fontSize: '0.84rem' }}>Compte de résultat — Boulangerie Onyme exercice N</div>
+        <div style={{ background: '#2c5f8a', padding: '9px 16px', color: '#fff', fontWeight: 700, fontSize: '0.84rem' }}>Compte de résultat — SwiSSwatch SA exercice N</div>
         <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.83rem' }}>
           <tbody>
             {[
@@ -421,7 +421,7 @@ function TabJournal() {
       <P>Le journal comptable est la liste <strong>chronologique</strong> de toutes les écritures passées dans la comptabilité. C'est le document de base — avant d'aller dans les comptes, chaque opération est enregistrée dans le journal avec sa date, ses comptes débités et crédités, et un libellé explicatif.</P>
 
       <div style={{ border: '1px solid #2c5f8a', borderRadius: 8, overflow: 'hidden', margin: '16px 0' }}>
-        <div style={{ background: '#2c5f8a', padding: '8px 14px', color: '#fff', fontWeight: 700, fontSize: '0.82rem' }}>Extrait de journal — Boulangerie Onyme janvier N</div>
+        <div style={{ background: '#2c5f8a', padding: '8px 14px', color: '#fff', fontWeight: 700, fontSize: '0.82rem' }}>Extrait de journal — SwiSSwatch SA janvier N</div>
         <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.82rem' }}>
           <thead>
             <tr style={{ background: '#f0f3f7' }}>
@@ -432,8 +432,8 @@ function TabJournal() {
           </thead>
           <tbody>
             {[
-              ['05.01', '4000 Achats', '2000 Fournisseurs', 'Achat farine — Moulin SA', "CHF 1'200"],
-              ['08.01', '2000 Fournisseurs', '1020 Banque', 'Paiement Moulin SA', "CHF 1'200"],
+              ['05.01', '4000 Achats', '2000 Fournisseurs', 'Achat composants — Nivarox SA', "CHF 1'200"],
+              ['08.01', '2000 Fournisseurs', '1020 Banque', 'Paiement Nivarox SA', "CHF 1'200"],
               ['12.01', '1100 Clients', '3000 Ventes', 'Vente assortiment — Hôtel Lac', "CHF 800"],
               ['15.01', '6000 Loyers', '2000 Fournisseurs', 'Loyer janvier — Immo SA', "CHF 2'000"],
               ['20.01', '1020 Banque', '1100 Clients', 'Encaissement Hôtel Lac', "CHF 800"],
@@ -459,7 +459,7 @@ function TabJournal() {
 
       <H3>Opération 1 — Achat à crédit (facture fournisseur)</H3>
       <P>La boulangerie reçoit une facture de farine CHF 1'200 de Moulin SA. Elle ne paie pas encore.</P>
-      <Ecriture debit="4000 Achats" credit="2000 Fournisseurs" montant="1'200" libelle="Achat farine — Moulin SA — facture 2024-045" />
+      <Ecriture debit="4000 Achats" credit="2000 Fournisseurs" montant="1'200" libelle="Achat composants — Nivarox SA — facture 2024-045" />
       <Note color="yellow">La charge (4000) est constatée dès la réception de la facture. La dette envers Moulin SA (2000) augmente. Aucun mouvement de trésorerie.</Note>
 
       <H3>Opération 2 — Paiement du fournisseur</H3>

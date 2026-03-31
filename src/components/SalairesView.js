@@ -117,14 +117,14 @@ function TabCalcul() {
       <H2>1. Le décompte de salaire — structure</H2>
       <P>Le décompte de salaire (fiche de salaire) présente le passage du salaire brut au salaire net versé à l'employé, puis au coût total pour l'employeur. C'est un document légal que l'employeur doit remettre à chaque paiement.</P>
 
-      <H2>2. Exemple complet — M. Müller, 27 ans, 1 enfant</H2>
+      <H2>2. Exemple complet — Jules Weber, 27 ans, 1 enfant</H2>
       <Note>
         <strong>Données :</strong> Salaire brut contractuel : CHF 3'000/mois | 1 enfant (allocation CHF 200) | LPP cotisation totale CHF 3'600/an = CHF 300/mois (50%/50%) | LAANP 2.50‰ | LAAP 0.80‰ | CAF 3.00% | Taux AVS/AI/APG 5.30% | AC 1.10%
       </Note>
 
       <div style={{ border: '2px solid #2563eb', borderRadius: 8, overflow: 'hidden', margin: '16px 0' }}>
         <div style={{ background: '#2563eb', padding: '11px 16px', color: '#fff', fontWeight: 700, fontSize: '0.88rem' }}>
-          Fiche de salaire mensuelle — M. Müller
+          Fiche de salaire mensuelle — Jules Weber
         </div>
         <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.83rem' }}>
           <tbody>
@@ -453,64 +453,64 @@ const ARRETS = [
   {
     id: 'arret-01', label: 'IJM → employeur',
     title: "Arrêt maladie — IJM assurance collective (indemnité à l'employeur)",
-    situation: "M. Rossi, salaire brut CHF 6'000/mois, est en arrêt maladie 20 jours calendriers sur 30.\nL'entreprise a une assurance IJM collective (taux 80%).\nL'assureur verse l'indemnité à l'EMPLOYEUR, qui maintient le salaire net complet.\nCotisations calculées sur la part à charge de l'employeur (brut − IJM).",
+    situation: "Noah Renard, salaire brut CHF 6'000/mois, est en arrêt maladie 20 jours calendriers sur 30.\nL'entreprise a une assurance IJM collective (taux 80%).\nL'assureur verse l'indemnité à l'EMPLOYEUR, qui maintient le salaire net complet.\nCotisations calculées sur la part à charge de l'employeur (brut − IJM).",
     calculs: [
       { label: "Salaire brut mensuel (base 30 jours)", montant: "CHF 6'000.00", type: 'brut' },
       { label: "Indemnité IJM (80% × 6'000 × 20/30)", montant: "CHF 3'200.00", type: 'indemnite', detail: "6'000 × 80% × 20/30 = CHF 3'200 — versée par l'assureur à l'employeur" },
       { label: "Part à charge de l'employeur", montant: "CHF 2'800.00", type: 'key', detail: "6'000 − 3'200 = CHF 2'800 — base de calcul des cotisations" },
       { label: "Cotisations sur part employeur (~13.5%)", montant: "CHF 378.00", type: 'deduction', detail: "Calculées sur CHF 2'800 uniquement, pas sur les 6'000" },
-      { label: "Salaire net versé à M. Rossi", montant: "CHF 5'622.00", type: 'net' },
+      { label: "Salaire net versé à Noah Renard", montant: "CHF 5'622.00", type: 'net' },
     ],
     points: ["Calcul sur 30 jours calendriers (weekends inclus) — pratique standard suisse", "L'employé reçoit son salaire net habituel — aucune perte pour lui", "L'employeur récupère CHF 3'200 auprès de l'assureur IJM", "Cotisations sur la part à charge uniquement (CHF 2'800), pas sur les 6'000", "Indemnité IJM créditée au compte 5005 — diminution des charges de personnel"],
     ecritures: [
-      { titre: "Étape 1 — Salaire brut + cotisations sur part employeur", explication: "Cotisations calculées sur la part nette employeur (CHF 2'800), pas sur le brut total.", lignes: [{ debit: '5000', debitL: 'Salaires', credit: '2270', creditL: 'Charges sociales à payer', debitM: "6'000.00", creditM: "378.00", libelle: "Salaire brut Rossi — cotisations sur part employeur" }, { debit: null, credit: '2160', creditL: 'Salaires à payer', debitM: null, creditM: "5'622.00", libelle: "Net à payer Rossi", sub: true }] },
+      { titre: "Étape 1 — Salaire brut + cotisations sur part employeur", explication: "Cotisations calculées sur la part nette employeur (CHF 2'800), pas sur le brut total.", lignes: [{ debit: '5000', debitL: 'Salaires', credit: '2270', creditL: 'Charges sociales à payer', debitM: "6'000.00", creditM: "378.00", libelle: "Salaire brut Renard — cotisations sur part employeur" }, { debit: null, credit: '2160', creditL: 'Salaires à payer', debitM: null, creditM: "5'622.00", libelle: "Net à payer Renard", sub: true }] },
       { titre: "Étape 2 — Indemnité IJM à recevoir", explication: "Créance sur l'assureur en actif transitoire (1180). Crédit 5005 réduit les charges.", lignes: [{ debit: '1180', debitL: 'Actifs transitoires', credit: '5005', creditL: 'Indemnités reçues (IJM/LAA)', debitM: "3'200.00", creditM: "3'200.00", libelle: "Indemnité IJM à recevoir" }] },
       { titre: "Étape 3 — Encaissement IJM", lignes: [{ debit: '1020', debitL: 'Banque', credit: '1180', creditL: 'Actifs transitoires', debitM: "3'200.00", creditM: "3'200.00", libelle: "Encaissement IJM" }] },
-      { titre: "Étape 4 — Versements", lignes: [{ debit: '2160', debitL: 'Salaires à payer', credit: '1020', creditL: 'Banque', debitM: "5'622.00", creditM: "5'622.00", libelle: "Virement salaire net Rossi" }, { debit: '2270', debitL: 'Charges sociales à payer', credit: '1020', creditL: 'Banque', debitM: "756.00", creditM: "756.00", libelle: "Versement caisses sociales" }] },
+      { titre: "Étape 4 — Versements", lignes: [{ debit: '2160', debitL: 'Salaires à payer', credit: '1020', creditL: 'Banque', debitM: "5'622.00", creditM: "5'622.00", libelle: "Virement salaire net Renard" }, { debit: '2270', debitL: 'Charges sociales à payer', credit: '1020', creditL: 'Banque', debitM: "756.00", creditM: "756.00", libelle: "Versement caisses sociales" }] },
     ],
   },
   {
     id: 'arret-02', label: 'Sans assurance (CO 324a)',
     title: "Arrêt maladie — sans assurance IJM (maintien légal CO 324a)",
-    situation: "Mme Chen, salaire brut CHF 4'500/mois, est en arrêt maladie 10 jours calendriers sur 30.\nL'entreprise n'a PAS d'assurance IJM collective.\nObligation légale CO 324a : l'employeur maintient le salaire selon l'ancienneté.\nL'entreprise supporte l'intégralité du coût — aucune indemnité d'assureur.",
+    situation: "Léa Meyer, salaire brut CHF 4'500/mois, est en arrêt maladie 10 jours calendriers sur 30.\nL'entreprise n'a PAS d'assurance IJM collective.\nObligation légale CO 324a : l'employeur maintient le salaire selon l'ancienneté.\nL'entreprise supporte l'intégralité du coût — aucune indemnité d'assureur.",
     calculs: [
       { label: "Salaire brut maintenu (base 30 jours)", montant: "CHF 4'500.00", type: 'brut' },
       { label: "Indemnité assureur", montant: "CHF 0.00", type: 'indemnite', detail: "Aucune assurance IJM — l'employeur supporte 100%" },
       { label: "Part à charge de l'employeur", montant: "CHF 4'500.00", type: 'key', detail: "Totalité à charge selon CO 324a" },
       { label: "Cotisations employé (~13.5%)", montant: "CHF 607.50", type: 'deduction', detail: "Sur le brut maintenu complet" },
-      { label: "Salaire net versé à Mme Chen", montant: "CHF 3'892.50", type: 'net' },
+      { label: "Salaire net versé à Léa Meyer", montant: "CHF 3'892.50", type: 'net' },
     ],
     points: ["Calcul sur 30 jours calendriers — même base que pour l'IJM", "Sans assurance IJM, l'employeur supporte 100% pendant la durée légale", "Durée selon CO 324a et ancienneté (échelle bernoise ou zurichoise)", "Cotisations sur le brut maintenu complet — pas de déduction IJM", "Comptabilisation standard — pas de compte 5005 ni 1180"],
     ecritures: [
-      { titre: "Étape 1 — Salaire maintenu CO 324a", explication: "Aucune particularité — l'employeur supporte tout. Comptabilisation identique à un mois normal.", lignes: [{ debit: '5000', debitL: 'Salaires', credit: '2270', creditL: 'Charges sociales à payer', debitM: "4'500.00", creditM: "607.50", libelle: "Salaire brut Mme Chen — CO 324a" }, { debit: null, credit: '2160', creditL: 'Salaires à payer', debitM: null, creditM: "3'892.50", libelle: "Net à payer Mme Chen", sub: true }] },
-      { titre: "Étape 2 — Charges patronales", lignes: [{ debit: '5700', debitL: 'Charges soc. patronales', credit: '2270', creditL: 'Charges sociales à payer', debitM: "607.50", creditM: "607.50", libelle: "Charges patronales Mme Chen" }] },
-      { titre: "Étape 3 — Versements", lignes: [{ debit: '2160', debitL: 'Salaires à payer', credit: '1020', creditL: 'Banque', debitM: "3'892.50", creditM: "3'892.50", libelle: "Virement salaire net Mme Chen" }, { debit: '2270', debitL: 'Charges sociales à payer', credit: '1020', creditL: 'Banque', debitM: "1'215.00", creditM: "1'215.00", libelle: "Versement caisses sociales" }] },
+      { titre: "Étape 1 — Salaire maintenu CO 324a", explication: "Aucune particularité — l'employeur supporte tout. Comptabilisation identique à un mois normal.", lignes: [{ debit: '5000', debitL: 'Salaires', credit: '2270', creditL: 'Charges sociales à payer', debitM: "4'500.00", creditM: "607.50", libelle: "Salaire brut Léa Meyer — CO 324a" }, { debit: null, credit: '2160', creditL: 'Salaires à payer', debitM: null, creditM: "3'892.50", libelle: "Net à payer Léa Meyer", sub: true }] },
+      { titre: "Étape 2 — Charges patronales", lignes: [{ debit: '5700', debitL: 'Charges soc. patronales', credit: '2270', creditL: 'Charges sociales à payer', debitM: "607.50", creditM: "607.50", libelle: "Charges patronales Léa Meyer" }] },
+      { titre: "Étape 3 — Versements", lignes: [{ debit: '2160', debitL: 'Salaires à payer', credit: '1020', creditL: 'Banque', debitM: "3'892.50", creditM: "3'892.50", libelle: "Virement salaire net Léa Meyer" }, { debit: '2270', debitL: 'Charges sociales à payer', credit: '1020', creditL: 'Banque', debitM: "1'215.00", creditM: "1'215.00", libelle: "Versement caisses sociales" }] },
     ],
   },
   {
     id: 'arret-03', label: 'IJM → employé direct',
     title: "Arrêt maladie — IJM versée directement à l'employé (salaire réduit)",
-    situation: "M. Dupont, salaire brut CHF 6'000/mois, arrêt 20 jours calendriers sur 30.\nL'assureur IJM verse l'indemnité (80%) DIRECTEMENT à M. Dupont.\nL'employeur verse uniquement : part présence (10/30) + complément 20% arrêt.\nTotal à charge employeur : CHF 2'800. Cotisations sur CHF 2'800 uniquement.",
+    situation: "Théo Keller, salaire brut CHF 6'000/mois, arrêt 20 jours calendriers sur 30.\nL'assureur IJM verse l'indemnité (80%) DIRECTEMENT à Théo Keller.\nL'employeur verse uniquement : part présence (10/30) + complément 20% arrêt.\nTotal à charge employeur : CHF 2'800. Cotisations sur CHF 2'800 uniquement.",
     calculs: [
       { label: "Salaire brut mensuel (base 30 jours)", montant: "CHF 6'000.00", type: 'brut' },
       { label: "Part présence (10/30)", montant: "CHF 2'000.00", type: 'info', detail: "6'000 × 10/30" },
       { label: "Complément employeur 20% arrêt (20/30)", montant: "CHF 800.00", type: 'info', detail: "6'000 × 20% × 20/30" },
       { label: "Total à charge employeur", montant: "CHF 2'800.00", type: 'key', detail: "Base de calcul des cotisations" },
-      { label: "IJM 80% — versée directement à M. Dupont par assureur", montant: "CHF 3'200.00", type: 'indemnite', detail: "L'employeur ne comptabilise PAS cette indemnité" },
+      { label: "IJM 80% — versée directement à Théo Keller par assureur", montant: "CHF 3'200.00", type: 'indemnite', detail: "L'employeur ne comptabilise PAS cette indemnité" },
       { label: "Cotisations sur part employeur (~13.5%)", montant: "CHF 378.00", type: 'deduction' },
-      { label: "Net versé par l'employeur à M. Dupont", montant: "CHF 2'422.00", type: 'net' },
+      { label: "Net versé par l'employeur à Théo Keller", montant: "CHF 2'422.00", type: 'net' },
     ],
     points: ["L'assureur verse DIRECTEMENT à l'employé — l'employeur ne comptabilise pas l'indemnité", "L'employeur verse uniquement présence + complément 20% = CHF 2'800", "Pas de compte 1180 ni 5005 — la transaction IJM est hors comptabilité employeur", "Cotisations sur CHF 2'800 uniquement (pas sur les 6'000)"],
     ecritures: [
-      { titre: "Étape 1 — Salaire à charge de l'employeur uniquement", explication: "On comptabilise uniquement la part que l'employeur verse réellement (CHF 2'800).", lignes: [{ debit: '5000', debitL: 'Salaires', credit: '2270', creditL: 'Charges sociales à payer', debitM: "2'800.00", creditM: "378.00", libelle: "Salaire M. Dupont — part employeur" }, { debit: null, credit: '2160', creditL: 'Salaires à payer', debitM: null, creditM: "2'422.00", libelle: "Net à payer M. Dupont", sub: true }] },
-      { titre: "Étape 2 — Charges patronales sur part employeur", lignes: [{ debit: '5700', debitL: 'Charges soc. patronales', credit: '2270', creditL: 'Charges sociales à payer', debitM: "378.00", creditM: "378.00", libelle: "Charges patronales M. Dupont (sur 2'800)" }] },
-      { titre: "Étape 3 — Versements", lignes: [{ debit: '2160', debitL: 'Salaires à payer', credit: '1020', creditL: 'Banque', debitM: "2'422.00", creditM: "2'422.00", libelle: "Virement part employeur M. Dupont" }, { debit: '2270', debitL: 'Charges sociales à payer', credit: '1020', creditL: 'Banque', debitM: "756.00", creditM: "756.00", libelle: "Versement caisses sociales" }] },
+      { titre: "Étape 1 — Salaire à charge de l'employeur uniquement", explication: "On comptabilise uniquement la part que l'employeur verse réellement (CHF 2'800).", lignes: [{ debit: '5000', debitL: 'Salaires', credit: '2270', creditL: 'Charges sociales à payer', debitM: "2'800.00", creditM: "378.00", libelle: "Salaire Théo Keller — part employeur" }, { debit: null, credit: '2160', creditL: 'Salaires à payer', debitM: null, creditM: "2'422.00", libelle: "Net à payer Théo Keller", sub: true }] },
+      { titre: "Étape 2 — Charges patronales sur part employeur", lignes: [{ debit: '5700', debitL: 'Charges soc. patronales', credit: '2270', creditL: 'Charges sociales à payer', debitM: "378.00", creditM: "378.00", libelle: "Charges patronales Théo Keller (sur 2'800)" }] },
+      { titre: "Étape 3 — Versements", lignes: [{ debit: '2160', debitL: 'Salaires à payer', credit: '1020', creditL: 'Banque', debitM: "2'422.00", creditM: "2'422.00", libelle: "Virement part employeur Théo Keller" }, { debit: '2270', debitL: 'Charges sociales à payer', credit: '1020', creditL: 'Banque', debitM: "756.00", creditM: "756.00", libelle: "Versement caisses sociales" }] },
     ],
   },
   {
     id: 'arret-04', label: 'Accident LAA / SUVA',
     title: "Accident professionnel — Indemnités journalières SUVA (LAA)",
-    situation: "M. Silva, salaire brut CHF 5'800/mois, accident professionnel le 05.03.\nArrêt du 05.03 au 31.03 — 27 jours calendriers d'arrêt sur 30.\nSUVA : verse 80% dès le 3e jour (jours 1 et 2 à charge de l'employeur).\nCotisations sur la part à charge de l'employeur uniquement.",
+    situation: "Lucas Morel, salaire brut CHF 5'800/mois, accident professionnel le 05.03.\nArrêt du 05.03 au 31.03 — 27 jours calendriers d'arrêt sur 30.\nSUVA : verse 80% dès le 3e jour (jours 1 et 2 à charge de l'employeur).\nCotisations sur la part à charge de l'employeur uniquement.",
     calculs: [
       { label: "Salaire brut mensuel (base 30 jours)", montant: "CHF 5'800.00", type: 'brut' },
       { label: "Part présence (3/30)", montant: "CHF 580.00", type: 'info', detail: "5'800 × 3/30 — jours travaillés avant accident" },
@@ -518,14 +518,14 @@ const ARRETS = [
       { label: "Total part à charge employeur", montant: "CHF 966.67", type: 'key', detail: "Présence + carence = base cotisations" },
       { label: "Indemnité SUVA (80% × 5'800 × 25/30)", montant: "CHF 3'866.67", type: 'indemnite', detail: "Versée par la SUVA à l'employeur — compte 5005" },
       { label: "Cotisations sur part employeur (~13.5%)", montant: "CHF 130.50", type: 'deduction' },
-      { label: "Salaire net versé à M. Silva", montant: "CHF 5'669.50", type: 'net' },
+      { label: "Salaire net versé à Lucas Morel", montant: "CHF 5'669.50", type: 'net' },
     ],
     points: ["Calcul sur 30 jours calendriers — weekends inclus", "Les 2 premiers jours sont toujours à charge de l'employeur (délai de carence SUVA)", "Dès le 3e jour : SUVA verse 80% (plafonné CHF 148'200/an)", "Indemnité SUVA versée à l'employeur → crédit compte 5005", "Cotisations AVS/AC : sur la part employeur uniquement (CHF 966.67)"],
     ecritures: [
-      { titre: "Étape 1 — Salaire maintenu + cotisations sur part employeur", explication: "L'employeur maintient le salaire complet. Cotisations sur sa part uniquement.", lignes: [{ debit: '5000', debitL: 'Salaires', credit: '2270', creditL: 'Charges sociales à payer', debitM: "5'800.00", creditM: "130.50", libelle: "Salaire M. Silva maintenu" }, { debit: null, credit: '2160', creditL: 'Salaires à payer', debitM: null, creditM: "5'669.50", libelle: "Net à payer M. Silva", sub: true }] },
+      { titre: "Étape 1 — Salaire maintenu + cotisations sur part employeur", explication: "L'employeur maintient le salaire complet. Cotisations sur sa part uniquement.", lignes: [{ debit: '5000', debitL: 'Salaires', credit: '2270', creditL: 'Charges sociales à payer', debitM: "5'800.00", creditM: "130.50", libelle: "Salaire Lucas Morel maintenu" }, { debit: null, credit: '2160', creditL: 'Salaires à payer', debitM: null, creditM: "5'669.50", libelle: "Net à payer Lucas Morel", sub: true }] },
       { titre: "Étape 2 — Indemnité SUVA à recevoir", explication: "Créance sur la SUVA. Crédit 5005 réduit les charges.", lignes: [{ debit: '1180', debitL: 'Actifs transitoires', credit: '5005', creditL: 'Indemnités reçues (IJM/LAA)', debitM: "3'866.67", creditM: "3'866.67", libelle: "Indemnité SUVA à recevoir" }] },
       { titre: "Étape 3 — Encaissement SUVA", lignes: [{ debit: '1020', debitL: 'Banque', credit: '1180', creditL: 'Actifs transitoires', debitM: "3'866.67", creditM: "3'866.67", libelle: "Encaissement SUVA" }] },
-      { titre: "Étape 4 — Versements", lignes: [{ debit: '2160', debitL: 'Salaires à payer', credit: '1020', creditL: 'Banque', debitM: "5'669.50", creditM: "5'669.50", libelle: "Virement salaire net M. Silva" }, { debit: '2270', debitL: 'Charges sociales à payer', credit: '1020', creditL: 'Banque', debitM: "261.00", creditM: "261.00", libelle: "Versement caisses sociales" }] },
+      { titre: "Étape 4 — Versements", lignes: [{ debit: '2160', debitL: 'Salaires à payer', credit: '1020', creditL: 'Banque', debitM: "5'669.50", creditM: "5'669.50", libelle: "Virement salaire net Lucas Morel" }, { debit: '2270', debitL: 'Charges sociales à payer', credit: '1020', creditL: 'Banque', debitM: "261.00", creditM: "261.00", libelle: "Versement caisses sociales" }] },
     ],
   },
 ];

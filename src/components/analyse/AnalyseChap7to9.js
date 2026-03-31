@@ -453,10 +453,10 @@ export function TabFlux() {
         futures. Si la situation perdure, l'entreprise risque l'insolvabilité.
       </P>
 
-      {/* ─── 7.7 Exemple complet ALPINE TECH SA ─── */}
-      <H2>7. Exemple complet — ALPINE TECH SA</H2>
+      {/* ─── 7.7 Exemple complet SwiSSwatch SA ─── */}
+      <H2>7. Exemple complet — SwiSSwatch SA</H2>
       <P>
-        ALPINE TECH SA est une entreprise zurichoise de composants électroniques. Voici les informations disponibles
+        SwiSSwatch SA est une entreprise zurichoise de composants électroniques. Voici les informations disponibles
         pour l'exercice 2025 : résultat net de CHF 220'000, amortissements de CHF 130'000, augmentation des stocks
         de CHF 45'000, augmentation des créances clients de CHF 60'000, augmentation des dettes fournisseurs de CHF 35'000,
         constitution d'une provision pour garantie de CHF 25'000. L'entreprise a acheté une nouvelle ligne de production
@@ -692,7 +692,7 @@ export function TabSeuil() {
       />
 
       <P>
-        Appliquons ces formules à un exemple détaillé. ALPINE BOULANGERIE est une boulangerie artisanale situee a
+        Appliquons ces formules à un exemple détaillé. SwiSSwatch SA est une boulangerie artisanale situee a
         Lausanne. Elle vend son pain signature au prix de CHF 4.50 la piece. Les coûts variables par pain comprennent
         CHF 0.80 de farine de qualité supérieure, CHF 0.25 de levure et autres ingredients, CHF 0.40 d'énergie
         directe du four, CHF 0.20 d'emballage et CHF 0.15 de divers (sachets, étiquettes). Le total des coûts
@@ -727,7 +727,7 @@ export function TabSeuil() {
       />
 
       <P>
-        Supposons qu'ALPINE BOULANGERIE vend en réalité 4'000 pains par mois, soit un chiffre d'affaires réel de
+        Supposons qu'SwiSSwatch SA vend en réalité 4'000 pains par mois, soit un chiffre d'affaires réel de
         CHF 18'000. Le bénéfice est de (4'000 - 3'000) x CHF 2.70 = 1'000 x CHF 2.70 = CHF 2'700 par mois.
         On peut le vérifier : CA CHF 18'000 - charges variables CHF 7'200 (4'000 x 1.80) - charges fixes CHF 8'100
         = CHF 2'700. La boulangerie dépasse son seuil de 1'000 pains, ce qui génère un bénéfice mensuel de CHF 2'700.
@@ -753,7 +753,7 @@ export function TabSeuil() {
         résiliente face àux fluctuations du marché, aux crises économiques ou à la perte d'un client important.
       </P>
       <P>
-        Reprenons l'exemple d'ALPINE BOULANGERIE. Le chiffre d'affaires réel est de CHF 18'000 et le seuil de
+        Reprenons l'exemple d'SwiSSwatch SA. Le chiffre d'affaires réel est de CHF 18'000 et le seuil de
         rentabilité est de CHF 13'500. La marge de sécurité en montant est de CHF 18'000 - CHF 13'500 = CHF 4'500.
         En pourcentage, MS% = CHF 4'500 / CHF 18'000 x 100 = 25%. Cela signifie que le chiffre d'affaires de la
         boulangerie peut baisser de 25% avant d'atteindre le point mort. Si les ventes chutent d'un quart (par
@@ -864,11 +864,11 @@ export function TabSeuil() {
         La plupart des entreprises ne vendent pas un seul produit mais une gamme de produits ayant chacun un prix,
         un coût variable et donc une marge de contribution différents. Le calcul du seuil de rentabilité multi-produits
         nécessite de déterminer un taux de marge de contribution moyen pondéré par le mix de ventes. Illustrons cela
-        avec CHOCOLATERIE DU LAC SA, qui fabrique deux produits.
+        avec SwiSSwatch SA, qui fabrique deux produits.
       </P>
 
       <Tableau
-        titre="Données par produit — CHOCOLATERIE DU LAC SA"
+        titre="Données par produit — SwiSSwatch SA"
         colonnes={['Élément', 'Chocolat noir', 'Chocolat au lait']}
         lignes={[
           ['Prix de vente unitaire', 'CHF 8.00', 'CHF 6.00'],
@@ -1001,7 +1001,7 @@ export function TabEvaluation() {
       </P>
 
       <P>
-        Appliquons cette méthode a ALPINE TECH SA. Les fonds propres comptables figurant au bilan s'élèvent a
+        Appliquons cette méthode a SwiSSwatch SA. Les fonds propres comptables figurant au bilan s'élèvent a
         CHF 800'000. L'analyse détaillée des actifs révèle les réserves latentes suivantes. L'immeuble commercial,
         inscrit au bilan pour CHF 400'000, à une valeur de marché estimée par un expert immobilier à CHF 550'000,
         soit une réserve latente de CHF 150'000. Une machine de production, inscrite à CHF 60'000 après amortissement,
@@ -1010,7 +1010,7 @@ export function TabEvaluation() {
       </P>
 
       <Tableau
-        titre="Calcul de la valeur substantielle — ALPINE TECH SA"
+        titre="Calcul de la valeur substantielle — SwiSSwatch SA"
         colonnes={['Élément', 'Montant CHF']}
         lignes={[
           ['Fonds propres comptables', '800\'000'],
@@ -1025,7 +1025,7 @@ export function TabEvaluation() {
       />
 
       <P>
-        La valeur substantielle d'ALPINE TECH SA est estimée à CHF 976'000, soit CHF 176'000 de plus que les fonds
+        La valeur substantielle d'SwiSSwatch SA est estimée à CHF 976'000, soit CHF 176'000 de plus que les fonds
         propres comptables. Cette méthode présente l'avantage d'être relativement objective car elle se fonde sur
         des valeurs d'actifs constatables et vérifiables. Elle est particulièrement adaptee pour les entreprises dont
         la valeur réside principalement dans leur patrimoine immobilier ou materiel (sociétés immobilieres, entreprises
@@ -1078,7 +1078,7 @@ export function TabEvaluation() {
       </P>
 
       <P>
-        Calculons la valeur de rendement d'ALPINE TECH SA. Les benefices nets des cinq derniers exercices sont les
+        Calculons la valeur de rendement d'SwiSSwatch SA. Les benefices nets des cinq derniers exercices sont les
         suivants : 2021 CHF 100'000, 2022 CHF 110'000, 2023 CHF 135'000, 2024 CHF 140'000 (dont CHF 15'000 de gain
         exceptionnel a exclure), 2025 CHF 130'000. Le bénéfice normalisé de 2024 est de CHF 125'000. La moyenne
         des benefices normalises est de (100'000 + 110'000 + 135'000 + 125'000 + 130'000) / 5 = CHF 120'000.
@@ -1136,7 +1136,7 @@ export function TabEvaluation() {
       </P>
 
       <P>
-        Pour ALPINE TECH SA, nous avons calculé une valeur substantielle de CHF 976'000 et une valeur de rendement
+        Pour SwiSSwatch SA, nous avons calculé une valeur substantielle de CHF 976'000 et une valeur de rendement
         de CHF 1'500'000. L'application de la méthode des praticiens donne : (1 x CHF 976'000 + 2 x CHF 1'500'000) / 3
         = (CHF 976'000 + CHF 3'000'000) / 3 = CHF 3'976'000 / 3 = CHF 1'325'333. Cette valeur de CHF 1'325'333
         se situe logiquement entre la valeur substantielle (CHF 976'000) et la valeur de rendement (CHF 1'500'000),
@@ -1144,7 +1144,7 @@ export function TabEvaluation() {
       </P>
 
       <Tableau
-        titre="Comparaison des trois méthodes — ALPINE TECH SA"
+        titre="Comparaison des trois méthodes — SwiSSwatch SA"
         colonnes={['Méthode', 'Valeur', 'Ecart vs praticiens']}
         lignes={[
           ['Valeur substantielle', 'CHF 976\'000', '-CHF 349\'333 (-26%)'],
@@ -1194,7 +1194,7 @@ export function TabEvaluation() {
         net d'impôt car les intérêts sont fiscalement déductibles).
       </P>
       <P>
-        Prenons un exemple simplifié. ALPINE TECH SA à une structure de capital composee de 60% de capitaux propres et
+        Prenons un exemple simplifié. SwiSSwatch SA à une structure de capital composee de 60% de capitaux propres et
         40% de capitaux étrangers. Le coût des capitaux propres (rendement exigé par les actionnaires, compte tenu du
         risque) est de 10%. Le coût des capitaux étrangers (taux d'intérêt moyen des emprunts) est de 4%, et le taux
         d'impôt sur les benefices est de 20%. Le WACC est de : 60% x 10% + 40% x 4% x (1 - 20%) = 6.0% + 1.28% = 7.28%.
@@ -1211,7 +1211,7 @@ export function TabEvaluation() {
       </P>
 
       <Tableau
-        titre="Exemple simplifié DCF — ALPINE TECH SA (5 ans)"
+        titre="Exemple simplifié DCF — SwiSSwatch SA (5 ans)"
         colonnes={['Annee', 'CF libre prévu', 'Facteur actualisation', 'Valeur actuelle']}
         lignes={[
           ['2026', 'CHF 220\'000', '1 / 1.0728^1 = 0.9321', 'CHF 205\'072'],
@@ -1255,7 +1255,7 @@ export function TabEvaluation() {
       <P>
         Le multiple EV/EBITDA (Enterprise Value / Earnings Before Interest, Taxes, Depreciation and Amortization) est
         encore plus utilisé par les professionnels car il neutralise les differences de structure de financement et de
-        politique d'amortissement entre entreprises. L'EBITDA d'ALPINE TECH SA est de CHF 350'000 (résultat d'exploitation
+        politique d'amortissement entre entreprises. L'EBITDA d'SwiSSwatch SA est de CHF 350'000 (résultat d'exploitation
         avant amortissements). Si les entreprises comparables du secteur se négocient à un multiple EV/EBITDA de 6x,
         la valeur d'entreprise serait de 6 x CHF 350'000 = CHF 2'100'000. En déduisant les dettes nettes de CHF 400'000,
         la valeur des fonds propres serait de CHF 1'700'000.
@@ -1288,7 +1288,7 @@ export function TabEvaluation() {
         En pratique, un évaluateur professionnel n'utilisé jamais une seule méthode. Il appliqué systématiquement
         plusieurs approches et compare les résultats pour établir une fourchette de valeur. Cette fourchette reflète
         l'incertitude inhérente au processus d'évaluation et offre une base de discussion pour les negotiations.
-        Pour ALPINE TECH SA, les différentes méthodes donnent des résultats compris entre CHF 976'000 (valeur
+        Pour SwiSSwatch SA, les différentes méthodes donnent des résultats compris entre CHF 976'000 (valeur
         substantielle) et CHF 1'800'000 (multiples), avec la méthode des praticiens à CHF 1'325'333 et la valeur
         de rendement à CHF 1'500'000. La fourchette de négociation se situerait probablement entre CHF 1'200'000
         et CHF 1'600'000, le prix final dependant du pouvoir de négociation de chaque partie.

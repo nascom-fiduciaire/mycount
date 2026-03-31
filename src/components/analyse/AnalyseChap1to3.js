@@ -202,7 +202,7 @@ function TabRetraitements() {
       <H3>Exemple concret : machine industrielle</H3>
 
       <P>
-        Prenons une machine CNC achetée par ALPINE TECH SA pour CHF 100'000. Comptablement, l'entreprise a choisi
+        Prenons une machine CNC achetée par SwiSSwatch SA pour CHF 100'000. Comptablement, l'entreprise a choisi
         un amortissement linéaire sur 5 ans, soit CHF 20'000 par an. Après 5 ans, la valeur comptable est donc de
         CHF 0. Pourtant, un expert technique estime que cette machine, bien entretenue, a encore une valeur de marché
         de CHF 35'000 et pourrait fonctionner 3 années supplémentaires. La différence entre la valeur comptable
@@ -241,7 +241,7 @@ function TabRetraitements() {
       </P>
 
       <P>
-        Reprenons l'exemple d'ALPINE TECH SA. L'entreprise possède des véhicules utilitaires achetés CHF 60'000,
+        Reprenons l'exemple d'SwiSSwatch SA. L'entreprise possède des véhicules utilitaires achetés CHF 60'000,
         amortis en 3 ans (linéaire, soit CHF 20'000/an). Après 3 ans, valeur comptable = CHF 0.
         Un garage estime la valeur de revente à CHF 18'000. Retraitement : on augmente l'actif de CHF 18'000.
         On identifie une réserve latente brute de CHF 18'000 sur ce poste.
@@ -268,7 +268,7 @@ function TabRetraitements() {
       </P>
 
       <P>
-        Supposons qu'ALPINE TECH SA a un contrat de leasing pour un véhicule dont la valeur initiale est CHF 45'000.
+        Supposons qu'SwiSSwatch SA a un contrat de leasing pour un véhicule dont la valeur initiale est CHF 45'000.
         Après 2 ans de leasing sur 5, la valeur résiduelle de l'engagement est d'environ CHF 27'000.
         Le retraitement consiste à inscrire CHF 27'000 en actif immobilisé (véhicule) et CHF 27'000 en dette
         à long terme (engagement de leasing). L'écriture de retraitement se présente comme suit :
@@ -282,7 +282,7 @@ function TabRetraitements() {
         Certains bilans affichent encore un poste "goodwill" ou "frais de fondation" à l'actif.
         En analyse financière, ces postes sont souvent considérés comme des non-valeurs : ils ne représentent
         pas un actif tangible qu'on pourrait vendre séparément. Le retraitement consiste à les éliminer de l'actif
-        et à réduire les fonds propres d'autant. Si ALPINE TECH SA affiche un goodwill de CHF 50'000,
+        et à réduire les fonds propres d'autant. Si SwiSSwatch SA affiche un goodwill de CHF 50'000,
         on retranche CHF 50'000 de l'actif et CHF 50'000 des fonds propres. Le bilan total diminue des deux côtés.
       </P>
 
@@ -325,7 +325,7 @@ function TabRetraitements() {
       />
 
       <P>
-        Prenons un exemple concret. ALPINE TECH SA possède un immeuble dont la réserve latente brute est
+        Prenons un exemple concret. SwiSSwatch SA possède un immeuble dont la réserve latente brute est
         de CHF 200'000 (valeur de marché CHF 1'100'000 contre valeur comptable CHF 900'000).
         Si l'entreprise vendait cet immeuble à sa valeur de marché, elle réaliserait un bénéfice de CHF 200'000.
         Avec un taux d'impôt effectif de 20 %, l'impôt serait de CHF 40'000.
@@ -358,17 +358,17 @@ function TabRetraitements() {
         économiquement certaine si les réserves latentes venaient à être réalisées.
       </P>
 
-      {/* ── 5. Exemple complet ALPINE TECH SA ─────────────────────────── */}
-      <H2>5. Exemple complet de retraitement : ALPINE TECH SA</H2>
+      {/* ── 5. Exemple complet SwiSSwatch SA ─────────────────────────── */}
+      <H2>5. Exemple complet de retraitement : SwiSSwatch SA</H2>
 
       <P>
-        ALPINE TECH SA est une PME industrielle basée à Sion, spécialisée dans la fabrication de composants
+        SwiSSwatch SA est une PME industrielle basée à Sion, spécialisée dans la fabrication de composants
         mécaniques de précision. Voici son bilan publié au 31 décembre N, établi selon les normes du CO.
         Nous allons identifier quatre retraitements et construire le bilan économique retraité.
       </P>
 
       <BilanVisuel
-        title="Bilan publié ALPINE TECH SA au 31.12.N"
+        title="Bilan publié SwiSSwatch SA au 31.12.N"
         actif={[
           { label: 'Liquidités', montant: 80000, color: '#60a5fa' },
           { label: 'Créances clients', montant: 220000, color: '#93c5fd' },
@@ -427,7 +427,7 @@ function TabRetraitements() {
       </P>
 
       <Tableau
-        caption="Synthèse des retraitements ALPINE TECH SA"
+        caption="Synthèse des retraitements SwiSSwatch SA"
         headers={['Retraitement', 'RL brute', 'Impôt latent (20%)', 'RL nette']}
         rows={[
           { cells: ['Machines (amort. excessifs)', 'CHF 100\'000', 'CHF 20\'000', 'CHF 80\'000'], _mono: true },
@@ -447,7 +447,7 @@ function TabRetraitements() {
       </P>
 
       <BilanVisuel
-        title="Bilan retraité ALPINE TECH SA au 31.12.N"
+        title="Bilan retraité SwiSSwatch SA au 31.12.N"
         actif={[
           { label: 'Liquidités', montant: 80000, color: '#60a5fa' },
           { label: 'Créances clients', montant: 220000, color: '#93c5fd' },
@@ -506,7 +506,7 @@ function TabStructure() {
 
       <P>
         Maintenant que nous comprenons l'intérêt de cette approche, voyons comment elle se met en pratique
-        avec les comptes retraités d'ALPINE TECH SA.
+        avec les comptes retraités d'SwiSSwatch SA.
       </P>
 
       {/* ── 2. Analyse verticale du bilan ─────────────────────────────── */}
@@ -521,7 +521,7 @@ function TabStructure() {
       </P>
 
       <P>
-        Une entreprise industrielle comme ALPINE TECH SA aura typiquement une part d'actifs immobilisés
+        Une entreprise industrielle comme SwiSSwatch SA aura typiquement une part d'actifs immobilisés
         élevée (machines, immeubles d'usine), tandis qu'une entreprise de services aura des actifs
         principalement circulants (créances clients, liquidités). De même, une entreprise très endettée
         aura une proportion de fonds propres faible, ce qui la rend vulnérable en cas de ralentissement.
@@ -530,12 +530,12 @@ function TabStructure() {
       </P>
 
       <P>
-        Appliquons l'analyse verticale au bilan retraité d'ALPINE TECH SA. Le total du bilan
+        Appliquons l'analyse verticale au bilan retraité d'SwiSSwatch SA. Le total du bilan
         retraité est de CHF 1'715'000. Calculons les pourcentages pour chaque poste.
       </P>
 
       <Tableau
-        caption="Analyse verticale du bilan retraité ALPINE TECH SA"
+        caption="Analyse verticale du bilan retraité SwiSSwatch SA"
         headers={['Actif', 'CHF', '% Bilan', '', 'Passif', 'CHF', '% Bilan']}
         rows={[
           { cells: ['Liquidités', '80\'000', '4.7%', '', 'Dettes fournisseurs', '130\'000', '7.6%'], _mono: true },
@@ -575,7 +575,7 @@ function TabStructure() {
         ne représentent que 28.3 % du total, ce qui signifie que l'essentiel de la richesse est immobilisé.
         Deuxièmement, les fonds propres représentent 56.2 % du total du bilan, ce qui est un ratio
         très solide. En Suisse, on considère généralement qu'un ratio de fonds propres supérieur à 40 %
-        est sain pour une entreprise industrielle. ALPINE TECH SA dépasse largement ce seuil.
+        est sain pour une entreprise industrielle. SwiSSwatch SA dépasse largement ce seuil.
       </P>
 
       <Note color="blue">
@@ -604,7 +604,7 @@ function TabStructure() {
       </P>
 
       <Tableau
-        caption="Compte de résultat ALPINE TECH SA (exercice N) - Analyse verticale"
+        caption="Compte de résultat SwiSSwatch SA (exercice N) - Analyse verticale"
         headers={['Poste', 'CHF', '% du CA']}
         rows={[
           { cells: ['Chiffre d\'affaires net', '2\'400\'000', '100.0%'], _bold: true, _mono: true },
@@ -663,7 +663,7 @@ function TabStructure() {
       </P>
 
       <Tableau
-        caption="Analyse horizontale du bilan ALPINE TECH SA (N-1 vs N)"
+        caption="Analyse horizontale du bilan SwiSSwatch SA (N-1 vs N)"
         headers={['Poste', 'N-1 (CHF)', 'N (CHF)', 'Variation CHF', 'Variation %']}
         rows={[
           { cells: ['Liquidités', '95\'000', '80\'000', '-15\'000', '-15.8%'], _mono: true },
@@ -729,14 +729,14 @@ function TabStructure() {
       />
 
       <P>
-        Calculons ces ratios pour ALPINE TECH SA. Les actifs immobilisés représentent CHF 1'230'000
+        Calculons ces ratios pour SwiSSwatch SA. Les actifs immobilisés représentent CHF 1'230'000
         (machines CHF 280'000 + immeuble CHF 950'000). Les fonds propres sont de CHF 964'000.
         Les capitaux étrangers à long terme comprennent l'emprunt hypothécaire CHF 350'000,
         les provisions corrigées CHF 75'000 et les impôts latents CHF 106'000, soit CHF 531'000.
       </P>
 
       <Tableau
-        caption="Degrés de couverture ALPINE TECH SA"
+        caption="Degrés de couverture SwiSSwatch SA"
         headers={['Ratio', 'Calcul', 'Résultat', 'Evaluation']}
         rows={[
           { cells: ['DC1', '964\'000 / 1\'230\'000', '78.4%', 'Bon (fonds propres couvrent 78% des AI)'], _mono: true },
@@ -759,7 +759,7 @@ function TabStructure() {
       </Note>
 
       {/* ── 6. Exemple complet d'analyse structurelle ─────────────────── */}
-      <H2>6. Synthèse : analyse structurelle complète d'ALPINE TECH SA</H2>
+      <H2>6. Synthèse : analyse structurelle complète d'SwiSSwatch SA</H2>
 
       <P>
         Rassemblons maintenant tous les éléments de notre analyse structurelle pour formuler des
@@ -871,10 +871,10 @@ function TabFDR() {
         et qui reste disponible pour financer le cycle d'exploitation.
       </P>
 
-      <H3>Calcul du FRN pour ALPINE TECH SA</H3>
+      <H3>Calcul du FRN pour SwiSSwatch SA</H3>
 
       <P>
-        Reprenons les chiffres du bilan retraité d'ALPINE TECH SA.
+        Reprenons les chiffres du bilan retraité d'SwiSSwatch SA.
         Par la première formule : FRN = AC - CE CT = 485'000 - 220'000 = CHF 265'000.
         Par la deuxième formule : FRN = (CP + CE LT) - AI = (964'000 + 531'000) - 1'230'000
         = 1'495'000 - 1'230'000 = CHF 265'000. Les deux formules donnent bien le même résultat.
@@ -904,7 +904,7 @@ function TabFDR() {
       />
 
       <P>
-        Un FRN de CHF 265'000 signifie qu'ALPINE TECH SA dispose d'une marge de sécurité confortable.
+        Un FRN de CHF 265'000 signifie qu'SwiSSwatch SA dispose d'une marge de sécurité confortable.
         Même si certaines créances clients s'avéraient irrécouvrables ou si certains stocks perdaient
         de la valeur, l'entreprise pourrait encore faire face à ses dettes à court terme. En règle
         générale, on considère qu'un FRN positif et croissant est un signe de bonne santé financière.
@@ -968,16 +968,16 @@ function TabFDR() {
         excédentaire qui peut être placée. C'est un avantage financier considérable.
       </P>
 
-      <H3>Calcul du BFR pour ALPINE TECH SA</H3>
+      <H3>Calcul du BFR pour SwiSSwatch SA</H3>
 
       <P>
-        Appliquons la formule aux chiffres d'ALPINE TECH SA. Les stocks s'élèvent à CHF 185'000,
+        Appliquons la formule aux chiffres d'SwiSSwatch SA. Les stocks s'élèvent à CHF 185'000,
         les créances clients à CHF 220'000, et les dettes fournisseurs à CHF 130'000.
         BFR = (185'000 + 220'000) - 130'000 = 405'000 - 130'000 = CHF 275'000.
       </P>
 
       <Tableau
-        caption="Calcul du BFR ALPINE TECH SA"
+        caption="Calcul du BFR SwiSSwatch SA"
         headers={['Composante', 'Montant CHF', 'Effet sur BFR']}
         rows={[
           { cells: ['Stocks', '185\'000', 'Augmente le BFR (+)'], _mono: true },
@@ -988,7 +988,7 @@ function TabFDR() {
       />
 
       <P>
-        Ce BFR de CHF 275'000 signifie qu'ALPINE TECH SA doit financer en permanence CHF 275'000
+        Ce BFR de CHF 275'000 signifie qu'SwiSSwatch SA doit financer en permanence CHF 275'000
         de besoins liés à son cycle d'exploitation. Ce montant est relativement stable d'une année
         sur l'autre (sauf en cas de forte croissance ou de changement des conditions commerciales).
         La question fondamentale est : comment ce besoin est-il financé ? C'est là qu'intervient
@@ -1020,10 +1020,10 @@ function TabFDR() {
         fonctionnent ainsi), mais elle crée une dépendance vis-à-vis des banques.
       </P>
 
-      <H3>Calcul pour ALPINE TECH SA</H3>
+      <H3>Calcul pour SwiSSwatch SA</H3>
 
       <P>
-        Pour ALPINE TECH SA : TN = FRN - BFR = 265'000 - 275'000 = CHF -10'000.
+        Pour SwiSSwatch SA : TN = FRN - BFR = 265'000 - 275'000 = CHF -10'000.
         La trésorerie nette est légèrement négative. Vérifions avec la formule directe :
         TN = Liquidités - Dettes bancaires CT = 80'000 - 90'000 = CHF -10'000. Le résultat est
         identique, ce qui confirme la cohérence de nos calculs.
@@ -1038,7 +1038,7 @@ function TabFDR() {
       />
 
       <Tableau
-        caption="Equilibre financier ALPINE TECH SA"
+        caption="Equilibre financier SwiSSwatch SA"
         headers={['Indicateur', 'Montant CHF', 'Interprétation']}
         rows={[
           { cells: ['Fonds de roulement net (FRN)', '265\'000', 'Positif : marge de sécurité sur le financement des AI'], _mono: true },
@@ -1077,7 +1077,7 @@ function TabFDR() {
       </P>
 
       <P>
-        Impact chiffré : si ALPINE TECH SA réduit son délai moyen d'encaissement de 33 jours à 25 jours
+        Impact chiffré : si SwiSSwatch SA réduit son délai moyen d'encaissement de 33 jours à 25 jours
         (soit une réduction de 8 jours), le montant des créances diminuerait proportionnellement.
         Créances actuelles : CHF 220'000 pour un CA de CHF 2'400'000, soit un délai moyen de
         220'000 / (2'400'000/360) = 33 jours. Avec 25 jours : créances = 2'400'000 x 25/360 = CHF 166'667.
@@ -1096,7 +1096,7 @@ function TabFDR() {
       </P>
 
       <P>
-        Impact chiffré : les achats annuels d'ALPINE TECH SA s'élèvent à environ CHF 1'080'000
+        Impact chiffré : les achats annuels d'SwiSSwatch SA s'élèvent à environ CHF 1'080'000
         (coût des marchandises vendues). Délai actuel : 130'000 / (1'080'000/360) = 43 jours.
         Si le délai passe à 55 jours : dettes fournisseurs = 1'080'000 x 55/360 = CHF 165'000.
         Gain de BFR : 165'000 - 130'000 = CHF 35'000.
@@ -1112,7 +1112,7 @@ function TabFDR() {
       </P>
 
       <P>
-        Impact chiffré : si ALPINE TECH SA réduit ses stocks de CHF 185'000 à CHF 150'000
+        Impact chiffré : si SwiSSwatch SA réduit ses stocks de CHF 185'000 à CHF 150'000
         (soit une réduction de 19 %), le BFR diminue directement de CHF 35'000. Combiné avec les
         deux autres leviers, l'effet total serait de : 53'333 + 35'000 + 35'000 = CHF 123'333.
         Le BFR passerait de CHF 275'000 à CHF 151'667, et la trésorerie nette deviendrait positive
@@ -1140,17 +1140,17 @@ function TabFDR() {
       </Note>
 
       {/* ── 6. Exemple complet et stress test ─────────────────────────── */}
-      <H2>6. Exemple complet et simulation de crise : ALPINE TECH SA</H2>
+      <H2>6. Exemple complet et simulation de crise : SwiSSwatch SA</H2>
 
       <P>
         Pour conclure ce chapitre, réalisons une synthèse complète de l'analyse du fonds de roulement
-        et du BFR d'ALPINE TECH SA, puis simulons un scénario de crise pour mesurer la résilience
+        et du BFR d'SwiSSwatch SA, puis simulons un scénario de crise pour mesurer la résilience
         de l'entreprise. Cette simulation, souvent appelée "stress test", est un outil précieux
         pour anticiper les conséquences d'événements défavorables.
       </P>
 
       <Tableau
-        caption="Bilan retraité ALPINE TECH SA - Postes clés pour l'analyse du FRN/BFR"
+        caption="Bilan retraité SwiSSwatch SA - Postes clés pour l'analyse du FRN/BFR"
         headers={['Poste', 'Montant CHF', 'Catégorie']}
         rows={[
           { cells: ['Liquidités', '80\'000', 'AC hors exploitation'], _mono: true },
@@ -1184,7 +1184,7 @@ function TabFDR() {
       <H3>Simulation de crise : un client majeur ne paie pas</H3>
 
       <P>
-        Imaginons maintenant qu'un client important d'ALPINE TECH SA, qui représente une créance
+        Imaginons maintenant qu'un client important d'SwiSSwatch SA, qui représente une créance
         de CHF 85'000, fasse faillite et que cette créance devienne irrécouvrable. C'est un scénario
         malheureusement courant dans le tissu économique suisse, où la faillite d'un seul partenaire
         peut déclencher des difficultés en cascade.

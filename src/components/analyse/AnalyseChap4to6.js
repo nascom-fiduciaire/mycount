@@ -442,15 +442,15 @@ export function TabLiquidite() {
         color="#f59e0b"
       />
 
-      {/* -------- EXEMPLE COMPLET ALPINE TECH -------- */}
-      <H2>6. Exemple complet — ALPINE TECH SA</H2>
+      {/* -------- EXEMPLE COMPLET SwiSSwatch -------- */}
+      <H2>6. Exemple complet — SwiSSwatch SA</H2>
 
       <P>
-        ALPINE TECH SA est une PME suisse basée à Lausanne, spécialisée dans la fabrication et la vente d’instruments de mesure pour le secteur environnemental. L’entreprise emploie 45 personnes et réalise un chiffre d’affaires de CHF 4’800’000. Analysons sa situation de liquidité en détail à partir de ses états financiers au 31 décembre N.
+        SwiSSwatch SA est une PME suisse basée à Lausanne, spécialisée dans la fabrication et la vente d’instruments de mesure pour le secteur environnemental. L’entreprise emploie 45 personnes et réalise un chiffre d’affaires de CHF 4’800’000. Analysons sa situation de liquidité en détail à partir de ses états financiers au 31 décembre N.
       </P>
 
       <Tableau
-        titre="Bilan ALPINE TECH SA au 31.12.N (en CHF)"
+        titre="Bilan SwiSSwatch SA au 31.12.N (en CHF)"
         colonnes={['Actifs', 'Montant', 'Passifs', 'Montant']}
         lignes={[
           ['Caisse et banque', '185’000', 'Dettes fournisseurs', '420’000'],
@@ -492,7 +492,7 @@ export function TabLiquidite() {
       </P>
 
       <P>
-        Liquidité générale L3 = CHF 1’300’000 / CHF 800’000 = 1.63. Le ratio est dans la norme (1.5-2.0), ce qui signifie qu’ALPINE TECH dispose d’un coussin de sécurité suffisant pour couvrir ses dettes à court terme, bien que la marge soit relativement mince.
+        Liquidité générale L3 = CHF 1’300’000 / CHF 800’000 = 1.63. Le ratio est dans la norme (1.5-2.0), ce qui signifie qu’SwiSSwatch dispose d’un coussin de sécurité suffisant pour couvrir ses dettes à court terme, bien que la marge soit relativement mince.
       </P>
 
       <RatioGauge label="L3 — Liquidité générale" value={1.63} zones={zonesL3} />
@@ -522,7 +522,7 @@ export function TabLiquidite() {
       </P>
 
       <Tableau
-        titre="Synthèse des ratios de liquidité — ALPINE TECH SA"
+        titre="Synthèse des ratios de liquidité — SwiSSwatch SA"
         colonnes={['Ratio', 'Valeur', 'Norme', 'Appréciation']}
         lignes={[
           ['L3 — Liquidité générale', '1.63', '1.5 – 2.0', 'Correct — marge limitée'],
@@ -535,7 +535,7 @@ export function TabLiquidite() {
       />
 
       <Note>
-        Conclusion de l’analyse de liquidité d’ALPINE TECH SA : la situation est globalement saine mais sans marge de manoeuvre significative. Le L2 à 1.00 est le principal point de vigilance. L’amélioration du recouvrement des créances (réduction de 10 jours du délai) permettrait de dégager environ CHF 145’000 de trésorerie supplémentaire, renforçant significativement les ratios L1 et L2. Recommandation : mettre en place un processus de relance automatisé et envisager des escomptes pour paiement anticipé.
+        Conclusion de l’analyse de liquidité d’SwiSSwatch SA : la situation est globalement saine mais sans marge de manoeuvre significative. Le L2 à 1.00 est le principal point de vigilance. L’amélioration du recouvrement des créances (réduction de 10 jours du délai) permettrait de dégager environ CHF 145’000 de trésorerie supplémentaire, renforçant significativement les ratios L1 et L2. Recommandation : mettre en place un processus de relance automatisé et envisager des escomptes pour paiement anticipé.
       </Note>
 
       {/* -------- FIN CHAPITRE 4 -------- */}
@@ -584,7 +584,7 @@ export function TabRentabilite() {
       </P>
 
       <P>
-        Illustrons avec ALPINE TECH SA dont le CA net est de CHF 4’800’000 et le CMV de CHF 2’640’000. La marge brute en valeur absolue est de CHF 2’160’000, soit un taux de marge brute de (2’160’000 / 4’800’000) × 100 = 45.0%. Cela signifie que sur chaque franc de vente, il reste CHF 0.45 après avoir payé les coûts directs de production. Cette marge doit couvrir l’ensemble des frais généraux, des salaires administratifs, des amortissements, des intérêts et des impôts.
+        Illustrons avec SwiSSwatch SA dont le CA net est de CHF 4’800’000 et le CMV de CHF 2’640’000. La marge brute en valeur absolue est de CHF 2’160’000, soit un taux de marge brute de (2’160’000 / 4’800’000) × 100 = 45.0%. Cela signifie que sur chaque franc de vente, il reste CHF 0.45 après avoir payé les coûts directs de production. Cette marge doit couvrir l’ensemble des frais généraux, des salaires administratifs, des amortissements, des intérêts et des impôts.
       </P>
 
       <H3>2.2 L’EBITDA et la marge EBITDA</H3>
@@ -635,7 +635,7 @@ export function TabRentabilite() {
       </P>
 
       <P>
-        Construisons la cascade complète pour ALPINE TECH SA avec les données suivantes : CA net CHF 4’800’000, CMV CHF 2’640’000, charges de personnel CHF 1’200’000, autres charges d’exploitation CHF 360’000, amortissements CHF 280’000, charges d’intérêts CHF 56’000, impôts CHF 64’000.
+        Construisons la cascade complète pour SwiSSwatch SA avec les données suivantes : CA net CHF 4’800’000, CMV CHF 2’640’000, charges de personnel CHF 1’200’000, autres charges d’exploitation CHF 360’000, amortissements CHF 280’000, charges d’intérêts CHF 56’000, impôts CHF 64’000.
       </P>
 
       <WaterfallBar items={[
@@ -647,7 +647,7 @@ export function TabRentabilite() {
       ]} />
 
       <Tableau
-        titre="Cascade du compte de résultat — ALPINE TECH SA"
+        titre="Cascade du compte de résultat — SwiSSwatch SA"
         colonnes={['Poste', 'Montant CHF', 'Calcul marge', 'Taux']}
         lignes={[
           ['Chiffre d’affaires net', '4’800’000', '—', '100.0%'],
@@ -666,7 +666,7 @@ export function TabRentabilite() {
       />
 
       <P>
-        L’analyse de la cascade révèle qu’ALPINE TECH SA dégage une marge brute solide de 45%, ce qui est typique d’un fabricant de produits techniques à valeur ajoutée. Cependant, les charges de personnel et les autres frais d’exploitation absorbent une part importante de cette marge, ne laissant qu’un EBITDA de 12.5%. Après amortissements, la marge EBIT tombe à 6.7%, ce qui est correct mais pas exceptionnel. La marge nette finale de 4.2% signifie que sur chaque CHF 100 de ventes, il ne reste que CHF 4.20 de bénéfice pour les actionnaires.
+        L’analyse de la cascade révèle qu’SwiSSwatch SA dégage une marge brute solide de 45%, ce qui est typique d’un fabricant de produits techniques à valeur ajoutée. Cependant, les charges de personnel et les autres frais d’exploitation absorbent une part importante de cette marge, ne laissant qu’un EBITDA de 12.5%. Après amortissements, la marge EBIT tombe à 6.7%, ce qui est correct mais pas exceptionnel. La marge nette finale de 4.2% signifie que sur chaque CHF 100 de ventes, il ne reste que CHF 4.20 de bénéfice pour les actionnaires.
       </P>
 
       {/* -------- ROE -------- */}
@@ -690,7 +690,7 @@ export function TabRentabilite() {
       </P>
 
       <P>
-        Pour ALPINE TECH SA : ROE = CHF 200’000 / CHF 1’400’000 × 100 = 14.3%. Ce ratio est dans la fourchette haute des normes suisses et indique que les actionnaires obtiennent un rendement satisfaisant sur leur investissement. Chaque franc de fonds propres génère environ 14 centimes de bénéfice annuel.
+        Pour SwiSSwatch SA : ROE = CHF 200’000 / CHF 1’400’000 × 100 = 14.3%. Ce ratio est dans la fourchette haute des normes suisses et indique que les actionnaires obtiennent un rendement satisfaisant sur leur investissement. Chaque franc de fonds propres génère environ 14 centimes de bénéfice annuel.
       </P>
 
       <RatioCard
@@ -723,7 +723,7 @@ export function TabRentabilite() {
       </P>
 
       <P>
-        Pour ALPINE TECH SA : ROA = (CHF 200’000 + CHF 56’000) / CHF 3’000’000 × 100 = CHF 256’000 / CHF 3’000’000 × 100 = 8.5%. Ce ROA est satisfaisant et indique que les actifs de l’entreprise génèrent un rendement économique correct. La différence entre le ROE (14.3%) et le ROA (8.5%) s’explique par l’effet de levier financier : l’entreprise emprunte à un taux inférieur au ROA, ce qui amplifie le rendement pour les actionnaires.
+        Pour SwiSSwatch SA : ROA = (CHF 200’000 + CHF 56’000) / CHF 3’000’000 × 100 = CHF 256’000 / CHF 3’000’000 × 100 = 8.5%. Ce ROA est satisfaisant et indique que les actifs de l’entreprise génèrent un rendement économique correct. La différence entre le ROE (14.3%) et le ROA (8.5%) s’explique par l’effet de levier financier : l’entreprise emprunte à un taux inférieur au ROA, ce qui amplifie le rendement pour les actionnaires.
       </P>
 
       <RatioCard
@@ -760,13 +760,13 @@ export function TabRentabilite() {
       </P>
 
       <P>
-        Appliquons la décomposition à ALPINE TECH SA. Marge nette = CHF 200’000 / CHF 4’800’000 = 4.17%. Rotation des actifs = CHF 4’800’000 / CHF 3’000’000 = 1.60x. Levier financier = CHF 3’000’000 / CHF 1’400’000 = 2.14x. Vérification : 4.17% × 1.60 × 2.14 = 14.3% = ROE. La décomposition est cohérente.
+        Appliquons la décomposition à SwiSSwatch SA. Marge nette = CHF 200’000 / CHF 4’800’000 = 4.17%. Rotation des actifs = CHF 4’800’000 / CHF 3’000’000 = 1.60x. Levier financier = CHF 3’000’000 / CHF 1’400’000 = 2.14x. Vérification : 4.17% × 1.60 × 2.14 = 14.3% = ROE. La décomposition est cohérente.
       </P>
 
       <DuPontTree margeNette={4.17} rotationActifs={1.60} levier={2.14} roe={14.3} />
 
       <P>
-        L’analyse révèle que le ROE élevé d’ALPINE TECH SA (14.3%) ne s’explique pas par une marge nette exceptionnelle (4.17% est modeste), mais principalement par une bonne rotation des actifs (1.60x) et un levier financier significatif (2.14x). L’entreprise compense ses marges relativement faibles par une utilisation efficace de ses actifs et un recours raisonnable à l’endettement. Si elle parvenait à améliorer sa marge nette de 1 point (de 4.17% à 5.17%), le ROE passerait à environ 17.7%, soit une amélioration substantielle.
+        L’analyse révèle que le ROE élevé d’SwiSSwatch SA (14.3%) ne s’explique pas par une marge nette exceptionnelle (4.17% est modeste), mais principalement par une bonne rotation des actifs (1.60x) et un levier financier significatif (2.14x). L’entreprise compense ses marges relativement faibles par une utilisation efficace de ses actifs et un recours raisonnable à l’endettement. Si elle parvenait à améliorer sa marge nette de 1 point (de 4.17% à 5.17%), le ROE passerait à environ 17.7%, soit une amélioration substantielle.
       </P>
 
       <H3>5.1 Trois stratégies, un même ROE</H3>
@@ -792,14 +792,14 @@ export function TabRentabilite() {
       </P>
 
       {/* -------- EXEMPLE COMPLET -------- */}
-      <H2>6. Exemple complet — ALPINE TECH SA, comparaison N et N-1</H2>
+      <H2>6. Exemple complet — SwiSSwatch SA, comparaison N et N-1</H2>
 
       <P>
-        Pour illustrer l’utilité de l’analyse de la rentabilité dans le temps, comparons les performances d’ALPINE TECH SA sur deux exercices. L’année N-1 a été marquée par un chiffre d’affaires inférieur (CHF 4’200’000) mais des charges d’exploitation proportionnellement plus faibles. Voici les données complètes des deux exercices.
+        Pour illustrer l’utilité de l’analyse de la rentabilité dans le temps, comparons les performances d’SwiSSwatch SA sur deux exercices. L’année N-1 a été marquée par un chiffre d’affaires inférieur (CHF 4’200’000) mais des charges d’exploitation proportionnellement plus faibles. Voici les données complètes des deux exercices.
       </P>
 
       <Tableau
-        titre="Comparaison des performances N-1 / N — ALPINE TECH SA"
+        titre="Comparaison des performances N-1 / N — SwiSSwatch SA"
         colonnes={['Indicateur', 'N-1', 'N', 'Évolution']}
         lignes={[
           ['CA net', 'CHF 4’200’000', 'CHF 4’800’000', '+14.3%'],
@@ -823,7 +823,7 @@ export function TabRentabilite() {
       </P>
 
       <Note>
-        Recommandations pour ALPINE TECH SA : la croissance du CA est encourageante mais la dégradation des marges est préoccupante. L’entreprise devrait (1) analyser la structure de coûts pour identifier les postes en dérapage, (2) évaluer si les baisses de prix consenties se justifient par la conquete de parts de marché durables, (3) améliorer l’efficacité opérationnelle pour restaurer les marges EBITDA et EBIT, et (4) s’assurer que les investissements en actifs supplémentaires généreront un rendement suffisant dans les années à venir.
+        Recommandations pour SwiSSwatch SA : la croissance du CA est encourageante mais la dégradation des marges est préoccupante. L’entreprise devrait (1) analyser la structure de coûts pour identifier les postes en dérapage, (2) évaluer si les baisses de prix consenties se justifient par la conquete de parts de marché durables, (3) améliorer l’efficacité opérationnelle pour restaurer les marges EBITDA et EBIT, et (4) s’assurer que les investissements en actifs supplémentaires généreront un rendement suffisant dans les années à venir.
       </Note>
 
     </>
@@ -871,7 +871,7 @@ export function TabEndettement() {
       </P>
 
       <P>
-        Pour ALPINE TECH SA, les capitaux étrangers totaux comprennent le CE court terme (CHF 800’000) et le CE long terme (CHF 800’000), soit CHF 1’600’000. Le taux d’endettement est de CHF 1’600’000 / CHF 3’000’000 × 100 = 53.3%. Ce taux est acceptable et reste nettement en-dessous du seuil de 60%. L’entreprise conserve une marge de manoeuvre pour contracter de la dette supplémentaire si nécessaire, par exemple pour financer un investissement stratégique.
+        Pour SwiSSwatch SA, les capitaux étrangers totaux comprennent le CE court terme (CHF 800’000) et le CE long terme (CHF 800’000), soit CHF 1’600’000. Le taux d’endettement est de CHF 1’600’000 / CHF 3’000’000 × 100 = 53.3%. Ce taux est acceptable et reste nettement en-dessous du seuil de 60%. L’entreprise conserve une marge de manoeuvre pour contracter de la dette supplémentaire si nécessaire, par exemple pour financer un investissement stratégique.
       </P>
 
       <RatioGauge
@@ -893,7 +893,7 @@ export function TabEndettement() {
       </P>
 
       <P>
-        Pour ALPINE TECH SA : CHF 1’400’000 / CHF 3’000’000 × 100 = 46.7%. L’entreprise dépasse confortablement le seuil minimum de 40%, ce qui témoigne d’une base de fonds propres solide. Cette assise permet d’absorber des pertes éventuelles sans mettre en danger la solvabilité et offre une crédibilité auprès des banques pour d’éventuels financements futurs.
+        Pour SwiSSwatch SA : CHF 1’400’000 / CHF 3’000’000 × 100 = 46.7%. L’entreprise dépasse confortablement le seuil minimum de 40%, ce qui témoigne d’une base de fonds propres solide. Cette assise permet d’absorber des pertes éventuelles sans mettre en danger la solvabilité et offre une crédibilité auprès des banques pour d’éventuels financements futurs.
       </P>
 
       <RatioCard
@@ -917,7 +917,7 @@ export function TabEndettement() {
       </P>
 
       <P>
-        Pour ALPINE TECH SA : CHF 1’600’000 / CHF 1’400’000 = 1.14. Ce ratio signifie que pour chaque franc de fonds propres, l’entreprise a CHF 1.14 de dettes. La structure est équilibrée et bien en deçà du seuil critique de 2.0. L’entreprise pourrait théoriquement doubler sa dette (passer à un D/E de 2.28) avant d’atteindre un niveau considéré comme risqué, mais cela ne serait pas recommandable sans croissance proportionnelle de la rentabilité.
+        Pour SwiSSwatch SA : CHF 1’600’000 / CHF 1’400’000 = 1.14. Ce ratio signifie que pour chaque franc de fonds propres, l’entreprise a CHF 1.14 de dettes. La structure est équilibrée et bien en deçà du seuil critique de 2.0. L’entreprise pourrait théoriquement doubler sa dette (passer à un D/E de 2.28) avant d’atteindre un niveau considéré comme risqué, mais cela ne serait pas recommandable sans croissance proportionnelle de la rentabilité.
       </P>
 
       <RatioCard
@@ -948,7 +948,7 @@ export function TabEndettement() {
       </P>
 
       <P>
-        Pour ALPINE TECH SA : EBIT (CHF 320’000) / Charges d’intérêts (CHF 56’000) = 5.71x. Ce ratio est excellent et offre une marge de sécurité confortable. L’EBIT pourrait baisser de plus de 80% avant que l’entreprise ne soit incapable de payer ses intérêts. Les banquiers apprécieront cette couverture généreuse lors du renouvellement des lignes de crédit.
+        Pour SwiSSwatch SA : EBIT (CHF 320’000) / Charges d’intérêts (CHF 56’000) = 5.71x. Ce ratio est excellent et offre une marge de sécurité confortable. L’EBIT pourrait baisser de plus de 80% avant que l’entreprise ne soit incapable de payer ses intérêts. Les banquiers apprécieront cette couverture généreuse lors du renouvellement des lignes de crédit.
       </P>
 
       <RatioGauge
@@ -970,7 +970,7 @@ export function TabEndettement() {
       </P>
 
       <P>
-        Pour ALPINE TECH SA, les dettes financières comprennent les dettes bancaires CT (CHF 200’000) et l’emprunt bancaire LT (CHF 700’000), soit CHF 900’000 au total. En déduisant la trésorerie (CHF 185’000), les dettes financières nettes s’élèvent à CHF 715’000. Le cash-flow opérationnel simplifié est de CHF 200’000 (résultat net) + CHF 280’000 (amortissements) = CHF 480’000. Capacité de remboursement = CHF 715’000 / CHF 480’000 = 1.49 années. Ce résultat est excellent : en théorie, l’entreprise pourrait rembourser toutes ses dettes financières en un an et demi. Cela lui laisse une très large marge pour emprunter davantage si un projet d’investissement attractif se présente.
+        Pour SwiSSwatch SA, les dettes financières comprennent les dettes bancaires CT (CHF 200’000) et l’emprunt bancaire LT (CHF 700’000), soit CHF 900’000 au total. En déduisant la trésorerie (CHF 185’000), les dettes financières nettes s’élèvent à CHF 715’000. Le cash-flow opérationnel simplifié est de CHF 200’000 (résultat net) + CHF 280’000 (amortissements) = CHF 480’000. Capacité de remboursement = CHF 715’000 / CHF 480’000 = 1.49 années. Ce résultat est excellent : en théorie, l’entreprise pourrait rembourser toutes ses dettes financières en un an et demi. Cela lui laisse une très large marge pour emprunter davantage si un projet d’investissement attractif se présente.
       </P>
 
       <RatioCard
@@ -1114,14 +1114,14 @@ export function TabEndettement() {
       />
 
       {/* -------- EXEMPLE COMPLET -------- */}
-      <H2>6. Exemple complet — ALPINE TECH SA</H2>
+      <H2>6. Exemple complet — SwiSSwatch SA</H2>
 
       <P>
-        Reprenons les données d’ALPINE TECH SA pour une analyse complète de la structure du capital et de l’endettement. Nous disposons de toutes les informations nécessaires grâce au bilan et au compte de résultat détaillés dans les chapitres précédents. Calculons systématiquement chaque ratio puis interprétons l’ensemble.
+        Reprenons les données d’SwiSSwatch SA pour une analyse complète de la structure du capital et de l’endettement. Nous disposons de toutes les informations nécessaires grâce au bilan et au compte de résultat détaillés dans les chapitres précédents. Calculons systématiquement chaque ratio puis interprétons l’ensemble.
       </P>
 
       <Tableau
-        titre="Synthèse des ratios d’endettement — ALPINE TECH SA"
+        titre="Synthèse des ratios d’endettement — SwiSSwatch SA"
         colonnes={['Ratio', 'Calcul', 'Valeur', 'Norme', 'Appréciation']}
         lignes={[
           ['Taux d’endettement', '1’600’000 / 3’000’000', '53.3%', 'Inf. à 60%', 'Correct'],
@@ -1132,10 +1132,10 @@ export function TabEndettement() {
         ]}
       />
 
-      <H3>6.1 Analyse de l’effet de levier d’ALPINE TECH SA</H3>
+      <H3>6.1 Analyse de l’effet de levier d’SwiSSwatch SA</H3>
 
       <P>
-        Vérifions si ALPINE TECH SA bénéficie d’un effet de levier positif. Le ROA est de 8.5%, et nous devons déterminer le coût moyen de la dette. Les charges d’intérêts s’élèvent à CHF 56’000 pour des capitaux étrangers portant intérêt de CHF 900’000 (dettes bancaires CT CHF 200’000 + emprunt LT CHF 700’000). Le coût moyen de la dette est donc de CHF 56’000 / CHF 900’000 = 6.2%. Notons que les dettes fournisseurs et autres passifs d’exploitation ne portent pas intérêt et ne sont donc pas inclus dans ce calcul.
+        Vérifions si SwiSSwatch SA bénéficie d’un effet de levier positif. Le ROA est de 8.5%, et nous devons déterminer le coût moyen de la dette. Les charges d’intérêts s’élèvent à CHF 56’000 pour des capitaux étrangers portant intérêt de CHF 900’000 (dettes bancaires CT CHF 200’000 + emprunt LT CHF 700’000). Le coût moyen de la dette est donc de CHF 56’000 / CHF 900’000 = 6.2%. Notons que les dettes fournisseurs et autres passifs d’exploitation ne portent pas intérêt et ne sont donc pas inclus dans ce calcul.
       </P>
 
       <P>
@@ -1143,13 +1143,13 @@ export function TabEndettement() {
       </P>
 
       <P>
-        Le spread de levier positif de 2.3 points confirme qu’ALPINE TECH SA tire profit de son endettement. Chaque franc emprunté génère 2.3 centimes de rendement supplémentaire pour les actionnaires par rapport à ce qu’il coûte en intérêts. L’entreprise a donc intérêt à maintenir un niveau d’endettement raisonnable tant que le ROA reste supérieur au coût de la dette.
+        Le spread de levier positif de 2.3 points confirme qu’SwiSSwatch SA tire profit de son endettement. Chaque franc emprunté génère 2.3 centimes de rendement supplémentaire pour les actionnaires par rapport à ce qu’il coûte en intérêts. L’entreprise a donc intérêt à maintenir un niveau d’endettement raisonnable tant que le ROA reste supérieur au coût de la dette.
       </P>
 
-      <H3>6.2 Perspective bancaire — ALPINE TECH SA obtiendrait-elle un prêt ?</H3>
+      <H3>6.2 Perspective bancaire — SwiSSwatch SA obtiendrait-elle un prêt ?</H3>
 
       <P>
-        Mettons-nous dans la position d’un analyste crédit d’une banque suisse. ALPINE TECH SA souhaite emprunter CHF 400’000 supplémentaires pour financer l’acquisition d’une nouvelle ligne de production. Voici l’évaluation que ferait la banque sur la base des ratios actuels et projetés.
+        Mettons-nous dans la position d’un analyste crédit d’une banque suisse. SwiSSwatch SA souhaite emprunter CHF 400’000 supplémentaires pour financer l’acquisition d’une nouvelle ligne de production. Voici l’évaluation que ferait la banque sur la base des ratios actuels et projetés.
       </P>
 
       <Tableau
@@ -1173,7 +1173,7 @@ export function TabEndettement() {
       </P>
 
       <Note>
-        Synthèse globale de la structure financière d’ALPINE TECH SA : l’entreprise présente une structure de capital saine et équilibrée. L’endettement est modéré (à 53.3%), l’effet de levier est positif (ROA de 8.5% contre un coût de dette de 6.2%), et la capacité de remboursement est excellente (1.49 années). L’entreprise dispose d’une marge d’endettement supplémentaire significative pour financer sa croissance. Le principal risque serait une dégradation de la rentabilité opérationnelle (baisse du ROA en dessous du coût de la dette), qui inverserait l’effet de levier. La direction doit donc veiller à maintenir un ROA supérieur à 6-7% pour continuer à bénéficier de l’endettement.
+        Synthèse globale de la structure financière d’SwiSSwatch SA : l’entreprise présente une structure de capital saine et équilibrée. L’endettement est modéré (à 53.3%), l’effet de levier est positif (ROA de 8.5% contre un coût de dette de 6.2%), et la capacité de remboursement est excellente (1.49 années). L’entreprise dispose d’une marge d’endettement supplémentaire significative pour financer sa croissance. Le principal risque serait une dégradation de la rentabilité opérationnelle (baisse du ROA en dessous du coût de la dette), qui inverserait l’effet de levier. La direction doit donc veiller à maintenir un ROA supérieur à 6-7% pour continuer à bénéficier de l’endettement.
       </Note>
 
     </>

@@ -150,7 +150,7 @@ function TabFondation() {
       </Note>
 
       <H2>3. Fondation avec apports en especes</H2>
-      <P>Exemple : <strong>PRODUCTION CHOCOLAT SA</strong> est fondee avec un capital-actions de CHF 1'000'000, divise en 1'000 actions de CHF 1'000 chacune. Les fondateurs liberent 50% du capital.</P>
+      <P>Exemple : <strong>SwiSSwatch SA</strong> est fondee avec un capital-actions de CHF 1'000'000, divise en 1'000 actions de CHF 1'000 chacune. Les fondateurs liberent 50% du capital.</P>
 
       <H3>Phase 1 : Souscription des actions</H3>
       <P>Les fondateurs s'engagent a souscrire l'ensemble du capital-actions. On enregistre la creance envers les actionnaires.</P>
@@ -171,7 +171,7 @@ function TabFondation() {
 
       <H3>Bilan apres fondation</H3>
       <Tableau
-        caption="Bilan d'ouverture — PRODUCTION CHOCOLAT SA"
+        caption="Bilan d'ouverture — SwiSSwatch SA"
         headers={['Actif', 'Montant CHF', 'Passif', 'Montant CHF']}
         rows={[
           { cells: ['1020 Banque', '491\'500', '2800 Capital-actions', '1\'000\'000'] },
@@ -275,7 +275,7 @@ function TabDistribution() {
       <P>Les tantiemes sont une remuneration du conseil d'administration, prelevee sur le benefice resultant du bilan. Ils ne peuvent etre preleves que si la reserve legale issue du benefice a recu son attribution et qu'un dividende de 5% a ete distribue aux actionnaires.</P>
 
       <H2>3. Ecritures d'affectation du benefice</H2>
-      <P>Exemple : PRODUCTION CHOCOLAT SA realise un benefice net de CHF 200'000. L'AG decide : 5% reserve legale, CHF 80'000 de dividende brut, CHF 10'000 de tantiemes, solde en reserve facultative. Capital-actions CHF 1'000'000, reserve legale existante CHF 350'000 (plafond 50% = CHF 500'000).</P>
+      <P>Exemple : SwiSSwatch SA realise un benefice net de CHF 200'000. L'AG decide : 5% reserve legale, CHF 80'000 de dividende brut, CHF 10'000 de tantiemes, solde en reserve facultative. Capital-actions CHF 1'000'000, reserve legale existante CHF 350'000 (plafond 50% = CHF 500'000).</P>
 
       <H3>Attribution a la reserve legale (5%)</H3>
       <Ecriture debit="2979 Benefice de l'exercice" credit="2950 Reserve legale issue du benefice" montant="10'000" />
@@ -370,7 +370,7 @@ function TabAugmentation() {
         Prix d'emission = valeur nominale + agio
       </Note>
 
-      <P>Exemple : PRODUCTION CHOCOLAT SA. Capital-actions CHF 1'000'000 (1'000 actions de CHF 1'000). Fonds propres totaux CHF 1'500'000. Emission de 200 nouvelles actions.</P>
+      <P>Exemple : SwiSSwatch SA. Capital-actions CHF 1'000'000 (1'000 actions de CHF 1'000). Fonds propres totaux CHF 1'500'000. Emission de 200 nouvelles actions.</P>
       <Tableau
         caption="Calcul de la prime d'emission"
         headers={['Element', 'Calcul', 'Resultat']}
@@ -578,7 +578,7 @@ function TabAssainissement() {
       <Ecriture debit="1020 Banque" credit="1850 Actionnaires" montant="200'000" />
 
       <H2>4. Exemple complet d'assainissement</H2>
-      <P>Situation de PRODUCTION CHOCOLAT SA avant assainissement :</P>
+      <P>Situation de SwiSSwatch SA avant assainissement :</P>
       <Tableau
         caption="Bilan avant assainissement"
         headers={['Actif', 'CHF', 'Passif', 'CHF']}
@@ -650,13 +650,13 @@ function TabFusion() {
       ))}
 
       <H2>3. Calculs de fusion — exemple complet</H2>
-      <P><strong>Societe ALPHA SA</strong> (absorbante) : capital-actions CHF 1'000'000 (1'000 actions de CHF 1'000). Fonds propres comptables CHF 1'500'000. Reserves latentes nettes CHF 300'000.</P>
-      <P><strong>Societe BETA SA</strong> (absorbee) : capital-actions CHF 500'000 (500 actions de CHF 1'000). Fonds propres comptables CHF 700'000. Reserves latentes nettes CHF 200'000.</P>
+      <P><strong>Societe SwiSSwatch SA</strong> (absorbante) : capital-actions CHF 1'000'000 (1'000 actions de CHF 1'000). Fonds propres comptables CHF 1'500'000. Reserves latentes nettes CHF 300'000.</P>
+      <P><strong>Societe SwiSSwatch SA</strong> (absorbee) : capital-actions CHF 500'000 (500 actions de CHF 1'000). Fonds propres comptables CHF 700'000. Reserves latentes nettes CHF 200'000.</P>
 
       <H3>Etape 1 : Valeur intrinseque</H3>
       <Tableau
         caption="Calcul de la valeur intrinseque"
-        headers={['', 'ALPHA SA', 'BETA SA']}
+        headers={['', 'SwiSSwatch SA', 'SwiSSwatch SA']}
         rows={[
           { cells: ['Fonds propres comptables', '1\'500\'000', '700\'000'] },
           { cells: ['+ Reserves latentes nettes', '300\'000', '200\'000'] },
@@ -671,20 +671,20 @@ function TabFusion() {
       <Note color="blue">
         <strong>Parite d'echange</strong> = valeur intrinseque action absorbee / valeur intrinseque action absorbante<br />
         = CHF 1'800 / CHF 1'800 = <strong>1 : 1</strong><br />
-        Chaque actionnaire de BETA recoit 1 action ALPHA pour 1 action BETA.
+        Chaque actionnaire de l'absorbee recoit 1 action SwiSSwatch pour 1 action de l'absorbee.
       </Note>
 
       <H3>Etape 3 : Actions a emettre</H3>
-      <P>Nombre d'actions a emettre = nombre d'actions BETA x parite = 500 x 1 = <strong>500 nouvelles actions ALPHA</strong>.</P>
-      <P>Augmentation de capital ALPHA : 500 x CHF 1'000 (VN) = CHF 500'000.</P>
+      <P>Nombre d'actions a emettre = nombre d'actions de l'absorbee x parite = 500 x 1 = <strong>500 nouvelles actions SwiSSwatch</strong>.</P>
+      <P>Augmentation de capital SwiSSwatch : 500 x CHF 1'000 (VN) = CHF 500'000.</P>
       <P>Valeur totale des actions emises : 500 x CHF 1'800 = CHF 900'000.</P>
       <P>Prime de fusion (agio) : CHF 900'000 - CHF 500'000 = CHF 400'000.</P>
 
-      <H3>Etape 4 : Ecritures chez l'absorbante (ALPHA SA)</H3>
-      <P>Reprise du bilan de BETA (actifs aux valeurs reelles, dettes au nominal) :</P>
-      <Ecriture debit="Actifs divers BETA" credit="Dettes diverses BETA" montant="(selon detail)" />
+      <H3>Etape 4 : Ecritures chez l'absorbante (SwiSSwatch SA)</H3>
+      <P>Reprise du bilan de l'absorbee (actifs aux valeurs reelles, dettes au nominal) :</P>
+      <Ecriture debit="Actifs divers (absorbee)" credit="Dettes diverses (absorbee)" montant="(selon detail)" />
       <P>Le solde net (actifs - dettes = valeur intrinseque = CHF 900'000) est credite :</P>
-      <Ecriture debit="Actifs nets BETA (solde)" credit="2800 Capital-actions" montant="500'000" />
+      <Ecriture debit="Actifs nets (absorbee, solde)" credit="2800 Capital-actions" montant="500'000" />
       <Ecriture debit="" credit="2900 Reserve legale issue du capital (prime de fusion)" montant="400'000" />
 
       <Note color="green">Si la valeur intrinseque de l'absorbee est inferieure au capital emis, la difference constitue une <strong>perte de fusion</strong> (goodwill), comptabilisee a l'actif (1880) et amortie.</Note>
@@ -701,10 +701,10 @@ function TabFusion() {
       />
 
       <H3>Calcul du capital des nouvelles entites</H3>
-      <P>Exemple de scission par division : GAMMA SA (capital CHF 800'000) se divise en GAMMA-1 SA (60%) et GAMMA-2 SA (40%).</P>
+      <P>Exemple de scission par division : SwiSSwatch SA (capital CHF 800'000) se divise en SwiSSwatch-1 SA (60%) et SwiSSwatch-2 SA (40%).</P>
       <Tableau
         caption="Repartition du patrimoine"
-        headers={['Element', 'GAMMA SA (avant)', 'GAMMA-1 SA (60%)', 'GAMMA-2 SA (40%)']}
+        headers={['Element', 'SwiSSwatch SA (avant)', 'SwiSSwatch-1 SA (60%)', 'SwiSSwatch-2 SA (40%)']}
         rows={[
           { cells: ['Capital-actions', '800\'000', '480\'000', '320\'000'] },
           { cells: ['Actifs transferes', '1\'200\'000', '720\'000', '480\'000'] },
@@ -713,7 +713,7 @@ function TabFusion() {
         ]}
       />
 
-      <P>Ecritures chez GAMMA SA (dissolution) :</P>
+      <P>Ecritures chez SwiSSwatch SA (dissolution) :</P>
       <Ecriture debit="2800 Capital-actions" credit="Actifs nets transferes" montant="800'000" />
       <P>Chaque nouvelle societe reprend les actifs et dettes selon la cle de repartition et constitue son propre capital-actions.</P>
 
@@ -809,7 +809,7 @@ function TabLiquidation() {
       <P>Pendant la liquidation, le liquidateur doit transformer tous les actifs en liquidites et eteindre toutes les dettes. Les gains et pertes resultant de ces operations sont comptabilises dans des comptes specifiques.</P>
 
       <H3>Vente des actifs</H3>
-      <P>Exemple : PRODUCTION CHOCOLAT SA entre en liquidation. Bilan de depart :</P>
+      <P>Exemple : SwiSSwatch SA entre en liquidation. Bilan de depart :</P>
       <Tableau
         caption="Bilan de liquidation — situation de depart"
         headers={['Actif', 'CHF', 'Passif', 'CHF']}

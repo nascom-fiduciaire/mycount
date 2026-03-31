@@ -751,10 +751,10 @@ function TabInvestissements() {
         description="Ce flux n'existe que si l'entreprise est bénéficiaire (sinon pas d'impôt à économiser)"
       />
 
-      <H3>Exemple -- Machine STOUT</H3>
+      <H3>Exemple -- Machine CNC PRECISION 5000</H3>
 
       <P>
-        L'entreprise STOUT SA, basée à Neuchâtel, envisage l'achat d'une machine d'usinage pour
+        L'entreprise SwiSSwatch SA, basée à Neuchâtel, envisage l'achat d'une machine d'usinage pour
         CHF 60'000. Cette machine permettrait d'économiser CHF 18'000 de charges par an pendant
         5 ans. Le taux d'imposition est de 20 % et le coût du capital de 12 %. La machine est
         amortie linéairement sur 5 ans.
@@ -814,10 +814,10 @@ function TabInvestissements() {
         initial net.
       </Note>
 
-      <H3>Cas de remplacement — GANUL SA</H3>
+      <H3>Cas de remplacement — SwiSSwatch SA</H3>
 
       <P>
-        GANUL SA remplace une machine acquise il y a 6 ans pour CHF 1'600'000 (valeur comptable actuelle : CHF 100'000). La nouvelle machine coûte CHF 1'800'000 avec CHF 200'000 de frais d'installation. L'ancienne est reprise pour CHF 300'000. Taux d'impôt : 30%. WACC : 10%. Cash flows budgétés : CHF 600'000/an pendant 5 ans.
+        SwiSSwatch SA remplace une machine acquise il y a 6 ans pour CHF 1'600'000 (valeur comptable actuelle : CHF 100'000). La nouvelle machine coûte CHF 1'800'000 avec CHF 200'000 de frais d'installation. L'ancienne est reprise pour CHF 300'000. Taux d'impôt : 30%. WACC : 10%. Cash flows budgétés : CHF 600'000/an pendant 5 ans.
       </P>
 
       <H3>Étape 1 — Investissement initial</H3>
@@ -1007,12 +1007,12 @@ function TabInvestissements() {
 
 
       {/* ══════════════════════════════════════════════════════════════════
-          9. EXEMPLE INTEGRATEUR — CAS NDX SA
+          9. EXEMPLE INTEGRATEUR — CAS SwiSSwatch SA
           ══════════════════════════════════════════════════════════════════ */}
-      <H2>9. Exemple intégrateur -- Cas NDX SA</H2>
+      <H2>9. Exemple intégrateur -- Cas SwiSSwatch SA</H2>
 
       <P>
-        L'entreprise NDX SA, basée à Sion, envisage le remplacement d'une ligne de production.
+        L'entreprise SwiSSwatch SA, basée à Sion, envisage le remplacement d'une ligne de production.
         Ce cas intègre l'ensemble des concepts abordés dans ce chapitre : investissement initial net,
         fiscalité, amortissement, WACC, cash flows après impôts, et VAN. Il constitue un exercice
         de synthèse représentatif de ce que vous rencontrerez en examen.
@@ -1159,7 +1159,7 @@ function TabInvestissements() {
       <H3>Décision</H3>
 
       <P>
-        La VAN est largement negative (-CHF 277'275). Le projet NDX SA détruit massivement de la
+        La VAN est largement negative (-CHF 277'275). Le projet SwiSSwatch SA détruit massivement de la
         valeur. Les cash flows générés sont très insuffisants pour compenser l'investissement initial
         élevé et le coût du capital de 16 %. Le projet doit être catégoriquement rejeté.
       </P>

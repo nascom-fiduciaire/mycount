@@ -133,7 +133,7 @@ function TabMethodeEffective() {
 
       <H2>2. Comptabilisation des ventes</H2>
       <P>Lors d'une vente, on sépare le chiffre d'affaires HT (compte de produit) de la TVA collectée (compte de bilan 2200) :</P>
-      <Note>Exemple : Mme Onyme vend des chocolats pour CHF 550'000 HT. Taux TVA denrées alimentaires : <strong>2.6%</strong> → TVA = CHF 14'300 → Prix TTC = CHF 564'300</Note>
+      <Note>Exemple : Léa Meyer vend des montres pour CHF 550'000 HT. Taux TVA denrées alimentaires : <strong>2.6%</strong> → TVA = CHF 14'300 → Prix TTC = CHF 564'300</Note>
 
       <H3>Facturation et encaissement</H3>
       <Ecriture debit="1100 Clients" credit="3000 Ventes (HT)" montant="550'000" libelle="Chiffre d'affaires hors taxe" />
@@ -169,7 +169,7 @@ function TabMethodeEffective() {
       </Loi>
 
       <DecompteBox
-        title="Décompte TVA effectif — Chocolaterie Onyme (exercice N)"
+        title="Décompte TVA effectif — SwiSSwatch SA (exercice N)"
         rows={[
           ['Chiffre d\'affaires imposable (HT)', "CHF 550'000", false],
           ['TVA due à 2.6%', "CHF 14'300", false],
@@ -246,7 +246,7 @@ function TabDetteFiscaleNette() {
       <H2>3. Comptabilisation au brut — toutes opérations en TTC</H2>
       <P>En méthode DFN, aucune séparation HT/TVA n'est nécessaire. Tout est enregistré au montant TTC payé ou encaissé. Les comptes 1170, 1171 et 2200 ne sont pas utilisés.</P>
 
-      <Note>Exemple : Mme Onyme applique le taux DFN de 0.1% (fabrication de chocolats). CA HT = CHF 550'000 → CA TTC = 550'000 × 1.026 = <strong>CHF 564'300</strong></Note>
+      <Note>Exemple : Léa Meyer applique le taux DFN de 0.1% (fabrication de montres). CA HT = CHF 550'000 → CA TTC = 550'000 × 1.026 = <strong>CHF 564'300</strong></Note>
 
       <H3>Comptabilisation des ventes (TTC)</H3>
       <Ecriture debit="1020 Banque (ou 1100 Clients)" credit="3000 Ventes (TTC)" montant="564'300" libelle="Ventes enregistrées au montant TTC — sans séparation TVA" />
@@ -261,7 +261,7 @@ function TabDetteFiscaleNette() {
       <P>Le décompte DFN est réalisé deux fois par an (semestriellement). Il suffit de multiplier le CA TTC par le taux DFN :</P>
 
       <DecompteBox
-        title="Décompte TVA — Méthode DFN (Chocolaterie Onyme)"
+        title="Décompte TVA — Méthode DFN (SwiSSwatch SA)"
         rows={[
           ['Chiffre d\'affaires TTC (solde compte 3000)', "CHF 564'300", false],
           ['Taux de la dette fiscale nette applicable', '0.1%', false],
@@ -298,7 +298,7 @@ function TabCasPratiques() {
   return (
     <div>
       <H2>Cas 1 — Cycle complet TVA effective (taux réduit 2.6%)</H2>
-      <Note>Entreprise : boulangerie assujettie à la TVA. CA annuel CHF 180'000 HT. Achats matières CHF 80'000 TTC (taux 2.6%). Loyer CHF 24'000 TTC (taux 8.1%). Décompte trimestriel.</Note>
+      <Note>Entreprise : SwiSSwatch SA assujettie à la TVA. CA annuel CHF 180'000 HT. Achats matières CHF 80'000 TTC (taux 2.6%). Loyer CHF 24'000 TTC (taux 8.1%). Décompte trimestriel.</Note>
 
       <H3>Étape 1 — Ventes trimestrielles (CA = CHF 45'000 HT × 4 trimestres)</H3>
       <Ecriture debit="1100 Clients" credit="3000 Ventes (HT)" montant="45'000" libelle="CA trimestriel HT" />
@@ -316,7 +316,7 @@ function TabCasPratiques() {
 
       <H3>Étape 4 — Décompte TVA trimestriel</H3>
       <DecompteBox
-        title="Décompte TVA T1 — Boulangerie"
+        title="Décompte TVA T1 — SwiSSwatch SA"
         rows={[
           ['TVA collectée (2200)', "CHF 1'170", false],
           ['IP sur achats matières (1170)', "− CHF 507", false],
@@ -364,7 +364,7 @@ function TabCasPratiques() {
       <Loi art="Art. 31 LTVA — Prestations à soi-même">
         L'assujetti qui prélève de son entreprise des biens ou des services pour un usage privé a l'obligation de décompter la TVA grevant l'opération. Le montant de TVA est comptabilisé comme une réduction de l'impôt préalable.
       </Loi>
-      <Note>Exemple : un boulanger assujetti prélève CHF 500 de marchandises de son stock pour sa consommation personnelle. Il doit décompter la TVA comme si c'était une vente à un client.</Note>
+      <Note>Exemple : un horloger assujetti prélève CHF 500 de marchandises de son stock pour sa consommation personnelle. Il doit décompter la TVA comme si c'était une vente à un client.</Note>
       <Ecriture debit="8500 Prélèvements privés (ou 6xxx)" credit="1170 IP sur achats" montant="13" libelle="TVA sur prélèvement privé (500 × 2.6%) — réduction IP" />
     </div>
   );
