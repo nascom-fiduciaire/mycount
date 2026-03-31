@@ -128,6 +128,40 @@ export const PERSONNAGES = [
   },
 ];
 
+// ─── L'INDÉPENDANT — Ami de Théo, sous-traitant de SwiSSwatch ──────────────
+export const INDEPENDANT = {
+  nom: 'Atelier Kessler',
+  forme: 'Raison individuelle',
+  proprietaire: 'Max Kessler',
+  siege: 'Le Locle (NE)',
+  description: 'Max Kessler est un maître horloger indépendant, ami de longue date de Théo Keller. Il tient un petit atelier au Locle où il réalise des travaux de finition haut de gamme (anglage, décoration de mouvements, gravure) pour SwiSSwatch SA et d\'autres manufactures. En tant qu\'indépendant, il tient une comptabilité complète avec un compte privé.',
+  chiffreAffaires: 180000,
+  tva: 'Assujetti (méthode effective)',
+  registreCommerce: 'CHE-987.654.321',
+
+  // Données comptables spécifiques à l\'indépendant
+  capitalPropre: 45000,
+  comptePriveUsages: [
+    'Prélèvements en espèces pour besoins personnels',
+    'Paiement d\'assurance maladie personnelle par l\'entreprise',
+    'Utilisation du véhicule d\'entreprise à titre privé (part privée)',
+    'Consommation de prestations propres (réparation montre personnelle)',
+    'Apport supplémentaire en capital par virement personnel',
+  ],
+  prestationsPropres: [
+    { description: 'Réparation de la montre personnelle de Max', valeur: 450, compte: '3710 Consommations propres' },
+    { description: 'Fabrication d\'un cadeau pour un ami (montre gravée)', valeur: 1200, compte: '3710 Consommations propres' },
+  ],
+  immeubles: {
+    atelier: { valeur: 320000, hypotheque: 220000, loyerFictif: 0, usage: '100% professionnel' },
+    appartement: { valeur: 480000, hypotheque: 350000, loyerFictif: 18000, usage: '100% privé — loyer fictif à comptabiliser' },
+  },
+  titres: [
+    { nom: 'Actions Swatch Group', quantite: 50, valeurAchat: 12500, valeurMarche: 14200, dividende: 375 },
+    { nom: 'Obligations Confédération 2%', nominal: 20000, valeurAchat: 20000, interet: 400 },
+  ],
+};
+
 // ─── DONNÉES FINANCIÈRES DE RÉFÉRENCE ────────────────────────────────────────
 export const FINANCES = {
   // Année 1 (2023) — Fondation & démarrage

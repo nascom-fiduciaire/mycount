@@ -569,4 +569,120 @@ export const baseJournalExercises = [
       { id: 'e11', libelle: '30.09 — Paiement solde TVA à l\'AFC', debit: { num: '2201', label: 'Décompte TVA' }, credit: { num: '1020', label: 'Banque' }, amount: 1620 },
     ],
   },
+
+  // ─── Max Kessler — Indépendant ───────────────────────────────────────
+
+  {
+    id: 'bj-30', group: 'base-journal', type: 'journal', tag: 'base', difficulty: 3,
+    title: 'Max l\'Indépendant — Un mois chez l\'horloger',
+    description: `Max Kessler, horloger indépendant au Locle, réalise ces opérations en mars :
+1. 01.03 : Paiement loyer atelier CHF 1'800
+2. 03.03 : Facture SwiSSwatch SA pour travaux de finition CHF 8'500 HT + TVA 8.1%
+3. 05.03 : Achat outils de précision CHF 2'200 payé comptant
+4. 08.03 : Prélèvement privé en espèces CHF 3'000
+5. 10.03 : Paiement assurance maladie privée CHF 480
+6. 12.03 : Encaissement SwiSSwatch SA (totalité TTC)
+7. 15.03 : Réparation montre personnelle (prestation propre) CHF 450
+8. 18.03 : Facture client privé (restauration montre ancienne) CHF 1'800 HT + TVA 8.1%
+9. 25.03 : Apport personnel supplémentaire CHF 5'000
+10. 30.03 : Intérêts hypothécaires atelier CHF 650`,
+    note: 'Chez un indépendant, le compte 2800 sert de compte privé. Les prestations propres sont comptabilisées au compte 3710.',
+    data: [
+      { label: '01.03 — Loyer atelier', value: "CHF 1'800.00" },
+      { label: '03.03 — Facture SwiSSwatch SA HT', value: "CHF 8'500.00 + TVA 8.1%" },
+      { label: '05.03 — Outils de précision', value: "CHF 2'200.00" },
+      { label: '08.03 — Prélèvement privé', value: "CHF 3'000.00" },
+      { label: '10.03 — Assurance maladie privée', value: "CHF 480.00" },
+      { label: '12.03 — Encaissement SwiSSwatch SA TTC', value: "CHF 9'188.50" },
+      { label: '15.03 — Prestation propre (montre personnelle)', value: "CHF 450.00" },
+      { label: '18.03 — Facture client privé HT', value: "CHF 1'800.00 + TVA 8.1%" },
+      { label: '25.03 — Apport personnel', value: "CHF 5'000.00" },
+      { label: '30.03 — Intérêts hypothécaires', value: "CHF 650.00" },
+    ],
+    ecritures: [
+      { id: 'e1', libelle: '01.03 — Paiement loyer atelier', debit: { num: '6000', label: 'Charges de locaux' }, credit: { num: '1020', label: 'Banque' }, amount: 1800 },
+      { id: 'e2', libelle: '03.03 — Facture SwiSSwatch SA travaux HT', debit: { num: '1100', label: 'Débiteurs' }, credit: { num: '3400', label: 'Ventes de prestations' }, amount: 8500 },
+      { id: 'e2b', libelle: '03.03 — TVA due facture SwiSSwatch SA', debit: { num: '1100', label: 'Débiteurs' }, credit: { num: '2200', label: 'TVA due' }, amount: 688.50, isSubLine: true },
+      { id: 'e3', libelle: '05.03 — Achat outils de précision comptant', debit: { num: '1540', label: 'Outillages' }, credit: { num: '1020', label: 'Banque' }, amount: 2200 },
+      { id: 'e4', libelle: '08.03 — Prélèvement privé en espèces', debit: { num: '2800', label: 'Privé' }, credit: { num: '1000', label: 'Caisse' }, amount: 3000 },
+      { id: 'e5', libelle: '10.03 — Assurance maladie privée', debit: { num: '2800', label: 'Privé' }, credit: { num: '1020', label: 'Banque' }, amount: 480 },
+      { id: 'e6', libelle: '12.03 — Encaissement SwiSSwatch SA TTC', debit: { num: '1020', label: 'Banque' }, credit: { num: '1100', label: 'Débiteurs' }, amount: 9188.50 },
+      { id: 'e7', libelle: '15.03 — Prestation propre — réparation montre personnelle', debit: { num: '2800', label: 'Privé' }, credit: { num: '3710', label: 'Consommations propres' }, amount: 450 },
+      { id: 'e8', libelle: '18.03 — Facture client privé restauration HT', debit: { num: '1100', label: 'Débiteurs' }, credit: { num: '3400', label: 'Ventes de prestations' }, amount: 1800 },
+      { id: 'e8b', libelle: '18.03 — TVA due facture client privé', debit: { num: '1100', label: 'Débiteurs' }, credit: { num: '2200', label: 'TVA due' }, amount: 145.80, isSubLine: true },
+      { id: 'e9', libelle: '25.03 — Apport personnel supplémentaire', debit: { num: '1020', label: 'Banque' }, credit: { num: '2800', label: 'Privé' }, amount: 5000 },
+      { id: 'e10', libelle: '30.03 — Intérêts hypothécaires atelier', debit: { num: '6900', label: 'Charges financières' }, credit: { num: '1020', label: 'Banque' }, amount: 650 },
+    ],
+  },
+
+  {
+    id: 'bj-31', group: 'base-journal', type: 'journal', tag: 'base', difficulty: 2,
+    title: 'L\'Immeuble de Max — Usage mixte',
+    description: `Max Kessler possède un immeuble (atelier + appartement privé). Opérations du trimestre :
+1. Loyer fictif appartement (3 mois × CHF 1'500)
+2. Intérêts hypothécaires trimestriels CHF 2'625
+3. Réparation toiture CHF 4'800
+4. Amortissement immeuble (1% linéaire × 500'000 / 4 trimestres) CHF 1'250
+5. Charges de chauffage communes CHF 1'200 (60% atelier, 40% privé)
+6. Taxe communale CHF 350`,
+    note: 'L\'immeuble à usage mixte nécessite une ventilation entre part professionnelle et part privée. Le loyer fictif représente l\'avantage privé.',
+    data: [
+      { label: 'Loyer fictif appartement (3 × 1\'500)', value: "CHF 4'500.00" },
+      { label: 'Intérêts hypothécaires trimestriels', value: "CHF 2'625.00" },
+      { label: 'Réparation toiture', value: "CHF 4'800.00" },
+      { label: 'Amortissement trimestriel (1% × 500\'000 / 4)', value: "CHF 1'250.00" },
+      { label: 'Chauffage total (60% atelier / 40% privé)', value: "CHF 1'200.00" },
+      { label: 'Taxe communale', value: "CHF 350.00" },
+    ],
+    ecritures: [
+      { id: 'e1', libelle: 'Loyer fictif appartement privé (3 × 1\'500)', debit: { num: '2800', label: 'Privé' }, credit: { num: '7500', label: 'Produits immeubles' }, amount: 4500 },
+      { id: 'e2', libelle: 'Intérêts hypothécaires trimestriels', debit: { num: '6900', label: 'Charges financières' }, credit: { num: '1020', label: 'Banque' }, amount: 2625 },
+      { id: 'e3', libelle: 'Réparation toiture immeuble', debit: { num: '7510', label: 'Charges immeubles' }, credit: { num: '1020', label: 'Banque' }, amount: 4800 },
+      { id: 'e4', libelle: 'Amortissement immeuble trimestriel', debit: { num: '6800', label: 'Amortissements' }, credit: { num: '1609', label: 'Ajust. valeur immeubles' }, amount: 1250 },
+      { id: 'e5', libelle: 'Chauffage — part atelier (60%)', debit: { num: '7510', label: 'Charges immeubles' }, credit: { num: '1020', label: 'Banque' }, amount: 720 },
+      { id: 'e5b', libelle: 'Chauffage — part privée (40%)', debit: { num: '2800', label: 'Privé' }, credit: { num: '1020', label: 'Banque' }, amount: 480, isSubLine: true },
+      { id: 'e6', libelle: 'Taxe communale', debit: { num: '6300', label: 'Assurances et taxes' }, credit: { num: '1020', label: 'Banque' }, amount: 350 },
+    ],
+  },
+
+  {
+    id: 'bj-32', group: 'base-journal', type: 'journal', tag: 'base', difficulty: 2,
+    title: 'Les Titres de Max — Actions et obligations',
+    description: `Max détient des titres (actions Swatch Group et obligations Confédération). Opérations de l'année :
+1. Achat 50 actions Swatch Group à CHF 250/action = CHF 12'500
+2. Dividende reçu (brut CHF 375, impôt anticipé 35% = CHF 131.25)
+3. Intérêts obligation Confédération CHF 400 (brut, impôt anticipé 35% = CHF 140)
+4. Vente 20 actions Swatch Group à CHF 284/action = CHF 5'680 (prix achat: 20 × 250 = CHF 5'000)`,
+    note: 'L\'impôt anticipé (35%) est retenu à la source et récupérable via la déclaration fiscale (compte 1176). Les gains sur titres sont comptabilisés en produits hors exploitation.',
+    data: [
+      { label: 'Achat 50 actions Swatch Group', value: "CHF 12'500.00 (50 × 250)" },
+      { label: 'Dividende brut', value: "CHF 375.00 (net: 243.75 / IA: 131.25)" },
+      { label: 'Intérêts obligation brut', value: "CHF 400.00 (net: 260.00 / IA: 140.00)" },
+      { label: 'Vente 20 actions (prix vente)', value: "CHF 5'680.00 (20 × 284)" },
+      { label: 'Coût d\'acquisition (20 actions)', value: "CHF 5'000.00 (20 × 250)" },
+      { label: 'Gain sur vente', value: "CHF 680.00" },
+    ],
+    ecritures: [
+      { id: 'e1', libelle: 'Achat 50 actions Swatch Group', debit: { num: '1400', label: 'Titres à long terme' }, credit: { num: '1020', label: 'Banque' }, amount: 12500 },
+      { id: 'e2', libelle: 'Dividende net encaissé (375 − 131.25)', debit: { num: '1020', label: 'Banque' }, credit: { num: '7000', label: 'Produits accessoires' }, amount: 243.75 },
+      { id: 'e2b', libelle: 'Impôt anticipé récupérable sur dividende', debit: { num: '1176', label: 'Impôt anticipé' }, credit: { num: '7000', label: 'Produits accessoires' }, amount: 131.25, isSubLine: true },
+      { id: 'e3', libelle: 'Intérêts obligation nets encaissés (400 − 140)', debit: { num: '1020', label: 'Banque' }, credit: { num: '6950', label: 'Produits financiers' }, amount: 260 },
+      { id: 'e3b', libelle: 'Impôt anticipé récupérable sur intérêts', debit: { num: '1176', label: 'Impôt anticipé' }, credit: { num: '6950', label: 'Produits financiers' }, amount: 140, isSubLine: true },
+      { id: 'e4', libelle: 'Vente 20 actions — prix d\'acquisition', debit: { num: '1020', label: 'Banque' }, credit: { num: '1400', label: 'Titres à long terme' }, amount: 5000 },
+      { id: 'e4b', libelle: 'Vente 20 actions — gain sur vente', debit: { num: '1020', label: 'Banque' }, credit: { num: '8100', label: 'Produits hors exploitation' }, amount: 680, isSubLine: true },
+    ],
+  },
+
+  {
+    id: 'bj-qcm-03', group: 'base-journal', type: 'qcm', tag: 'base', difficulty: 1,
+    title: 'Le compte privé de l\'indépendant',
+    description: 'Que se passe-t-il lorsqu\'un indépendant prélève CHF 2\'000 de la caisse pour ses besoins personnels ?',
+    options: [
+      { id: 'a', text: 'Débit Caisse / Crédit Privé', correct: false },
+      { id: 'b', text: 'Débit Privé / Crédit Caisse', correct: true },
+      { id: 'c', text: 'Débit Charges / Crédit Caisse', correct: false },
+      { id: 'd', text: 'Aucune écriture nécessaire', correct: false },
+    ],
+    explanation: 'Le prélèvement privé AUGMENTE le compte privé (débit 2800) et DIMINUE la caisse (crédit 1000). Ce n\'est PAS une charge — c\'est un mouvement de capital.',
+  },
 ];
