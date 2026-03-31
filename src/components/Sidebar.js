@@ -1,64 +1,50 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   LayoutDashboard, BookOpen, PenSquare, Percent, Banknote,
-  CalendarClock, ChevronRight, FileText, Table2,
+  CalendarClock, FileText, Table2,
   ClipboardList, Scale, Package, TrendingUp, RotateCcw,
-  Building2, BarChart3, Calculator, PieChart, Target, Award
+  Building2, BarChart3, Calculator, PieChart, Target, Award,
+  CheckCircle2, Circle
 } from 'lucide-react';
 import { MODULES } from '../data/modules';
-import { exerciseGroups, exercises } from '../data/exercises/index';
+import { exercises } from '../data/exercises/index';
 
-// ─── Icônes théorie par label ─────────────────────────────────────────────────
+// ---- Icon maps ----
 const THEORY_ICONS = {
   'Prescriptions légales':       <Scale size={13} strokeWidth={1.8} />,
   'Fondements':                  <BookOpen size={13} strokeWidth={1.8} />,
-  'Mécanique comptable':         <PenSquare size={13} strokeWidth={1.8} />,
   'TVA suisse':                  <Percent size={13} strokeWidth={1.8} />,
   'Salaires & charges sociales': <Banknote size={13} strokeWidth={1.8} />,
   'Marchandises & stocks':       <Package size={13} strokeWidth={1.8} />,
   'Bouclement annuel':           <CalendarClock size={13} strokeWidth={1.8} />,
-  'Hors exploitation':              <TrendingUp size={13} strokeWidth={1.8} />,
-  'Constitution & capital':         <Building2 size={13} strokeWidth={1.8} />,
-  'Dividendes & réserves':          <BarChart3 size={13} strokeWidth={1.8} />,
-  'Formes juridiques':              <Building2 size={13} strokeWidth={1.8} />,
-  'Fondation SA':                   <Building2 size={13} strokeWidth={1.8} />,
-  'Distribution bénéfice':          <BarChart3 size={13} strokeWidth={1.8} />,
-  'Augmentation capital':           <TrendingUp size={13} strokeWidth={1.8} />,
-  'Assainissement':                 <Scale size={13} strokeWidth={1.8} />,
-  'Fusion & Scission':              <Building2 size={13} strokeWidth={1.8} />,
-  'Liquidation':                    <ClipboardList size={13} strokeWidth={1.8} />,
-  'Retraitements du bilan':         <FileText size={13} strokeWidth={1.8} />,
-  'Analyse structurelle':           <BarChart3 size={13} strokeWidth={1.8} />,
-  'Fonds de roulement & BFR':       <TrendingUp size={13} strokeWidth={1.8} />,
-  'Ratios de liquidité':            <PieChart size={13} strokeWidth={1.8} />,
-  'Ratios de rentabilité':          <TrendingUp size={13} strokeWidth={1.8} />,
-  'Endettement & structure':        <Scale size={13} strokeWidth={1.8} />,
-  'Flux de trésorerie':             <Banknote size={13} strokeWidth={1.8} />,
-  'Seuil de rentabilité':           <Target size={13} strokeWidth={1.8} />,
-  'Évaluation d\'entreprise':       <Calculator size={13} strokeWidth={1.8} />,
-  'Choix d\'investissement':        <TrendingUp size={13} strokeWidth={1.8} />,
+  'Hors exploitation':           <TrendingUp size={13} strokeWidth={1.8} />,
+  'Formes juridiques':           <Building2 size={13} strokeWidth={1.8} />,
+  'Fondation SA':                <Building2 size={13} strokeWidth={1.8} />,
+  'Distribution bénéfice':       <BarChart3 size={13} strokeWidth={1.8} />,
+  'Augmentation capital':        <TrendingUp size={13} strokeWidth={1.8} />,
+  'Assainissement':              <Scale size={13} strokeWidth={1.8} />,
+  'Fusion & Scission':           <Building2 size={13} strokeWidth={1.8} />,
+  'Liquidation':                 <ClipboardList size={13} strokeWidth={1.8} />,
+  'Retraitements du bilan':      <FileText size={13} strokeWidth={1.8} />,
+  'Analyse structurelle':        <BarChart3 size={13} strokeWidth={1.8} />,
+  'Fonds de roulement & BFR':    <TrendingUp size={13} strokeWidth={1.8} />,
+  'Ratios de liquidité':         <PieChart size={13} strokeWidth={1.8} />,
+  'Ratios de rentabilité':       <TrendingUp size={13} strokeWidth={1.8} />,
+  'Endettement & structure':     <Scale size={13} strokeWidth={1.8} />,
+  'Flux de trésorerie':          <Banknote size={13} strokeWidth={1.8} />,
+  'Seuil de rentabilité':        <Target size={13} strokeWidth={1.8} />,
+  'Évaluation d\'entreprise':    <Calculator size={13} strokeWidth={1.8} />,
+  'Choix d\'investissement':     <TrendingUp size={13} strokeWidth={1.8} />,
 };
 
-// ─── Icônes exercices par id ──────────────────────────────────────────────────
-const EXERCISE_ICONS = {
-  'base-journal':    <PenSquare size={13} strokeWidth={1.8} />,
-  'tva-calculs':     <Percent size={13} strokeWidth={1.8} />,
-  'tva-ecritures':   <FileText size={13} strokeWidth={1.8} />,
-  'salaires-calcul': <Banknote size={13} strokeWidth={1.8} />,
-  'marchandises':    <Package size={13} strokeWidth={1.8} />,
-  'bouclement':           <CalendarClock size={13} strokeWidth={1.8} />,
-  'societes-ecritures':   <Building2 size={13} strokeWidth={1.8} />,
-  'societes-qcm':         <Building2 size={13} strokeWidth={1.8} />,
-  'analyse-calculs':      <BarChart3 size={13} strokeWidth={1.8} />,
-  'analyse-qcm':          <BarChart3 size={13} strokeWidth={1.8} />,
-  'investissements':       <TrendingUp size={13} strokeWidth={1.8} />,
-  'revision':              <RotateCcw size={13} strokeWidth={1.8} />,
-  'examen':                <Award size={13} strokeWidth={1.8} />,
+const EVAL_ICONS = {
+  'RotateCcw': <RotateCcw size={13} strokeWidth={1.8} />,
+  'Award':     <Award size={13} strokeWidth={1.8} />,
 };
 
 const iconStyle = { display: 'flex', alignItems: 'center', flexShrink: 0 };
 
-// ─── Sélecteur de module ──────────────────────────────────────────────────────
+// ---- Module Switcher ----
 function ModuleSwitcher({ activeModule, setActiveModule, setView }) {
   return (
     <div style={{ padding: '12px 13px 8px', borderBottom: '1px solid rgba(255,255,255,0.06)', marginBottom: 4 }}>
@@ -89,20 +75,36 @@ function ModuleSwitcher({ activeModule, setActiveModule, setView }) {
   );
 }
 
-// ─── Composant principal ──────────────────────────────────────────────────────
-export default function Sidebar({ view, setView, activeTheory, setActiveTheory, activeGroup, setActiveGroup, scores, activeModule, setActiveModule, className }) {
+// ---- Helper: chapter completion status ----
+function getChapterStatus(group, scores) {
+  const groupIds = group.exerciseGroups || [];
+  if (groupIds.length === 0) return { done: 0, total: 0, status: 'none' };
+  const chapterExercises = exercises.filter(e => groupIds.includes(e.group));
+  const total = chapterExercises.length;
+  const done = chapterExercises.filter(e => scores[e.id]).length;
+  if (total === 0) return { done: 0, total: 0, status: 'none' };
+  if (done === total) return { done, total, status: 'complete' };
+  if (done > 0) return { done, total, status: 'partial' };
+  return { done: 0, total, status: 'empty' };
+}
 
-  // Récupérer le module actif
+// ---- Strip number prefix for icon lookup ----
+function stripNumber(label) {
+  return label.replace(/^\d+\.\s*/, '');
+}
+
+// ---- Main Component ----
+export default function Sidebar({
+  view, setView, activeTheory, setActiveTheory, activeGroup, setActiveGroup,
+  scores, activeModule, setActiveModule, activeChapter, setActiveChapter, className,
+}) {
   const mod = MODULES.find(m => m.id === activeModule) || MODULES[0];
   const theoryGroups = mod.theoryGroups;
-  const moduleExerciseGroups = exerciseGroups.filter(g => (mod.exerciseIds || []).includes(g.id));
-  const moduleExercises = exercises.filter(e => (mod.exerciseIds || []).includes(e.group));
 
+  // Total exercises for this module
+  const moduleExercises = exercises.filter(e => (mod.exerciseIds || []).includes(e.group));
   const totalEx = moduleExercises.length;
   const doneEx = Object.keys(scores).filter(k => moduleExercises.find(e => e.id === k)).length;
-
-  const [open, setOpen] = useState({});
-  const toggle = (key) => setOpen(p => ({ ...p, [key]: !p[key] }));
 
   return (
     <div className={`sidebar ${className || ''}`}>
@@ -118,11 +120,12 @@ export default function Sidebar({ view, setView, activeTheory, setActiveTheory, 
         </div>
       </div>
 
-      {/* Sélecteur de module */}
+      {/* Module Switcher */}
       <ModuleSwitcher activeModule={activeModule} setActiveModule={setActiveModule} setView={setView} />
 
-      {/* Navigation principale */}
+      {/* Mon parcours */}
       <div className="sidebar-section">
+        <div className="sidebar-section-title">Mon parcours</div>
         <button className={`sidebar-item ${view === 'dashboard' ? 'active' : ''}`} onClick={() => setView('dashboard')}>
           <span style={iconStyle}><LayoutDashboard size={14} strokeWidth={1.8} /></span>
           <span style={{ flex: 1 }}>Tableau de bord</span>
@@ -134,98 +137,59 @@ export default function Sidebar({ view, setView, activeTheory, setActiveTheory, 
         </button>
       </div>
 
-      {/* Théorie — dynamique selon le module */}
+      {/* Chapitres */}
       <div className="sidebar-section">
-        <div className="sidebar-section-title">Théorie</div>
+        <div className="sidebar-section-title">Chapitres</div>
         {theoryGroups.map(group => {
-          const hasChapters = (group.chapters || []).length > 0;
+          const { done, total, status } = getChapterStatus(group, scores);
+          const isActive = view === 'chapter' && activeChapter && activeChapter.special === group.special;
+          const cleanLabel = stripNumber(group.label);
 
-          // Groupe "special" sans chapitres → lien direct
-          if (group.special && !hasChapters) {
-            const isActive = view === group.special;
-            return (
-              <button
-                key={group.label}
-                className={`sidebar-item ${isActive ? 'active' : ''}`}
-                onClick={() => setView(group.special)}
-              >
-                <span style={iconStyle}>
-                  {THEORY_ICONS[group.label] || <BookOpen size={13} strokeWidth={1.8} />}
-                </span>
-                <span style={{ flex: 1 }}>{group.label}</span>
-              </button>
-            );
+          // Status icon
+          let statusIcon;
+          if (status === 'complete') {
+            statusIcon = <CheckCircle2 size={12} color="#22c55e" strokeWidth={2.2} />;
+          } else if (status === 'partial') {
+            statusIcon = <CheckCircle2 size={12} color="#3b82f6" strokeWidth={2.2} />;
+          } else {
+            statusIcon = <Circle size={12} color="rgba(255,255,255,0.2)" strokeWidth={1.8} />;
           }
 
-          // Groupe avec chapitres → accordion
-          const key = `theory-${group.label}`;
-          const isOpen = !!open[key];
-          const groupActive = (view === 'theory' && group.chapters?.some(c => c.id === activeTheory));
-
           return (
-            <div key={group.label}>
-              <button
-                onClick={() => toggle(key)}
-                style={{
-                  display: 'flex', alignItems: 'center', gap: 8, width: '100%',
-                  background: groupActive && !isOpen ? 'rgba(255,255,255,0.08)' : 'none',
-                  border: 'none', padding: '7px 10px', borderRadius: 5, cursor: 'pointer',
-                  color: isOpen ? '#fff' : 'rgba(255,255,255,0.6)',
-                  fontSize: '0.77rem', fontWeight: isOpen ? 600 : 400,
-                  fontFamily: 'Inter, sans-serif', transition: 'all 0.12s', textAlign: 'left',
-                }}
-              >
-                <span style={{ ...iconStyle, color: isOpen ? 'rgba(255,255,255,0.8)' : 'rgba(255,255,255,0.35)' }}>
-                  {THEORY_ICONS[group.label] || <BookOpen size={13} strokeWidth={1.8} />}
-                </span>
-                <span style={{ flex: 1 }}>{group.label}</span>
-                <span style={{ fontSize: '0.58rem', background: 'rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.4)', padding: '1px 5px', borderRadius: 10, fontFamily: 'JetBrains Mono, monospace', marginRight: 3 }}>
-                  {group.chapters?.length || 0}
-                </span>
-                <span style={{ ...iconStyle, color: 'rgba(255,255,255,0.3)', transition: 'transform 0.18s', transform: isOpen ? 'rotate(90deg)' : 'none' }}>
-                  <ChevronRight size={12} strokeWidth={2} />
-                </span>
-              </button>
-
-              {isOpen && (
-                <div style={{ paddingLeft: 6, marginBottom: 2 }}>
-                  {(group.chapters || []).map(ch => (
-                    <button
-                      key={ch.id}
-                      className={`sidebar-item ${view === 'theory' && activeTheory === ch.id ? 'active' : ''}`}
-                      onClick={() => { setView('theory'); setActiveTheory(ch.id); }}
-                      style={{ paddingLeft: 14, fontSize: '0.74rem' }}
-                    >
-                      <span style={{ ...iconStyle, opacity: 0.5 }}><FileText size={12} strokeWidth={1.8} /></span>
-                      <span style={{ flex: 1 }}>{ch.title}</span>
-                    </button>
-                  ))}
-                </div>
+            <button
+              key={group.special}
+              className={`sidebar-item ${isActive ? 'active' : ''}`}
+              onClick={() => setActiveChapter(group)}
+            >
+              <span style={iconStyle}>
+                {THEORY_ICONS[cleanLabel] || <BookOpen size={13} strokeWidth={1.8} />}
+              </span>
+              <span style={{ flex: 1 }}>{group.label}</span>
+              {total > 0 && (
+                <span className="badge">{done}/{total}</span>
               )}
-            </div>
+              <span style={{ ...iconStyle, marginLeft: 2 }}>{statusIcon}</span>
+            </button>
           );
         })}
       </div>
 
-      {/* Exercices — filtrés par module */}
-      {moduleExerciseGroups.length > 0 && (
+      {/* Evaluation (only if module has it) */}
+      {mod.evaluation && mod.evaluation.length > 0 && (
         <div className="sidebar-section">
-          <div className="sidebar-section-title">Exercices</div>
-          {moduleExerciseGroups.map(g => {
-            const gEx = moduleExercises.filter(e => e.group === g.id);
-            const gDone = gEx.filter(e => scores[e.id]).length;
-            const isActive = view === 'exercises' && activeGroup === g.id;
+          <div className="sidebar-section-title">Evaluation</div>
+          {mod.evaluation.map(ev => {
+            const isActive = view === 'exercises' && activeGroup === ev.id;
             return (
               <button
-                key={g.id}
+                key={ev.id}
                 className={`sidebar-item ${isActive ? 'active' : ''}`}
-                onClick={() => { setView('exercises'); setActiveGroup(g.id); }}
+                onClick={() => { setView('exercises'); setActiveGroup(ev.id); }}
               >
-                <span style={{ ...iconStyle, opacity: 0.7 }}>
-                  {EXERCISE_ICONS[g.id] || <PenSquare size={13} strokeWidth={1.8} />}
+                <span style={iconStyle}>
+                  {EVAL_ICONS[ev.icon] || <PenSquare size={13} strokeWidth={1.8} />}
                 </span>
-                <span style={{ flex: 1 }}>{g.label}</span>
-                <span className="badge">{gDone}/{gEx.length}</span>
+                <span style={{ flex: 1 }}>{ev.label}</span>
               </button>
             );
           })}
