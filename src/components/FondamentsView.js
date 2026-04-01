@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Banknote, FileText, Package, Clock } from 'lucide-react';
 import { P, H3, Note, Tableau, Ecriture, GrilleT, TheoryLayout, Section } from './TheoryUI';
 
 // ─── ONGLET 1 : INTRODUCTION ──────────────────────────────────────────────────
@@ -93,9 +94,9 @@ function TabIntro() {
 // ─── ONGLET 2 : LE BILAN ──────────────────────────────────────────────────────
 function TabBilan() {
   /* --- helper : mini-card colored --- */
-  const MiniCard = ({ icon, label, color }) => (
+  const MiniCard = ({ icon: Icon, label, color }) => (
     <div style={{ flex: '1 1 120px', background: color + '15', border: `1.5px solid ${color}`, borderRadius: 8, padding: '10px 12px', textAlign: 'center' }}>
-      <div style={{ fontSize: '1.4rem' }}>{icon}</div>
+      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 2 }}><Icon size={22} color={color} /></div>
       <div style={{ fontSize: '0.78rem', fontWeight: 600, color, marginTop: 2 }}>{label}</div>
     </div>
   );
@@ -167,10 +168,10 @@ function TabBilan() {
       <H3>Actifs circulants (en haut du bilan)</H3>
       <P>Ce qui "tourne vite" — ce qui se transforme en cash en <strong>moins de 12 mois</strong>. En Suisse, on les place <strong>en haut</strong> du bilan, du plus liquide au moins liquide.</P>
       <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', margin: '10px 0' }}>
-        <MiniCard icon="💵" label="Liquidités" color="#16a34a" />
-        <MiniCard icon="📋" label="Créances" color="#2563eb" />
-        <MiniCard icon="📦" label="Stocks" color="#d97706" />
-        <MiniCard icon="⏳" label="Transitoires" color="#7c3aed" />
+        <MiniCard icon={Banknote} label="Liquidités" color="#16a34a" />
+        <MiniCard icon={FileText} label="Créances" color="#2563eb" />
+        <MiniCard icon={Package} label="Stocks" color="#d97706" />
+        <MiniCard icon={Clock} label="Transitoires" color="#7c3aed" />
       </div>
       <Tableau
         caption="Actifs circulants de SwiSSwatch SA"
@@ -248,13 +249,13 @@ function TabBilan() {
       <Section title="4. Le bilan de SwiSSwatch SA — 31.12.2023" defaultOpen={false}>
       <P>Voici le bilan complet de SwiSSwatch SA, présenté dans l'ordre suisse (liquidité décroissante à l'actif, exigibilité décroissante au passif).</P>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0, border: '2px solid #2c5f8a', borderRadius: 10, overflow: 'hidden', margin: '16px 0', boxShadow: '0 2px 8px rgba(44,95,138,0.10)' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0, border: '2px solid #2c5f8a', borderRadius: 10, overflow: 'hidden', margin: '16px 0', boxShadow: '0 2px 8px rgba(44,95,138,0.10)', alignItems: 'start' }}>
         {/* --- Headers --- */}
         <div style={{ background: '#2c5f8a', padding: '10px 14px', color: '#fff', fontWeight: 700, fontSize: '0.85rem', textAlign: 'center', borderRight: '1px solid rgba(255,255,255,0.2)' }}>ACTIF</div>
         <div style={{ background: '#1e4a6e', padding: '10px 14px', color: '#fff', fontWeight: 700, fontSize: '0.85rem', textAlign: 'center' }}>PASSIF</div>
 
         {/* --- ACTIF column --- */}
-        <table style={{ borderCollapse: 'collapse', fontSize: '0.8rem', borderRight: '1px solid #c5d3e3', width: '100%' }}>
+        <table style={{ borderCollapse: 'collapse', fontSize: '0.8rem', borderRight: '1px solid #c5d3e3', width: '100%', height: '100%' }}>
           <tbody>
             {bRow('Actifs circulants (AC)', '', { section: true })}
             {bRow('Banque', "85'000")}
@@ -275,7 +276,7 @@ function TabBilan() {
         </table>
 
         {/* --- PASSIF column --- */}
-        <table style={{ borderCollapse: 'collapse', fontSize: '0.8rem', width: '100%' }}>
+        <table style={{ borderCollapse: 'collapse', fontSize: '0.8rem', width: '100%', height: '100%' }}>
           <tbody>
             {bRow('Fonds étrangers CT', '', { section: true, side: 'passif' })}
             {bRow('Fournisseurs', "75'000", { side: 'passif' })}

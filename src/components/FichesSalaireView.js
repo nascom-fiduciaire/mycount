@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Info, Lightbulb, ClipboardList, User } from 'lucide-react';
 import { fichesSalaire } from '../data/theory/09-fiches-salaire';
 
 function fmt(n) {
@@ -33,7 +34,7 @@ function LigneFiche({ label, taux, base, montant, type, detail }) {
       {open && detail && (
         <tr>
           <td colSpan={3} style={{ padding: '6px 14px 10px 28px', background: '#eff6ff', fontSize: '0.78rem', color: '#475569', lineHeight: 1.55, borderBottom: '1px solid #e2e8f0' }}>
-            ℹ️ {detail}
+            <Info size={13} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />{detail}
           </td>
         </tr>
       )}
@@ -102,7 +103,7 @@ function Etape({ etape, defaultOpen }) {
         <div style={{ padding: '13px 15px', borderTop: '1px solid #e2e8f0' }}>
           {etape.explication && (
             <div style={{ background: '#eff6ff', border: '1px solid #d0e3f4', borderRadius: 5, padding: '9px 12px', fontSize: '0.8rem', color: '#475569', lineHeight: 1.6, marginBottom: 11 }}>
-              💡 {etape.explication}
+              <Lightbulb size={13} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />{etape.explication}
             </div>
           )}
           <TableauEtape ecritures={etape.ecritures} />
@@ -124,7 +125,7 @@ function FicheDetail({ fiche }) {
 
       {/* Contexte */}
       <div style={{ background: '#f0f3f7', border: '1px solid #e2e8f0', borderRadius: 6, padding: '11px 15px', marginBottom: 16, fontSize: '0.81rem', color: '#475569', lineHeight: 1.65, whiteSpace: 'pre-line' }}>
-        <strong style={{ color: '#0f172a', display: 'block', marginBottom: 5, fontSize: '0.74rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>📋 Contexte</strong>
+        <strong style={{ color: '#0f172a', display: 'block', marginBottom: 5, fontSize: '0.74rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}><ClipboardList size={13} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />Contexte</strong>
         {fiche.contexte}
       </div>
 
@@ -247,7 +248,7 @@ export default function FichesSalaireView() {
   return (
     <>
       <div className="topbar">
-        <h2>👤 Fiches de salaire — 6 cas pratiques</h2>
+        <h2><User size={20} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 6 }} />Fiches de salaire — 6 cas pratiques</h2>
         <div className="topbar-right">
           <span className="tag tag-salaires">Salaires</span>
           <span className="topbar-meta">Taux réels 2024 · Postes ouverts</span>

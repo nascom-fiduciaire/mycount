@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Lightbulb, ClipboardList, Info, AlertTriangle } from 'lucide-react';
 
 // Base de calcul : 30 jours calendriers (weekends inclus) — pratique standard suisse
 
@@ -249,7 +250,7 @@ function Etape({ e, i }) {
         <div style={{ padding: '12px 14px', borderTop: '1px solid #e2e8f0' }}>
           {e.explication && (
             <div style={{ background: '#eff6ff', borderRadius: 5, padding: '8px 12px', fontSize: '0.79rem', color: '#475569', lineHeight: 1.6, marginBottom: 10 }}>
-              💡 {e.explication}
+              <Lightbulb size={13} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />{e.explication}
             </div>
           )}
           <TableauEcritures lignes={e.lignes} />
@@ -307,7 +308,7 @@ export default function ArretsMaladieView() {
 
         {/* Situation */}
         <div style={{ background: '#f0f3f7', border: '1px solid #e2e8f0', borderRadius: 7, padding: '12px 16px', marginBottom: 16, fontSize: '0.81rem', color: '#475569', lineHeight: 1.7, whiteSpace: 'pre-line' }}>
-          <strong style={{ color: '#0f172a', display: 'block', marginBottom: 5, fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>📋 Situation</strong>
+          <strong style={{ color: '#0f172a', display: 'block', marginBottom: 5, fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}><ClipboardList size={13} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />Situation</strong>
           {fiche.situation}
         </div>
 
@@ -332,7 +333,7 @@ export default function ArretsMaladieView() {
                       {row.label}
                       {row.detail && (
                         <div style={{ fontSize: '0.74rem', color: '#718096', fontWeight: 400, marginTop: 2 }}>
-                          ℹ️ {row.detail}
+                          <Info size={13} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />{row.detail}
                         </div>
                       )}
                     </td>
@@ -348,7 +349,7 @@ export default function ArretsMaladieView() {
 
         {/* Points clés */}
         <div style={{ background: '#fffbf0', border: '1px solid #f0d98a', borderRadius: 7, padding: '12px 16px', marginBottom: 16 }}>
-          <strong style={{ display: 'block', marginBottom: 8, fontSize: '0.78rem', color: '#7a5c00' }}>⚠️ Points clés</strong>
+          <strong style={{ display: 'block', marginBottom: 8, fontSize: '0.78rem', color: '#7a5c00' }}><AlertTriangle size={14} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />Points clés</strong>
           {fiche.points.map((p, i) => (
             <div key={i} style={{ display: 'flex', gap: 8, marginBottom: 5, fontSize: '0.8rem', color: '#7a5c00', lineHeight: 1.5 }}>
               <span style={{ flexShrink: 0 }}>•</span>

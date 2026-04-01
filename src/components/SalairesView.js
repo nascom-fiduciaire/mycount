@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Info, ClipboardList, AlertTriangle } from 'lucide-react';
 import { P, H3, Note, Loi, Tableau, Ecriture, TheoryLayout, Section } from './TheoryUI';
 import { fichesSalaire } from '../data/theory/09-fiches-salaire';
 
@@ -315,7 +316,7 @@ function LigneFiche({ label, taux, base, montant, type, detail }) {
       {open && detail && (
         <tr>
           <td colSpan={3} style={{ padding: '6px 14px 10px 28px', background: '#eff6ff', fontSize: '0.78rem', color: '#475569', lineHeight: 1.55, borderBottom: '1px solid #e2e8f0' }}>
-            ℹ️ {detail}
+            <Info size={13} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />{detail}
           </td>
         </tr>
       )}
@@ -365,7 +366,7 @@ function EtapeFiche({ etape, defaultOpen }) {
       </button>
       {open && (
         <div style={{ padding: '13px 15px', borderTop: '1px solid #e2e8f0' }}>
-          {etape.explication && <div style={{ background: '#eff6ff', border: '1px solid #d0e3f4', borderRadius: 5, padding: '9px 12px', fontSize: '0.8rem', color: '#475569', lineHeight: 1.6, marginBottom: 11 }}>ℹ️ {etape.explication}</div>}
+          {etape.explication && <div style={{ background: '#eff6ff', border: '1px solid #d0e3f4', borderRadius: 5, padding: '9px 12px', fontSize: '0.8rem', color: '#475569', lineHeight: 1.6, marginBottom: 11 }}><Info size={13} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />{etape.explication}</div>}
           <TableauEtapeFiche ecritures={etape.ecritures} />
         </div>
       )}
@@ -380,7 +381,7 @@ function FicheDetail({ fiche }) {
   return (
     <div style={{ paddingBottom: 20 }}>
       <div style={{ background: '#f1f5f9', border: '1px solid #e2e8f0', borderRadius: 6, padding: '11px 15px', marginBottom: 16, fontSize: '0.81rem', color: '#475569', lineHeight: 1.65, whiteSpace: 'pre-line' }}>
-        <strong style={{ color: '#0f172a', display: 'block', marginBottom: 5, fontSize: '0.74rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>📋 Contexte</strong>
+        <strong style={{ color: '#0f172a', display: 'block', marginBottom: 5, fontSize: '0.74rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}><ClipboardList size={13} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />Contexte</strong>
         {fiche.contexte}
       </div>
       <div style={{ border: '2px solid #2563eb', borderRadius: 8, overflow: 'hidden', marginBottom: 16, boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}>
@@ -587,7 +588,7 @@ function EtapeArret({ e, i }) {
       </button>
       {open && (
         <div style={{ padding: '12px 14px', borderTop: '1px solid #e2e8f0' }}>
-          {e.explication && <div style={{ background: '#eff6ff', borderRadius: 5, padding: '8px 12px', fontSize: '0.79rem', color: '#475569', lineHeight: 1.6, marginBottom: 10 }}>ℹ️ {e.explication}</div>}
+          {e.explication && <div style={{ background: '#eff6ff', borderRadius: 5, padding: '8px 12px', fontSize: '0.79rem', color: '#475569', lineHeight: 1.6, marginBottom: 10 }}><Info size={13} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />{e.explication}</div>}
           <TableauEcrituresArret lignes={e.lignes} />
         </div>
       )}
@@ -610,7 +611,7 @@ function TabArrets() {
         ))}
       </div>
       <div style={{ background: '#f1f5f9', border: '1px solid #e2e8f0', borderRadius: 7, padding: '12px 16px', marginBottom: 16, fontSize: '0.81rem', color: '#475569', lineHeight: 1.7, whiteSpace: 'pre-line' }}>
-        <strong style={{ color: '#0f172a', display: 'block', marginBottom: 5, fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>📋 Situation</strong>
+        <strong style={{ color: '#0f172a', display: 'block', marginBottom: 5, fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}><ClipboardList size={13} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />Situation</strong>
         {fiche.situation}
       </div>
       <div style={{ border: '2px solid #2563eb', borderRadius: 8, overflow: 'hidden', marginBottom: 16 }}>
@@ -624,7 +625,7 @@ function TabArrets() {
                 <tr key={i} style={{ background: s.bg }}>
                   <td style={{ padding: '8px 14px', fontSize: '0.83rem', fontWeight: s.fw, color: '#475569', borderBottom: '1px solid #e2e8f0' }}>
                     {row.label}
-                    {row.detail && <div style={{ fontSize: '0.74rem', color: '#94a3b8', fontWeight: 400, marginTop: 2 }}>ℹ️ {row.detail}</div>}
+                    {row.detail && <div style={{ fontSize: '0.74rem', color: '#94a3b8', fontWeight: 400, marginTop: 2 }}><Info size={13} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />{row.detail}</div>}
                   </td>
                   <td style={{ padding: '8px 14px', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.86rem', fontWeight: s.fw, color: s.color, textAlign: 'right', borderBottom: '1px solid #e2e8f0' }}>{row.montant}</td>
                 </tr>
@@ -634,7 +635,7 @@ function TabArrets() {
         </table>
       </div>
       <div style={{ background: '#fffbf0', border: '1px solid #f0d98a', borderRadius: 7, padding: '12px 16px', marginBottom: 16 }}>
-        <strong style={{ display: 'block', marginBottom: 8, fontSize: '0.78rem', color: '#7a5c00' }}>⚠️ Points clés</strong>
+        <strong style={{ display: 'block', marginBottom: 8, fontSize: '0.78rem', color: '#7a5c00' }}><AlertTriangle size={14} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />Points clés</strong>
         {fiche.points.map((p, i) => <div key={i} style={{ display: 'flex', gap: 8, marginBottom: 5, fontSize: '0.8rem', color: '#7a5c00', lineHeight: 1.5 }}><span style={{ flexShrink: 0 }}>•</span><span>{p}</span></div>)}
       </div>
       <button onClick={() => setShowEcritures(s => !s)} style={{ padding: '8px 16px', borderRadius: 5, border: 'none', cursor: 'pointer', fontSize: '0.82rem', fontWeight: 600, fontFamily: 'Inter, sans-serif', background: '#2563eb', color: '#fff', marginBottom: 14 }}>

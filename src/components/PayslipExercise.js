@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Info, Lightbulb, ClipboardList } from 'lucide-react';
 
 function fmt(n) {
   if (n === null || n === undefined) return '—';
@@ -56,7 +57,7 @@ function LigneFiche({ label, taux, base, montant, type, detail }) {
       {showDetail && detail && (
         <tr>
           <td colSpan={3} style={{ padding: '6px 14px 10px 28px', background: 'var(--blue-pale)', fontSize: '0.78rem', color: 'var(--text2)', lineHeight: 1.55, borderBottom: '1px solid var(--border)' }}>
-            ℹ️ {detail}
+            <Info size={13} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />{detail}
           </td>
         </tr>
       )}
@@ -154,7 +155,7 @@ function EtapeComptable({ etape, defaultOpen }) {
               fontSize: '0.82rem', color: 'var(--text2)', lineHeight: 1.6,
               marginBottom: 12,
             }}>
-              💡 {etape.explication}
+              <Lightbulb size={13} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />{etape.explication}
             </div>
           )}
           <TableauEtape ecritures={etape.ecritures} />
@@ -179,7 +180,7 @@ export default function PayslipExercise({ ex }) {
         whiteSpace: 'pre-line',
       }}>
         <strong style={{ color: 'var(--text)', display: 'block', marginBottom: 6, fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-          📋 Contexte
+          <ClipboardList size={13} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />Contexte
         </strong>
         {ex.contexte}
       </div>
