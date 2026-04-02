@@ -425,4 +425,112 @@ Les actionnaires de B detiennent desormais 250 actions de la societe A.`,
     ],
   },
 
+  // ─── QCM SWISSWATCH SA ──────────────────────────────────────────────
+
+  {
+    id: 'soc-qcm-04',
+    group: 'societes-qcm',
+    type: 'qcm',
+    tag: 'societes',
+    difficulty: 2,
+    title: 'M\u00e9canisme de l\'imp\u00f4t anticip\u00e9',
+    description: 'SwiSSwatch SA distribue un dividende de CHF 50\'000. Qui paie l\'imp\u00f4t anticip\u00e9 et \u00e0 qui ?',
+    options: [
+      { id: 'a', text: 'L\'actionnaire paie 35% \u00e0 l\'AFC', correct: false },
+      { id: 'b', text: 'SwiSSwatch SA retient 35% et verse \u00e0 l\'AFC', correct: true },
+      { id: 'c', text: 'La banque retient 35% automatiquement', correct: false },
+      { id: 'd', text: 'Pas d\'imp\u00f4t anticip\u00e9 sur les dividendes', correct: false },
+    ],
+    explanation: 'C\'est la soci\u00e9t\u00e9 (SwiSSwatch SA) qui retient 35% sur le dividende brut et verse cette retenue \u00e0 l\'AFC. L\'actionnaire re\u00e7oit le dividende net (65%). Il peut r\u00e9cup\u00e9rer l\'IA via sa d\u00e9claration fiscale s\'il d\u00e9clare le revenu.',
+  },
+
+  {
+    id: 'soc-qcm-05',
+    group: 'societes-qcm',
+    type: 'qcm',
+    tag: 'societes',
+    difficulty: 1,
+    title: 'Obligation de constituer une r\u00e9serve l\u00e9gale',
+    description: 'SwiSSwatch SA r\u00e9alise un b\u00e9n\u00e9fice de CHF 180\'000. Quel montant minimum doit \u00eatre affect\u00e9 \u00e0 la r\u00e9serve l\u00e9gale issue du b\u00e9n\u00e9fice ?',
+    options: [
+      { id: 'a', text: 'CHF 18\'000 (10%)', correct: false },
+      { id: 'b', text: 'CHF 9\'000 (5%)', correct: true },
+      { id: 'c', text: 'CHF 36\'000 (20%)', correct: false },
+      { id: 'd', text: 'Aucune obligation', correct: false },
+    ],
+    explanation: 'Art. 672 CO : 5% du b\u00e9n\u00e9fice net doit \u00eatre affect\u00e9 \u00e0 la r\u00e9serve l\u00e9gale issue du b\u00e9n\u00e9fice, jusqu\'\u00e0 ce qu\'elle atteigne 50% du capital-actions. 180\'000 \u00d7 5% = CHF 9\'000.',
+  },
+
+  // ─── ECRITURES SWISSWATCH SA ────────────────────────────────────────
+
+  {
+    id: 'soc-ecr-08',
+    group: 'societes-ecritures',
+    type: 'journal',
+    tag: 'societes',
+    difficulty: 2,
+    title: 'Fondation de SwiSSwatch SA \u2014 \u00c9critures compl\u00e8tes',
+    description: 'Th\u00e9o Keller fonde SwiSSwatch SA avec un capital de CHF 200\'000 (2\'000 actions \u00d7 CHF 100). Lib\u00e9ration \u00e0 50% par virement bancaire. Frais de fondation CHF 3\'500 pay\u00e9s comptant.',
+    data: [
+      { label: 'Capital-actions', value: 'CHF 200\'000' },
+      { label: 'Lib\u00e9ration', value: '50% = CHF 100\'000' },
+      { label: 'Frais de fondation', value: 'CHF 3\'500' },
+    ],
+    ecritures: [
+      { id: 'e1', libelle: 'Lib\u00e9ration 50% par banque', debit: { num: '1020', label: 'Banque' }, credit: { num: '2800', label: 'Capital-actions' }, amount: 100000 },
+      { id: 'e2', libelle: 'Part non lib\u00e9r\u00e9e du capital', debit: { num: '1850', label: 'Capital non vers\u00e9' }, credit: { num: '2800', label: 'Capital-actions' }, amount: 100000 },
+      { id: 'e3', libelle: 'Frais de fondation pay\u00e9s comptant', debit: { num: '6700', label: 'Autres charges d\'exploitation' }, credit: { num: '1020', label: 'Banque' }, amount: 3500 },
+    ],
+    correction: '1) Lib\u00e9ration 50% : D\u00e9bit 1020 Banque / Cr\u00e9dit 2800 Capital-actions = 100\'000\n2) Part non lib\u00e9r\u00e9e : D\u00e9bit 1850 Capital non vers\u00e9 / Cr\u00e9dit 2800 Capital-actions = 100\'000\n3) Frais de fondation : D\u00e9bit 6700 Autres charges d\'exploitation / Cr\u00e9dit 1020 Banque = 3\'500',
+  },
+
+  {
+    id: 'soc-ecr-09',
+    group: 'societes-ecritures',
+    type: 'journal',
+    tag: 'societes',
+    difficulty: 3,
+    title: 'Premier dividende de SwiSSwatch SA',
+    description: 'L\'AG de SwiSSwatch SA d\u00e9cide :\n1. Affectation r\u00e9serve l\u00e9gale 5% sur b\u00e9n\u00e9fice CHF 95\'000\n2. Distribution dividende CHF 40\'000\n3. Retenue imp\u00f4t anticip\u00e9 35%\n4. Versement dividende net\n5. Versement IA \u00e0 l\'AFC\n6. Solde au b\u00e9n\u00e9fice report\u00e9',
+    data: [
+      { label: 'B\u00e9n\u00e9fice de l\'exercice', value: 'CHF 95\'000' },
+      { label: 'R\u00e9serve l\u00e9gale (5%)', value: 'CHF 4\'750' },
+      { label: 'Dividende brut', value: 'CHF 40\'000' },
+      { label: 'Imp\u00f4t anticip\u00e9 (35%)', value: 'CHF 14\'000' },
+    ],
+    ecritures: [
+      { id: 'e1', libelle: 'Affectation r\u00e9serve l\u00e9gale (5%)', debit: { num: '2970', label: 'B\u00e9n\u00e9fice de l\'exercice' }, credit: { num: '2900', label: 'R\u00e9serve l\u00e9gale' }, amount: 4750 },
+      { id: 'e2', libelle: 'Distribution dividende brut', debit: { num: '2970', label: 'B\u00e9n\u00e9fice de l\'exercice' }, credit: { num: '2261', label: 'Dividendes \u00e0 payer' }, amount: 40000 },
+      { id: 'e3', libelle: 'Retenue imp\u00f4t anticip\u00e9 35%', debit: { num: '2261', label: 'Dividendes \u00e0 payer' }, credit: { num: '2206', label: 'Imp\u00f4t anticip\u00e9 d\u00fb' }, amount: 14000 },
+      { id: 'e4', libelle: 'Versement dividende net aux actionnaires', debit: { num: '2261', label: 'Dividendes \u00e0 payer' }, credit: { num: '1020', label: 'Banque' }, amount: 26000 },
+      { id: 'e5', libelle: 'Versement IA \u00e0 l\'AFC', debit: { num: '2206', label: 'Imp\u00f4t anticip\u00e9 d\u00fb' }, credit: { num: '1020', label: 'Banque' }, amount: 14000 },
+      { id: 'e6', libelle: 'Solde au b\u00e9n\u00e9fice report\u00e9', debit: { num: '2970', label: 'B\u00e9n\u00e9fice de l\'exercice' }, credit: { num: '2960', label: 'B\u00e9n\u00e9fice report\u00e9' }, amount: 50250 },
+    ],
+    correction: '1) R\u00e9serve l\u00e9gale : 95\'000 \u00d7 5% = 4\'750 \u2192 D\u00e9bit 2970 / Cr\u00e9dit 2900\n2) Dividende brut : 40\'000 \u2192 D\u00e9bit 2970 / Cr\u00e9dit 2261\n3) IA 35% : 40\'000 \u00d7 35% = 14\'000 \u2192 D\u00e9bit 2261 / Cr\u00e9dit 2206\n4) Dividende net : 40\'000 \u2212 14\'000 = 26\'000 \u2192 D\u00e9bit 2261 / Cr\u00e9dit 1020\n5) Versement IA : 14\'000 \u2192 D\u00e9bit 2206 / Cr\u00e9dit 1020\n6) Solde : 95\'000 \u2212 4\'750 \u2212 40\'000 = 50\'250 \u2192 D\u00e9bit 2970 / Cr\u00e9dit 2960',
+  },
+
+  // ─── CALCUL SWISSWATCH SA ───────────────────────────────────────────
+
+  {
+    id: 'soc-calc-01',
+    group: 'societes-qcm',
+    type: 'calcul',
+    tag: 'societes',
+    difficulty: 3,
+    title: 'Valeur d\'une action SwiSSwatch SA',
+    description: 'Calculez la valeur intrins\u00e8que d\'une action SwiSSwatch SA.',
+    data: [
+      { label: 'Total actif', value: 'CHF 1\'200\'000' },
+      { label: 'Total dettes', value: 'CHF 870\'000' },
+      { label: 'R\u00e9serves latentes estim\u00e9es', value: 'CHF 120\'000' },
+      { label: 'Nombre d\'actions', value: '2\'000' },
+    ],
+    champs: [
+      { id: 'fp_comptable', label: 'Fonds propres comptables', placeholder: '330000', correct: 330000, tol: 1, hint: '1\'200\'000 \u2212 870\'000' },
+      { id: 'fp_reels', label: 'Fonds propres r\u00e9els (avec r\u00e9serves latentes)', placeholder: '450000', correct: 450000, tol: 1, hint: '330\'000 + 120\'000' },
+      { id: 'valeur_action', label: 'Valeur intrins\u00e8que par action', placeholder: '225', correct: 225, tol: 1, hint: '450\'000 / 2\'000' },
+    ],
+    correction: 'FP comptables : 1\'200\'000 \u2212 870\'000 = 330\'000\nFP r\u00e9els : 330\'000 + 120\'000 (r\u00e9serves latentes) = 450\'000\nValeur/action : 450\'000 / 2\'000 = CHF 225',
+  },
+
 ];

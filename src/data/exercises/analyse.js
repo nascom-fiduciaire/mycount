@@ -626,4 +626,89 @@ export const analyseExercises = [
     ],
     correction: 'R\u00e9sultat + Amortissements = 75000\n\u2212 Augmentation cr\u00e9ances = \u221215000\n+ Diminution stocks = +8000\n+ Augmentation fournisseurs = +12000\nFlux exploitation = CHF 80000',
   },
+
+  // ─── SWISSWATCH SA — ANALYSE ────────────────────────────────────────
+
+  {
+    id: 'anal-calc-05',
+    group: 'analyse-calculs',
+    type: 'calcul',
+    tag: 'analyse',
+    difficulty: 2,
+    title: 'Analyse structurelle \u2014 SwiSSwatch SA ann\u00e9e 2',
+    description: 'Calculez les indicateurs structurels du bilan de SwiSSwatch SA.',
+    data: [
+      { label: 'AC', value: 'CHF 580\'000' },
+      { label: 'AI', value: 'CHF 620\'000' },
+      { label: 'Total actif', value: 'CHF 1\'200\'000' },
+      { label: 'FE CT', value: 'CHF 225\'000' },
+      { label: 'FE LT', value: 'CHF 350\'000' },
+      { label: 'FP', value: 'CHF 330\'000 (dont r\u00e9serves latentes)' },
+    ],
+    note: 'Les % se calculent par rapport au total du bilan.',
+    champs: [
+      { id: 'part_ac', label: 'Part AC / Total actif (%)', placeholder: '48.33', correct: 48.33, tol: 0.5, hint: '580/1200 \u00d7 100' },
+      { id: 'part_ai', label: 'Part AI / Total actif (%)', placeholder: '51.67', correct: 51.67, tol: 0.5, hint: '620/1200 \u00d7 100' },
+      { id: 'part_fe', label: 'Part Fonds \u00e9trangers / Total passif (%)', placeholder: '47.92', correct: 47.92, tol: 0.5, hint: '(225+350)/1200 \u00d7 100' },
+      { id: 'part_fp', label: 'Part Fonds propres / Total passif (%)', placeholder: '27.50', correct: 27.50, tol: 0.5, hint: '330/1200 \u00d7 100' },
+      { id: 'dc1', label: 'Degr\u00e9 de couverture 1 \u2014 FP/AI (%)', placeholder: '53.23', correct: 53.23, tol: 0.5, hint: '330/620 \u00d7 100' },
+    ],
+    correction: 'AC/Total: 48.33% \u2014 AI/Total: 51.67%\nFE/Total: 47.92% \u2014 FP/Total: 27.50%\nDC1 = FP/AI = 330/620 = 53.23% (< 100%, insuffisant selon la r\u00e8gle d\'or)',
+  },
+
+  {
+    id: 'anal-qcm-04',
+    group: 'analyse-qcm',
+    type: 'qcm',
+    tag: 'analyse',
+    difficulty: 2,
+    title: 'L\'effet de levier financier',
+    description: 'SwiSSwatch SA a un ROA de 12% et paie 4% d\'int\u00e9r\u00eats sur sa dette. Quel est l\'effet du levier financier ?',
+    options: [
+      { id: 'a', text: 'N\u00e9gatif \u2014 le ROE sera inf\u00e9rieur au ROA', correct: false },
+      { id: 'b', text: 'Positif \u2014 le ROE sera sup\u00e9rieur au ROA', correct: true },
+      { id: 'c', text: 'Neutre \u2014 le ROE = ROA', correct: false },
+      { id: 'd', text: 'Impossible \u00e0 d\u00e9terminer', correct: false },
+    ],
+    explanation: 'Quand le ROA (12%) est SUP\u00c9RIEUR au co\u00fbt de la dette (4%), chaque franc emprunt\u00e9 g\u00e9n\u00e8re plus de rendement qu\'il ne co\u00fbte. L\'\u00e9cart b\u00e9n\u00e9ficie aux actionnaires \u2192 le ROE est amplifi\u00e9 au-dessus du ROA. C\'est l\'effet de levier positif.',
+  },
+
+  {
+    id: 'anal-calc-06',
+    group: 'analyse-calculs',
+    type: 'calcul',
+    tag: 'analyse',
+    difficulty: 2,
+    title: 'Seuil de rentabilit\u00e9 \u2014 Montre Classic M\u00e9ca',
+    description: 'Calculez le break-even pour la montre Classic M\u00e9ca de SwiSSwatch SA.',
+    data: [
+      { label: 'Prix de vente unitaire', value: 'CHF 1\'200' },
+      { label: 'Co\u00fbt variable unitaire', value: 'CHF 480' },
+      { label: 'Charges fixes annuelles (atelier Classic)', value: 'CHF 360\'000' },
+    ],
+    champs: [
+      { id: 'marge_unit', label: 'Marge de contribution unitaire', placeholder: '720', correct: 720, tol: 1, hint: '1200 \u2212 480' },
+      { id: 'seuil_unites', label: 'Seuil de rentabilit\u00e9 (unit\u00e9s)', placeholder: '500', correct: 500, tol: 1, hint: '360\'000 / 720' },
+      { id: 'seuil_ca', label: 'Seuil de rentabilit\u00e9 (CHF)', placeholder: '600000', correct: 600000, tol: 1000, hint: '500 \u00d7 1\'200' },
+      { id: 'marge_securite', label: 'Marge de s\u00e9curit\u00e9 si 700 montres vendues (%)', placeholder: '28.57', correct: 28.57, tol: 0.5, hint: '(700\u2212500)/700 \u00d7 100' },
+    ],
+    correction: 'Marge unitaire : 1200 \u2212 480 = 720\nSeuil : 360000 / 720 = 500 montres\nSeuil CA : 500 \u00d7 1200 = CHF 600000\nMarge de s\u00e9curit\u00e9 : (700\u2212500)/700 = 28.57%',
+  },
+
+  {
+    id: 'anal-qcm-05',
+    group: 'analyse-qcm',
+    type: 'qcm',
+    tag: 'analyse',
+    difficulty: 2,
+    title: 'M\u00e9thode des praticiens (Praktikermethode)',
+    description: 'La m\u00e9thode des praticiens pond\u00e8re la valeur substantielle et la valeur de rendement. Quelle est la formule standard ?',
+    options: [
+      { id: 'a', text: '(Valeur substantielle + Valeur de rendement) / 2', correct: false },
+      { id: 'b', text: '(Valeur substantielle + 2 \u00d7 Valeur de rendement) / 3', correct: true },
+      { id: 'c', text: '(2 \u00d7 Valeur substantielle + Valeur de rendement) / 3', correct: false },
+      { id: 'd', text: 'Valeur de rendement uniquement', correct: false },
+    ],
+    explanation: 'La m\u00e9thode des praticiens suisse donne un poids double \u00e0 la valeur de rendement car elle refl\u00e8te mieux la capacit\u00e9 b\u00e9n\u00e9ficiaire future. Formule : (VS + 2\u00d7VR) / 3. C\'est la m\u00e9thode la plus utilis\u00e9e dans les PME suisses.',
+  },
 ];

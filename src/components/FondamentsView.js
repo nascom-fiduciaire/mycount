@@ -10,6 +10,10 @@ function TabIntro() {
       <P>Imaginez que vous ouvrez une manufacture horlogère. Chaque jour, vous achetez des composants, payez vos employés, encaissez vos ventes. Au bout d'un mois, vous vous posez une question simple : <strong>est-ce que mon activité gagne de l'argent, ou en perd-elle ?</strong></P>
       <P>La comptabilité est le système qui permet de répondre à cette question — et à bien d'autres. Elle enregistre, classe et présente tous les événements financiers de votre entreprise de manière organisée et vérifiable. En Suisse, c'est aussi une <strong>obligation légale</strong> pour la plupart des entreprises (CO art. 957 ss).</P>
 
+      <Note color="blue">
+        <strong>Exemple concret — SwiSSwatch SA :</strong> Quand Théo Keller a fondé SwiSSwatch SA, la première chose que la banque lui a demandée pour obtenir un prêt de CHF 200'000, c'était ses comptes. Sans comptabilité, pas de financement. La banque voulait voir un bilan (ce que possède l'entreprise) et un compte de résultat (est-ce que l'activité est rentable). Théo a dû présenter des états financiers solides pour convaincre son banquier. Aujourd'hui encore, chaque trimestre, la banque demande une mise à jour des comptes de SwiSSwatch SA.
+      </Note>
+
       </Section>
       <Section title="2. Ce que la comptabilité permet de savoir" defaultOpen={false}>
       <Tableau
@@ -39,6 +43,38 @@ function TabIntro() {
         Ce principe s'appelle la <strong>délimitation périodique</strong> (art. 958b CO). Les charges et les produits appartiennent à la période à laquelle ils se rapportent — pas à la période où l'argent bouge physiquement.
       </Note>
 
+      <H3>Illustration chez SwiSSwatch SA — mars année 1</H3>
+      <P>Voici un mois typique où SwiSSwatch SA réalise un <strong>bénéfice comptable</strong> mais se retrouve avec un <strong>cash flow négatif</strong>. C'est exactement ce piège que la comptabilité permet de comprendre.</P>
+
+      <Tableau
+        caption="SwiSSwatch SA — mars année 1 : profit ≠ cash"
+        headers={['Poste', 'Résultat (comptabilité)', 'Trésorerie (cash réel)']}
+        rows={[
+          { cells: ["Ventes de montres livrées en mars (payées sous 60 jours)", "+ CHF 45'000", "CHF 0 (pas encore encaissé)"] },
+          { cells: ["Prestations réparation encaissées comptant", "+ CHF 5'000", "+ CHF 5'000"] },
+          { cells: ["Achats composants (facture payée immédiatement)", "- CHF 12'000", "- CHF 12'000"] },
+          { cells: ["Salaires mars (payés fin mars)", "- CHF 8'000", "- CHF 8'000"] },
+          { cells: ["Remboursement mensuel emprunt bancaire", "CHF 0 (pas une charge !)", "- CHF 3'000"] },
+          { cells: ["Paiement avance fournisseur pour avril", "CHF 0 (pas encore une charge)", "- CHF 2'000"] },
+          { cells: ["Amortissement machines (écriture comptable)", "- CHF 5'000", "CHF 0 (pas de mouvement cash)"] },
+        ]}
+      />
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, margin: '12px 0' }}>
+        <div style={{ background: '#f0fdf4', border: '1.5px solid #22c55e', borderRadius: 10, padding: '12px 16px', textAlign: 'center' }}>
+          <div style={{ fontSize: '0.78rem', color: '#475569', marginBottom: 4 }}>Résultat comptable du mois</div>
+          <div style={{ fontSize: '1.1rem', fontWeight: 700, color: '#16a34a' }}>+ CHF 25'000</div>
+          <div style={{ fontSize: '0.75rem', color: '#64748b', marginTop: 2 }}>Bénéfice</div>
+        </div>
+        <div style={{ background: '#fef2f2', border: '1.5px solid #ef4444', borderRadius: 10, padding: '12px 16px', textAlign: 'center' }}>
+          <div style={{ fontSize: '0.78rem', color: '#475569', marginBottom: 4 }}>Mouvement de trésorerie réel</div>
+          <div style={{ fontSize: '1.1rem', fontWeight: 700, color: '#dc2626' }}>- CHF 20'000</div>
+          <div style={{ fontSize: '0.75rem', color: '#64748b', marginTop: 2 }}>Cash flow négatif</div>
+        </div>
+      </div>
+      <Note color="yellow">
+        SwiSSwatch SA gagne de l'argent (bénéfice CHF 25'000) mais son compte en banque <strong>diminue de CHF 20'000</strong> ce mois-là ! Pourquoi ? Parce que les clients n'ont pas encore payé (CHF 45'000 en attente), et l'entreprise a remboursé un emprunt (pas une charge) et payé une avance (pas encore une charge). <strong>Profit et cash sont deux choses différentes.</strong>
+      </Note>
+
       </Section>
       <Section title="4. La partie double — comment ça fonctionne" defaultOpen={false}>
       <P>La comptabilité suisse repose sur le principe de la <strong>partie double</strong> : chaque opération affecte toujours deux comptes simultanément, l'un en débit et l'autre en crédit, pour le même montant.</P>
@@ -55,6 +91,38 @@ function TabIntro() {
         ]}
       />
       <Note color="green">Le total des débits = toujours le total des crédits. C'est ce qui garantit que le bilan reste toujours équilibré.</Note>
+
+      <H3>Deux exemples concrets chez SwiSSwatch SA</H3>
+      <P>Voyons comment la partie double fonctionne avec deux opérations réelles de SwiSSwatch SA :</P>
+
+      <P><strong>Exemple 1 :</strong> SwiSSwatch SA achète des composants horlogers pour CHF 8'000 à crédit chez Nivarox SA.</P>
+      <Ecriture debit="4200 Achats composants" credit="2000 Fournisseurs" montant="8'000" libelle="Achat composants — Nivarox SA — facture N-2024-089" />
+      <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', margin: '8px 0 16px' }}>
+        <div style={{ flex: 1, minWidth: 180, background: '#eff6ff', border: '1px solid #93c5fd', borderRadius: 8, padding: '10px 14px', fontSize: '0.82rem' }}>
+          <div style={{ fontWeight: 700, color: '#1e40af', marginBottom: 4 }}>Débit : 4200 Achats +8'000</div>
+          <div style={{ color: '#475569' }}>La charge augmente (on a consommé des ressources). Les achats sont une charge qui passe au débit.</div>
+        </div>
+        <div style={{ flex: 1, minWidth: 180, background: '#fdf2f8', border: '1px solid #f9a8d4', borderRadius: 8, padding: '10px 14px', fontSize: '0.82rem' }}>
+          <div style={{ fontWeight: 700, color: '#9d174d', marginBottom: 4 }}>Crédit : 2000 Fournisseurs +8'000</div>
+          <div style={{ color: '#475569' }}>La dette augmente (on doit de l'argent à Nivarox SA). Les dettes sont un passif qui augmente au crédit.</div>
+        </div>
+      </div>
+
+      <P><strong>Exemple 2 :</strong> SwiSSwatch SA vend des montres pour CHF 12'500 à Bucherer AG, paiement sous 30 jours.</P>
+      <Ecriture debit="1100 Clients" credit="3000 Ventes de marchandises" montant="12'500" libelle="Vente montres — Bucherer AG — facture F-2024-034" />
+      <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', margin: '8px 0 16px' }}>
+        <div style={{ flex: 1, minWidth: 180, background: '#eff6ff', border: '1px solid #93c5fd', borderRadius: 8, padding: '10px 14px', fontSize: '0.82rem' }}>
+          <div style={{ fontWeight: 700, color: '#1e40af', marginBottom: 4 }}>Débit : 1100 Clients +12'500</div>
+          <div style={{ color: '#475569' }}>La créance augmente (Bucherer AG nous doit de l'argent). Les créances sont un actif qui augmente au débit.</div>
+        </div>
+        <div style={{ flex: 1, minWidth: 180, background: '#fdf2f8', border: '1px solid #f9a8d4', borderRadius: 8, padding: '10px 14px', fontSize: '0.82rem' }}>
+          <div style={{ fontWeight: 700, color: '#9d174d', marginBottom: 4 }}>Crédit : 3000 Ventes +12'500</div>
+          <div style={{ color: '#475569' }}>Le produit augmente (on a créé de la valeur). Les ventes sont un produit qui augmente au crédit.</div>
+        </div>
+      </div>
+      <Note color="blue">
+        Dans les deux cas, le <strong>débit = le crédit</strong> (CHF 8'000 = CHF 8'000 et CHF 12'500 = CHF 12'500). C'est la règle absolue de la partie double : chaque écriture est toujours équilibrée. Si vous trouvez un déséquilibre, c'est qu'il y a une erreur.
+      </Note>
 
       </Section>
       <Section title="5. Les états financiers — vue d'ensemble" defaultOpen={false}>
@@ -402,6 +470,23 @@ function TabResultat() {
         ]}
       />
 
+      <H3>Les produits de SwiSSwatch SA — année 2</H3>
+      <P>Voyons d'où proviennent concrètement les revenus de SwiSSwatch SA lors de sa deuxième année d'activité :</P>
+      <Tableau
+        caption="Détail des produits — SwiSSwatch SA année 2"
+        headers={['Source de revenus', 'Compte', 'Montant CHF', 'Part du total']}
+        rows={[
+          { cells: ['Ventes de montres (boutiques partenaires)', '3200', "1'500'000", '83.3 %'] },
+          { cells: ['Ventes de montres (e-commerce)', '3200', "300'000", '16.7 %'] },
+          { cells: ['Total ventes de montres', '', "1'800'000", ''] },
+          { cells: ['Prestations de réparation et SAV', '3400', "300'000", ''] },
+          { cells: ['Produits financiers (intérêts bancaires)', '6950', "5'000", ''] },
+        ]}
+      />
+      <Note color="green">
+        SwiSSwatch SA génère l'essentiel de ses revenus par la vente de montres (CHF 1'800'000). Les prestations de réparation (CHF 300'000) sont un complément intéressant — elles fidélisent les clients tout en générant des marges élevées. Les produits financiers (CHF 5'000) sont marginaux mais existent.
+      </Note>
+
       </Section>
       <Section title="3. Les charges — ce que l'entreprise consomme" defaultOpen={false}>
       <P>Les charges représentent la consommation de ressources. Une charge n'est <strong>pas</strong> forcément un paiement — c'est une richesse économique consommée dans l'exercice.</P>
@@ -416,6 +501,31 @@ function TabResultat() {
           { cells: ['Impôts', '8900', 'Impôt sur le bénéfice cantonal et fédéral'] },
         ]}
       />
+
+      <H3>Les charges de SwiSSwatch SA — année 2</H3>
+      <P>Voici le détail de tout ce que SwiSSwatch SA a consommé en ressources durant l'année 2. Chaque poste correspond à une catégorie précise du plan comptable suisse :</P>
+      <Tableau
+        caption="Détail des charges — SwiSSwatch SA année 2"
+        headers={['Poste de charge', 'Compte', 'Montant CHF', 'Part du CA']}
+        rows={[
+          { cells: ['Achats de composants horlogers', '4200', "680'000", '37.8 %'] },
+          { cells: ['Salaires bruts', '5000', "420'000", '23.3 %'] },
+          { cells: ['Charges sociales patronales (AVS/AI/APG)', '5700', "100'000", '5.6 %'] },
+          { cells: ['Total personnel', '', "520'000", '28.9 %'] },
+          { cells: ['Loyers (atelier + bureaux)', '6000', "54'000", '3.0 %'] },
+          { cells: ['Énergie et eau', '6400', "18'000", '1.0 %'] },
+          { cells: ['Assurances', '6300', "22'000", '1.2 %'] },
+          { cells: ['Publicité et marketing', '6600', "65'000", '3.6 %'] },
+          { cells: ['Entretien et réparations', '6100', "25'000", '1.4 %'] },
+          { cells: ['Frais administratifs et divers', '6500', "26'000", '1.4 %'] },
+          { cells: ['Amortissements (machines, véhicules...)', '6800', "85'000", '4.7 %'] },
+          { cells: ['Charges financières (intérêts emprunt)', '6900', "15'000", '0.8 %'] },
+          { cells: ['Impôts sur le bénéfice', '8900', "195'000", '10.8 %'] },
+        ]}
+      />
+      <Note color="yellow">
+        <strong>Observation :</strong> Chez SwiSSwatch SA, les deux plus gros postes de charges sont les achats de composants (CHF 680'000 = 37.8 % du CA) et le personnel (CHF 520'000 = 28.9 % du CA). Ensemble, ils représentent deux tiers des charges totales. C'est typique d'une PME industrielle suisse.
+      </Note>
 
       </Section>
       <Section title="4. La structure en cascade — indicateurs clés" defaultOpen={false}>
@@ -446,6 +556,50 @@ function TabResultat() {
           </tbody>
         </table>
       </div>
+
+      <H3>Le compte de résultat complet de SwiSSwatch SA — année 2</H3>
+      <P>Appliquons maintenant la structure en cascade aux chiffres réels de SwiSSwatch SA pour l'année 2. Chaque ligne de sous-total est un <strong>indicateur clé</strong> que les banquiers et investisseurs regardent attentivement.</P>
+
+      <div style={{ border: '2px solid #16a34a', borderRadius: 8, overflow: 'hidden', margin: '16px 0' }}>
+        <div style={{ background: '#16a34a', padding: '9px 16px', color: '#fff', fontWeight: 700, fontSize: '0.84rem' }}>Compte de résultat en cascade — SwiSSwatch SA année 2</div>
+        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.83rem' }}>
+          <tbody>
+            {[
+              ['Ventes nettes de montres', '', "+ CHF 1'800'000", false],
+              ['Prestations de réparation / SAV', '', "+ CHF 300'000", false],
+              ['CHIFFRE D\'AFFAIRES NET', 'Total des revenus d\'exploitation', "CHF 2'100'000", true],
+              ['Achats de composants horlogers', '', "- CHF 680'000", false],
+              ['MARGE BRUTE', 'CA - Achats = rentabilité commerciale', "CHF 1'420'000", true],
+              ['Salaires bruts', '', "- CHF 420'000", false],
+              ['Charges sociales patronales', '', "- CHF 100'000", false],
+              ['RÉSULTAT APRÈS PERSONNEL', '', "CHF 900'000", true],
+              ['Loyers', '', "- CHF 54'000", false],
+              ['Énergie et eau', '', "- CHF 18'000", false],
+              ['Assurances', '', "- CHF 22'000", false],
+              ['Publicité et marketing', '', "- CHF 65'000", false],
+              ['Entretien et réparations', '', "- CHF 25'000", false],
+              ['Frais administratifs et divers', '', "- CHF 26'000", false],
+              ['EBITDA', 'Avant amortissements et intérêts', "CHF 690'000", true],
+              ['Amortissements', 'Machines, véhicules, informatique', "- CHF 85'000", false],
+              ['EBIT (résultat d\'exploitation)', 'Performance opérationnelle pure', "CHF 605'000", true],
+              ['Charges financières (intérêts emprunt)', '', "- CHF 15'000", false],
+              ['Produits financiers (intérêts reçus)', '', "+ CHF 5'000", false],
+              ['RÉSULTAT AVANT IMPÔTS', '', "CHF 595'000", true],
+              ['Impôts sur le bénéfice', 'Cantonal + fédéral', "- CHF 195'000", false],
+              ['RÉSULTAT NET DE L\'EXERCICE', 'Viré dans les fonds propres du bilan', "CHF 400'000", true],
+            ].map(([label, note, montant, bold], i) => (
+              <tr key={i} style={{ background: bold ? '#f0fdf4' : i % 2 === 0 ? '#fff' : '#f8f9fb', borderBottom: bold ? '2px solid #86efac' : '1px solid #dde2ea' }}>
+                <td style={{ padding: '8px 16px', fontWeight: bold ? 700 : 400, color: '#1a2332', fontSize: bold ? '0.86rem' : '0.83rem' }}>{label}</td>
+                <td style={{ padding: '8px 10px', color: '#718096', fontStyle: 'italic', fontSize: '0.77rem' }}>{note}</td>
+                <td style={{ padding: '8px 16px', fontFamily: 'JetBrains Mono, monospace', fontWeight: bold ? 700 : 500, color: bold ? '#16a34a' : '#4a5568', textAlign: 'right', whiteSpace: 'nowrap' }}>{montant}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <Note color="green">
+        <strong>Lecture :</strong> SwiSSwatch SA a réalisé un chiffre d'affaires de CHF 2'100'000 en année 2. Après déduction de toutes les charges, il reste un bénéfice net de CHF 400'000. Ce montant sera viré dans les fonds propres du bilan, enrichissant l'entreprise et ses actionnaires. La marge brute de 67.6 % (1'420'000 / 2'100'000) est excellente pour l'horlogerie.
+      </Note>
 
       </Section>
       <Section title="5. Charge ≠ Paiement | Produit ≠ Encaissement" defaultOpen={false}>
@@ -519,6 +673,45 @@ function TabComptes() {
         },
       ]} />
 
+      <H3>Exemple complet chez SwiSSwatch SA — deux opérations liées</H3>
+      <P>Suivons deux opérations successives dans les comptes en T de SwiSSwatch SA pour bien comprendre le mécanisme :</P>
+
+      <P><strong>Opération A :</strong> SwiSSwatch SA achète des composants horlogers pour CHF 8'000 à crédit auprès de Nivarox SA.</P>
+      <GrilleT comptes={[
+        {
+          title: '4200 Achats composants',
+          debit: [{ label: 'Nivarox SA — composants', amount: "8'000" }],
+          credit: [],
+          solde: "8'000", soldeLabel: 'Charge augmente',
+        },
+        {
+          title: '2000 Fournisseurs',
+          debit: [],
+          credit: [{ label: 'Nivarox SA — facture', amount: "8'000" }],
+          solde: "8'000", soldeLabel: 'Dette augmente', soldeColor: 'red',
+        },
+      ]} />
+      <Note color="yellow">La charge (4200) est constatée au <strong>débit</strong> — les charges augmentent toujours au débit. La dette fournisseur (2000) augmente au <strong>crédit</strong> — les passifs augmentent toujours au crédit.</Note>
+
+      <P><strong>Opération B :</strong> 15 jours plus tard, SwiSSwatch SA paie Nivarox SA par virement bancaire.</P>
+      <GrilleT comptes={[
+        {
+          title: '2000 Fournisseurs',
+          debit: [{ label: 'Paiement Nivarox SA', amount: "8'000" }],
+          credit: [{ label: 'Facture Nivarox SA', amount: "8'000" }],
+          solde: "0", soldeLabel: 'Dette soldée',
+        },
+        {
+          title: '1020 Banque',
+          debit: [{ label: 'Solde précédent', amount: "85'000" }],
+          credit: [{ label: 'Paiement Nivarox SA', amount: "8'000" }],
+          solde: "77'000", soldeLabel: 'Nouveau solde',
+        },
+      ]} />
+      <Note color="blue">
+        Au paiement, la dette fournisseur (2000) diminue au <strong>débit</strong> — un passif qui diminue se débite. La banque (1020) diminue au <strong>crédit</strong> — un actif qui diminue se crédite. Aucun impact sur le résultat : la charge avait déjà été constatée lors de l'opération A.
+      </Note>
+
       </Section>
       <Section title="3. La règle de fonctionnement selon la nature du compte" defaultOpen={false}>
       <P>Le sens débit/crédit dépend de la <strong>nature économique</strong> du compte. Il faut comprendre la logique — pas apprendre des règles mécaniques.</P>
@@ -567,6 +760,29 @@ function TabComptes() {
           { cells: ['8000–8999', 'Résultat exceptionnel', '8000 Produits exceptionnels, 8900 Impôts'] },
         ]}
       />
+
+      <H3>Les 9 classes appliquées à SwiSSwatch SA</H3>
+      <P>Voici les 9 classes du plan comptable avec les comptes concrets utilisés par SwiSSwatch SA. Chaque classe correspond à une nature d'éléments bien précise :</P>
+
+      <Tableau
+        caption="Plan comptable PME — comptes de SwiSSwatch SA"
+        headers={['Classe', 'Plage', 'Nature', 'Comptes SwiSSwatch SA', 'État financier']}
+        rows={[
+          { cells: ['1', '1000–1999', 'Actifs', '1000 Caisse, 1020 Banque BCN, 1100 Clients, 1200 Stock composants, 1500 Machines CNC, 1600 Véhicules', 'Bilan (gauche)'] },
+          { cells: ['2', '2000–2999', 'Passifs', '2000 Fournisseurs, 2200 TVA due, 2270 Charges sociales dues, 2400 Emprunt UBS, 2800 Capital-actions', 'Bilan (droite)'] },
+          { cells: ['3', '3000–3999', 'Produits d\'exploitation', '3200 Ventes de montres, 3400 Prestations réparation/SAV', 'Compte de résultat'] },
+          { cells: ['4', '4000–4999', 'Charges d\'achats', '4200 Achats composants horlogers, 4700 Frais de transport sur achats', 'Compte de résultat'] },
+          { cells: ['5', '5000–5999', 'Charges de personnel', '5000 Salaires bruts, 5700 Charges sociales patronales (AVS/AI/APG)', 'Compte de résultat'] },
+          { cells: ['6', '6000–6999', 'Autres charges d\'exploitation', '6000 Loyers, 6300 Assurances, 6400 Énergie, 6600 Publicité, 6800 Amortissements, 6900 Intérêts emprunt', 'Compte de résultat'] },
+          { cells: ['7', '7000–7999', 'Résultat hors exploitation', '6950 Produits financiers (intérêts bancaires)', 'Compte de résultat'] },
+          { cells: ['8', '8000–8999', 'Résultat exceptionnel & impôts', '8900 Impôts sur le bénéfice', 'Compte de résultat'] },
+          { cells: ['9', '9000–9999', 'Clôture (interne)', 'Comptes de bouclement, comptes analytiques', '(Usage interne)'] },
+        ]}
+      />
+
+      <Note color="blue">
+        <strong>Astuce pour mémoriser :</strong> Les classes 1-2 = bilan (patrimoine). Les classes 3-8 = compte de résultat (performance). Au sein du résultat : 3 = ce qu'on gagne, 4-6 = ce qu'on dépense, 7-8 = le reste. Le premier chiffre du numéro de compte vous dit immédiatement de quelle nature il s'agit : 1020 commence par 1 → c'est un actif. 5000 commence par 5 → c'est une charge de personnel.
+      </Note>
 
       </Section>
       <Section title="6. Points clés à retenir" defaultOpen={false}>
@@ -634,40 +850,52 @@ function TabJournal() {
       <Section title="3. Les 4 opérations courantes — écritures complètes" defaultOpen={false}>
 
       <H3>Opération 1 — Achat à crédit (facture fournisseur)</H3>
-      <P>La boulangerie reçoit une facture de farine CHF 1'200 de Moulin SA. Elle ne paie pas encore.</P>
-      <Ecriture debit="4000 Achats" credit="2000 Fournisseurs" montant="1'200" libelle="Achat composants — Nivarox SA — facture 2024-045" />
-      <Note color="yellow">La charge (4000) est constatée dès la réception de la facture. La dette envers Moulin SA (2000) augmente. Aucun mouvement de trésorerie.</Note>
+      <P><strong>Contexte SwiSSwatch SA :</strong> Le 5 mars, SwiSSwatch SA reçoit une facture de Nivarox SA pour CHF 15'000 de composants horlogers (spiraux et balanciers). La facture est payable sous 30 jours. Le responsable des achats, Marc Dubois, enregistre la facture le jour même.</P>
+      <Ecriture debit="4200 Achats composants" credit="2000 Fournisseurs" montant="15'000" libelle="Achat composants horlogers — Nivarox SA — facture N-2024-112" />
+      <Note color="yellow">La charge (4200) est constatée dès la réception de la facture. La dette envers Nivarox SA (2000) augmente de CHF 15'000. Aucun mouvement de trésorerie : le compte en banque de SwiSSwatch SA n'a pas bougé. C'est le principe des postes ouverts.</Note>
 
       <H3>Opération 2 — Paiement du fournisseur</H3>
-      <P>8 jours plus tard, la boulangerie paie Moulin SA par virement bancaire.</P>
-      <Ecriture debit="2000 Fournisseurs" credit="1020 Banque" montant="1'200" libelle="Paiement facture 2024-045 — Moulin SA" />
-      <Note color="yellow">On solde la dette (2000 diminue) et la banque diminue. Pas d'impact sur le résultat — la charge a déjà été constatée à l'étape 1.</Note>
+      <P><strong>Contexte SwiSSwatch SA :</strong> Le 2 avril (28 jours plus tard), Marie Vuille, la comptable de SwiSSwatch SA, effectue le virement de CHF 15'000 à Nivarox SA depuis le compte BCN de l'entreprise.</P>
+      <Ecriture debit="2000 Fournisseurs" credit="1020 Banque" montant="15'000" libelle="Paiement facture N-2024-112 — Nivarox SA — virement BCN" />
+      <Note color="yellow">On solde la dette (2000 diminue au débit) et la banque diminue (1020 diminue au crédit). <strong>Pas d'impact sur le résultat</strong> — la charge de CHF 15'000 a déjà été comptabilisée le 5 mars. Ce paiement est uniquement un mouvement de trésorerie.</Note>
 
       <H3>Opération 3 — Vente à crédit (facture client)</H3>
-      <P>La boulangerie livre CHF 800 de pains à l'Hôtel Lac et envoie une facture. L'hôtel paiera dans 30 jours.</P>
-      <Ecriture debit="1100 Clients" credit="3000 Ventes" montant="800" libelle="Livraison assortiment — Hôtel Lac — facture 2024-012" />
-      <Note color="yellow">Le produit (3000) est constaté dès la livraison. La créance sur l'Hôtel Lac (1100) augmente. Aucun encaissement encore.</Note>
+      <P><strong>Contexte SwiSSwatch SA :</strong> Le 12 mars, SwiSSwatch SA livre 10 montres modèle "Alpine" à Bucherer AG pour un total de CHF 25'000. La facture F-2024-067 est émise le même jour, avec un délai de paiement de 60 jours.</P>
+      <Ecriture debit="1100 Clients" credit="3200 Ventes de marchandises" montant="25'000" libelle="Vente 10x Alpine — Bucherer AG — facture F-2024-067" />
+      <Note color="yellow">Le produit (3200) est constaté dès la livraison des montres — pas au moment de l'encaissement. La créance sur Bucherer AG (1100) augmente de CHF 25'000. L'argent n'est pas encore sur le compte, mais la vente est bien réelle en comptabilité.</Note>
 
       <H3>Opération 4 — Encaissement client</H3>
-      <P>30 jours plus tard, l'Hôtel Lac paie sa facture par virement.</P>
-      <Ecriture debit="1020 Banque" credit="1100 Clients" montant="800" libelle="Encaissement facture 2024-012 — Hôtel Lac" />
-      <Note color="yellow">On solde la créance (1100 diminue) et la banque augmente. Pas d'impact sur le résultat — le produit a déjà été constaté à l'étape 3.</Note>
+      <P><strong>Contexte SwiSSwatch SA :</strong> Le 10 mai (59 jours plus tard), Bucherer AG paie sa facture par virement bancaire. Marie Vuille constate le crédit sur le relevé BCN et passe l'écriture d'encaissement.</P>
+      <Ecriture debit="1020 Banque" credit="1100 Clients" montant="25'000" libelle="Encaissement facture F-2024-067 — Bucherer AG — virement BCN" />
+      <Note color="yellow">On solde la créance (1100 diminue au crédit) et la banque augmente (1020 augmente au débit). <strong>Pas d'impact sur le résultat</strong> — le produit de CHF 25'000 a déjà été constaté le 12 mars. Cet encaissement est uniquement un mouvement de trésorerie.</Note>
 
       </Section>
       <Section title="4. Autres opérations fréquentes" defaultOpen={false}>
 
-      <H3>Achat payé comptant</H3>
-      <Ecriture debit="6000 Loyers" credit="1020 Banque" montant="2'000" libelle="Loyer janvier — paiement immédiat" />
+      <H3>Paiement du loyer mensuel</H3>
+      <P><strong>SwiSSwatch SA</strong> paie chaque mois CHF 4'500 de loyer pour son atelier de fabrication et ses bureaux à Neuchâtel. Le loyer est payé par ordre permanent le 1er de chaque mois.</P>
+      <Ecriture debit="6000 Loyers" credit="1020 Banque" montant="4'500" libelle="Loyer février — Immo Neuchâtel SA — atelier + bureaux" />
+      <Note color="yellow">C'est un achat payé comptant — la charge et le paiement ont lieu simultanément. Pas besoin de passer par le compte fournisseurs. Le loyer annuel de SwiSSwatch SA s'élève à CHF 54'000 (12 x 4'500).</Note>
+
+      <H3>Encaissement d'intérêts bancaires</H3>
+      <P>La Banque Cantonale de Neuchâtel verse CHF 125 d'intérêts trimestriels sur le compte courant de <strong>SwiSSwatch SA</strong>.</P>
+      <Ecriture debit="1020 Banque" credit="6950 Produits financiers" montant="125" libelle="Intérêts T1 — BCN — compte courant" />
+      <Note color="yellow">La banque augmente (débit, actif +) et un produit financier est constaté (crédit, produit +). Ce n'est pas un produit d'exploitation — c'est un produit financier hors activité principale.</Note>
+
+      <H3>Achat d'un véhicule utilitaire</H3>
+      <P>Théo Keller décide d'acheter une camionnette de livraison pour CHF 35'000 auprès de Garage Central SA. La facture est payée en deux temps : CHF 10'000 d'acompte immédiat, solde sous 60 jours.</P>
+      <Ecriture debit="1600 Véhicules" credit="2000 Fournisseurs" montant="35'000" libelle="Achat camionnette Renault — Garage Central SA" />
+      <Ecriture debit="2000 Fournisseurs" credit="1020 Banque" montant="10'000" libelle="Acompte Garage Central SA — virement BCN" sub />
+      <Note color="blue">Le véhicule (1600) est un actif immobilisé — il sera amorti sur 5 ans (CHF 7'000/an). L'achat n'est <strong>pas une charge</strong> : c'est un investissement. La charge viendra plus tard sous forme d'amortissement annuel.</Note>
+
+      <H3>Paiement des salaires</H3>
+      <P><strong>SwiSSwatch SA</strong> emploie 8 personnes. Le total des salaires bruts de février s'élève à CHF 35'000. Marie Vuille effectue les virements le 25 du mois.</P>
+      <Ecriture debit="5000 Salaires bruts" credit="1020 Banque" montant="35'000" libelle="Salaires bruts février — 8 employés — virement BCN" />
+      <Note color="yellow">Les salaires sont la deuxième charge la plus importante de SwiSSwatch SA (CHF 420'000/an). À cette écriture s'ajoutent les charges sociales patronales (AVS/AI/APG) comptabilisées séparément au compte 5700.</Note>
 
       <H3>Vente encaissée comptant (caisse)</H3>
-      <Ecriture debit="1000 Caisse" credit="3000 Ventes" montant="150" libelle="Vente pain — comptant caisse" />
-
-      <H3>Achat d'un actif immobilisé</H3>
-      <Ecriture debit="1500 Machines" credit="2000 Fournisseurs" montant="12'000" libelle="Achat pétrin — Équip Pro SA" />
-      <Ecriture debit="2000 Fournisseurs" credit="1020 Banque" montant="12'000" libelle="Paiement Équip Pro SA" sub />
-
-      <H3>Paiement de salaire</H3>
-      <Ecriture debit="5000 Salaires" credit="1020 Banque" montant="3'000" libelle="Salaire vendeur — janvier" />
+      <P>Un client visite l'atelier de SwiSSwatch SA et achète une montre "Alpine" directement pour CHF 2'500, payée par carte bancaire.</P>
+      <Ecriture debit="1020 Banque" credit="3200 Ventes de marchandises" montant="2'500" libelle="Vente montre Alpine — client passage — terminal carte" />
 
       </Section>
       <Section title="5. La pièce justificative — obligation légale" defaultOpen={false}>
