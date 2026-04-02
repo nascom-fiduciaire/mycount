@@ -40,14 +40,6 @@ export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const scrollRef = useRef(null);
 
-  // Dark mode
-  const [darkMode, setDarkMode] = useState(() => {
-    try { return localStorage.getItem('mycount_dark') === 'true'; } catch { return false; }
-  });
-  useEffect(() => {
-    try { localStorage.setItem('mycount_dark', darkMode); } catch {}
-  }, [darkMode]);
-
   // Favorites
   const [favorites, setFavorites] = useState(() => {
     try { const raw = localStorage.getItem('mycount_favorites'); return raw ? JSON.parse(raw) : []; } catch { return []; }
@@ -89,7 +81,7 @@ export default function App() {
   }
 
   return (
-    <div className={`app ${darkMode ? 'dark' : ''}`}>
+    <div className="app">
       {/* Bouton hamburger mobile */}
       <button className="hamburger" onClick={() => setSidebarOpen(o => !o)} aria-label="Menu">
         <span /><span /><span />
@@ -103,8 +95,6 @@ export default function App() {
         activeModule={activeModule} setActiveModule={handleSetModule}
         scores={scores}
         className={sidebarOpen ? 'open' : ''}
-        darkMode={darkMode}
-        setDarkMode={setDarkMode}
       />
       <div className="main" ref={scrollRef}>
         {view === 'dashboard'         && <Dashboard scores={scores} setView={handleSetView} setActiveGroup={handleSetGroup} setActiveTheory={handleSetTheory} onReset={handleResetScores} activeModule={activeModule} />}
