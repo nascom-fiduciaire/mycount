@@ -35,28 +35,104 @@
   --radius-lg: 14px;
 }
 
-/* Dark Mode */
+/* Dark Mode — Complete */
 .app.dark {
-  --bg: #0f1729;
-  --white: #1a2744;
-  --surface2: #1e2d4a;
-  --border: #2a3a5c;
-  --border2: #3a4a6c;
+  --bg: #0b1121;
+  --white: #141e33;
+  --surface2: #1a2744;
+  --border: #243352;
+  --border2: #2e4068;
+  --blue-pale: #141e33;
+  --blue-pale2: #1a2744;
+  --green-pale: #0a1a14;
+  --red-pale: #1a0a0a;
+  --orange-pale: #1a1400;
+  --purple-pale: #14101f;
   --text: #e2e8f0;
-  --text2: #94a3b8;
-  --text3: #64748b;
-  --text4: #475569;
+  --text2: #a0aec0;
+  --text3: #718096;
+  --text4: #4a5568;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+  --shadow: 0 4px 6px rgba(0,0,0,0.3);
+  --shadow-md: 0 10px 15px rgba(0,0,0,0.3);
 }
-.app.dark .topbar { background: #1a2744; border-color: #2a3a5c; }
-.app.dark .exercise-card { background: #1a2744; border-color: #2a3a5c; }
-.app.dark .stat-card { background: #1a2744; border-color: #2a3a5c; }
-.app.dark .chapter-card { background: #1a2744; border-color: #2a3a5c; }
-.app.dark .qcm-option { background: #1a2744; border-color: #2a3a5c; color: #e2e8f0; }
-.app.dark .journal-input { background: #0f1729; border-color: #2a3a5c; color: #e2e8f0; }
-.app.dark .group-btn { background: #1a2744; border-color: #2a3a5c; color: #94a3b8; }
-.app.dark .hint-box { background: #2a2000; border-color: #5c4a00; color: #f0d98a; }
-.app.dark .theory-h2 > div:first-child + div, .app.dark .theory-h2 > div:last-child { background: #1a2744 !important; }
-.app.dark .theory-h2 { border-color: #2a3a5c !important; }
+
+/* Dark backgrounds */
+.app.dark .main { background: #0b1121; }
+.app.dark .topbar { background: #141e33; border-color: #243352; box-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+.app.dark .topbar h2 { color: #e2e8f0; }
+.app.dark .topbar-meta { color: #718096; }
+.app.dark .content { background: #0b1121; }
+
+/* Cards */
+.app.dark .exercise-card { background: #141e33; border-color: #243352; }
+.app.dark .stat-card { background: #141e33; border-color: #243352; }
+.app.dark .chapter-card { background: #141e33; border-color: #243352; color: #e2e8f0; }
+.app.dark .chapter-card:hover { border-color: #3b82f6; }
+.app.dark .chapter-card-title { color: #e2e8f0; }
+.app.dark .chapter-card-desc { color: #718096; }
+
+/* Exercise UI */
+.app.dark .qcm-option { background: #141e33; border-color: #243352; color: #e2e8f0; }
+.app.dark .qcm-option:hover { background: #1a2744; border-color: #3b82f6; }
+.app.dark .qcm-letter { background: #1a2744; color: #718096; }
+.app.dark .journal-input { background: #0b1121; border-color: #243352; color: #e2e8f0; }
+.app.dark .journal-wrap { border-color: #243352; }
+.app.dark .journal-table td { border-color: #1a2744; }
+.app.dark .row-main td { background: #141e33; }
+.app.dark .row-sub td { background: #111b2e; }
+.app.dark .libelle-text { color: #718096; }
+.app.dark .group-btn { background: #141e33; border-color: #243352; color: #a0aec0; }
+.app.dark .group-btn:hover { background: #1a2744; }
+.app.dark .group-btn.active { background: #2563eb; color: #fff; }
+.app.dark .exercise-title { color: #e2e8f0; }
+.app.dark .exercise-desc { color: #a0aec0; }
+.app.dark .exercise-num { background: #1a2744; border-color: #243352; color: #718096; }
+
+/* Hints, notes, feedback */
+.app.dark .hint-box { background: #1a1400; border-color: #3d3000; color: #f0d98a; }
+.app.dark .feedback.success { background: #0a1a14; border-color: #1a3a2a; color: #68d391; }
+.app.dark .feedback.error { background: #1a0a0a; border-color: #3a1a1a; color: #fc8181; }
+.app.dark .feedback.partial { background: #1a1400; border-color: #3d3000; color: #f6ad55; }
+.app.dark .pc-ref { background: #141e33; border-color: #243352; }
+
+/* Tables */
+.app.dark .data-table-wrap { border-color: #243352; }
+.app.dark .data-table td { border-color: #1a2744; color: #a0aec0; }
+.app.dark .data-table tr:nth-child(even) td { background: #111b2e; }
+.app.dark .correction-wrap { border-color: #243352; }
+.app.dark .correction-table th { background: #1a2744; color: #718096; border-color: #243352; }
+.app.dark .correction-table td { border-color: #1a2744; }
+
+/* Theory sections (accordion) */
+.app.dark .theory-h2 { border-color: #243352 !important; }
+.app.dark .theory-h2 > div { background: #141e33 !important; }
+.app.dark .theory-content h2 { background: #141e33; color: #93bbfc; border-color: #2563eb; }
+.app.dark .theory-content h3 { color: #e2e8f0; border-color: #243352; }
+.app.dark .theory-content p { color: #a0aec0; }
+.app.dark .theory-content li { color: #a0aec0; }
+.app.dark .theory-content strong { color: #e2e8f0; }
+.app.dark .theory-content td { color: #a0aec0; border-color: #243352; }
+.app.dark .theory-content tr:nth-child(even) td { background: #111b2e; }
+.app.dark .theory-content table { border-color: #243352; }
+.app.dark .theory-content blockquote { background: #141e33; border-color: #2563eb; color: #93bbfc; }
+.app.dark .theory-content code { background: #1a2744; border-color: #243352; color: #93bbfc; }
+
+/* Dashboard */
+.app.dark .section-title { color: #718096; border-color: #243352; }
+.app.dark .progress-bar { background: #1a2744; }
+.app.dark .stat-value { color: #3b82f6; }
+.app.dark .stat-label { color: #718096; }
+
+/* Scrollbar dark */
+.app.dark ::-webkit-scrollbar-thumb { background: #243352; }
+.app.dark ::-webkit-scrollbar-thumb:hover { background: #2e4068; }
+
+/* Tags in dark mode */
+.app.dark .tag-base { background: #1a2744; color: #a0aec0; border-color: #243352; }
+.app.dark .tag-tva { background: #141e33; color: #93bbfc; border-color: #243352; }
+.app.dark .tag-salaires { background: #0a1a14; color: #68d391; border-color: #1a3a2a; }
+.app.dark .tag-bouclement { background: #1a1400; color: #f6ad55; border-color: #3d3000; }
 
 body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); height: 100vh; overflow: hidden; font-size: 13.5px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
 .app { display: flex; height: 100vh; }
