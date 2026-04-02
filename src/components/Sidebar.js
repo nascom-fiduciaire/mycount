@@ -95,7 +95,7 @@ export default function Sidebar({ view, setView, activeTheory, setActiveTheory, 
   // Récupérer le module actif
   const mod = MODULES.find(m => m.id === activeModule) || MODULES[0];
   const theoryGroups = mod.theoryGroups;
-  const moduleExerciseGroups = exerciseGroups.filter(g => (mod.exerciseIds || []).includes(g.id));
+  const moduleExerciseGroups = exerciseGroups.filter(g => (mod.exerciseIds || []).includes(g.id) && g.id !== 'revision' && g.id !== 'examen');
   const moduleExercises = exercises.filter(e => (mod.exerciseIds || []).includes(e.group));
 
   const totalEx = moduleExercises.length;
@@ -229,6 +229,30 @@ export default function Sidebar({ view, setView, activeTheory, setActiveTheory, 
               </button>
             );
           })}
+        </div>
+      )}
+
+      {/* Évaluation */}
+      {activeModule === 'generale' && (
+        <div className="sidebar-section">
+          <div className="sidebar-section-title">Évaluation</div>
+          <button
+            className={`sidebar-item ${view === 'exercises' && activeGroup === 'revision' ? 'active' : ''}`}
+            onClick={() => { setView('exercises'); setActiveGroup('revision'); }}
+            style={{ borderLeft: '3px solid #7c3aed' }}
+          >
+            <span style={iconStyle}><RotateCcw size={14} strokeWidth={1.8} /></span>
+            <span style={{ flex: 1 }}>Révision transversale</span>
+          </button>
+          <button
+            className={`sidebar-item ${view === 'exercises' && activeGroup === 'examen' ? 'active' : ''}`}
+            onClick={() => { setView('exercises'); setActiveGroup('examen'); }}
+            style={{ borderLeft: '3px solid #f59e0b', fontWeight: 600 }}
+          >
+            <span style={iconStyle}><Award size={14} strokeWidth={1.8} /></span>
+            <span style={{ flex: 1 }}>Examen final</span>
+            <span style={{ fontSize: '0.58rem', background: 'rgba(245,158,11,0.15)', color: '#f59e0b', padding: '2px 6px', borderRadius: 10, fontWeight: 700 }}>85 pts</span>
+          </button>
         </div>
       )}
 

@@ -231,8 +231,16 @@ function CalculExercise({ ex, onComplete }) {
     const res = {};
     let correct = 0;
     ex.champs.forEach(c => {
-      const val = parseAmt(get(c.id));
-      const ok = close(val, c.correct, c.tol || 0.10);
+      const rawVal = get(c.id).trim();
+      let ok;
+      if (typeof c.correct === 'string') {
+        // Text comparison (case-insensitive)
+        ok = rawVal.toLowerCase() === c.correct.toLowerCase();
+      } else {
+        // Numeric comparison with tolerance
+        const val = parseAmt(rawVal);
+        ok = close(val, c.correct, c.tol || 0.10);
+      }
       res[c.id] = ok;
       if (ok) correct++;
     });
@@ -593,8 +601,14 @@ function ExamExercise({ ex, onComplete }) {
     const res = {};
     let correct = 0;
     section.champs.forEach(c => {
-      const val = parseAmt(get(`${currentSection}_${c.id}`));
-      const ok = close(val, c.correct, c.tol || 0.10);
+      const rawVal = get(`${currentSection}_${c.id}`).trim();
+      let ok;
+      if (typeof c.correct === 'string') {
+        ok = rawVal.toLowerCase() === c.correct.toLowerCase();
+      } else {
+        const val = parseAmt(rawVal);
+        ok = close(val, c.correct, c.tol || 0.10);
+      }
       res[`${currentSection}_${c.id}`] = ok;
       if (ok) correct++;
     });
@@ -923,10 +937,177 @@ function ExamExercise({ ex, onComplete }) {
   );
 }
 
+// ─── JOURNAL LIBRE ──────────────────────────────────────────────────────────
+function JournalLibreExercise({ ex, onComplete }) {
+  const [rows, setRows] = useState([{ id: 1, debit: '', credit: '', libelle: '', amount: '' }]);
+  const [nextId, setNextId] = useState(2);
+  const [submitted, setSubmitted] = useState(false);
+  const [matchedIds, setMatchedIds] = useState(new Set());
+  const [score, setScore] = useState(0);
+
+  const addRow = () => {
+    setRows(r => [...r, { id: nextId, debit: '', credit: '', libelle: '', amount: '' }]);
+    setNextId(n => n + 1);
+  };
+
+  const removeRow = (id) => {
+    setRows(r => r.length > 1 ? r.filter(row => row.id !== id) : r);
+  };
+
+  const updateRow = (id, field, value) => {
+    setRows(r => r.map(row => row.id === id ? { ...row, [field]: value } : row));
+  };
+
+  const handleSubmit = () => {
+    const expected = ex.ecritures;
+    const used = new Set();
+    const matched = new Set();
+
+    rows.forEach((row, ri) => {
+      const rowDebit = row.debit.trim();
+      const rowCredit = row.credit.trim();
+      const rowAmount = parseAmt(row.amount);
+      if (!rowDebit && !rowCredit && rowAmount === null) return;
+
+      for (let ei = 0; ei < expected.length; ei++) {
+        if (used.has(ei)) continue;
+        const e = expected[ei];
+        if (
+          rowDebit === String(e.debit.num) &&
+          rowCredit === String(e.credit.num) &&
+          close(rowAmount, e.amount, 0.10)
+        ) {
+          used.add(ei);
+          matched.add(ri);
+          break;
+        }
+      }
+    });
+
+    const s = expected.length > 0 ? used.size / expected.length : 1;
+    setMatchedIds(matched);
+    setScore(s);
+    setSubmitted(true);
+    setTimeout(() => onComplete(s), 600);
+  };
+
+  const handleReset = () => {
+    setRows([{ id: 1, debit: '', credit: '', libelle: '', amount: '' }]);
+    setNextId(2);
+    setSubmitted(false);
+    setMatchedIds(new Set());
+    setScore(0);
+  };
+
+  const allOk = submitted && score >= 0.99;
+  const someOk = submitted && score > 0 && score < 0.99;
+
+  return (
+    <div>
+      <div className="journal-wrap">
+        <table className="journal-table">
+          <thead>
+            <tr>
+              <th style={{ width: '5%' }}>N°</th>
+              <th style={{ width: '16%' }}>Compte débit</th>
+              <th style={{ width: '16%' }}>Compte crédit</th>
+              <th style={{ width: '26%' }}>Libellé</th>
+              <th style={{ width: '17%' }}>Débit CHF</th>
+              <th style={{ width: '17%' }}>Crédit CHF</th>
+              <th style={{ width: '3%' }}></th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row, ri) => (
+              <tr key={row.id} style={submitted ? { background: matchedIds.has(ri) ? '#e6f4ed' : '#fdf0ee' } : {}}>
+                <td style={{ color: 'var(--text4)', fontSize: '0.75rem', textAlign: 'center' }}>{ri + 1}</td>
+                <td>
+                  <input className="journal-input" value={row.debit} onChange={ev => updateRow(row.id, 'debit', ev.target.value)} placeholder="1000" disabled={submitted} />
+                </td>
+                <td>
+                  <input className="journal-input" value={row.credit} onChange={ev => updateRow(row.id, 'credit', ev.target.value)} placeholder="2000" disabled={submitted} />
+                </td>
+                <td>
+                  <input className="journal-input" value={row.libelle} onChange={ev => updateRow(row.id, 'libelle', ev.target.value)} placeholder="Libellé" disabled={submitted} style={{ fontStyle: 'italic' }} />
+                </td>
+                <td>
+                  <input className="journal-input" value={row.amount} onChange={ev => updateRow(row.id, 'amount', ev.target.value)} placeholder="0.00" disabled={submitted} style={{ textAlign: 'right' }} />
+                </td>
+                <td>
+                  <input className="journal-input" value={row.amount} disabled style={{ textAlign: 'right', color: 'var(--text3)', background: 'var(--bg2)' }} placeholder="0.00" tabIndex={-1} />
+                </td>
+                <td>
+                  {!submitted && (
+                    <button onClick={() => removeRow(row.id)} style={{
+                      background: 'none', border: '1px solid #c0392b', borderRadius: 4,
+                      color: '#c0392b', cursor: 'pointer', fontSize: '0.78rem', padding: '2px 6px',
+                      lineHeight: 1,
+                    }} title="Supprimer la ligne">&times;</button>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {!submitted && (
+        <div style={{ marginTop: 8 }}>
+          <button onClick={addRow} style={{
+            background: 'none', border: '2px solid #1a7a4a', borderRadius: 6,
+            color: '#1a7a4a', cursor: 'pointer', fontSize: '0.88rem', fontWeight: 700,
+            padding: '4px 14px', lineHeight: 1.4,
+          }} title="Ajouter une ligne">+ Ajouter une écriture</button>
+        </div>
+      )}
+
+      {submitted && (
+        <>
+          <div className={`feedback ${allOk ? 'success' : someOk ? 'partial' : 'error'}`}>
+            <div style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
+              {allOk
+                ? <CheckCircle2 size={16} strokeWidth={2} color="#1a7a4a" style={{ flexShrink: 0, marginTop: 1 }} />
+                : <XCircle size={16} strokeWidth={2} color={someOk ? '#d4600a' : '#c0392b'} style={{ flexShrink: 0, marginTop: 1 }} />}
+              <span>
+                {allOk
+                  ? 'Toutes les écritures sont correctes !'
+                  : `${matchedIds.size} / ${ex.ecritures.length} écritures correctes. Consultez la correction ci-dessous.`}
+              </span>
+            </div>
+          </div>
+          <div className="correction-wrap">
+            <table className="correction-table">
+              <thead>
+                <tr><th>N°</th><th>Débit</th><th>Crédit</th><th>Montant</th></tr>
+              </thead>
+              <tbody>
+                {ex.ecritures.map((e, i) => (
+                  <tr key={e.id}>
+                    <td style={{ color: 'var(--text4)', fontSize: '0.72rem' }}>{i + 1}</td>
+                    <td className="c-debit">{e.debit.num}</td>
+                    <td className="c-credit">{e.credit.num}</td>
+                    <td className="c-amount">{fmt(e.amount)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
+      )}
+
+      <div className="btn-row">
+        {!submitted
+          ? <button className="btn btn-primary" onClick={handleSubmit}><Send size={14} strokeWidth={2} /> Valider les écritures</button>
+          : <button className="btn btn-secondary" onClick={handleReset}><RotateCcw size={14} strokeWidth={2} /> Recommencer</button>}
+      </div>
+    </div>
+  );
+}
+
 // ─── MAIN ────────────────────────────────────────────────────────────────────
 export default function ExerciseView({ activeGroup, setActiveGroup, scores, setScores }) {
   const group = exerciseGroups.find(g => g.id === activeGroup) || exerciseGroups[0];
-  const groupExercises = exercises.filter(e => e.group === activeGroup);
+  const groupExercises = exercises.filter(e => e.group === activeGroup).sort((a, b) => a.difficulty - b.difficulty);
   const [idx, setIdx] = useState(0);
   const [completed, setCompleted] = useState({});
 
@@ -1034,6 +1215,7 @@ export default function ExerciseView({ activeGroup, setActiveGroup, scores, setS
           {current.type === 'calcul'  && <CalculExercise  key={`${current.id}-${idx}`} ex={current} onComplete={handleComplete} />}
           {current.type === 'payslip-interactive' && <PayslipInteractiveExercise key={`${current.id}-${idx}`} ex={current} onComplete={handleComplete} />}
           {current.type === 'exam' && <ExamExercise key={`${current.id}-${idx}`} ex={current} onComplete={handleComplete} />}
+          {current.type === 'journal-libre' && <JournalLibreExercise key={`${current.id}-${idx}`} ex={current} onComplete={handleComplete} />}
         </div>
 
         {/* Navigation */}

@@ -9,6 +9,7 @@ import { analyseExerciseGroups, analyseExercises } from './analyse';
 import { investissementsExercises } from './investissements';
 import { revisionExercises } from './revision';
 import { examenExercises } from './examen';
+import { journalLibreExercises } from './journal-libre';
 
 export const exerciseGroups = [
   { id: 'base-journal',        label: 'Journal — Cas complets',      icon: '📝', tag: 'base',       description: 'Situations complètes avec plusieurs écritures liées' },
@@ -39,4 +40,5 @@ export const exercises = [
   ...investissementsExercises,
   ...revisionExercises,
   ...examenExercises,
+  ...journalLibreExercises,
 ];
