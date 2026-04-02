@@ -35,6 +35,29 @@
   --radius-lg: 14px;
 }
 
+/* Dark Mode */
+.app.dark {
+  --bg: #0f1729;
+  --white: #1a2744;
+  --surface2: #1e2d4a;
+  --border: #2a3a5c;
+  --border2: #3a4a6c;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --text3: #64748b;
+  --text4: #475569;
+}
+.app.dark .topbar { background: #1a2744; border-color: #2a3a5c; }
+.app.dark .exercise-card { background: #1a2744; border-color: #2a3a5c; }
+.app.dark .stat-card { background: #1a2744; border-color: #2a3a5c; }
+.app.dark .chapter-card { background: #1a2744; border-color: #2a3a5c; }
+.app.dark .qcm-option { background: #1a2744; border-color: #2a3a5c; color: #e2e8f0; }
+.app.dark .journal-input { background: #0f1729; border-color: #2a3a5c; color: #e2e8f0; }
+.app.dark .group-btn { background: #1a2744; border-color: #2a3a5c; color: #94a3b8; }
+.app.dark .hint-box { background: #2a2000; border-color: #5c4a00; color: #f0d98a; }
+.app.dark .theory-h2 > div:first-child + div, .app.dark .theory-h2 > div:last-child { background: #1a2744 !important; }
+.app.dark .theory-h2 { border-color: #2a3a5c !important; }
+
 body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); height: 100vh; overflow: hidden; font-size: 13.5px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
 .app { display: flex; height: 100vh; }
 

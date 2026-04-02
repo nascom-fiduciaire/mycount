@@ -3,7 +3,8 @@ import {
   LayoutDashboard, BookOpen, PenSquare, Percent, Banknote,
   CalendarClock, ChevronRight, FileText, Table2,
   ClipboardList, Scale, Package, TrendingUp, RotateCcw,
-  Building2, BarChart3, Calculator, PieChart, Target, Award
+  Building2, BarChart3, Calculator, PieChart, Target, Award,
+  Sun, Moon
 } from 'lucide-react';
 import { MODULES } from '../data/modules';
 import { exerciseGroups, exercises } from '../data/exercises/index';
@@ -90,7 +91,7 @@ function ModuleSwitcher({ activeModule, setActiveModule, setView }) {
 }
 
 // ─── Composant principal ──────────────────────────────────────────────────────
-export default function Sidebar({ view, setView, activeTheory, setActiveTheory, activeGroup, setActiveGroup, scores, activeModule, setActiveModule, className }) {
+export default function Sidebar({ view, setView, activeTheory, setActiveTheory, activeGroup, setActiveGroup, scores, activeModule, setActiveModule, className, darkMode, setDarkMode }) {
 
   // Récupérer le module actif
   const mod = MODULES.find(m => m.id === activeModule) || MODULES[0];
@@ -256,6 +257,16 @@ export default function Sidebar({ view, setView, activeTheory, setActiveTheory, 
         </div>
       )}
 
+      <div style={{ padding: '10px 12px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+        <button
+          className="sidebar-item"
+          onClick={() => setDarkMode(d => !d)}
+          style={{ fontSize: '0.72rem' }}
+        >
+          <span style={iconStyle}>{darkMode ? <Sun size={14} strokeWidth={1.8} /> : <Moon size={14} strokeWidth={1.8} />}</span>
+          <span style={{ flex: 1 }}>{darkMode ? 'Mode clair' : 'Mode sombre'}</span>
+        </button>
+      </div>
     </div>
   );
 }

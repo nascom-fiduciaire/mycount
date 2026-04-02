@@ -3,7 +3,7 @@ import {
   TrendingUp, CheckCircle2, Circle, BookOpen,
   PenSquare, Percent, FileText, Banknote, CalendarClock,
   ChevronRight, Award, Download, RotateCcw,
-  Scale, Package, Building2, BarChart3, Lock
+  Scale, Package, Building2, BarChart3, Lock, Lightbulb
 } from 'lucide-react';
 import { exercises, exerciseGroups } from '../data/exercises/index';
 import { MODULES } from '../data/modules';
@@ -166,6 +166,32 @@ export default function Dashboard({ scores, setView, setActiveGroup, setActiveTh
           </div>
         </div>
 
+        {/* Recommandation */}
+        <div style={{
+          padding: '16px 20px', marginBottom: 24, borderRadius: 12,
+          background: 'linear-gradient(135deg, #eff6ff, #dbeafe)',
+          border: '1px solid #bfdbfe',
+          display: 'flex', alignItems: 'center', gap: 14,
+        }}>
+          <div style={{ width: 42, height: 42, borderRadius: 12, background: '#2563eb', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <Lightbulb size={20} color="#fff" strokeWidth={2} />
+          </div>
+          <div>
+            <div style={{ fontWeight: 700, fontSize: '0.88rem', color: '#1e3a5f', marginBottom: 2 }}>
+              {pct === 0 ? 'Commencez par les exercices de base !' :
+               pct < 30 ? 'Continuez sur votre lancée !' :
+               pct < 70 ? 'Bon travail ! Essayez les exercices plus avancés.' :
+               pct < 100 ? 'Presque fini ! Plus que quelques exercices.' :
+               'Bravo ! Tous les exercices sont complétés ! 🎉'}
+            </div>
+            <div style={{ fontSize: '0.78rem', color: '#475569' }}>
+              {pct === 0 ? 'Cliquez sur un groupe d\'exercices ci-dessous pour commencer.' :
+               pct < 100 ? `${total - done} exercice${total - done > 1 ? 's' : ''} restant${total - done > 1 ? 's' : ''} dans ce module.` :
+               'Tentez l\'examen final pour valider vos acquis !'}
+            </div>
+          </div>
+        </div>
+
         {/* Exercices */}
         {modGroups.length > 0 && (
           <>
@@ -187,6 +213,13 @@ export default function Dashboard({ scores, setView, setActiveGroup, setActiveTh
                     <div className="chapter-card-footer">
                       <span className={`tag ${tagClass[g.tag]}`}>{tagLabel[g.tag]}</span>
                       <span className="chapter-card-score">{gCorrect}/{gEx.length}</span>
+                      <span style={{
+                        fontSize: '0.62rem', fontWeight: 600, padding: '2px 7px', borderRadius: 10,
+                        background: gDone === 0 ? '#f1f5f9' : gCorrect === gEx.length ? '#ecfdf5' : gDone === gEx.length ? '#fff7ed' : '#eff6ff',
+                        color: gDone === 0 ? '#94a3b8' : gCorrect === gEx.length ? '#059669' : gDone === gEx.length ? '#ea580c' : '#2563eb',
+                      }}>
+                        {gDone === 0 ? 'Pas commencé' : gCorrect === gEx.length ? 'Maîtrisé ✓' : gDone === gEx.length ? 'À revoir' : 'En cours'}
+                      </span>
                       <ChevronRight size={14} strokeWidth={1.8} color="#a0aec0" style={{ marginLeft: 4 }} />
                     </div>
                     <div className="progress-bar" style={{ marginTop: 8 }}>

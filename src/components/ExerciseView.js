@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import {
   ChevronLeft, ChevronRight, CheckCircle2, XCircle,
   Lightbulb, BookOpen, RotateCcw, Send,
-  PenSquare, Percent, FileText, Banknote, CalendarClock
+  PenSquare, Percent, FileText, Banknote, CalendarClock,
+  Star
 } from 'lucide-react';
 import { exercises, exerciseGroups } from '../data/exercises/index';
 import { COMPTES_CLES } from '../data/planComptable';
@@ -1105,7 +1106,7 @@ function JournalLibreExercise({ ex, onComplete }) {
 }
 
 // ─── MAIN ────────────────────────────────────────────────────────────────────
-export default function ExerciseView({ activeGroup, setActiveGroup, scores, setScores }) {
+export default function ExerciseView({ activeGroup, setActiveGroup, scores, setScores, favorites = [], toggleFavorite = () => {} }) {
   const group = exerciseGroups.find(g => g.id === activeGroup) || exerciseGroups[0];
   const groupExercises = exercises.filter(e => e.group === activeGroup).sort((a, b) => a.difficulty - b.difficulty);
   const [idx, setIdx] = useState(0);
@@ -1174,7 +1175,18 @@ export default function ExerciseView({ activeGroup, setActiveGroup, scores, setS
             </span>
           </div>
 
-          <div className="exercise-title">{current.title}</div>
+          <div className="exercise-title" style={{ display: 'flex', alignItems: 'center' }}>
+            {current.title}
+            <button
+              onClick={() => toggleFavorite(current.id)}
+              style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4, marginLeft: 8 }}
+              title={favorites.includes(current.id) ? 'Retirer des favoris' : 'Ajouter aux favoris'}
+            >
+              {favorites.includes(current.id)
+                ? <Star size={16} fill="#f59e0b" color="#f59e0b" />
+                : <Star size={16} color="#cbd5e1" />}
+            </button>
+          </div>
           <div className="exercise-desc" style={{ whiteSpace: 'pre-line' }}>{current.description}</div>
 
           {current.data && current.data.length > 0 && (
