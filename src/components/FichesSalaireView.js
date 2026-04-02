@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Info, Lightbulb, ClipboardList, User } from 'lucide-react';
+import { Info, Lightbulb, ClipboardList, User, Printer } from 'lucide-react';
 import { fichesSalaire } from '../data/theory/09-fiches-salaire';
 
 function fmt(n) {
@@ -127,6 +127,19 @@ function FicheDetail({ fiche }) {
       <div style={{ background: '#f0f3f7', border: '1px solid #e2e8f0', borderRadius: 6, padding: '11px 15px', marginBottom: 16, fontSize: '0.81rem', color: '#475569', lineHeight: 1.65, whiteSpace: 'pre-line' }}>
         <strong style={{ color: '#0f172a', display: 'block', marginBottom: 5, fontSize: '0.74rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}><ClipboardList size={13} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />Contexte</strong>
         {fiche.contexte}
+      </div>
+
+      {/* Print button & header */}
+      <button
+        className="btn btn-secondary no-print"
+        onClick={() => window.print()}
+        style={{ marginBottom: 14 }}
+      >
+        <Printer size={14} strokeWidth={2} /> Imprimer / PDF
+      </button>
+      <div className="print-header">
+        <h1>MyCount — Fiche de salaire</h1>
+        <p>SwiSSwatch SA · {fiche.salaire?.mois || ''}</p>
       </div>
 
       {/* Fiche de salaire */}

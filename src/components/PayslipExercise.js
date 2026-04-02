@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Info, Lightbulb, ClipboardList } from 'lucide-react';
+import { Info, Lightbulb, ClipboardList, Printer } from 'lucide-react';
 
 function fmt(n) {
   if (n === null || n === undefined) return '—';
@@ -183,6 +183,19 @@ export default function PayslipExercise({ ex }) {
           <ClipboardList size={13} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />Contexte
         </strong>
         {ex.contexte}
+      </div>
+
+      {/* Print button & header */}
+      <button
+        className="btn btn-secondary no-print"
+        onClick={() => window.print()}
+        style={{ marginBottom: 14 }}
+      >
+        <Printer size={14} strokeWidth={2} /> Imprimer / PDF
+      </button>
+      <div className="print-header">
+        <h1>MyCount — Fiche de salaire</h1>
+        <p>SwiSSwatch SA · {ex.salaire?.mois || ''}</p>
       </div>
 
       {/* ── FICHE DE SALAIRE ─────────────────────────────────────── */}

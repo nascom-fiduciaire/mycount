@@ -361,3 +361,24 @@ body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); c
   .exercise-card { padding: 12px 14px; }
   .sidebar-logo h1 { font-size: 0.85rem; }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PRINT STYLES
+   ═══════════════════════════════════════════════════════════════════════════ */
+@media print {
+  .sidebar, .hamburger, .sidebar-overlay, .topbar, .btn-row, .exercise-groups,
+  .progress-dots, .group-btn, .btn, .no-print { display: none !important; }
+
+  .app { display: block !important; height: auto !important; }
+  .main { overflow: visible !important; height: auto !important; }
+  .content { padding: 0 !important; }
+  .exercise-card { box-shadow: none !important; border: 1px solid #ccc !important; break-inside: avoid; }
+
+  body { font-size: 11px !important; background: #fff !important; color: #000 !important; }
+
+  .print-header { display: block !important; text-align: center; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #2563eb; }
+  .print-header h1 { font-size: 16px; color: #0f172a; margin: 0; }
+  .print-header p { font-size: 10px; color: #666; margin: 4px 0 0; }
+}
+
+.print-header { display: none; }
